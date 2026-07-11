@@ -1,0 +1,12 @@
+id: containerd
+type: project
+name: containerd
+repo: https://github.com/containerd/containerd
+summary: 行业标准容器运行时（CNCF）。
+tags: [containers, devops]
+language: Go
+status: active
+use_when: 要底层容器运行时或定制 CRI
+avoid_when: 只要 Docker 用户体验封装
+niche: container runtime
+related_ecosystem: devops

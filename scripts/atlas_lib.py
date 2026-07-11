@@ -96,6 +96,22 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
             s -= 2
     if "不要重型" in query and nid in ("instructor", "pydantic-ai", "outlines"):
         s += 1
+    if "GitOps" in query or "gitops" in query.lower():
+        if nid in ("argo-cd", "flux2"):
+            s += 3
+    if "满血" in query or "轻量" in query:
+        if nid == "nomad":
+            s += 3
+        if nid == "kubernetes" and ("满血" in query or "不想" in query):
+            s -= 2
+    if "Python/TS" in query or "通用语言" in query:
+        if nid == "pulumi":
+            s += 3
+    if "原型" in query or "快速" in query:
+        if nid in ("chromadb", "lancedb", "ollama"):
+            s += 2.5
+        if nid in ("milvus", "weaviate") and "原型" in query:
+            s -= 2
     return s
 
 

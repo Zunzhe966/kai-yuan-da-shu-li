@@ -49,3 +49,16 @@ queries:
     query: 统一多个模型供应商的 API 路由
     intent_tags: [llm-api]
     expect_any: [litellm]
+
+  - id: q13
+    query: Kubernetes 上做 GitOps 持续交付
+    intent_tags: [ci, orchestration]
+    expect_any: [argo-cd, flux2]
+  - id: q14
+    query: 不想上满血 K8s，只要轻量工作负载调度
+    intent_tags: [orchestration]
+    expect_any: [nomad]
+  - id: q15
+    query: 基础设施即代码，团队更熟 Python/TS
+    intent_tags: [iac]
+    expect_any: [pulumi, terraform]

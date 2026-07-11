@@ -1,0 +1,12 @@
+id: crawl4ai
+type: project
+name: Crawl4AI
+repo: https://github.com/unclecode/crawl4ai
+summary: 面向 LLM 的网页爬取与清洗。
+tags: [rag, agent-framework]
+language: Python
+status: active
+use_when: Agent/RAG 需要干净网页语料
+avoid_when: 只要单一 API 数据源
+niche: LLM-oriented crawler
+related_ecosystem: ai-agents

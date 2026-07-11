@@ -1,0 +1,12 @@
+id: lm-evaluation-harness
+type: project
+name: LM Evaluation Harness
+repo: https://github.com/EleutherAI/lm-evaluation-harness
+summary: 开源模型评测基准框架。
+tags: [eval]
+language: Python
+status: active
+use_when: 要标准化评测基座模型能力
+avoid_when: 只评业务 RAG 流水线（看 ragas）
+niche: foundation model eval
+related_ecosystem: ai-agents

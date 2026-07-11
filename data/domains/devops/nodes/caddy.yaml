@@ -1,0 +1,12 @@
+id: caddy
+type: project
+name: Caddy
+repo: https://github.com/caddyserver/caddy
+summary: 自动 HTTPS 的 Web 服务器/反向代理。
+tags: [networking, devops]
+language: Go
+status: active
+use_when: 要少配置自动证书的反向代理
+avoid_when: 已有复杂 nginx/traefik 规范不可替换
+niche: auto-HTTPS server
+related_ecosystem: devops

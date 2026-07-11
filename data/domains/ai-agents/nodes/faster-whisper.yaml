@@ -1,0 +1,12 @@
+id: faster-whisper
+type: project
+name: faster-whisper
+repo: https://github.com/SYSTRAN/faster-whisper
+summary: CTranslate2 加速的 Whisper 语音识别。
+tags: [local-llm]
+language: Python
+status: active
+use_when: 本地/服务端要快的语音转写
+avoid_when: 只要云端语音 API
+niche: speech-to-text
+related_ecosystem: ai-agents

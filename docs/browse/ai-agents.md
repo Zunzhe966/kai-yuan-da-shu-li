@@ -1,6 +1,6 @@
-# 开源大梳理 · ai-agents 浏览索引
+# 开源大梳理 · ai-agents
 
-> YAML 投影；权威数据在 data/ graph/
+> YAML 投影
 
 ## Agent / LLM 应用框架
 
@@ -19,6 +19,10 @@
 - [Browser Use](https://github.com/browser-use/browser-use) — 让 Agent 操作真实浏览器的自动化框架。
 - [Aider](https://github.com/Aider-AI/aider) — 终端里的 AI 结对编程，直接改 git 仓库。
 - [GPT Researcher](https://github.com/assafelovic/gpt-researcher) — 面向深度调研的 Agent，自动搜网写报告。
+- [smolagents](https://github.com/huggingface/smolagents) — HF 轻量 Agent 库，代码优先、上手快。
+- [Open Interpreter](https://github.com/openinterpreter/open-interpreter) — 让 LLM 在本地执行代码的通用解释器 Agent。
+- [n8n](https://github.com/n8n-io/n8n) — 可自托管的工作流自动化，含 AI 节点。
+- [Flowise](https://github.com/FlowiseAI/Flowise) — 可视化 LLM 编排 UI，偏 LangChain 生态。
 
 ## 多 Agent 协作
 
@@ -31,8 +35,10 @@
 ## RAG / 数据框架
 
 - [LlamaIndex](https://github.com/run-llama/llama_index) — 偏 RAG / 数据接入的 LLM 框架，文档与索引工作流强。
-- [Haystack](https://github.com/deepset-ai/haystack) — deepset 的 NLP/RAG 流水线框架，管道组合清晰。
 - [Mem0](https://github.com/mem0ai/mem0) — Agent 长期记忆层，跨会话偏好与事实存储。
+- [Haystack](https://github.com/deepset-ai/haystack) — deepset 的 NLP/RAG 流水线框架，管道组合清晰。
+- [Unstructured](https://github.com/Unstructured-IO/unstructured) — 文档解析与预处理，服务 RAG 摄取。
+- [Crawl4AI](https://github.com/unclecode/crawl4ai) — 面向 LLM 的网页爬取与清洗。
 
 ## 向量库 / 检索后端
 
@@ -41,6 +47,7 @@
 - [Milvus](https://github.com/milvus-io/milvus) — 云原生大规模向量数据库。
 - [Faiss](https://github.com/facebookresearch/faiss) — Meta 的相似向量检索库，算法层基础件。
 - [LanceDB](https://github.com/lancedb/lancedb) — 基于 Lance 格式的嵌入式向量库，分析友好。
+- [Weaviate](https://github.com/weaviate/weaviate) — 向量数据库，带模块化向量化与过滤。
 
 ## MCP / 工具协议
 
@@ -57,31 +64,35 @@
 - [Outlines](https://github.com/dottxt-ai/outlines) — 结构化生成库，约束解码友好。
 - [Open WebUI](https://github.com/open-webui/open-webui) — 自托管的 ChatGPT 风格 Web UI，常配 Ollama。
 - [Hugging Face Transformers](https://github.com/huggingface/transformers) — 预训练模型加载与推理的事实标准库。
+- [faster-whisper](https://github.com/SYSTRAN/faster-whisper) — CTranslate2 加速的 Whisper 语音识别。
 
 ## 评测与质量
 
 - [Ragas](https://github.com/explodinggradients/ragas) — RAG 流水线评测框架。
 - [DeepEval](https://github.com/confident-ai/deepeval) — LLM 应用单元测试/评测框架，像 pytest 一样写用例。
 - [Arize Phoenix](https://github.com/Arize-ai/phoenix) — 开源 AI 可观测与评估，偏 tracing/评估工作台。
+- [LM Evaluation Harness](https://github.com/EleutherAI/lm-evaluation-harness) — 开源模型评测基准框架。
 
 ## 观测与追踪
 
-- [Langfuse](https://github.com/langfuse/langfuse) — 开源 LLM 可观测：追踪、提示管理、评分。
 - [Arize Phoenix](https://github.com/Arize-ai/phoenix) — 开源 AI 可观测与评估，偏 tracing/评估工作台。
+- [Langfuse](https://github.com/langfuse/langfuse) — 开源 LLM 可观测：追踪、提示管理、评分。
+- [OpenTelemetry Python](https://github.com/open-telemetry/opentelemetry-python) — 通用可观测 SDK，可埋点 LLM 应用。
 
 ## 提示词与护栏
 
 - [DSPy](https://github.com/stanfordnlp/dspy) — 斯坦福声明式提示与程序优化框架，把 prompt 当可优化参数。
+- [Outlines](https://github.com/dottxt-ai/outlines) — 结构化生成库，约束解码友好。
 - [Langfuse](https://github.com/langfuse/langfuse) — 开源 LLM 可观测：追踪、提示管理、评分。
 - [Guardrails AI](https://github.com/guardrails-ai/guardrails) — LLM 输出校验与护栏框架。
 - [Instructor](https://github.com/instructor-ai/instructor) — 用 Pydantic 约束 LLM 结构化输出的薄库。
-- [Outlines](https://github.com/dottxt-ai/outlines) — 结构化生成库，约束解码友好。
 
 ## 微调 / 训练辅助
 
 - [Hugging Face Transformers](https://github.com/huggingface/transformers) — 预训练模型加载与推理的事实标准库。
 - [PEFT](https://github.com/huggingface/peft) — Hugging Face 参数高效微调库（LoRA 等）。
 - [Axolotl](https://github.com/axolotl-ai-cloud/axolotl) — 大模型微调工具包，配置化训练常见。
+- [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) — 统一微调/偏好优化工具箱。
 
 ## 数据集
 
@@ -92,3 +103,5 @@
 - [Vercel AI SDK](https://github.com/vercel/ai) — 面向 Web/TS 的流式 AI SDK，UI 与模型调用一体。
 - [Open WebUI](https://github.com/open-webui/open-webui) — 自托管的 ChatGPT 风格 Web UI，常配 Ollama。
 - [Continue](https://github.com/continuedev/continue) — 开源 IDE 编码助手扩展，可接多模型。
+- [Flowise](https://github.com/FlowiseAI/Flowise) — 可视化 LLM 编排 UI，偏 LangChain 生态。
+- [ComfyUI](https://github.com/comfyanonymous/ComfyUI) — 节点式生成式工作流 UI（图像等）。

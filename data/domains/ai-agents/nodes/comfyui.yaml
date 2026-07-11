@@ -1,0 +1,12 @@
+id: comfyui
+type: project
+name: ComfyUI
+repo: https://github.com/comfyanonymous/ComfyUI
+summary: 节点式生成式工作流 UI（图像等）。
+tags: [ui, orchestration]
+language: Python
+status: active
+use_when: 要可视化拼装生成式工作流
+avoid_when: 只要文本 Agent/聊天
+niche: node-based genUI
+related_ecosystem: ai-agents

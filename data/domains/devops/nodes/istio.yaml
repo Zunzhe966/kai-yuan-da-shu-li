@@ -1,0 +1,12 @@
+id: istio
+type: project
+name: Istio
+repo: https://github.com/istio/istio
+summary: 功能完整的服务网格。
+tags: [networking, orchestration, devops]
+language: Go
+status: active
+use_when: K8s 上要流量治理/mTLS/可观测网格
+avoid_when: 网格复杂度不可接受、服务很少
+niche: service mesh
+related_ecosystem: devops

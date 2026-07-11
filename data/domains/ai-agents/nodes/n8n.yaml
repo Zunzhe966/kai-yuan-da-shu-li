@@ -1,0 +1,12 @@
+id: n8n
+type: project
+name: n8n
+repo: https://github.com/n8n-io/n8n
+summary: 可自托管的工作流自动化，含 AI 节点。
+tags: [orchestration, agent-framework]
+language: TypeScript
+status: active
+use_when: 要可视化工作流打通 SaaS/API/AI
+avoid_when: 只要纯代码库、不要工作流 UI
+niche: workflow automation
+related_ecosystem: ai-agents

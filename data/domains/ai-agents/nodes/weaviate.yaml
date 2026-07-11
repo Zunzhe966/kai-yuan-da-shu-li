@@ -1,0 +1,12 @@
+id: weaviate
+type: project
+name: Weaviate
+repo: https://github.com/weaviate/weaviate
+summary: 向量数据库，带模块化向量化与过滤。
+tags: [vector-db, rag]
+language: Go
+status: active
+use_when: 需要带模块/混合检索的向量库
+avoid_when: 只要嵌入式玩具级向量表
+niche: vector database
+related_ecosystem: ai-agents

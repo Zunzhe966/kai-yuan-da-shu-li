@@ -1,0 +1,12 @@
+id: crossplane
+type: project
+name: Crossplane
+repo: https://github.com/crossplane/crossplane
+summary: 用 K8s 控制面管理云资源。
+tags: [iac, orchestration, devops]
+language: Go
+status: active
+use_when: 要把云资源也当成 K8s 声明式对象
+avoid_when: 不用 Kubernetes 控制面
+niche: k8s-native IaC
+related_ecosystem: devops

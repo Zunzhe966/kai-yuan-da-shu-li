@@ -1,0 +1,12 @@
+id: open-interpreter
+type: project
+name: Open Interpreter
+repo: https://github.com/openinterpreter/open-interpreter
+summary: 让 LLM 在本地执行代码的通用解释器 Agent。
+tags: [agent-framework]
+language: Python
+status: active
+use_when: 需要本地代码执行型通用 Agent
+avoid_when: 不能给模型本机执行权限
+niche: local code-exec agent
+related_ecosystem: ai-agents

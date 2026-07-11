@@ -1,0 +1,12 @@
+id: consul
+type: project
+name: Consul
+repo: https://github.com/hashicorp/consul
+summary: 服务发现、配置与网格能力。
+tags: [networking, devops]
+language: Go
+status: active
+use_when: 微服务需要服务发现/健康检查/配置
+avoid_when: 单机或平台已提供服务发现
+niche: service discovery
+related_ecosystem: devops

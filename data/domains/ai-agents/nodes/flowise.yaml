@@ -1,0 +1,12 @@
+id: flowise
+type: project
+name: Flowise
+repo: https://github.com/FlowiseAI/Flowise
+summary: 可视化 LLM 编排 UI，偏 LangChain 生态。
+tags: [orchestration, ui, agent-framework]
+language: TypeScript
+status: active
+use_when: 要用拖拽快速搭 LLM 流
+avoid_when: 要强类型代码一等公民控制
+niche: visual LLM builder
+related_ecosystem: ai-agents

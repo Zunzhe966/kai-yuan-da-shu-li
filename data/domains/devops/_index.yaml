@@ -2,26 +2,26 @@ domain: devops
 title: DevOps / 云原生基础设施
 status: seeding
 notes: |
-  D6 第二垂直。节点必须含 use_when/avoid_when。
+  density pass
 
 categories:
   - id: containers
     title: 容器运行时
-    node_ids: [docker, kubernetes, traefik, podman]
+    node_ids: [docker, kubernetes, traefik, podman, nomad, containerd]
   - id: orchestration
     title: 编排
-    node_ids: [kubernetes, helm, argo-cd]
+    node_ids: [kubernetes, helm, argo-cd, nomad, istio, flux2, crossplane]
   - id: iac
     title: 基础设施即代码
-    node_ids: [terraform, pulumi, ansible]
+    node_ids: [terraform, pulumi, ansible, vault, crossplane]
   - id: observability
     title: 可观测
     node_ids: [prometheus, grafana]
   - id: networking
     title: 网络与网关
-    node_ids: [nginx, traefik]
+    node_ids: [traefik, nginx, consul, istio, caddy]
   - id: ci
     title: CI / GitOps
-    node_ids: [github-actions-runner, act, argo-cd]
+    node_ids: [argo-cd, github-actions-runner, act, flux2]
 
 nodes_dir: nodes

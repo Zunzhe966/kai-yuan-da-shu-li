@@ -1,0 +1,12 @@
+id: smolagents
+type: project
+name: smolagents
+repo: https://github.com/huggingface/smolagents
+summary: HF 轻量 Agent 库，代码优先、上手快。
+tags: [agent-framework]
+language: Python
+status: active
+use_when: 要轻量 Python Agent 且贴近 HF 生态
+avoid_when: 需要超大集成市场或企业复杂编排
+niche: lightweight HF agents
+related_ecosystem: ai-agents

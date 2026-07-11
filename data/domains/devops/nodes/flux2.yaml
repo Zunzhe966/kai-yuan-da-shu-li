@@ -1,0 +1,12 @@
+id: flux2
+type: project
+name: Flux
+repo: https://github.com/fluxcd/flux2
+summary: GitOps 工具集（CNCF）。
+tags: [ci, orchestration, devops]
+language: Go
+status: active
+use_when: K8s GitOps 且偏 Flux 生态
+avoid_when: 已选定 Argo CD 且无双栈需求
+niche: gitops toolkit
+related_ecosystem: devops

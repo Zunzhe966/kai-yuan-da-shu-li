@@ -1,0 +1,12 @@
+id: opentelemetry-python
+type: project
+name: OpenTelemetry Python
+repo: https://github.com/open-telemetry/opentelemetry-python
+summary: 通用可观测 SDK，可埋点 LLM 应用。
+tags: [observability]
+language: Python
+status: active
+use_when: 要把 LLM 服务接入标准 tracing/metrics
+avoid_when: 只要 LLM 专用控制台、不接通用 OTel
+niche: otel sdk
+related_ecosystem: ai-agents

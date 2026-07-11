@@ -1,0 +1,12 @@
+id: llamafactory
+type: project
+name: LLaMA-Factory
+repo: https://github.com/hiyouga/LLaMA-Factory
+summary: 统一微调/偏好优化工具箱。
+tags: [fine-tuning]
+language: Python
+status: active
+use_when: 要一站式配置跑开源模型微调
+avoid_when: 不做训练
+niche: finetune toolkit
+related_ecosystem: ai-agents

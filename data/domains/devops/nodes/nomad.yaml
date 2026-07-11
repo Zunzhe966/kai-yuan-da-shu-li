@@ -1,0 +1,12 @@
+id: nomad
+type: project
+name: Nomad
+repo: https://github.com/hashicorp/nomad
+summary: HashiCorp 通用工作负载调度器，比 K8s 更轻。
+tags: [orchestration, devops]
+language: Go
+status: active
+use_when: 要调度容器/非容器任务又不想上满血 K8s
+avoid_when: 团队标准已是 Kubernetes 且生态绑定深
+niche: workload scheduler
+related_ecosystem: devops

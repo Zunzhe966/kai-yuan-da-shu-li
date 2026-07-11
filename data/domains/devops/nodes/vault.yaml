@@ -1,0 +1,12 @@
+id: vault
+type: project
+name: Vault
+repo: https://github.com/hashicorp/vault
+summary: 密钥与敏感配置管理。
+tags: [devops, iac]
+language: Go
+status: active
+use_when: 要统一管理密钥、动态凭证、加密即服务
+avoid_when: 只用云厂商密钥管理且无多云密钥需求
+niche: secrets management
+related_ecosystem: devops

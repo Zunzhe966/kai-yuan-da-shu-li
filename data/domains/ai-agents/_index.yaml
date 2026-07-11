@@ -2,44 +2,44 @@ domain: ai-agents
 title: AI / Agent / LLM 工具链
 status: seeding
 notes: |
-  D2 扩充中。节点必须含 use_when/avoid_when。
+  density pass
 
 categories:
   - id: agent-frameworks
     title: Agent / LLM 应用框架
-    node_ids: [autogen, llama-index, langchain, langgraph, crewai, semantic-kernel, dspy, pydantic-ai, openai-agents-python, vercel-ai, litellm, mem0, browser-use, aider, gpt-researcher]
+    node_ids: [autogen, llama-index, langchain, langgraph, crewai, semantic-kernel, dspy, pydantic-ai, openai-agents-python, vercel-ai, litellm, mem0, browser-use, aider, gpt-researcher, smolagents, open-interpreter, n8n, flowise]
   - id: multi-agent
     title: 多 Agent 协作
     node_ids: [autogen, crewai, openai-agents-python, gpt-researcher, metagpt]
   - id: rag-data
     title: RAG / 数据框架
-    node_ids: [llama-index, haystack, mem0]
+    node_ids: [llama-index, mem0, haystack, unstructured, crawl4ai]
   - id: vector-db
     title: 向量库 / 检索后端
-    node_ids: [chromadb, qdrant, milvus, faiss, lancedb]
+    node_ids: [chromadb, qdrant, milvus, faiss, lancedb, weaviate]
   - id: mcp-tooling
     title: MCP / 工具协议
     node_ids: [kaiyuan-dashuli, modelcontextprotocol-servers, mcp-python-sdk]
   - id: local-llm
     title: 本地 / 推理运行时
-    node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers]
+    node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers, faster-whisper]
   - id: eval-quality
     title: 评测与质量
-    node_ids: [ragas, deepeval, arize-phoenix]
+    node_ids: [ragas, deepeval, arize-phoenix, lm-evaluation-harness]
   - id: observability
     title: 观测与追踪
-    node_ids: [langfuse, arize-phoenix]
+    node_ids: [arize-phoenix, langfuse, opentelemetry-python]
   - id: prompt-ops
     title: 提示词与护栏
-    node_ids: [dspy, langfuse, guardrails-ai, instructor, outlines]
+    node_ids: [dspy, outlines, langfuse, guardrails-ai, instructor]
   - id: fine-tuning
     title: 微调 / 训练辅助
-    node_ids: [transformers, peft, axolotl]
+    node_ids: [transformers, peft, axolotl, llamafactory]
   - id: datasets
     title: 数据集
     node_ids: [datasets-hf]
   - id: agent-ui
     title: Agent / Chat UI
-    node_ids: [vercel-ai, open-webui, continue]
+    node_ids: [vercel-ai, open-webui, continue, flowise, comfyui]
 
 nodes_dir: nodes

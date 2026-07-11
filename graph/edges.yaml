@@ -265,3 +265,93 @@ edges:
     type: integrates_with
     to: docker
     note: 常见容器运行时组合（也可 containerd）
+
+  - from: smolagents
+    type: alternative_to
+    to: langchain
+    note: 轻量 HF Agent vs 大生态框架
+
+  - from: open-interpreter
+    type: alternative_to
+    to: aider
+    note: 通用本地代码执行 vs git 结对编码
+
+  - from: flowise
+    type: integrates_with
+    to: langchain
+    note: 可视化层常建在 LangChain 概念上
+
+  - from: n8n
+    type: alternative_to
+    to: flowise
+    note: 通用自动化 vs LLM 专用可视化
+
+  - from: weaviate
+    type: alternative_to
+    to: qdrant
+    note: 向量库竞品
+
+  - from: unstructured
+    type: integrates_with
+    to: llama-index
+    note: 文档摄取常接 RAG 框架
+
+  - from: crawl4ai
+    type: integrates_with
+    to: llama-index
+    note: 网页语料进索引
+
+  - from: lm-evaluation-harness
+    type: alternative_to
+    to: deepeval
+    note: 基座模型基准 vs 应用层测试
+
+  - from: llamafactory
+    type: alternative_to
+    to: axolotl
+    note: 都是微调工具箱
+
+  - from: faster-whisper
+    type: integrates_with
+    to: ollama
+    note: 本地语音可与本地 LLM 流水线组合
+
+  - from: nomad
+    type: alternative_to
+    to: kubernetes
+    note: 轻量调度 vs 满血编排
+
+  - from: consul
+    type: integrates_with
+    to: nomad
+    note: HashiCorp 常见组合
+
+  - from: kubernetes
+    type: integrates_with
+    to: containerd
+    note: K8s 常见底层容器运行时
+
+  - from: istio
+    type: depends_on
+    to: kubernetes
+    note: 服务网格部署在 K8s
+
+  - from: flux2
+    type: alternative_to
+    to: argo-cd
+    note: 两大 GitOps 方案
+
+  - from: caddy
+    type: alternative_to
+    to: nginx
+    note: 自动 HTTPS 代理 vs 经典 nginx
+
+  - from: crossplane
+    type: integrates_with
+    to: kubernetes
+    note: K8s 控制面管云资源
+
+  - from: vault
+    type: integrates_with
+    to: terraform
+    note: 密钥与 IaC 常配合

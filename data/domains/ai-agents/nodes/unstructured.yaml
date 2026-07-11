@@ -1,0 +1,12 @@
+id: unstructured
+type: project
+name: Unstructured
+repo: https://github.com/Unstructured-IO/unstructured
+summary: 文档解析与预处理，服务 RAG 摄取。
+tags: [rag, dataset]
+language: Python
+status: active
+use_when: 要把 PDF/HTML 等弄成可索引文本
+avoid_when: 数据已是干净文本
+niche: document ETL
+related_ecosystem: ai-agents
