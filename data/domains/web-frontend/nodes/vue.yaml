@@ -1,0 +1,12 @@
+id: vue
+type: project
+name: Vue
+repo: https://github.com/vuejs/core
+summary: 渐进式前端框架，模板友好。
+tags: [ui-framework, web]
+language: TypeScript
+status: active
+use_when: 要渐进增强或更易上手的组件框架
+avoid_when: 团队标准已是 React 生态且迁移成本高
+niche: progressive framework
+related_ecosystem: web

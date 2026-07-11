@@ -1,0 +1,12 @@
+id: webpack
+type: project
+name: webpack
+repo: https://github.com/webpack/webpack
+summary: 成熟模块打包器，插件生态大。
+tags: [bundler, web]
+language: JavaScript
+status: active
+use_when: 要深度定制打包或兼容既有 webpack 配置
+avoid_when: 新项目更想零配置快速体验（看 Vite）
+niche: module bundler
+related_ecosystem: web

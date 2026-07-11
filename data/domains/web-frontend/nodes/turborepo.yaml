@@ -1,0 +1,12 @@
+id: turborepo
+type: project
+name: Turborepo
+repo: https://github.com/vercel/turborepo
+summary: JS/TS monorepo 构建系统。
+tags: [monorepo, web]
+language: Rust
+status: active
+use_when: 多包前端仓要缓存加速构建
+avoid_when: 单包小仓库
+niche: monorepo build
+related_ecosystem: web

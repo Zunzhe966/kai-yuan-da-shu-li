@@ -1,0 +1,12 @@
+id: storybook
+type: project
+name: Storybook
+repo: https://github.com/storybookjs/storybook
+summary: 组件开发与文档工坊。
+tags: [testing, ui-library, web]
+language: TypeScript
+status: active
+use_when: 要隔离开发/文档化组件
+avoid_when: 没有组件库协作需求
+niche: component workshop
+related_ecosystem: web

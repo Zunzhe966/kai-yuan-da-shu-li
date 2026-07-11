@@ -62,3 +62,16 @@ queries:
     query: 基础设施即代码，团队更熟 Python/TS
     intent_tags: [iac]
     expect_any: [pulumi, terraform]
+
+  - id: q16
+    query: React 项目要 SSR 和文件系统路由
+    intent_tags: [meta-framework, react]
+    expect_any: [nextjs, remix]
+  - id: q17
+    query: 前端要快速本地开发和现代打包
+    intent_tags: [bundler]
+    expect_any: [vite]
+  - id: q18
+    query: 多浏览器端到端测试
+    intent_tags: [testing]
+    expect_any: [playwright, cypress]

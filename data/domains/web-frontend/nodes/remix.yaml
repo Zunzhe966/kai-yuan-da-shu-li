@@ -1,0 +1,12 @@
+id: remix
+type: project
+name: Remix
+repo: https://github.com/remix-run/remix
+summary: 以 Web 标准为中心的 React 框架。
+tags: [meta-framework, web, react]
+language: TypeScript
+status: active
+use_when: 重视渐进增强、嵌套路由与 Web fetch 模型
+avoid_when: 只要最大众的 Next 约定与教程密度
+niche: web-standards react framework
+related_ecosystem: web

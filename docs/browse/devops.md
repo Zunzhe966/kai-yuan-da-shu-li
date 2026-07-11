@@ -1,7 +1,5 @@
 # 开源大梳理 · devops
 
-> YAML 投影
-
 ## 容器运行时
 
 - [Docker](https://github.com/docker/cli) — 容器运行时与镜像工作流的事实入口（CLI/引擎生态）。
@@ -48,3 +46,4 @@
 - [actions/runner](https://github.com/actions/runner) — GitHub Actions 自托管 Runner。
 - [act](https://github.com/nektos/act) — 本地运行 GitHub Actions 工作流。
 - [Flux](https://github.com/fluxcd/flux2) — GitOps 工具集（CNCF）。
+

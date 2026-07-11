@@ -1,0 +1,12 @@
+id: radix-ui-primitives
+type: project
+name: Radix Primitives
+repo: https://github.com/radix-ui/primitives
+summary: 无样式无障碍头组件原语（React）。
+tags: [ui-library, a11y, web]
+language: TypeScript
+status: active
+use_when: 要可访问的无样式组件底座
+avoid_when: 只要开箱即用完整主题组件库
+niche: headless components
+related_ecosystem: web

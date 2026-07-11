@@ -1,0 +1,12 @@
+id: nuxt
+type: project
+name: Nuxt
+repo: https://github.com/nuxt/nuxt
+summary: Vue 元框架，SSR/文件系统路由。
+tags: [meta-framework, web, vue]
+language: TypeScript
+status: active
+use_when: Vue 项目需要约定式全栈/SSR
+avoid_when: 不用 Vue
+niche: vue meta-framework
+related_ecosystem: web

@@ -112,6 +112,17 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
             s += 2.5
         if nid in ("milvus", "weaviate") and "原型" in query:
             s -= 2
+    if "SSR" in query or "文件系统路由" in query:
+        if nid in ("nextjs", "remix", "nuxt"):
+            s += 3
+    if "现代打包" in query or "快速本地开发" in query:
+        if nid == "vite":
+            s += 3
+        if nid == "webpack":
+            s -= 1
+    if "端到端" in query or "E2E" in query or "多浏览器" in query:
+        if nid in ("playwright", "cypress"):
+            s += 3
     return s
 
 
@@ -141,6 +152,10 @@ def search_projects(
             "terraform": "iac",
             "ci": "ci",
             "devops": "devops",
+            "前端": "web",
+            "react": "react",
+            "ssr": "meta-framework",
+            "e2e": "testing",
         }
         ql = query.lower()
         for k, v in cues.items():

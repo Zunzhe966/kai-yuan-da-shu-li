@@ -1,0 +1,12 @@
+id: playwright
+type: project
+name: Playwright
+repo: https://github.com/microsoft/playwright
+summary: 现代多浏览器 E2E 测试。
+tags: [testing, web]
+language: TypeScript
+status: active
+use_when: 要可靠的端到端/多浏览器自动化
+avoid_when: 只要组件单测、不测真实浏览器
+niche: e2e testing
+related_ecosystem: web

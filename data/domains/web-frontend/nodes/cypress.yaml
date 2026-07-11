@@ -1,0 +1,12 @@
+id: cypress
+type: project
+name: Cypress
+repo: https://github.com/cypress-io/cypress
+summary: 开发者友好的 E2E 测试工具。
+tags: [testing, web]
+language: JavaScript
+status: active
+use_when: 团队熟悉 Cypress 工作流与时间旅行调试
+avoid_when: 需要多浏览器引擎一等支持（更看 Playwright）
+niche: e2e testing
+related_ecosystem: web

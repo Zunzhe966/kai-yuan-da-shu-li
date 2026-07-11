@@ -1,0 +1,12 @@
+id: react
+type: project
+name: React
+repo: https://github.com/facebook/react
+summary: 组件化 UI 库，Web 前端事实标准之一。
+tags: [ui-framework, web]
+language: JavaScript
+status: active
+use_when: 要构建组件化 SPA/复杂交互 UI
+avoid_when: 只要静态页或极简站点无组件状态
+niche: ui library
+related_ecosystem: web

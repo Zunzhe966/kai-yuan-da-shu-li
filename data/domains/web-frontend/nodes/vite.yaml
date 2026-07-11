@@ -1,0 +1,12 @@
+id: vite
+type: project
+name: Vite
+repo: https://github.com/vitejs/vite
+summary: 新一代前端构建与开发服务器。
+tags: [bundler, web]
+language: TypeScript
+status: active
+use_when: 要快速本地开发与现代打包
+avoid_when: 维护老旧 webpack-only 流水线且无迁移窗口
+niche: dev server/bundler
+related_ecosystem: web

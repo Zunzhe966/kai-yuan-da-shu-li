@@ -1,0 +1,12 @@
+id: astro
+type: project
+name: Astro
+repo: https://github.com/withastro/astro
+summary: 内容站点优先的多框架元框架。
+tags: [meta-framework, web]
+language: TypeScript
+status: active
+use_when: 内容站/文档站要少 JS 默认
+avoid_when: 重交互 SPA 是主形态
+niche: content-first meta-framework
+related_ecosystem: web

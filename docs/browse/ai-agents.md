@@ -1,7 +1,5 @@
 # 开源大梳理 · ai-agents
 
-> YAML 投影
-
 ## Agent / LLM 应用框架
 
 - [AutoGen](https://github.com/microsoft/autogen) — 微软系多 Agent 对话与协作框架。
@@ -105,3 +103,4 @@
 - [Continue](https://github.com/continuedev/continue) — 开源 IDE 编码助手扩展，可接多模型。
 - [Flowise](https://github.com/FlowiseAI/Flowise) — 可视化 LLM 编排 UI，偏 LangChain 生态。
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI) — 节点式生成式工作流 UI（图像等）。
+

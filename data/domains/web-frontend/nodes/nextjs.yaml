@@ -1,0 +1,12 @@
+id: nextjs
+type: project
+name: Next.js
+repo: https://github.com/vercel/next.js
+summary: React 全栈框架，SSR/App Router。
+tags: [meta-framework, web, react]
+language: JavaScript
+status: active
+use_when: React 项目需要路由/SSR/全栈约定
+avoid_when: 只要纯 CSR 且不想要框架约定
+niche: react meta-framework
+related_ecosystem: web

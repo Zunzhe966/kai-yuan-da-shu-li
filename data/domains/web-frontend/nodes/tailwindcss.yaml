@@ -1,0 +1,12 @@
+id: tailwindcss
+type: project
+name: Tailwind CSS
+repo: https://github.com/tailwindlabs/tailwindcss
+summary: 工具类优先的 CSS 框架。
+tags: [css, web]
+language: JavaScript
+status: active
+use_when: 要用 utility-first 快速做 UI
+avoid_when: 设计系统强制传统 BEM/CSS-in-JS 且禁止 utility
+niche: utility css
+related_ecosystem: web

@@ -1,0 +1,12 @@
+id: redux-toolkit
+type: project
+name: Redux Toolkit
+repo: https://github.com/reduxjs/redux-toolkit
+summary: 官方推荐的 Redux 写法与工具集。
+tags: [state, react, web]
+language: TypeScript
+status: active
+use_when: 要可预期、可追溯的大型状态管理
+avoid_when: 状态很简单，不想引入样板
+niche: predictable state
+related_ecosystem: web

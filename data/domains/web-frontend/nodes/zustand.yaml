@@ -1,0 +1,12 @@
+id: zustand
+type: project
+name: Zustand
+repo: https://github.com/pmndrs/zustand
+summary: 轻量 React 状态库。
+tags: [state, react, web]
+language: TypeScript
+status: active
+use_when: React 需要简单全局/共享状态
+avoid_when: 需要完整可预测状态机生态（看 Redux）
+niche: react state
+related_ecosystem: web

@@ -1,0 +1,24 @@
+domain: web-frontend
+title: Web 前端工程
+status: seeding
+notes: |
+  D7 第三垂直。
+
+categories:
+  - id: frameworks
+    title: UI 框架 / 状态
+    node_ids: [react, vue, svelte, radix-ui-primitives, zustand, redux-toolkit, tanstack-query]
+  - id: meta-frameworks
+    title: 元框架
+    node_ids: [nextjs, nuxt, remix, astro]
+  - id: tooling
+    title: 工程化
+    node_ids: [vite, webpack, storybook, turborepo, pnpm]
+  - id: styling
+    title: 样式与组件原语
+    node_ids: [tailwindcss, radix-ui-primitives]
+  - id: testing
+    title: 测试与文档
+    node_ids: [playwright, cypress, vitest, storybook]
+
+nodes_dir: nodes

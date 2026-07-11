@@ -1,0 +1,12 @@
+id: vitest
+type: project
+name: Vitest
+repo: https://github.com/vitest-dev/vitest
+summary: 与 Vite 同构的单元测试框架。
+tags: [testing, web]
+language: TypeScript
+status: active
+use_when: Vite 项目要快速单测
+avoid_when: 非 Vite 且已深度绑定 Jest
+niche: unit testing
+related_ecosystem: web

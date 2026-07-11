@@ -1,0 +1,12 @@
+id: tanstack-query
+type: project
+name: TanStack Query
+repo: https://github.com/TanStack/query
+summary: 服务端状态/异步数据缓存库。
+tags: [state, web]
+language: TypeScript
+status: active
+use_when: 大量服务端数据获取、缓存与同步
+avoid_when: 几乎无远程数据
+niche: server state
+related_ecosystem: web

@@ -10,6 +10,9 @@ domains:
   devops:
     title: DevOps / 云原生基础设施
     description: 容器、编排、IaC、可观测、网关、CI/GitOps
+  web-frontend:
+    title: Web 前端工程
+    description: UI 框架、元框架、构建、样式、测试、monorepo
 
 # 节点类型
 node_types:

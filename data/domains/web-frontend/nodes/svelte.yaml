@@ -1,0 +1,12 @@
+id: svelte
+type: project
+name: Svelte
+repo: https://github.com/sveltejs/svelte
+summary: 编译型 UI 框架，运行时更薄。
+tags: [ui-framework, web]
+language: JavaScript
+status: active
+use_when: 在意包体与编译期优化的组件开发
+avoid_when: 需要最大生态与招聘池
+niche: compiled ui framework
+related_ecosystem: web

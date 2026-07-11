@@ -1,5 +1,5 @@
 version: 0.1.0
-domains: [ai-agents, devops]
+domains: [ai-agents, devops, web-frontend]
 edges:
   - from: llama-index
     type: alternative_to
@@ -355,3 +355,88 @@ edges:
     type: integrates_with
     to: terraform
     note: 密钥与 IaC 常配合
+
+  - from: nextjs
+    type: depends_on
+    to: react
+    note: Next 建立在 React 之上
+
+  - from: nuxt
+    type: depends_on
+    to: vue
+    note: Nuxt 建立在 Vue 之上
+
+  - from: remix
+    type: depends_on
+    to: react
+    note: Remix 使用 React
+
+  - from: vue
+    type: alternative_to
+    to: react
+    note: 两大主流 UI 框架
+
+  - from: svelte
+    type: alternative_to
+    to: react
+    note: 编译型框架 vs React
+
+  - from: nuxt
+    type: alternative_to
+    to: nextjs
+    note: Vue 元框架 vs React 元框架
+
+  - from: remix
+    type: alternative_to
+    to: nextjs
+    note: 都是 React 元框架，模型不同
+
+  - from: astro
+    type: alternative_to
+    to: nextjs
+    note: 内容优先 vs 应用优先
+
+  - from: vite
+    type: alternative_to
+    to: webpack
+    note: 现代开发服务器 vs 经典打包器
+
+  - from: vitest
+    type: integrates_with
+    to: vite
+    note: 同构测试与构建
+
+  - from: playwright
+    type: alternative_to
+    to: cypress
+    note: 两大 E2E
+
+  - from: zustand
+    type: alternative_to
+    to: redux-toolkit
+    note: 轻量状态 vs 完整 Redux
+
+  - from: tanstack-query
+    type: integrates_with
+    to: react
+    note: 常用于 React 数据获取
+
+  - from: radix-ui-primitives
+    type: integrates_with
+    to: react
+    note: React 无样式原语
+
+  - from: tailwindcss
+    type: integrates_with
+    to: nextjs
+    note: 常见样式组合
+
+  - from: turborepo
+    type: integrates_with
+    to: pnpm
+    note: monorepo 常见组合
+
+  - from: storybook
+    type: integrates_with
+    to: react
+    note: 组件工坊常接 React

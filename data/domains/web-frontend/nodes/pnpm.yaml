@@ -1,0 +1,12 @@
+id: pnpm
+type: project
+name: pnpm
+repo: https://github.com/pnpm/pnpm
+summary: 节省磁盘的包管理器，对 monorepo 友好。
+tags: [tooling, web]
+language: TypeScript
+status: active
+use_when: 要高效依赖安装与 workspace
+avoid_when: 组织强制只用 npm/yarn 且无例外
+niche: package manager
+related_ecosystem: web
