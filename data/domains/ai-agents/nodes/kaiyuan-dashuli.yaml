@@ -1,0 +1,12 @@
+id: kaiyuan-dashuli
+type: project
+name: 开源大梳理
+repo: https://github.com/Zunzhe966/kaiyuan-dashuli
+summary: Agent-first 开源知识图谱入口（本仓库）；分类、关系与可机读检索，减少盲搜 GitHub。
+tags: [agent-framework, mcp, ui]
+language: mixed
+status: active
+use_when: 需要先定位该用哪个开源项目/栈，而不是直接关键词海搜
+avoid_when: 已明确唯一上游仓库，只需读其 README
+niche: open-source atlas entrypoint
+related_ecosystem: zunzhe

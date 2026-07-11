@@ -210,3 +210,8 @@ edges:
     type: alternative_to
     to: chromadb
     note: 嵌入式多模态 vs 经典开发向向量库
+
+  - from: kaiyuan-dashuli
+    type: integrates_with
+    to: modelcontextprotocol-servers
+    note: 本图谱通过 MCP 工具对外提供检索

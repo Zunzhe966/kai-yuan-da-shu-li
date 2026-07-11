@@ -19,7 +19,7 @@ categories:
     node_ids: [chromadb, qdrant, milvus, faiss, lancedb]
   - id: mcp-tooling
     title: MCP / 工具协议
-    node_ids: [modelcontextprotocol-servers, mcp-python-sdk]
+    node_ids: [kaiyuan-dashuli, modelcontextprotocol-servers, mcp-python-sdk]
   - id: local-llm
     title: 本地 / 推理运行时
     node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers]

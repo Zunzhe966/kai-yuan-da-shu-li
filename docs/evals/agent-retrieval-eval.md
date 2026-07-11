@@ -10,7 +10,7 @@
 | q4 | 做文档问答 RAG，偏数据连接与索引 | haystack, chromadb, ragas | Y | Y |
 | q5 | 需要向量库，先快速原型 | qdrant, milvus, lancedb | Y | Y |
 | q6 | 生产环境要带过滤条件的向量检索 | qdrant, milvus, lancedb | Y | Y |
-| q7 | 给 Agent 接 MCP 工具 | modelcontextprotocol-servers, mcp-python-sdk, openai-agents-python | Y | Y |
+| q7 | 给 Agent 接 MCP 工具 | modelcontextprotocol-servers, mcp-python-sdk, kaiyuan-dashuli | Y | Y |
 | q8 | 追踪生产环境 LLM 调用和提示版本 | langfuse, arize-phoenix, deepeval | Y | Y |
 | q9 | 把 RAG 质量纳入自动评测 | ragas, haystack, chromadb | Y | Y |
 | q10 | 只要强类型结构化输出，不要重型 Agent 框架 | instructor, pydantic-ai, outlines | Y | Y |
@@ -122,10 +122,10 @@
   - use_when: 要用 Python 实现 MCP client/server
   - avoid_when: 不采用 MCP，只用私有 function calling
   - repo: https://github.com/modelcontextprotocol/python-sdk
-- **OpenAI Agents SDK** (`openai-agents-python`)
-  - use_when: 主要走 OpenAI 模型与官方 Agent 抽象
-  - avoid_when: 必须厂商中立、避免绑定 OpenAI API 形态
-  - repo: https://github.com/openai/openai-agents-python
+- **开源大梳理** (`kaiyuan-dashuli`)
+  - use_when: 需要先定位该用哪个开源项目/栈，而不是直接关键词海搜
+  - avoid_when: 已明确唯一上游仓库，只需读其 README
+  - repo: https://github.com/Zunzhe966/kaiyuan-dashuli
 - result: PASS (hit=True, compliant=True)
 
 ### q8 — 追踪生产环境 LLM 调用和提示版本
