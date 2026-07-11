@@ -1,0 +1,12 @@
+id: github-actions-runner
+type: project
+name: actions/runner
+repo: https://github.com/actions/runner
+summary: GitHub Actions 自托管 Runner。
+tags: [ci, devops]
+language: C#
+status: active
+use_when: 要在自有机器跑 GitHub Actions 任务
+avoid_when: 完全使用 GitHub 托管 runner 且无自托管需求
+niche: CI self-hosted runner
+related_ecosystem: devops

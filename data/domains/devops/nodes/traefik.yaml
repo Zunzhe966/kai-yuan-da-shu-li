@@ -1,0 +1,12 @@
+id: traefik
+type: project
+name: Traefik
+repo: https://github.com/traefik/traefik
+summary: 云原生边缘路由，自动服务发现。
+tags: [networking, containers, devops]
+language: Go
+status: active
+use_when: 容器环境要自动发现与动态路由
+avoid_when: 静态单机 nginx 已足够
+niche: cloud-native edge router
+related_ecosystem: devops

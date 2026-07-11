@@ -1,6 +1,6 @@
-# 开源大梳理 · AI/Agent 浏览索引
+# 开源大梳理 · ai-agents 浏览索引
 
-> 由 YAML 生成的人读投影；权威数据仍在 `data/` / `graph/`。
+> YAML 投影；权威数据在 data/ graph/
 
 ## Agent / LLM 应用框架
 

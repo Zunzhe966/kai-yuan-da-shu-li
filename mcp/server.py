@@ -26,12 +26,13 @@ mcp = FastMCP(
 def search_projects_tool(
     query: str,
     tags: list[str] | None = None,
-    domain: str = "ai-agents",
+    domain: str = "all",
     limit: int = 3,
 ) -> dict:
-    """Search curated open-source projects in the atlas."""
+    """Search curated open-source projects in the atlas. domain=all searches every domain."""
     limit = max(1, min(int(limit), 5))
-    return {"results": search_projects(query=query, tags=tags, domain=domain, limit=limit)}
+    d = None if domain in ("all", "", "*") else domain
+    return {"results": search_projects(query=query, tags=tags, domain=d, limit=limit)}
 
 
 @mcp.tool(name="get_alternatives")

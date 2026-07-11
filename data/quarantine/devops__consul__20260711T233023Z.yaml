@@ -1,0 +1,15 @@
+# QUARANTINE — not part of the formal graph until promoted + fields completed
+quarantine: true
+domain: devops
+id: consul
+type: project
+name: Consul
+repo: https://github.com/hashicorp/consul
+summary: 服务发现与配置
+tags: [networking, devops]
+language: unknown
+status: candidate
+use_when: TBD
+avoid_when: TBD
+niche: TBD
+harvested_at: 20260711T233023Z

@@ -8,6 +8,11 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DOMAIN = "ai-agents"
 
 
+def list_domains() -> list[str]:
+    base = ROOT / "data/domains"
+    return sorted(p.name for p in base.iterdir() if p.is_dir() and not p.name.startswith("_"))
+
+
 def domain_nodes_dir(domain: str = DEFAULT_DOMAIN) -> Path:
     return ROOT / "data/domains" / domain / "nodes"
 
@@ -16,17 +21,23 @@ def edges_path() -> Path:
     return ROOT / "graph/edges.yaml"
 
 
-def load_nodes(domain: str = DEFAULT_DOMAIN) -> dict[str, dict[str, str]]:
+def load_nodes(domain: str | None = DEFAULT_DOMAIN) -> dict[str, dict[str, str]]:
+    """Load nodes. domain=None loads all domains (id must be unique globally)."""
     nodes: dict[str, dict[str, str]] = {}
-    for path in domain_nodes_dir(domain).glob("*.yaml"):
-        fields: dict[str, str] = {}
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if ":" in line and not line.startswith(" "):
-                k, v = line.split(":", 1)
-                fields[k.strip()] = v.strip()
-        tags = fields.get("tags", "").strip("[]")
-        fields["tag_list"] = [t.strip() for t in tags.split(",") if t.strip()]
-        nodes[path.stem] = fields
+    domains = list_domains() if domain is None else [domain]
+    for d in domains:
+        for path in domain_nodes_dir(d).glob("*.yaml"):
+            fields: dict[str, str] = {}
+            for line in path.read_text(encoding="utf-8").splitlines():
+                if ":" in line and not line.startswith(" "):
+                    k, v = line.split(":", 1)
+                    fields[k.strip()] = v.strip()
+            tags = fields.get("tags", "").strip("[]")
+            fields["tag_list"] = [t.strip() for t in tags.split(",") if t.strip()]
+            fields["domain"] = d
+            if path.stem in nodes:
+                raise ValueError(f"duplicate node id across domains: {path.stem}")
+            nodes[path.stem] = fields
     return nodes
 
 
@@ -91,13 +102,12 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
 def search_projects(
     query: str,
     tags: list[str] | None = None,
-    domain: str = DEFAULT_DOMAIN,
+    domain: str | None = DEFAULT_DOMAIN,
     limit: int = 3,
 ) -> list[dict]:
-    nodes = load_nodes(domain)
+    nodes = load_nodes(None if domain in (None, "", "all") else domain)
     edges = load_edges()
     intent = set(tags or [])
-    # heuristic: map some chinese cues to tags if none provided
     if not intent:
         cues = {
             "多 agent": "multi-agent",
@@ -109,6 +119,12 @@ def search_projects(
             "观测": "observability",
             "提示": "prompt",
             "微调": "fine-tuning",
+            "容器": "containers",
+            "k8s": "orchestration",
+            "kubernetes": "orchestration",
+            "terraform": "iac",
+            "ci": "ci",
+            "devops": "devops",
         }
         ql = query.lower()
         for k, v in cues.items():
@@ -117,10 +133,8 @@ def search_projects(
     scored: list[tuple[float, str]] = []
     for nid, n in nodes.items():
         if tags:
-            if not set(tags) <= set(n.get("tag_list", [])):
-                # soft: require overlap not subset
-                if not (set(tags) & set(n.get("tag_list", []))):
-                    continue
+            if not (set(tags) & set(n.get("tag_list", []))):
+                continue
         s = _score(query, intent, nid, n)
         if s > 0:
             scored.append((s, nid))
@@ -140,6 +154,7 @@ def search_projects(
         out.append(
             {
                 "id": nid,
+                "domain": n.get("domain"),
                 "name": n.get("name"),
                 "repo": n.get("repo"),
                 "summary": n.get("summary"),
@@ -152,7 +167,7 @@ def search_projects(
 
 
 def get_alternatives(node_id: str, limit: int = 5) -> list[dict]:
-    nodes = load_nodes()
+    nodes = load_nodes(None)
     if node_id not in nodes:
         return []
     edges = load_edges()
@@ -169,6 +184,7 @@ def get_alternatives(node_id: str, limit: int = 5) -> list[dict]:
         out.append(
             {
                 "id": other,
+                "domain": n.get("domain"),
                 "name": n.get("name"),
                 "repo": n.get("repo"),
                 "summary": n.get("summary"),
@@ -184,7 +200,7 @@ def get_alternatives(node_id: str, limit: int = 5) -> list[dict]:
 
 
 def get_node(node_id: str) -> dict | None:
-    nodes = load_nodes()
+    nodes = load_nodes(None)
     n = nodes.get(node_id)
     if not n:
         return None

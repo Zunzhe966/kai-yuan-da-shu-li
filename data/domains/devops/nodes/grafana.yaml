@@ -1,0 +1,12 @@
+id: grafana
+type: project
+name: Grafana
+repo: https://github.com/grafana/grafana
+summary: 可观测可视化与仪表盘。
+tags: [observability, devops]
+language: TypeScript
+status: active
+use_when: 要把指标/日志/追踪做成看板
+avoid_when: 只需命令行看瞬时指标
+niche: observability dashboards
+related_ecosystem: devops

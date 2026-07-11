@@ -1,0 +1,12 @@
+id: kubernetes
+type: project
+name: Kubernetes
+repo: https://github.com/kubernetes/kubernetes
+summary: 容器编排标准，调度多机工作负载。
+tags: [orchestration, containers, devops]
+language: Go
+status: active
+use_when: 多机/多服务需要编排、自愈、滚动发布
+avoid_when: 单机小服务，K8s 运维成本过高
+niche: container orchestration
+related_ecosystem: devops

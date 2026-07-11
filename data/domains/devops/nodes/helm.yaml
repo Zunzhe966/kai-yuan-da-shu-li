@@ -1,0 +1,12 @@
+id: helm
+type: project
+name: Helm
+repo: https://github.com/helm/helm
+summary: Kubernetes 应用包管理器（Chart）。
+tags: [orchestration, devops]
+language: Go
+status: active
+use_when: 要版本化安装/升级 K8s 应用
+avoid_when: 不用 Kubernetes
+niche: k8s package manager
+related_ecosystem: devops

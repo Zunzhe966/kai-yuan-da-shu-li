@@ -1,0 +1,12 @@
+id: ansible
+type: project
+name: Ansible
+repo: https://github.com/ansible/ansible
+summary: 无 Agent 的配置管理与自动化。
+tags: [iac, devops]
+language: Python
+status: active
+use_when: 批量配置服务器、应用部署剧本
+avoid_when: 主要是不可变镜像/GitOps，不需要 SSH 推送配置
+niche: config management
+related_ecosystem: devops

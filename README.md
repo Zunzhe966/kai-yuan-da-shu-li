@@ -51,8 +51,11 @@ docs/                    # 设计与演进说明
 
 ## 状态
 
-本阶段（AI/Agent 垂直）：**41 节点 / 42 关系**；Agent 检索评测见 `docs/evals/`（通过率目标 ≥80%）。  
-后续：MCP 检索层、人浏览投影、更多领域。
+- `ai-agents`：节点+关系+检索评测+MCP  
+- `devops`：第二垂直已播种  
+- 收割物进 `data/quarantine/`，质检后才可 promote  
+
+人读：[`docs/browse/`](./docs/browse/) · Agent：`llms.txt` / MCP `mcp/server.py`
 
 ## License
 

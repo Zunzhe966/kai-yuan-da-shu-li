@@ -1,0 +1,12 @@
+id: pulumi
+type: project
+name: Pulumi
+repo: https://github.com/pulumi/pulumi
+summary: 用通用语言写 IaC（TS/Python 等）。
+tags: [iac, devops]
+language: Go
+status: active
+use_when: 团队更想用熟悉语言而不是 HCL 写基础设施
+avoid_when: 已深度绑定 Terraform 生态且无语言 IaC 需求
+niche: programming-language IaC
+related_ecosystem: devops

@@ -1,0 +1,12 @@
+id: nginx
+type: project
+name: nginx
+repo: https://github.com/nginx/nginx
+summary: 高性能反向代理与 Web 服务器。
+tags: [networking, devops]
+language: C
+status: active
+use_when: 反向代理、静态站、TLS 终止
+avoid_when: 需要应用层服务网格的高级流量治理为主
+niche: reverse proxy
+related_ecosystem: devops

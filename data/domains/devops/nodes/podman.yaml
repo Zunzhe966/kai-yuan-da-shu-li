@@ -1,0 +1,12 @@
+id: podman
+type: project
+name: Podman
+repo: https://github.com/containers/podman
+summary: 无守护进程的容器引擎，Docker 兼容体验。
+tags: [containers, devops]
+language: Go
+status: active
+use_when: 要 rootless/无 dockerd 的容器工作流
+avoid_when: 团队标准已是 Docker Desktop 且无迁移动机
+niche: daemonless containers
+related_ecosystem: devops

@@ -1,0 +1,12 @@
+id: argo-cd
+type: project
+name: Argo CD
+repo: https://github.com/argoproj/argo-cd
+summary: Kubernetes GitOps 持续交付。
+tags: [ci, orchestration, devops]
+language: Go
+status: active
+use_when: 要用 Git 作为 K8s 期望状态源
+avoid_when: 不用 Kubernetes 或不做 GitOps
+niche: gitops cd
+related_ecosystem: devops

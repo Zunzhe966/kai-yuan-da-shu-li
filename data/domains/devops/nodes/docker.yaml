@@ -1,0 +1,12 @@
+id: docker
+type: project
+name: Docker
+repo: https://github.com/docker/cli
+summary: 容器运行时与镜像工作流的事实入口（CLI/引擎生态）。
+tags: [containers, devops]
+language: Go
+status: active
+use_when: 需要打包运行隔离环境或构建镜像
+avoid_when: 只要语言虚拟环境、不需要容器
+niche: containers
+related_ecosystem: devops

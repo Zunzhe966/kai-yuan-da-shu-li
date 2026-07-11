@@ -1,0 +1,12 @@
+id: prometheus
+type: project
+name: Prometheus
+repo: https://github.com/prometheus/prometheus
+summary: 指标采集与告警的云原生监控核心。
+tags: [observability, devops]
+language: Go
+status: active
+use_when: 需要时间序列指标与告警规则
+avoid_when: 只要日志检索、不要指标系统
+niche: metrics monitoring
+related_ecosystem: devops

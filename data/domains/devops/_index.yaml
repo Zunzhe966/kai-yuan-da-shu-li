@@ -1,0 +1,27 @@
+domain: devops
+title: DevOps / 云原生基础设施
+status: seeding
+notes: |
+  D6 第二垂直。节点必须含 use_when/avoid_when。
+
+categories:
+  - id: containers
+    title: 容器运行时
+    node_ids: [docker, kubernetes, traefik, podman]
+  - id: orchestration
+    title: 编排
+    node_ids: [kubernetes, helm, argo-cd]
+  - id: iac
+    title: 基础设施即代码
+    node_ids: [terraform, pulumi, ansible]
+  - id: observability
+    title: 可观测
+    node_ids: [prometheus, grafana]
+  - id: networking
+    title: 网络与网关
+    node_ids: [nginx, traefik]
+  - id: ci
+    title: CI / GitOps
+    node_ids: [github-actions-runner, act, argo-cd]
+
+nodes_dir: nodes

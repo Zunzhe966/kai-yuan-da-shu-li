@@ -1,5 +1,5 @@
 version: 0.1.0
-domain: ai-agents
+domains: [ai-agents, devops]
 edges:
   - from: llama-index
     type: alternative_to
@@ -215,3 +215,53 @@ edges:
     type: integrates_with
     to: modelcontextprotocol-servers
     note: 本图谱通过 MCP 工具对外提供检索
+
+  - from: helm
+    type: depends_on
+    to: kubernetes
+    note: Helm 面向 K8s 发布
+
+  - from: argo-cd
+    type: depends_on
+    to: kubernetes
+    note: GitOps 目标是 K8s 集群
+
+  - from: traefik
+    type: integrates_with
+    to: kubernetes
+    note: 常作 K8s Ingress/边缘路由
+
+  - from: traefik
+    type: alternative_to
+    to: nginx
+    note: 动态发现路由 vs 经典反向代理
+
+  - from: podman
+    type: alternative_to
+    to: docker
+    note: 无守护进程容器 vs Docker 生态
+
+  - from: pulumi
+    type: alternative_to
+    to: terraform
+    note: 语言型 IaC vs HCL IaC
+
+  - from: ansible
+    type: alternative_to
+    to: terraform
+    note: 配置管理 vs 资源编排（可互补）
+
+  - from: grafana
+    type: integrates_with
+    to: prometheus
+    note: 看板常接 Prometheus 数据源
+
+  - from: act
+    type: integrates_with
+    to: github-actions-runner
+    note: 本地验证与自托管执行同属 GHA 生态
+
+  - from: kubernetes
+    type: integrates_with
+    to: docker
+    note: 常见容器运行时组合（也可 containerd）

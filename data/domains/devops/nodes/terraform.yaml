@@ -1,0 +1,12 @@
+id: terraform
+type: project
+name: Terraform
+repo: https://github.com/hashicorp/terraform
+summary: 声明式基础设施即代码，多云 Provider。
+tags: [iac, devops]
+language: Go
+status: active
+use_when: 要用代码管理云资源与基础设施
+avoid_when: 只改几台机器配置、无云 API 需求
+niche: infrastructure as code
+related_ecosystem: devops

@@ -1,0 +1,12 @@
+id: act
+type: project
+name: act
+repo: https://github.com/nektos/act
+summary: 本地运行 GitHub Actions 工作流。
+tags: [ci, devops]
+language: Go
+status: active
+use_when: 想在推送前本地验证 Actions
+avoid_when: 不使用 GitHub Actions
+niche: local GHA runner
+related_ecosystem: devops

@@ -2,14 +2,14 @@
 version: 0.1.0
 updated: 2026-07-11
 
-# 领域（第一期只启用 ai-agents）
+# 领域（第一期 ai-agents；D6 起扩 devops）
 domains:
   ai-agents:
     title: AI / Agent / LLM 工具链
     description: 模型接入、Agent 框架、RAG、评测、提示词、MCP、编排与观测
-  # 后续扩面示例（暂不填充）
-  # languages: ...
-  # devops: ...
+  devops:
+    title: DevOps / 云原生基础设施
+    description: 容器、编排、IaC、可观测、网关、CI/GitOps
 
 # 节点类型
 node_types:

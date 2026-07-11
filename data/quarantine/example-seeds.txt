@@ -1,0 +1,3 @@
+# id|name|repo|summary|tags
+nomad|Nomad|https://github.com/hashicorp/nomad|HashiCorp 工作负载调度器|orchestration, devops
+consul|Consul|https://github.com/hashicorp/consul|服务发现与配置|networking, devops
