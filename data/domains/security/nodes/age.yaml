@@ -1,0 +1,12 @@
+id: age
+type: project
+name: age
+repo: https://github.com/FiloSottile/age
+summary: 简单现代的文件加密工具。
+tags: [crypto, secrets]
+language: Go
+status: active
+use_when: 要简单可靠的文件/备份加密
+avoid_when: 需要企业密钥管理系统
+niche: file encryption
+related_ecosystem: security

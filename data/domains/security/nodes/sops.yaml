@@ -1,0 +1,12 @@
+id: sops
+type: project
+name: SOPS
+repo: https://github.com/getsops/sops
+summary: 加密配置文件（YAML/JSON），可进 Git。
+tags: [secrets, gitops]
+language: Go
+status: active
+use_when: 要把密钥落 Git 但需加密
+avoid_when: 已有完整密钥中枢且不需要文件级加密
+niche: encrypted config
+related_ecosystem: security

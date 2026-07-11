@@ -1,0 +1,12 @@
+id: vault-hashicorp
+type: project
+name: HashiCorp Vault
+repo: https://github.com/hashicorp/vault
+summary: 密钥与动态凭证管理（与 devops/vault 同项目；安全视角收录）。
+tags: [secrets, iam]
+language: Go
+status: active
+use_when: 要集中管理密钥、动态数据库凭证、加密服务
+avoid_when: 只要云厂商单云 KMS
+niche: secrets management
+related_ecosystem: security

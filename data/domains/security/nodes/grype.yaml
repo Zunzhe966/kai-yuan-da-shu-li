@@ -1,0 +1,12 @@
+id: grype
+type: project
+name: Grype
+repo: https://github.com/anchore/grype
+summary: 基于 SBOM 的漏洞扫描器。
+tags: [scanning, sbom]
+language: Go
+status: active
+use_when: 已有 SBOM 要扫漏洞
+avoid_when: 需要一体化容器扫描 UI
+niche: sbom vuln scan
+related_ecosystem: security

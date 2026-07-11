@@ -1,0 +1,12 @@
+id: wireguard
+type: project
+name: WireGuard
+repo: https://github.com/WireGuard/wireguard-linux
+summary: 现代高性能 VPN 协议实现。
+tags: [network, vpn]
+language: C
+status: active
+use_when: 要简洁高性能组网/远程访问
+avoid_when: 必须兼容老旧 IPSec 套件为主
+niche: vpn
+related_ecosystem: security

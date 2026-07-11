@@ -1,0 +1,30 @@
+domain: security
+title: 安全与供应链
+status: seeding
+notes: |
+  D10 第五垂直。
+
+categories:
+  - id: secrets
+    title: 密钥与加密
+    node_ids: [vault-hashicorp, sops, age, gitleaks]
+  - id: scanning
+    title: 漏洞/SCA/SBOM
+    node_ids: [trivy, grype, syft, osv-scanner, gitleaks]
+  - id: sast
+    title: 静态应用安全
+    node_ids: [semgrep, bandit]
+  - id: supply-chain
+    title: 供应链签名
+    node_ids: [cosign, fulcio]
+  - id: policy
+    title: 策略引擎
+    node_ids: [opa, kyverno]
+  - id: iam
+    title: 身份认证
+    node_ids: [keycloak, authentik]
+  - id: hardening
+    title: 主机与网络加固
+    node_ids: [fail2ban, wireguard]
+
+nodes_dir: nodes

@@ -87,3 +87,15 @@ queries:
     query: 大量事件明细做分析查询
     intent_tags: [olap, analytics]
     expect_any: [clickhouse, duckdb]
+  - id: q22
+    query: CI 里扫描容器镜像漏洞
+    intent_tags: [scanning, containers]
+    expect_any: [trivy, grype]
+  - id: q23
+    query: 防止 Git 仓库密钥泄漏
+    intent_tags: [secrets, scanning]
+    expect_any: [gitleaks]
+  - id: q24
+    query: 生成软件物料清单 SBOM
+    intent_tags: [sbom]
+    expect_any: [syft]

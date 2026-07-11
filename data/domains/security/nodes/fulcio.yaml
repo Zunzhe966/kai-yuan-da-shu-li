@@ -1,0 +1,12 @@
+id: fulcio
+type: project
+name: Fulcio
+repo: https://github.com/sigstore/fulcio
+summary: Sigstore 证书颁发组件。
+tags: [supply-chain, signing]
+language: Go
+status: active
+use_when: 自建/理解 Sigstore 证书链
+avoid_when: 只用托管 Sigstore 流程
+niche: sigstore ca
+related_ecosystem: security

@@ -1,0 +1,12 @@
+id: keycloak
+type: project
+name: Keycloak
+repo: https://github.com/keycloak/keycloak
+summary: 开源身份认证与访问管理。
+tags: [iam, auth]
+language: Java
+status: active
+use_when: 要自托管 IdP（OIDC/SAML）
+avoid_when: 只要云托管 Auth0/Cognito
+niche: identity provider
+related_ecosystem: security

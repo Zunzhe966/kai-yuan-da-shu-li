@@ -1,0 +1,12 @@
+id: syft
+type: project
+name: Syft
+repo: https://github.com/anchore/syft
+summary: 生成 SBOM 的工具。
+tags: [sbom, scanning]
+language: Go
+status: active
+use_when: 要为镜像/目录生成软件物料清单
+avoid_when: 不需要供应链清单
+niche: sbom generator
+related_ecosystem: security

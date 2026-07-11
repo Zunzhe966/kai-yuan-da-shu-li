@@ -1,5 +1,5 @@
 version: 0.1.0
-domains: [ai-agents, devops, web-frontend, databases]
+domains: [ai-agents, devops, web-frontend, databases, security]
 edges:
   - from: llama-index
     type: alternative_to
@@ -495,3 +495,68 @@ edges:
     type: alternative_to
     to: postgresql
     note: 图模型 vs 关系模型（场景不同）
+
+  - from: grype
+    type: integrates_with
+    to: syft
+    note: 常基于 Syft SBOM 扫描
+
+  - from: trivy
+    type: alternative_to
+    to: grype
+    note: 容器/综合扫描 vs SBOM 扫描
+
+  - from: osv-scanner
+    type: alternative_to
+    to: trivy
+    note: 依赖 OSV vs 综合扫描器
+
+  - from: bandit
+    type: alternative_to
+    to: semgrep
+    note: Python 专项 vs 多语言规则引擎
+
+  - from: gitleaks
+    type: integrates_with
+    to: sops
+    note: 密钥检测与加密配置互补
+
+  - from: age
+    type: integrates_with
+    to: sops
+    note: SOPS 可使用 age 后端
+
+  - from: cosign
+    type: same_ecosystem
+    to: fulcio
+    note: 同属 Sigstore
+
+  - from: kyverno
+    type: alternative_to
+    to: opa
+    note: K8s 原生策略 vs 通用 OPA
+
+  - from: authentik
+    type: alternative_to
+    to: keycloak
+    note: 开源 IdP 替代
+
+  - from: vault-hashicorp
+    type: alternative_to
+    to: sops
+    note: 中枢密钥 vs Git 文件加密
+
+  - from: wireguard
+    type: integrates_with
+    to: fail2ban
+    note: 组网与主机防爆破可组合
+
+  - from: syft
+    type: integrates_with
+    to: cosign
+    note: SBOM 与签名常一起做供应链
+
+  - from: vault-hashicorp
+    type: same_ecosystem
+    to: vault
+    note: 同一上游仓库，分域收录

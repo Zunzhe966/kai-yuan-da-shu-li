@@ -1,0 +1,12 @@
+id: authentik
+type: project
+name: Authentik
+repo: https://github.com/goauthentik/authentik
+summary: 现代开源身份提供者。
+tags: [iam, auth]
+language: Python
+status: active
+use_when: 要较新的自托管 SSO/IdP
+avoid_when: 已深度绑定 Keycloak
+niche: identity provider
+related_ecosystem: security

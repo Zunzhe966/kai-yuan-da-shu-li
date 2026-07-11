@@ -1,0 +1,12 @@
+id: semgrep
+type: project
+name: Semgrep
+repo: https://github.com/semgrep/semgrep
+summary: 快速多语言静态规则扫描。
+tags: [sast, scanning]
+language: OCaml
+status: active
+use_when: 要自定义规则做代码安全/质量扫描
+avoid_when: 只要依赖 CVE 扫描
+niche: sast
+related_ecosystem: security

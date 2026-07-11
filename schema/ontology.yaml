@@ -16,6 +16,9 @@ domains:
   databases:
     title: 数据库与搜索存储
     description: 关系型、文档、KV、分布式、OLAP、图、搜索
+  security:
+    title: 安全与供应链
+    description: 密钥、扫描、SAST、签名、策略、IAM、加固
 
 # 节点类型
 node_types:

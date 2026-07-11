@@ -1,0 +1,12 @@
+id: fail2ban
+type: project
+name: Fail2Ban
+repo: https://github.com/fail2ban/fail2ban
+summary: 根据日志封禁暴力破解来源。
+tags: [hardening, network]
+language: Python
+status: active
+use_when: 主机要防 SSH/服务爆破
+avoid_when: 流量已在边缘 WAF/零信任完整覆盖
+niche: host intrusion prevention
+related_ecosystem: security

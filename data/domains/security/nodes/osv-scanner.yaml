@@ -1,0 +1,12 @@
+id: osv-scanner
+type: project
+name: OSV-Scanner
+repo: https://github.com/google/osv-scanner
+summary: 基于 OSV 的依赖漏洞扫描。
+tags: [scanning, sca]
+language: Go
+status: active
+use_when: 要按锁文件扫开源依赖漏洞
+avoid_when: 只要容器镜像层扫描
+niche: dependency scanner
+related_ecosystem: security

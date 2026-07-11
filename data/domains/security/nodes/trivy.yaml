@@ -1,0 +1,12 @@
+id: trivy
+type: project
+name: Trivy
+repo: https://github.com/aquasecurity/trivy
+summary: 容器/文件系统/仓库漏洞与误配扫描。
+tags: [scanning, containers]
+language: Go
+status: active
+use_when: CI 里扫镜像与依赖漏洞
+avoid_when: 只要代码 SAST 不涉及供应链制品
+niche: vuln scanner
+related_ecosystem: security

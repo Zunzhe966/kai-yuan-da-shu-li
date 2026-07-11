@@ -129,6 +129,12 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid in ("redis", "keydb"): s += 3
     if "分析" in query and ("明细" in query or "OLAP" in query or "事件" in query):
         if nid in ("clickhouse", "duckdb"): s += 3
+    if "密钥泄漏" in query or "secret" in query.lower():
+        if nid == "gitleaks": s += 3
+    if "容器" in query and "漏洞" in query:
+        if nid in ("trivy", "grype"): s += 3
+    if "SBOM" in query:
+        if nid in ("syft", "grype"): s += 3
     return s
 
 
@@ -165,6 +171,9 @@ def search_projects(
             "数据库": "sql",
             "缓存": "cache",
             "搜索引擎": "search",
+            "漏洞": "scanning",
+            "密钥": "secrets",
+            "SBOM": "sbom",
         }
         ql = query.lower()
         for k, v in cues.items():

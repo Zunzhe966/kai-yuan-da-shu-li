@@ -2,17 +2,18 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-11T23:49:22.560947+00:00",
+  "generated_at": "2026-07-11T23:51:14.787679+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
     "ai-agents",
     "databases",
     "devops",
+    "security",
     "web-frontend"
   ],
-  "node_count": 114,
-  "edge_count": 99,
+  "node_count": 132,
+  "edge_count": 112,
   "nodes": [
     {
       "id": "act",
@@ -29,6 +30,22 @@
       "use_when": "想在推送前本地验证 Actions",
       "avoid_when": "不使用 GitHub Actions",
       "niche": "local GHA runner"
+    },
+    {
+      "id": "age",
+      "domain": "security",
+      "name": "age",
+      "repo": "https://github.com/FiloSottile/age",
+      "summary": "简单现代的文件加密工具。",
+      "tags": [
+        "crypto",
+        "secrets"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要简单可靠的文件/备份加密",
+      "avoid_when": "需要企业密钥管理系统",
+      "niche": "file encryption"
     },
     {
       "id": "aider",
@@ -111,6 +128,22 @@
       "niche": "content-first meta-framework"
     },
     {
+      "id": "authentik",
+      "domain": "security",
+      "name": "Authentik",
+      "repo": "https://github.com/goauthentik/authentik",
+      "summary": "现代开源身份提供者。",
+      "tags": [
+        "iam",
+        "auth"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要较新的自托管 SSO/IdP",
+      "avoid_when": "已深度绑定 Keycloak",
+      "niche": "identity provider"
+    },
+    {
       "id": "autogen",
       "domain": "ai-agents",
       "name": "AutoGen",
@@ -141,6 +174,22 @@
       "use_when": "要用现成配置跑开源模型 SFT/偏好训练",
       "avoid_when": "只需调用托管微调 API",
       "niche": "LLM finetune toolkit"
+    },
+    {
+      "id": "bandit",
+      "domain": "security",
+      "name": "Bandit",
+      "repo": "https://github.com/PyCQA/bandit",
+      "summary": "Python 安全问题静态检查。",
+      "tags": [
+        "sast",
+        "python"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python 项目要基础安全 lint",
+      "avoid_when": "多语言或要跨语言统一引擎",
+      "niche": "python sast"
     },
     {
       "id": "browser-use",
@@ -300,6 +349,22 @@
       "use_when": "要在 VS Code/JetBrains 里开源可控的编码助手",
       "avoid_when": "只要无 IDE 的纯 API Agent",
       "niche": "open IDE copilot"
+    },
+    {
+      "id": "cosign",
+      "domain": "security",
+      "name": "Cosign",
+      "repo": "https://github.com/sigstore/cosign",
+      "summary": "容器/制品签名与验证（Sigstore）。",
+      "tags": [
+        "supply-chain",
+        "signing"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要给镜像/制品签名并验证",
+      "avoid_when": "无供应链签名合规需求",
+      "niche": "artifact signing"
     },
     {
       "id": "crawl4ai",
@@ -462,6 +527,22 @@
       "niche": "search and analytics"
     },
     {
+      "id": "fail2ban",
+      "domain": "security",
+      "name": "Fail2Ban",
+      "repo": "https://github.com/fail2ban/fail2ban",
+      "summary": "根据日志封禁暴力破解来源。",
+      "tags": [
+        "hardening",
+        "network"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "主机要防 SSH/服务爆破",
+      "avoid_when": "流量已在边缘 WAF/零信任完整覆盖",
+      "niche": "host intrusion prevention"
+    },
+    {
       "id": "faiss",
       "domain": "ai-agents",
       "name": "Faiss",
@@ -527,6 +608,22 @@
       "niche": "gitops toolkit"
     },
     {
+      "id": "fulcio",
+      "domain": "security",
+      "name": "Fulcio",
+      "repo": "https://github.com/sigstore/fulcio",
+      "summary": "Sigstore 证书颁发组件。",
+      "tags": [
+        "supply-chain",
+        "signing"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "自建/理解 Sigstore 证书链",
+      "avoid_when": "只用托管 Sigstore 流程",
+      "niche": "sigstore ca"
+    },
+    {
       "id": "github-actions-runner",
       "domain": "devops",
       "name": "actions/runner",
@@ -541,6 +638,22 @@
       "use_when": "要在自有机器跑 GitHub Actions 任务",
       "avoid_when": "完全使用 GitHub 托管 runner 且无自托管需求",
       "niche": "CI self-hosted runner"
+    },
+    {
+      "id": "gitleaks",
+      "domain": "security",
+      "name": "Gitleaks",
+      "repo": "https://github.com/gitleaks/gitleaks",
+      "summary": "检测仓库中的密钥泄漏。",
+      "tags": [
+        "secrets",
+        "scanning"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "CI/预提交要防密钥进 Git",
+      "avoid_when": "不做源码仓密钥检测",
+      "niche": "secret detection"
     },
     {
       "id": "gpt-researcher",
@@ -573,6 +686,22 @@
       "use_when": "要把指标/日志/追踪做成看板",
       "avoid_when": "只需命令行看瞬时指标",
       "niche": "observability dashboards"
+    },
+    {
+      "id": "grype",
+      "domain": "security",
+      "name": "Grype",
+      "repo": "https://github.com/anchore/grype",
+      "summary": "基于 SBOM 的漏洞扫描器。",
+      "tags": [
+        "scanning",
+        "sbom"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "已有 SBOM 要扫漏洞",
+      "avoid_when": "需要一体化容器扫描 UI",
+      "niche": "sbom vuln scan"
     },
     {
       "id": "guardrails-ai",
@@ -671,6 +800,22 @@
       "niche": "open-source atlas entrypoint"
     },
     {
+      "id": "keycloak",
+      "domain": "security",
+      "name": "Keycloak",
+      "repo": "https://github.com/keycloak/keycloak",
+      "summary": "开源身份认证与访问管理。",
+      "tags": [
+        "iam",
+        "auth"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要自托管 IdP（OIDC/SAML）",
+      "avoid_when": "只要云托管 Auth0/Cognito",
+      "niche": "identity provider"
+    },
+    {
       "id": "keydb",
       "domain": "databases",
       "name": "KeyDB",
@@ -702,6 +847,22 @@
       "use_when": "多机/多服务需要编排、自愈、滚动发布",
       "avoid_when": "单机小服务，K8s 运维成本过高",
       "niche": "container orchestration"
+    },
+    {
+      "id": "kyverno",
+      "domain": "security",
+      "name": "Kyverno",
+      "repo": "https://github.com/kyverno/kyverno",
+      "summary": "Kubernetes 原生策略引擎。",
+      "tags": [
+        "policy",
+        "kubernetes"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "K8s 集群要 YAML 友好的策略治理",
+      "avoid_when": "不用 Kubernetes",
+      "niche": "k8s policy"
     },
     {
       "id": "lancedb",
@@ -1102,6 +1263,22 @@
       "niche": "local LLM runner"
     },
     {
+      "id": "opa",
+      "domain": "security",
+      "name": "Open Policy Agent",
+      "repo": "https://github.com/open-policy-agent/opa",
+      "summary": "通用策略引擎（Rego）。",
+      "tags": [
+        "policy",
+        "iam"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要把授权/准入策略代码化",
+      "avoid_when": "只要简单 RBAC 配置",
+      "niche": "policy engine"
+    },
+    {
       "id": "open-interpreter",
       "domain": "ai-agents",
       "name": "Open Interpreter",
@@ -1162,6 +1339,22 @@
       "use_when": "要把 LLM 服务接入标准 tracing/metrics",
       "avoid_when": "只要 LLM 专用控制台、不接通用 OTel",
       "niche": "otel sdk"
+    },
+    {
+      "id": "osv-scanner",
+      "domain": "security",
+      "name": "OSV-Scanner",
+      "repo": "https://github.com/google/osv-scanner",
+      "summary": "基于 OSV 的依赖漏洞扫描。",
+      "tags": [
+        "scanning",
+        "sca"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要按锁文件扫开源依赖漏洞",
+      "avoid_when": "只要容器镜像层扫描",
+      "niche": "dependency scanner"
     },
     {
       "id": "outlines",
@@ -1454,6 +1647,22 @@
       "niche": "enterprise LLM SDK"
     },
     {
+      "id": "semgrep",
+      "domain": "security",
+      "name": "Semgrep",
+      "repo": "https://github.com/semgrep/semgrep",
+      "summary": "快速多语言静态规则扫描。",
+      "tags": [
+        "sast",
+        "scanning"
+      ],
+      "language": "OCaml",
+      "status": "active",
+      "use_when": "要自定义规则做代码安全/质量扫描",
+      "avoid_when": "只要依赖 CVE 扫描",
+      "niche": "sast"
+    },
+    {
       "id": "sglang",
       "domain": "ai-agents",
       "name": "SGLang",
@@ -1483,6 +1692,22 @@
       "use_when": "要轻量 Python Agent 且贴近 HF 生态",
       "avoid_when": "需要超大集成市场或企业复杂编排",
       "niche": "lightweight HF agents"
+    },
+    {
+      "id": "sops",
+      "domain": "security",
+      "name": "SOPS",
+      "repo": "https://github.com/getsops/sops",
+      "summary": "加密配置文件（YAML/JSON），可进 Git。",
+      "tags": [
+        "secrets",
+        "gitops"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要把密钥落 Git 但需加密",
+      "avoid_when": "已有完整密钥中枢且不需要文件级加密",
+      "niche": "encrypted config"
     },
     {
       "id": "sqlite",
@@ -1548,6 +1773,22 @@
       "use_when": "在意包体与编译期优化的组件开发",
       "avoid_when": "需要最大生态与招聘池",
       "niche": "compiled ui framework"
+    },
+    {
+      "id": "syft",
+      "domain": "security",
+      "name": "Syft",
+      "repo": "https://github.com/anchore/syft",
+      "summary": "生成 SBOM 的工具。",
+      "tags": [
+        "sbom",
+        "scanning"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要为镜像/目录生成软件物料清单",
+      "avoid_when": "不需要供应链清单",
+      "niche": "sbom generator"
     },
     {
       "id": "tailwindcss",
@@ -1647,6 +1888,22 @@
       "niche": "model zoo runtime"
     },
     {
+      "id": "trivy",
+      "domain": "security",
+      "name": "Trivy",
+      "repo": "https://github.com/aquasecurity/trivy",
+      "summary": "容器/文件系统/仓库漏洞与误配扫描。",
+      "tags": [
+        "scanning",
+        "containers"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "CI 里扫镜像与依赖漏洞",
+      "avoid_when": "只要代码 SAST 不涉及供应链制品",
+      "niche": "vuln scanner"
+    },
+    {
       "id": "turborepo",
       "domain": "web-frontend",
       "name": "Turborepo",
@@ -1707,6 +1964,22 @@
       "status": "active",
       "use_when": "要统一管理密钥、动态凭证、加密即服务",
       "avoid_when": "只用云厂商密钥管理且无多云密钥需求",
+      "niche": "secrets management"
+    },
+    {
+      "id": "vault-hashicorp",
+      "domain": "security",
+      "name": "HashiCorp Vault",
+      "repo": "https://github.com/hashicorp/vault",
+      "summary": "密钥与动态凭证管理（与 devops/vault 同项目；安全视角收录）。",
+      "tags": [
+        "secrets",
+        "iam"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要集中管理密钥、动态数据库凭证、加密服务",
+      "avoid_when": "只要云厂商单云 KMS",
       "niche": "secrets management"
     },
     {
@@ -1820,6 +2093,22 @@
       "use_when": "要深度定制打包或兼容既有 webpack 配置",
       "avoid_when": "新项目更想零配置快速体验（看 Vite）",
       "niche": "module bundler"
+    },
+    {
+      "id": "wireguard",
+      "domain": "security",
+      "name": "WireGuard",
+      "repo": "https://github.com/WireGuard/wireguard-linux",
+      "summary": "现代高性能 VPN 协议实现。",
+      "tags": [
+        "network",
+        "vpn"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要简洁高性能组网/远程访问",
+      "avoid_when": "必须兼容老旧 IPSec 套件为主",
+      "niche": "vpn"
     },
     {
       "id": "zustand",
@@ -2433,6 +2722,84 @@
       "type": "alternative_to",
       "to": "postgresql",
       "note": "图模型 vs 关系模型（场景不同）"
+    },
+    {
+      "from": "grype",
+      "type": "integrates_with",
+      "to": "syft",
+      "note": "常基于 Syft SBOM 扫描"
+    },
+    {
+      "from": "trivy",
+      "type": "alternative_to",
+      "to": "grype",
+      "note": "容器/综合扫描 vs SBOM 扫描"
+    },
+    {
+      "from": "osv-scanner",
+      "type": "alternative_to",
+      "to": "trivy",
+      "note": "依赖 OSV vs 综合扫描器"
+    },
+    {
+      "from": "bandit",
+      "type": "alternative_to",
+      "to": "semgrep",
+      "note": "Python 专项 vs 多语言规则引擎"
+    },
+    {
+      "from": "gitleaks",
+      "type": "integrates_with",
+      "to": "sops",
+      "note": "密钥检测与加密配置互补"
+    },
+    {
+      "from": "age",
+      "type": "integrates_with",
+      "to": "sops",
+      "note": "SOPS 可使用 age 后端"
+    },
+    {
+      "from": "cosign",
+      "type": "same_ecosystem",
+      "to": "fulcio",
+      "note": "同属 Sigstore"
+    },
+    {
+      "from": "kyverno",
+      "type": "alternative_to",
+      "to": "opa",
+      "note": "K8s 原生策略 vs 通用 OPA"
+    },
+    {
+      "from": "authentik",
+      "type": "alternative_to",
+      "to": "keycloak",
+      "note": "开源 IdP 替代"
+    },
+    {
+      "from": "vault-hashicorp",
+      "type": "alternative_to",
+      "to": "sops",
+      "note": "中枢密钥 vs Git 文件加密"
+    },
+    {
+      "from": "wireguard",
+      "type": "integrates_with",
+      "to": "fail2ban",
+      "note": "组网与主机防爆破可组合"
+    },
+    {
+      "from": "syft",
+      "type": "integrates_with",
+      "to": "cosign",
+      "note": "SBOM 与签名常一起做供应链"
+    },
+    {
+      "from": "vault-hashicorp",
+      "type": "same_ecosystem",
+      "to": "vault",
+      "note": "同一上游仓库，分域收录"
     }
   ]
 }

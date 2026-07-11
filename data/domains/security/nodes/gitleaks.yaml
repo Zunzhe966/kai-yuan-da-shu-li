@@ -1,0 +1,12 @@
+id: gitleaks
+type: project
+name: Gitleaks
+repo: https://github.com/gitleaks/gitleaks
+summary: 检测仓库中的密钥泄漏。
+tags: [secrets, scanning]
+language: Go
+status: active
+use_when: CI/预提交要防密钥进 Git
+avoid_when: 不做源码仓密钥检测
+niche: secret detection
+related_ecosystem: security

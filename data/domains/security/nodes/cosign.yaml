@@ -1,0 +1,12 @@
+id: cosign
+type: project
+name: Cosign
+repo: https://github.com/sigstore/cosign
+summary: 容器/制品签名与验证（Sigstore）。
+tags: [supply-chain, signing]
+language: Go
+status: active
+use_when: 要给镜像/制品签名并验证
+avoid_when: 无供应链签名合规需求
+niche: artifact signing
+related_ecosystem: security

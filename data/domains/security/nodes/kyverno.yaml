@@ -1,0 +1,12 @@
+id: kyverno
+type: project
+name: Kyverno
+repo: https://github.com/kyverno/kyverno
+summary: Kubernetes 原生策略引擎。
+tags: [policy, kubernetes]
+language: Go
+status: active
+use_when: K8s 集群要 YAML 友好的策略治理
+avoid_when: 不用 Kubernetes
+niche: k8s policy
+related_ecosystem: security

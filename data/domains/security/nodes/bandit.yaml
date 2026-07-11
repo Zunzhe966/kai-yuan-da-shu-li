@@ -1,0 +1,12 @@
+id: bandit
+type: project
+name: Bandit
+repo: https://github.com/PyCQA/bandit
+summary: Python 安全问题静态检查。
+tags: [sast, python]
+language: Python
+status: active
+use_when: Python 项目要基础安全 lint
+avoid_when: 多语言或要跨语言统一引擎
+niche: python sast
+related_ecosystem: security
