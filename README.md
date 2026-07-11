@@ -26,7 +26,8 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 
 - 浏览 `data/domains/` 各领域目录  
 - 图谱关系见 `graph/`  
-- 分类规范见 `schema/ontology.yaml`
+- 分类规范见 `schema/ontology.yaml`  
+- 贡献节点/关系见 [`CONTRIBUTING.md`](./CONTRIBUTING.md)
 
 ## 第一期范围（刻意做小）
 
