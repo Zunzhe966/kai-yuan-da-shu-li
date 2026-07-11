@@ -123,6 +123,12 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
     if "端到端" in query or "E2E" in query or "多浏览器" in query:
         if nid in ("playwright", "cypress"):
             s += 3
+    if "嵌入式" in query and "SQL" in query:
+        if nid == "sqlite": s += 3
+    if "缓存" in query:
+        if nid in ("redis", "keydb"): s += 3
+    if "分析" in query and ("明细" in query or "OLAP" in query or "事件" in query):
+        if nid in ("clickhouse", "duckdb"): s += 3
     return s
 
 
@@ -156,6 +162,9 @@ def search_projects(
             "react": "react",
             "ssr": "meta-framework",
             "e2e": "testing",
+            "数据库": "sql",
+            "缓存": "cache",
+            "搜索引擎": "search",
         }
         ql = query.lower()
         for k, v in cues.items():

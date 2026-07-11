@@ -1,0 +1,12 @@
+id: meilisearch
+type: project
+name: Meilisearch
+repo: https://github.com/meilisearch/meilisearch
+summary: 易用的全文搜索引擎。
+tags: [search]
+language: Rust
+status: active
+use_when: 要快速上线的搜索体验
+avoid_when: 需要 Elasticsearch 级复杂生态
+niche: search engine
+related_ecosystem: databases

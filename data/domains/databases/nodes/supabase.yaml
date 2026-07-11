@@ -1,0 +1,12 @@
+id: supabase
+type: project
+name: Supabase
+repo: https://github.com/supabase/supabase
+summary: 开源 Firebase 替代，底层 Postgres。
+tags: [sql, baas]
+language: TypeScript
+status: active
+use_when: 要 BaaS（Auth/Realtime/Storage）+ Postgres
+avoid_when: 只要纯数据库内核无 BaaS
+niche: postgres baas
+related_ecosystem: databases

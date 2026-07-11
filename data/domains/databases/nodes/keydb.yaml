@@ -1,0 +1,12 @@
+id: keydb
+type: project
+name: KeyDB
+repo: https://github.com/Snapchat/KeyDB
+summary: 多线程 Redis 兼容存储。
+tags: [kv, cache]
+language: C++
+status: active
+use_when: 要 Redis 兼容且更高多核吞吐
+avoid_when: 标准 Redis 已足够
+niche: multithreaded redis-compatible
+related_ecosystem: databases

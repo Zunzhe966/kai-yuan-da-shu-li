@@ -1,0 +1,12 @@
+id: scylladb
+type: project
+name: ScyllaDB
+repo: https://github.com/scylladb/scylladb
+summary: Cassandra 兼容的高性能实现。
+tags: [nosql, wide-column]
+language: C++
+status: active
+use_when: 要 Cassandra 模型但更高性能密度
+avoid_when: 无宽列需求
+niche: cassandra-compatible
+related_ecosystem: databases

@@ -1,0 +1,12 @@
+id: postgresql
+type: project
+name: PostgreSQL
+repo: https://github.com/postgres/postgres
+summary: 功能丰富的开源关系型数据库。
+tags: [sql, rdbms]
+language: C
+status: active
+use_when: 需要可靠通用 SQL 数据库与强生态
+avoid_when: 只要嵌入式单文件库
+niche: relational db
+related_ecosystem: databases

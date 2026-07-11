@@ -1,0 +1,12 @@
+id: tidb
+type: project
+name: TiDB
+repo: https://github.com/pingcap/tidb
+summary: MySQL 兼容的分布式 HTAP 数据库。
+tags: [sql, distributed]
+language: Go
+status: active
+use_when: 要 MySQL 兼容的分布式扩展
+avoid_when: 无分布式需求
+niche: distributed mysql-compatible
+related_ecosystem: databases

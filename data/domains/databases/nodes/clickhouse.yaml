@@ -1,0 +1,12 @@
+id: clickhouse
+type: project
+name: ClickHouse
+repo: https://github.com/ClickHouse/ClickHouse
+summary: 列式分析型数据库 OLAP。
+tags: [olap, analytics]
+language: C++
+status: active
+use_when: 大量分析查询/事件明细
+avoid_when: 主要是 OLTP 事务业务
+niche: analytical db
+related_ecosystem: databases

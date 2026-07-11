@@ -2,16 +2,17 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-11T23:48:51.773074+00:00",
+  "generated_at": "2026-07-11T23:49:22.560947+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
     "ai-agents",
+    "databases",
     "devops",
     "web-frontend"
   ],
-  "node_count": 96,
-  "edge_count": 88,
+  "node_count": 114,
+  "edge_count": 99,
   "nodes": [
     {
       "id": "act",
@@ -173,6 +174,22 @@
       "niche": "auto-HTTPS server"
     },
     {
+      "id": "cassandra",
+      "domain": "databases",
+      "name": "Apache Cassandra",
+      "repo": "https://github.com/apache/cassandra",
+      "summary": "宽列分布式数据库，高可用写入。",
+      "tags": [
+        "nosql",
+        "wide-column"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "超大规模写入与多活可用",
+      "avoid_when": "小团队只要简单 SQL",
+      "niche": "wide-column store"
+    },
+    {
       "id": "chromadb",
       "domain": "ai-agents",
       "name": "Chroma",
@@ -187,6 +204,38 @@
       "use_when": "快速原型 RAG、本地/轻量向量存储",
       "avoid_when": "超大规模分布式检索（看 Milvus/Qdrant）",
       "niche": "dev-friendly vector DB"
+    },
+    {
+      "id": "clickhouse",
+      "domain": "databases",
+      "name": "ClickHouse",
+      "repo": "https://github.com/ClickHouse/ClickHouse",
+      "summary": "列式分析型数据库 OLAP。",
+      "tags": [
+        "olap",
+        "analytics"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "大量分析查询/事件明细",
+      "avoid_when": "主要是 OLTP 事务业务",
+      "niche": "analytical db"
+    },
+    {
+      "id": "cockroachdb",
+      "domain": "databases",
+      "name": "CockroachDB",
+      "repo": "https://github.com/cockroachdb/cockroach",
+      "summary": "分布式 SQL，兼容 Postgres 协议。",
+      "tags": [
+        "sql",
+        "distributed"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要水平扩展的分布式 SQL",
+      "avoid_when": "单机 Postgres 已够",
+      "niche": "distributed sql"
     },
     {
       "id": "comfyui",
@@ -378,6 +427,39 @@
       "use_when": "要用数据驱动优化提示/程序而非手写死 prompt",
       "avoid_when": "一次性脚本、不想引入优化循环",
       "niche": "programmatic prompt optimization"
+    },
+    {
+      "id": "duckdb",
+      "domain": "databases",
+      "name": "DuckDB",
+      "repo": "https://github.com/duckdb/duckdb",
+      "summary": "嵌入式分析型数据库。",
+      "tags": [
+        "olap",
+        "embedded",
+        "analytics"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "本地/进程内分析 SQL",
+      "avoid_when": "需要分布式集群 OLAP",
+      "niche": "embedded analytics"
+    },
+    {
+      "id": "elasticsearch",
+      "domain": "databases",
+      "name": "Elasticsearch",
+      "repo": "https://github.com/elastic/elasticsearch",
+      "summary": "分布式搜索与分析引擎。",
+      "tags": [
+        "search",
+        "analytics"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "全文检索+日志分析大规模场景",
+      "avoid_when": "只要轻量搜索",
+      "niche": "search and analytics"
     },
     {
       "id": "faiss",
@@ -589,6 +671,22 @@
       "niche": "open-source atlas entrypoint"
     },
     {
+      "id": "keydb",
+      "domain": "databases",
+      "name": "KeyDB",
+      "repo": "https://github.com/Snapchat/KeyDB",
+      "summary": "多线程 Redis 兼容存储。",
+      "tags": [
+        "kv",
+        "cache"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要 Redis 兼容且更高多核吞吐",
+      "avoid_when": "标准 Redis 已足够",
+      "niche": "multithreaded redis-compatible"
+    },
+    {
       "id": "kubernetes",
       "domain": "devops",
       "name": "Kubernetes",
@@ -749,6 +847,22 @@
       "niche": "foundation model eval"
     },
     {
+      "id": "mariadb",
+      "domain": "databases",
+      "name": "MariaDB",
+      "repo": "https://github.com/MariaDB/server",
+      "summary": "MySQL 兼容的社区分支。",
+      "tags": [
+        "sql",
+        "rdbms"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要 MySQL 兼容且偏社区发行",
+      "avoid_when": "必须绑定 Oracle MySQL 官方特性",
+      "niche": "mysql-compatible"
+    },
+    {
       "id": "mcp-python-sdk",
       "domain": "ai-agents",
       "name": "MCP Python SDK",
@@ -762,6 +876,21 @@
       "use_when": "要用 Python 实现 MCP client/server",
       "avoid_when": "不采用 MCP，只用私有 function calling",
       "niche": "MCP python SDK"
+    },
+    {
+      "id": "meilisearch",
+      "domain": "databases",
+      "name": "Meilisearch",
+      "repo": "https://github.com/meilisearch/meilisearch",
+      "summary": "易用的全文搜索引擎。",
+      "tags": [
+        "search"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要快速上线的搜索体验",
+      "avoid_when": "需要 Elasticsearch 级复杂生态",
+      "niche": "search engine"
     },
     {
       "id": "mem0",
@@ -828,6 +957,38 @@
       "niche": "MCP reference servers"
     },
     {
+      "id": "mongodb",
+      "domain": "databases",
+      "name": "MongoDB",
+      "repo": "https://github.com/mongodb/mongo",
+      "summary": "文档型 NoSQL 数据库。",
+      "tags": [
+        "nosql",
+        "document"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "文档模型更贴合业务、灵活 schema",
+      "avoid_when": "强事务多表关系是核心",
+      "niche": "document db"
+    },
+    {
+      "id": "mysql",
+      "domain": "databases",
+      "name": "MySQL",
+      "repo": "https://github.com/mysql/mysql-server",
+      "summary": "广泛使用的开源关系型数据库。",
+      "tags": [
+        "sql",
+        "rdbms"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "团队熟悉 MySQL/生态工具链",
+      "avoid_when": "需要更强标准 SQL/扩展（常看 Postgres）",
+      "niche": "relational db"
+    },
+    {
       "id": "n8n",
       "domain": "ai-agents",
       "name": "n8n",
@@ -842,6 +1003,21 @@
       "use_when": "要可视化工作流打通 SaaS/API/AI",
       "avoid_when": "只要纯代码库、不要工作流 UI",
       "niche": "workflow automation"
+    },
+    {
+      "id": "neo4j",
+      "domain": "databases",
+      "name": "Neo4j",
+      "repo": "https://github.com/neo4j/neo4j",
+      "summary": "原生图数据库。",
+      "tags": [
+        "graph"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "强关系网络查询是核心",
+      "avoid_when": "简单表关系用 SQL 即可",
+      "niche": "graph db"
     },
     {
       "id": "nextjs",
@@ -1067,6 +1243,22 @@
       "niche": "daemonless containers"
     },
     {
+      "id": "postgresql",
+      "domain": "databases",
+      "name": "PostgreSQL",
+      "repo": "https://github.com/postgres/postgres",
+      "summary": "功能丰富的开源关系型数据库。",
+      "tags": [
+        "sql",
+        "rdbms"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "需要可靠通用 SQL 数据库与强生态",
+      "avoid_when": "只要嵌入式单文件库",
+      "niche": "relational db"
+    },
+    {
       "id": "prometheus",
       "domain": "devops",
       "name": "Prometheus",
@@ -1180,6 +1372,22 @@
       "niche": "ui library"
     },
     {
+      "id": "redis",
+      "domain": "databases",
+      "name": "Redis",
+      "repo": "https://github.com/redis/redis",
+      "summary": "内存数据结构存储，常用缓存/队列。",
+      "tags": [
+        "kv",
+        "cache"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要低延迟缓存、会话、简单队列",
+      "avoid_when": "主要需求是大容量持久关系数据",
+      "niche": "in-memory data store"
+    },
+    {
       "id": "redux-toolkit",
       "domain": "web-frontend",
       "name": "Redux Toolkit",
@@ -1212,6 +1420,22 @@
       "use_when": "重视渐进增强、嵌套路由与 Web fetch 模型",
       "avoid_when": "只要最大众的 Next 约定与教程密度",
       "niche": "web-standards react framework"
+    },
+    {
+      "id": "scylladb",
+      "domain": "databases",
+      "name": "ScyllaDB",
+      "repo": "https://github.com/scylladb/scylladb",
+      "summary": "Cassandra 兼容的高性能实现。",
+      "tags": [
+        "nosql",
+        "wide-column"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要 Cassandra 模型但更高性能密度",
+      "avoid_when": "无宽列需求",
+      "niche": "cassandra-compatible"
     },
     {
       "id": "semantic-kernel",
@@ -1261,6 +1485,22 @@
       "niche": "lightweight HF agents"
     },
     {
+      "id": "sqlite",
+      "domain": "databases",
+      "name": "SQLite",
+      "repo": "https://github.com/sqlite/sqlite",
+      "summary": "嵌入式单文件 SQL 引擎。",
+      "tags": [
+        "sql",
+        "embedded"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "嵌入式/本地/测试要零运维 SQL",
+      "avoid_when": "需要多写高并发网络数据库服务",
+      "niche": "embedded sql"
+    },
+    {
       "id": "storybook",
       "domain": "web-frontend",
       "name": "Storybook",
@@ -1276,6 +1516,22 @@
       "use_when": "要隔离开发/文档化组件",
       "avoid_when": "没有组件库协作需求",
       "niche": "component workshop"
+    },
+    {
+      "id": "supabase",
+      "domain": "databases",
+      "name": "Supabase",
+      "repo": "https://github.com/supabase/supabase",
+      "summary": "开源 Firebase 替代，底层 Postgres。",
+      "tags": [
+        "sql",
+        "baas"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要 BaaS（Auth/Realtime/Storage）+ Postgres",
+      "avoid_when": "只要纯数据库内核无 BaaS",
+      "niche": "postgres baas"
     },
     {
       "id": "svelte",
@@ -1342,6 +1598,22 @@
       "niche": "infrastructure as code"
     },
     {
+      "id": "tidb",
+      "domain": "databases",
+      "name": "TiDB",
+      "repo": "https://github.com/pingcap/tidb",
+      "summary": "MySQL 兼容的分布式 HTAP 数据库。",
+      "tags": [
+        "sql",
+        "distributed"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 MySQL 兼容的分布式扩展",
+      "avoid_when": "无分布式需求",
+      "niche": "distributed mysql-compatible"
+    },
+    {
       "id": "traefik",
       "domain": "devops",
       "name": "Traefik",
@@ -1389,6 +1661,21 @@
       "use_when": "多包前端仓要缓存加速构建",
       "avoid_when": "单包小仓库",
       "niche": "monorepo build"
+    },
+    {
+      "id": "typesense",
+      "domain": "databases",
+      "name": "Typesense",
+      "repo": "https://github.com/typesense/typesense",
+      "summary": "面向开发者的即时搜索引擎。",
+      "tags": [
+        "search"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要低延迟即时搜索且部署简单",
+      "avoid_when": "已深度绑定 Elastic 生态",
+      "niche": "instant search"
     },
     {
       "id": "unstructured",
@@ -2080,6 +2367,72 @@
       "type": "integrates_with",
       "to": "react",
       "note": "组件工坊常接 React"
+    },
+    {
+      "from": "mariadb",
+      "type": "alternative_to",
+      "to": "mysql",
+      "note": "MySQL 兼容分支"
+    },
+    {
+      "from": "sqlite",
+      "type": "alternative_to",
+      "to": "postgresql",
+      "note": "嵌入式 vs 服务器型 SQL"
+    },
+    {
+      "from": "mysql",
+      "type": "alternative_to",
+      "to": "postgresql",
+      "note": "两大主流 RDBMS"
+    },
+    {
+      "from": "keydb",
+      "type": "alternative_to",
+      "to": "redis",
+      "note": "多线程兼容实现"
+    },
+    {
+      "from": "scylladb",
+      "type": "alternative_to",
+      "to": "cassandra",
+      "note": "兼容模型更高性能"
+    },
+    {
+      "from": "duckdb",
+      "type": "alternative_to",
+      "to": "clickhouse",
+      "note": "嵌入式分析 vs 分布式 OLAP"
+    },
+    {
+      "from": "tidb",
+      "type": "alternative_to",
+      "to": "cockroachdb",
+      "note": "都是分布式 SQL，协议生态不同"
+    },
+    {
+      "from": "typesense",
+      "type": "alternative_to",
+      "to": "meilisearch",
+      "note": "轻量即时搜索"
+    },
+    {
+      "from": "meilisearch",
+      "type": "alternative_to",
+      "to": "elasticsearch",
+      "note": "轻量 vs 重型搜索分析"
+    },
+    {
+      "from": "supabase",
+      "type": "depends_on",
+      "to": "postgresql",
+      "note": "BaaS 建立在 Postgres 上"
+    },
+    {
+      "from": "neo4j",
+      "type": "alternative_to",
+      "to": "postgresql",
+      "note": "图模型 vs 关系模型（场景不同）"
     }
   ]
 }

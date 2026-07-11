@@ -75,3 +75,15 @@ queries:
     query: 多浏览器端到端测试
     intent_tags: [testing]
     expect_any: [playwright, cypress]
+  - id: q19
+    query: 嵌入式单文件 SQL 数据库
+    intent_tags: [sql, embedded]
+    expect_any: [sqlite]
+  - id: q20
+    query: 低延迟缓存和会话存储
+    intent_tags: [cache, kv]
+    expect_any: [redis, keydb]
+  - id: q21
+    query: 大量事件明细做分析查询
+    intent_tags: [olap, analytics]
+    expect_any: [clickhouse, duckdb]

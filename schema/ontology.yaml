@@ -13,6 +13,9 @@ domains:
   web-frontend:
     title: Web 前端工程
     description: UI 框架、元框架、构建、样式、测试、monorepo
+  databases:
+    title: 数据库与搜索存储
+    description: 关系型、文档、KV、分布式、OLAP、图、搜索
 
 # 节点类型
 node_types:

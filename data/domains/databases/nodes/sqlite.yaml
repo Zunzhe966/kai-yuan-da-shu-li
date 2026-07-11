@@ -1,0 +1,12 @@
+id: sqlite
+type: project
+name: SQLite
+repo: https://github.com/sqlite/sqlite
+summary: 嵌入式单文件 SQL 引擎。
+tags: [sql, embedded]
+language: C
+status: active
+use_when: 嵌入式/本地/测试要零运维 SQL
+avoid_when: 需要多写高并发网络数据库服务
+niche: embedded sql
+related_ecosystem: databases

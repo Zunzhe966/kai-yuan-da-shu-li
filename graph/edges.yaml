@@ -1,5 +1,5 @@
 version: 0.1.0
-domains: [ai-agents, devops, web-frontend]
+domains: [ai-agents, devops, web-frontend, databases]
 edges:
   - from: llama-index
     type: alternative_to
@@ -440,3 +440,58 @@ edges:
     type: integrates_with
     to: react
     note: 组件工坊常接 React
+
+  - from: mariadb
+    type: alternative_to
+    to: mysql
+    note: MySQL 兼容分支
+
+  - from: sqlite
+    type: alternative_to
+    to: postgresql
+    note: 嵌入式 vs 服务器型 SQL
+
+  - from: mysql
+    type: alternative_to
+    to: postgresql
+    note: 两大主流 RDBMS
+
+  - from: keydb
+    type: alternative_to
+    to: redis
+    note: 多线程兼容实现
+
+  - from: scylladb
+    type: alternative_to
+    to: cassandra
+    note: 兼容模型更高性能
+
+  - from: duckdb
+    type: alternative_to
+    to: clickhouse
+    note: 嵌入式分析 vs 分布式 OLAP
+
+  - from: tidb
+    type: alternative_to
+    to: cockroachdb
+    note: 都是分布式 SQL，协议生态不同
+
+  - from: typesense
+    type: alternative_to
+    to: meilisearch
+    note: 轻量即时搜索
+
+  - from: meilisearch
+    type: alternative_to
+    to: elasticsearch
+    note: 轻量 vs 重型搜索分析
+
+  - from: supabase
+    type: depends_on
+    to: postgresql
+    note: BaaS 建立在 Postgres 上
+
+  - from: neo4j
+    type: alternative_to
+    to: postgresql
+    note: 图模型 vs 关系模型（场景不同）

@@ -1,0 +1,12 @@
+id: typesense
+type: project
+name: Typesense
+repo: https://github.com/typesense/typesense
+summary: 面向开发者的即时搜索引擎。
+tags: [search]
+language: C++
+status: active
+use_when: 要低延迟即时搜索且部署简单
+avoid_when: 已深度绑定 Elastic 生态
+niche: instant search
+related_ecosystem: databases

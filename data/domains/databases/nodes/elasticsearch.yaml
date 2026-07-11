@@ -1,0 +1,12 @@
+id: elasticsearch
+type: project
+name: Elasticsearch
+repo: https://github.com/elastic/elasticsearch
+summary: 分布式搜索与分析引擎。
+tags: [search, analytics]
+language: Java
+status: active
+use_when: 全文检索+日志分析大规模场景
+avoid_when: 只要轻量搜索
+niche: search and analytics
+related_ecosystem: databases

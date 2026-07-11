@@ -1,0 +1,30 @@
+domain: databases
+title: 数据库与搜索存储
+status: seeding
+notes: |
+  D9 第四垂直。
+
+categories:
+  - id: relational
+    title: 关系型
+    node_ids: [postgresql, mysql, sqlite, mariadb, cockroachdb, tidb, supabase]
+  - id: document
+    title: 文档型
+    node_ids: [mongodb]
+  - id: kv
+    title: KV / 缓存
+    node_ids: [redis, keydb]
+  - id: distributed
+    title: 分布式
+    node_ids: [cassandra, scylladb, cockroachdb, tidb]
+  - id: analytics
+    title: 分析 OLAP
+    node_ids: [clickhouse, duckdb, elasticsearch]
+  - id: graph
+    title: 图数据库
+    node_ids: [neo4j]
+  - id: search
+    title: 搜索
+    node_ids: [meilisearch, elasticsearch, typesense]
+
+nodes_dir: nodes

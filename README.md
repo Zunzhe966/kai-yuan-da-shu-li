@@ -54,7 +54,8 @@ docs/                    # 设计与演进说明
 
 - `ai-agents`：节点+关系+检索评测+MCP  
 - `devops`：第二垂直已播种
-- `web-frontend`：第三垂直已播种  
+- `web-frontend`：第三垂直已播种
+- `databases`：第四垂直已播种  
 - 收割物进 `data/quarantine/`，质检后才可 promote  
 
 人读：[`docs/browse/`](./docs/browse/) · Agent：`llms.txt` / MCP `mcp/server.py`

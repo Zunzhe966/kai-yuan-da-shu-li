@@ -1,0 +1,12 @@
+id: mariadb
+type: project
+name: MariaDB
+repo: https://github.com/MariaDB/server
+summary: MySQL 兼容的社区分支。
+tags: [sql, rdbms]
+language: C++
+status: active
+use_when: 要 MySQL 兼容且偏社区发行
+avoid_when: 必须绑定 Oracle MySQL 官方特性
+niche: mysql-compatible
+related_ecosystem: databases

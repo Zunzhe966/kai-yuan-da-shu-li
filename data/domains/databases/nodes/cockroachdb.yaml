@@ -1,0 +1,12 @@
+id: cockroachdb
+type: project
+name: CockroachDB
+repo: https://github.com/cockroachdb/cockroach
+summary: 分布式 SQL，兼容 Postgres 协议。
+tags: [sql, distributed]
+language: Go
+status: active
+use_when: 要水平扩展的分布式 SQL
+avoid_when: 单机 Postgres 已够
+niche: distributed sql
+related_ecosystem: databases

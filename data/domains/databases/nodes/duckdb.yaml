@@ -1,0 +1,12 @@
+id: duckdb
+type: project
+name: DuckDB
+repo: https://github.com/duckdb/duckdb
+summary: 嵌入式分析型数据库。
+tags: [olap, embedded, analytics]
+language: C++
+status: active
+use_when: 本地/进程内分析 SQL
+avoid_when: 需要分布式集群 OLAP
+niche: embedded analytics
+related_ecosystem: databases

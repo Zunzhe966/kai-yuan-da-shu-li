@@ -1,0 +1,12 @@
+id: redis
+type: project
+name: Redis
+repo: https://github.com/redis/redis
+summary: 内存数据结构存储，常用缓存/队列。
+tags: [kv, cache]
+language: C
+status: active
+use_when: 要低延迟缓存、会话、简单队列
+avoid_when: 主要需求是大容量持久关系数据
+niche: in-memory data store
+related_ecosystem: databases

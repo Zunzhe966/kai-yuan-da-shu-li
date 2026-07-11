@@ -1,0 +1,12 @@
+id: cassandra
+type: project
+name: Apache Cassandra
+repo: https://github.com/apache/cassandra
+summary: 宽列分布式数据库，高可用写入。
+tags: [nosql, wide-column]
+language: Java
+status: active
+use_when: 超大规模写入与多活可用
+avoid_when: 小团队只要简单 SQL
+niche: wide-column store
+related_ecosystem: databases

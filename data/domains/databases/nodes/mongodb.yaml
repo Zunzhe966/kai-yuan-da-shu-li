@@ -1,0 +1,12 @@
+id: mongodb
+type: project
+name: MongoDB
+repo: https://github.com/mongodb/mongo
+summary: 文档型 NoSQL 数据库。
+tags: [nosql, document]
+language: C++
+status: active
+use_when: 文档模型更贴合业务、灵活 schema
+avoid_when: 强事务多表关系是核心
+niche: document db
+related_ecosystem: databases

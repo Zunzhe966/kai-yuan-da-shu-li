@@ -1,0 +1,12 @@
+id: neo4j
+type: project
+name: Neo4j
+repo: https://github.com/neo4j/neo4j
+summary: 原生图数据库。
+tags: [graph]
+language: Java
+status: active
+use_when: 强关系网络查询是核心
+avoid_when: 简单表关系用 SQL 即可
+niche: graph db
+related_ecosystem: databases
