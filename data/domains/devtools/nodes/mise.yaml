@@ -1,0 +1,12 @@
+id: mise
+type: project
+name: mise
+repo: https://github.com/jdx/mise
+summary: 多语言运行时与工具版本管理（asdf 类）。
+tags: [cli, version-manager]
+language: Rust
+status: active
+use_when: 一个工具管 Node/Python/Go 等多运行时版本
+avoid_when: 团队已统一容器且不在宿主机装运行时
+niche: runtime manager
+related_ecosystem: cli

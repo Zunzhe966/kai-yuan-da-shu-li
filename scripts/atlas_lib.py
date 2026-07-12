@@ -156,6 +156,16 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid in ("pytorch", "tensorflow", "jax"): s += 3
     if "实验跟踪" in query or "模型注册" in query:
         if nid == "mlflow": s += 3
+    if "代码搜索" in query or "正则搜索" in query:
+        if nid == "ripgrep": s += 3
+    if "模糊查找" in query or "模糊选择" in query:
+        if nid == "fzf": s += 3
+    if "Python" in query and ("包管理" in query or "依赖" in query and "快" in query):
+        if nid == "uv": s += 3
+    if "Python" in query and ("lint" in query.lower() or "格式化" in query):
+        if nid == "ruff": s += 3
+    if "终端编辑器" in query:
+        if nid in ("helix", "neovim"): s += 3
     return s
 
 

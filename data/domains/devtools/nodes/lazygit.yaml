@@ -1,0 +1,12 @@
+id: lazygit
+type: project
+name: lazygit
+repo: https://github.com/jesseduffield/lazygit
+summary: 终端 Git TUI，降低复杂 git 操作成本。
+tags: [cli, git, tui]
+language: Go
+status: active
+use_when: 在终端可视化处理分支/暂存/变基
+avoid_when: 只要脚本化 git 且无交互需求
+niche: git tui
+related_ecosystem: cli

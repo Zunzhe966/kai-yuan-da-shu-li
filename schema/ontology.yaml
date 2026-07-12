@@ -28,6 +28,9 @@ domains:
   data-ml:
     title: 数据与机器学习
     description: DataFrame、经典 ML、深度学习、大数据、MLOps
+  devtools:
+    title: 开发者工具与 CLI
+    description: 搜索、任务运行、版本管理、语言工具链、终端编辑器
 
 # 节点类型
 node_types:

@@ -1,0 +1,12 @@
+id: lazydocker
+type: project
+name: lazydocker
+repo: https://github.com/jesseduffield/lazydocker
+summary: Docker/Compose 的终端仪表盘。
+tags: [cli, docker, tui]
+language: Go
+status: active
+use_when: 在终端快速看容器/日志/资源
+avoid_when: 只要 CI 里 docker CLI 非交互命令
+niche: docker tui
+related_ecosystem: cli

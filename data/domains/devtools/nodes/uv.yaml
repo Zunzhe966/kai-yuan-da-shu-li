@@ -1,0 +1,12 @@
+id: uv
+type: project
+name: uv
+repo: https://github.com/astral-sh/uv
+summary: 极速 Python 包与项目管理器。
+tags: [python, package-manager]
+language: Rust
+status: active
+use_when: 要快的 venv/依赖解析/锁文件工作流
+avoid_when: 必须兼容遗留纯 pip/poetry 流程且无迁移窗口
+niche: python package
+related_ecosystem: python

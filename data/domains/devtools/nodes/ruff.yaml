@@ -1,0 +1,12 @@
+id: ruff
+type: project
+name: ruff
+repo: https://github.com/astral-sh/ruff
+summary: 极速 Python linter/formatter。
+tags: [python, linter, formatter]
+language: Rust
+status: active
+use_when: 要快速统一 Python 风格与静态检查
+avoid_when: 依赖仅 flake8 插件生态且尚未迁移
+niche: python tooling
+related_ecosystem: python

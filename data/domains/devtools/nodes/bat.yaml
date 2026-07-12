@@ -1,0 +1,12 @@
+id: bat
+type: project
+name: bat
+repo: https://github.com/sharkdp/bat
+summary: 带语法高亮与 Git 集成的 cat 替代。
+tags: [cli, viewer]
+language: Rust
+status: active
+use_when: 终端里阅读源码想要高亮与行号
+avoid_when: 脚本管道里只要纯文本输出
+niche: file viewer
+related_ecosystem: cli

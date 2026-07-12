@@ -1,0 +1,12 @@
+id: tree-sitter
+type: project
+name: tree-sitter
+repo: https://github.com/tree-sitter/tree-sitter
+summary: 增量解析库，驱动编辑器语法与结构化编辑。
+tags: [parser, editor, tooling]
+language: Rust
+status: active
+use_when: 要给编辑器/工具做可靠语法树
+avoid_when: 只需一次性正则抽取文本
+niche: parser
+related_ecosystem: editor

@@ -1,0 +1,12 @@
+id: just
+type: project
+name: just
+repo: https://github.com/casey/just
+summary: 现代命令运行器，用 justfile 替代散落 makefile 目标。
+tags: [cli, task-runner]
+language: Rust
+status: active
+use_when: 想用简洁语法组织项目常用命令
+avoid_when: 需要完整 Make 依赖图与隐式规则
+niche: task runner
+related_ecosystem: cli

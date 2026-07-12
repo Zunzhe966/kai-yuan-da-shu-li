@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-12T00:28:27.351481+00:00",
+  "generated_at": "2026-07-12T00:30:36.097665+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
@@ -11,12 +11,13 @@
     "data-ml",
     "databases",
     "devops",
+    "devtools",
     "mobile",
     "security",
     "web-frontend"
   ],
-  "node_count": 186,
-  "edge_count": 159,
+  "node_count": 204,
+  "edge_count": 173,
   "nodes": [
     {
       "id": "act",
@@ -306,6 +307,39 @@
       "use_when": "Python 项目要基础安全 lint",
       "avoid_when": "多语言或要跨语言统一引擎",
       "niche": "python sast"
+    },
+    {
+      "id": "bat",
+      "domain": "devtools",
+      "name": "bat",
+      "repo": "https://github.com/sharkdp/bat",
+      "summary": "带语法高亮与 Git 集成的 cat 替代。",
+      "tags": [
+        "cli",
+        "viewer"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "终端里阅读源码想要高亮与行号",
+      "avoid_when": "脚本管道里只要纯文本输出",
+      "niche": "file viewer"
+    },
+    {
+      "id": "biome",
+      "domain": "devtools",
+      "name": "biome",
+      "repo": "https://github.com/biomejs/biome",
+      "summary": "快速 JS/TS linter+formatter（Rust）。",
+      "tags": [
+        "javascript",
+        "linter",
+        "formatter"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "想用单一工具替代 ESLint+Prettier 主干能力",
+      "avoid_when": "重度依赖庞大 ESLint 插件矩阵",
+      "niche": "js tooling"
     },
     {
       "id": "browser-use",
@@ -660,6 +694,23 @@
       "niche": "LLM unit testing"
     },
     {
+      "id": "delta",
+      "domain": "devtools",
+      "name": "delta",
+      "repo": "https://github.com/dandavison/delta",
+      "summary": "语法高亮的 git/diff 阅读器。",
+      "tags": [
+        "cli",
+        "git",
+        "diff"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "想把 git diff/show 读得更清楚",
+      "avoid_when": "纯脚本解析 patch 不需要人类可读",
+      "niche": "diff viewer"
+    },
+    {
       "id": "detox",
       "domain": "mobile",
       "name": "Detox",
@@ -855,6 +906,23 @@
       "niche": "speech-to-text"
     },
     {
+      "id": "fd",
+      "domain": "devtools",
+      "name": "fd",
+      "repo": "https://github.com/sharkdp/fd",
+      "summary": "用户友好的 find 替代，默认忽略隐藏与 gitignore。",
+      "tags": [
+        "cli",
+        "search",
+        "filesystem"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "按文件名/路径模式快速定位文件",
+      "avoid_when": "需要 find 全部冷门谓词与复杂表达式",
+      "niche": "file finder"
+    },
+    {
       "id": "feast",
       "domain": "data-ml",
       "name": "Feast",
@@ -967,6 +1035,23 @@
       "use_when": "自建/理解 Sigstore 证书链",
       "avoid_when": "只用托管 Sigstore 流程",
       "niche": "sigstore ca"
+    },
+    {
+      "id": "fzf",
+      "domain": "devtools",
+      "name": "fzf",
+      "repo": "https://github.com/junegunn/fzf",
+      "summary": "通用模糊查找器，可嵌入 shell 工作流。",
+      "tags": [
+        "cli",
+        "search",
+        "interactive"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "交互式从列表/历史/文件中模糊挑选",
+      "avoid_when": "非交互批处理且无需人机选择",
+      "niche": "fuzzy finder"
     },
     {
       "id": "gin",
@@ -1112,6 +1197,23 @@
       "niche": "RAG pipelines"
     },
     {
+      "id": "helix",
+      "domain": "devtools",
+      "name": "helix",
+      "repo": "https://github.com/helix-editor/helix",
+      "summary": "模态编辑器，内建 LSP/tree-sitter。",
+      "tags": [
+        "editor",
+        "lsp",
+        "tui"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "想要开箱即用的终端编辑器与选择优先编辑",
+      "avoid_when": "深度依赖 Vim 插件生态",
+      "niche": "editor"
+    },
+    {
       "id": "helm",
       "domain": "devops",
       "name": "Helm",
@@ -1142,6 +1244,22 @@
       "use_when": "要边缘/多运行时轻量 API",
       "avoid_when": "需要 Nest 级大型模块体系",
       "niche": "edge web framework"
+    },
+    {
+      "id": "hyperfine",
+      "domain": "devtools",
+      "name": "hyperfine",
+      "repo": "https://github.com/sharkdp/hyperfine",
+      "summary": "命令行基准测试工具。",
+      "tags": [
+        "cli",
+        "benchmarking"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "对比多条 shell 命令的耗时",
+      "avoid_when": "需要应用内 profiler/火焰图",
+      "niche": "benchmark"
     },
     {
       "id": "instructor",
@@ -1225,6 +1343,39 @@
       "use_when": "新 Android UI 用声明式 Compose",
       "avoid_when": "维护老 XML View 体系为主",
       "niche": "android ui"
+    },
+    {
+      "id": "jq",
+      "domain": "devtools",
+      "name": "jq",
+      "repo": "https://github.com/jqlang/jq",
+      "summary": "命令行 JSON 处理器。",
+      "tags": [
+        "cli",
+        "json",
+        "data"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "在 shell 里解析/变换 JSON",
+      "avoid_when": "要处理超大流式数据且 jq 内存吃紧",
+      "niche": "json cli"
+    },
+    {
+      "id": "just",
+      "domain": "devtools",
+      "name": "just",
+      "repo": "https://github.com/casey/just",
+      "summary": "现代命令运行器，用 justfile 替代散落 makefile 目标。",
+      "tags": [
+        "cli",
+        "task-runner"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "想用简洁语法组织项目常用命令",
+      "avoid_when": "需要完整 Make 依赖图与隐式规则",
+      "niche": "task runner"
     },
     {
       "id": "kaiyuan-dashuli",
@@ -1422,6 +1573,40 @@
       "use_when": "PHP 要现代全栈/API 框架",
       "avoid_when": "不用 PHP",
       "niche": "php framework"
+    },
+    {
+      "id": "lazydocker",
+      "domain": "devtools",
+      "name": "lazydocker",
+      "repo": "https://github.com/jesseduffield/lazydocker",
+      "summary": "Docker/Compose 的终端仪表盘。",
+      "tags": [
+        "cli",
+        "docker",
+        "tui"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "在终端快速看容器/日志/资源",
+      "avoid_when": "只要 CI 里 docker CLI 非交互命令",
+      "niche": "docker tui"
+    },
+    {
+      "id": "lazygit",
+      "domain": "devtools",
+      "name": "lazygit",
+      "repo": "https://github.com/jesseduffield/lazygit",
+      "summary": "终端 Git TUI，降低复杂 git 操作成本。",
+      "tags": [
+        "cli",
+        "git",
+        "tui"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "在终端可视化处理分支/暂存/变基",
+      "avoid_when": "只要脚本化 git 且无交互需求",
+      "niche": "git tui"
     },
     {
       "id": "lightgbm",
@@ -1644,6 +1829,22 @@
       "niche": "large-scale vector DB"
     },
     {
+      "id": "mise",
+      "domain": "devtools",
+      "name": "mise",
+      "repo": "https://github.com/jdx/mise",
+      "summary": "多语言运行时与工具版本管理（asdf 类）。",
+      "tags": [
+        "cli",
+        "version-manager"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "一个工具管 Node/Python/Go 等多运行时版本",
+      "avoid_when": "团队已统一容器且不在宿主机装运行时",
+      "niche": "runtime manager"
+    },
+    {
       "id": "mlflow",
       "domain": "data-ml",
       "name": "MLflow",
@@ -1737,6 +1938,23 @@
       "use_when": "强关系网络查询是核心",
       "avoid_when": "简单表关系用 SQL 即可",
       "niche": "graph db"
+    },
+    {
+      "id": "neovim",
+      "domain": "devtools",
+      "name": "Neovim",
+      "repo": "https://github.com/neovim/neovim",
+      "summary": "可扩展的 Vim 分支，Lua 配置与 LSP 成熟。",
+      "tags": [
+        "editor",
+        "lsp",
+        "tui"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "需要高度可定制的终端编辑器与插件生态",
+      "avoid_when": "不想维护配置只想开箱即用",
+      "niche": "editor"
     },
     {
       "id": "nestjs",
@@ -2386,6 +2604,40 @@
       "niche": "android api client"
     },
     {
+      "id": "ripgrep",
+      "domain": "devtools",
+      "name": "ripgrep",
+      "repo": "https://github.com/BurntSushi/ripgrep",
+      "summary": "极速递归正则搜索，默认尊重 .gitignore。",
+      "tags": [
+        "cli",
+        "search",
+        "devops-tools"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "需要在代码库里快速按正则找内容",
+      "avoid_when": "只要简单字符串匹配且不在意速度",
+      "niche": "code search"
+    },
+    {
+      "id": "ruff",
+      "domain": "devtools",
+      "name": "ruff",
+      "repo": "https://github.com/astral-sh/ruff",
+      "summary": "极速 Python linter/formatter。",
+      "tags": [
+        "python",
+        "linter",
+        "formatter"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要快速统一 Python 风格与静态检查",
+      "avoid_when": "依赖仅 flake8 插件生态且尚未迁移",
+      "niche": "python tooling"
+    },
+    {
       "id": "scikit-learn",
       "domain": "data-ml",
       "name": "scikit-learn",
@@ -2756,6 +3008,23 @@
       "niche": "model zoo runtime"
     },
     {
+      "id": "tree-sitter",
+      "domain": "devtools",
+      "name": "tree-sitter",
+      "repo": "https://github.com/tree-sitter/tree-sitter",
+      "summary": "增量解析库，驱动编辑器语法与结构化编辑。",
+      "tags": [
+        "parser",
+        "editor",
+        "tooling"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要给编辑器/工具做可靠语法树",
+      "avoid_when": "只需一次性正则抽取文本",
+      "niche": "parser"
+    },
+    {
       "id": "trivy",
       "domain": "security",
       "name": "Trivy",
@@ -2817,6 +3086,22 @@
       "use_when": "要把 PDF/HTML 等弄成可索引文本",
       "avoid_when": "数据已是干净文本",
       "niche": "document ETL"
+    },
+    {
+      "id": "uv",
+      "domain": "devtools",
+      "name": "uv",
+      "repo": "https://github.com/astral-sh/uv",
+      "summary": "极速 Python 包与项目管理器。",
+      "tags": [
+        "python",
+        "package-manager"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要快的 venv/依赖解析/锁文件工作流",
+      "avoid_when": "必须兼容遗留纯 pip/poetry 流程且无迁移窗口",
+      "niche": "python package"
     },
     {
       "id": "vault",
@@ -2993,6 +3278,23 @@
       "use_when": "表格竞赛/生产树模型",
       "avoid_when": "非表格深度模型主战场",
       "niche": "gbdt"
+    },
+    {
+      "id": "yq",
+      "domain": "devtools",
+      "name": "yq",
+      "repo": "https://github.com/mikefarah/yq",
+      "summary": "类 jq 的 YAML/JSON/XML 处理器。",
+      "tags": [
+        "cli",
+        "yaml",
+        "data"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "在终端改/查 YAML 配置",
+      "avoid_when": "只需 JSON 且已用 jq 足够",
+      "niche": "yaml cli"
     },
     {
       "id": "zustand",
@@ -3966,6 +4268,90 @@
       "type": "integrates_with",
       "to": "apache-spark",
       "note": "编排大数据作业"
+    },
+    {
+      "from": "ripgrep",
+      "type": "alternative_to",
+      "to": "fd",
+      "note": "内容搜索 vs 文件名搜索（常组合）"
+    },
+    {
+      "from": "bat",
+      "type": "integrates_with",
+      "to": "ripgrep",
+      "note": "搜索后高亮阅读"
+    },
+    {
+      "from": "fzf",
+      "type": "integrates_with",
+      "to": "fd",
+      "note": "模糊选择文件列表"
+    },
+    {
+      "from": "fzf",
+      "type": "integrates_with",
+      "to": "ripgrep",
+      "note": "模糊挑搜索结果"
+    },
+    {
+      "from": "yq",
+      "type": "alternative_to",
+      "to": "jq",
+      "note": "YAML 为主 vs JSON 为主"
+    },
+    {
+      "from": "just",
+      "type": "alternative_to",
+      "to": "mise",
+      "note": "任务配方 vs 运行时/工具版本（可并存）"
+    },
+    {
+      "from": "lazygit",
+      "type": "integrates_with",
+      "to": "delta",
+      "note": "TUI 旁路常配好看 diff"
+    },
+    {
+      "from": "lazydocker",
+      "type": "integrates_with",
+      "to": "docker",
+      "note": "Docker TUI 建立在 Docker 之上"
+    },
+    {
+      "from": "ruff",
+      "type": "integrates_with",
+      "to": "uv",
+      "note": "Astral 工具链常一起用"
+    },
+    {
+      "from": "biome",
+      "type": "integrates_with",
+      "to": "vite",
+      "note": "前端工程中常与 Vite 同仓使用"
+    },
+    {
+      "from": "helix",
+      "type": "alternative_to",
+      "to": "neovim",
+      "note": "开箱即用 vs 深度可定制"
+    },
+    {
+      "from": "neovim",
+      "type": "depends_on",
+      "to": "tree-sitter",
+      "note": "现代高亮/文本对象常靠 tree-sitter"
+    },
+    {
+      "from": "helix",
+      "type": "depends_on",
+      "to": "tree-sitter",
+      "note": "内建 tree-sitter 语法"
+    },
+    {
+      "from": "hyperfine",
+      "type": "integrates_with",
+      "to": "ripgrep",
+      "note": "常用来对比搜索命令性能"
     }
   ]
 }

@@ -1,0 +1,12 @@
+id: yq
+type: project
+name: yq
+repo: https://github.com/mikefarah/yq
+summary: 类 jq 的 YAML/JSON/XML 处理器。
+tags: [cli, yaml, data]
+language: Go
+status: active
+use_when: 在终端改/查 YAML 配置
+avoid_when: 只需 JSON 且已用 jq 足够
+niche: yaml cli
+related_ecosystem: cli

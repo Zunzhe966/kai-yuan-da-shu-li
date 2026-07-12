@@ -1,0 +1,12 @@
+id: helix
+type: project
+name: helix
+repo: https://github.com/helix-editor/helix
+summary: 模态编辑器，内建 LSP/tree-sitter。
+tags: [editor, lsp, tui]
+language: Rust
+status: active
+use_when: 想要开箱即用的终端编辑器与选择优先编辑
+avoid_when: 深度依赖 Vim 插件生态
+niche: editor
+related_ecosystem: editor

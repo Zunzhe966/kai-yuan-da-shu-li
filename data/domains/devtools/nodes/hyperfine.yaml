@@ -1,0 +1,12 @@
+id: hyperfine
+type: project
+name: hyperfine
+repo: https://github.com/sharkdp/hyperfine
+summary: 命令行基准测试工具。
+tags: [cli, benchmarking]
+language: Rust
+status: active
+use_when: 对比多条 shell 命令的耗时
+avoid_when: 需要应用内 profiler/火焰图
+niche: benchmark
+related_ecosystem: cli

@@ -135,3 +135,15 @@ queries:
     query: 机器学习实验跟踪和模型注册
     intent_tags: [mlops]
     expect_any: [mlflow]
+  - id: q34
+    query: 代码库正则快速搜索
+    intent_tags: [cli, search]
+    expect_any: [ripgrep]
+  - id: q35
+    query: 交互式模糊查找文件
+    intent_tags: [cli, search]
+    expect_any: [fzf]
+  - id: q36
+    query: 极速 Python 包管理和虚拟环境
+    intent_tags: [python, package-manager]
+    expect_any: [uv]

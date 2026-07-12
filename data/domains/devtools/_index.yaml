@@ -1,0 +1,33 @@
+domain: devtools
+title: 开发者工具与 CLI
+status: seeding
+notes: |
+  D15 第九垂直。面向 Agent/人类高频 CLI 与语言工具链选型。
+
+categories:
+  - id: search
+    title: 搜索与发现
+    node_ids: [ripgrep, fd, fzf]
+  - id: viewers
+    title: 阅读与 Diff
+    node_ids: [bat, delta]
+  - id: data-cli
+    title: 数据 CLI
+    node_ids: [jq, yq]
+  - id: runners
+    title: 任务与版本
+    node_ids: [just, mise]
+  - id: tui
+    title: Git/Docker TUI
+    node_ids: [lazygit, lazydocker]
+  - id: bench
+    title: 基准
+    node_ids: [hyperfine]
+  - id: lang-tooling
+    title: 语言工具链
+    node_ids: [ruff, uv, biome]
+  - id: editors
+    title: 编辑器与解析
+    node_ids: [helix, neovim, tree-sitter]
+
+nodes_dir: nodes

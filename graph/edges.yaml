@@ -795,3 +795,73 @@ edges:
     type: integrates_with
     to: apache-spark
     note: 编排大数据作业
+
+  - from: ripgrep
+    type: alternative_to
+    to: fd
+    note: 内容搜索 vs 文件名搜索（常组合）
+
+  - from: bat
+    type: integrates_with
+    to: ripgrep
+    note: 搜索后高亮阅读
+
+  - from: fzf
+    type: integrates_with
+    to: fd
+    note: 模糊选择文件列表
+
+  - from: fzf
+    type: integrates_with
+    to: ripgrep
+    note: 模糊挑搜索结果
+
+  - from: yq
+    type: alternative_to
+    to: jq
+    note: YAML 为主 vs JSON 为主
+
+  - from: just
+    type: alternative_to
+    to: mise
+    note: 任务配方 vs 运行时/工具版本（可并存）
+
+  - from: lazygit
+    type: integrates_with
+    to: delta
+    note: TUI 旁路常配好看 diff
+
+  - from: lazydocker
+    type: integrates_with
+    to: docker
+    note: Docker TUI 建立在 Docker 之上
+
+  - from: ruff
+    type: integrates_with
+    to: uv
+    note: Astral 工具链常一起用
+
+  - from: biome
+    type: integrates_with
+    to: vite
+    note: 前端工程中常与 Vite 同仓使用
+
+  - from: helix
+    type: alternative_to
+    to: neovim
+    note: 开箱即用 vs 深度可定制
+
+  - from: neovim
+    type: depends_on
+    to: tree-sitter
+    note: 现代高亮/文本对象常靠 tree-sitter
+
+  - from: helix
+    type: depends_on
+    to: tree-sitter
+    note: 内建 tree-sitter 语法
+
+  - from: hyperfine
+    type: integrates_with
+    to: ripgrep
+    note: 常用来对比搜索命令性能

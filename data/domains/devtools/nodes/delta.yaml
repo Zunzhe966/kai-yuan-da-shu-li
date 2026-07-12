@@ -1,0 +1,12 @@
+id: delta
+type: project
+name: delta
+repo: https://github.com/dandavison/delta
+summary: 语法高亮的 git/diff 阅读器。
+tags: [cli, git, diff]
+language: Rust
+status: active
+use_when: 想把 git diff/show 读得更清楚
+avoid_when: 纯脚本解析 patch 不需要人类可读
+niche: diff viewer
+related_ecosystem: cli

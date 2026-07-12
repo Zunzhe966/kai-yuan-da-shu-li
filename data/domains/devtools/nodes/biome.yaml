@@ -1,0 +1,12 @@
+id: biome
+type: project
+name: biome
+repo: https://github.com/biomejs/biome
+summary: 快速 JS/TS linter+formatter（Rust）。
+tags: [javascript, linter, formatter]
+language: Rust
+status: active
+use_when: 想用单一工具替代 ESLint+Prettier 主干能力
+avoid_when: 重度依赖庞大 ESLint 插件矩阵
+niche: js tooling
+related_ecosystem: web

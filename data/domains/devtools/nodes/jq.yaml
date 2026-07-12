@@ -1,0 +1,12 @@
+id: jq
+type: project
+name: jq
+repo: https://github.com/jqlang/jq
+summary: 命令行 JSON 处理器。
+tags: [cli, json, data]
+language: C
+status: active
+use_when: 在 shell 里解析/变换 JSON
+avoid_when: 要处理超大流式数据且 jq 内存吃紧
+niche: json cli
+related_ecosystem: cli

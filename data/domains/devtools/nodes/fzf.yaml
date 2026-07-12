@@ -1,0 +1,12 @@
+id: fzf
+type: project
+name: fzf
+repo: https://github.com/junegunn/fzf
+summary: 通用模糊查找器，可嵌入 shell 工作流。
+tags: [cli, search, interactive]
+language: Go
+status: active
+use_when: 交互式从列表/历史/文件中模糊挑选
+avoid_when: 非交互批处理且无需人机选择
+niche: fuzzy finder
+related_ecosystem: cli

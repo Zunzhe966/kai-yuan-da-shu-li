@@ -1,0 +1,12 @@
+id: fd
+type: project
+name: fd
+repo: https://github.com/sharkdp/fd
+summary: 用户友好的 find 替代，默认忽略隐藏与 gitignore。
+tags: [cli, search, filesystem]
+language: Rust
+status: active
+use_when: 按文件名/路径模式快速定位文件
+avoid_when: 需要 find 全部冷门谓词与复杂表达式
+niche: file finder
+related_ecosystem: cli

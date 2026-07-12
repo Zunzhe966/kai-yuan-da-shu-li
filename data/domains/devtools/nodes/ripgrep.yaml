@@ -1,0 +1,12 @@
+id: ripgrep
+type: project
+name: ripgrep
+repo: https://github.com/BurntSushi/ripgrep
+summary: 极速递归正则搜索，默认尊重 .gitignore。
+tags: [cli, search, devops-tools]
+language: Rust
+status: active
+use_when: 需要在代码库里快速按正则找内容
+avoid_when: 只要简单字符串匹配且不在意速度
+niche: code search
+related_ecosystem: cli
