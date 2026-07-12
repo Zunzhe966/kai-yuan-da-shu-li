@@ -1,0 +1,12 @@
+id: alamofire
+type: project
+name: Alamofire
+repo: https://github.com/Alamofire/Alamofire
+summary: Swift HTTP 网络库。
+tags: [mobile, ios, networking]
+language: Swift
+status: active
+use_when: iOS 要好用的网络层
+avoid_when: 非 Apple 平台
+niche: ios networking
+related_ecosystem: mobile

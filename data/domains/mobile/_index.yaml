@@ -1,0 +1,21 @@
+domain: mobile
+title: 移动端
+status: seeding
+notes: |
+  D12。
+
+categories:
+  - id: cross-platform
+    title: 跨平台
+    node_ids: [flutter, react-native, expo, ionic-framework, capacitor, maui]
+  - id: android
+    title: Android
+    node_ids: [kotlin-android, okhttp, retrofit, ktor, jetpack-compose]
+  - id: ios
+    title: iOS
+    node_ids: [swift, alamofire, swiftui-notes]
+  - id: testing
+    title: 移动测试
+    node_ids: [detox, appium]
+
+nodes_dir: nodes

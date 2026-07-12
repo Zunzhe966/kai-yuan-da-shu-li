@@ -1,0 +1,12 @@
+id: react-native
+type: project
+name: React Native
+repo: https://github.com/facebook/react-native
+summary: 用 React 写原生移动应用。
+tags: [mobile, cross-platform, react]
+language: JavaScript
+status: active
+use_when: Web React 团队要做移动端
+avoid_when: 团队无 JS/React 经验
+niche: react mobile
+related_ecosystem: mobile

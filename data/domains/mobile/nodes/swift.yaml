@@ -1,0 +1,12 @@
+id: swift
+type: project
+name: Swift
+repo: https://github.com/swiftlang/swift
+summary: Apple 平台主语言。
+tags: [mobile, ios]
+language: C++
+status: active
+use_when: 原生 iOS/macOS 开发语言底座
+avoid_when: 只要跨平台 Dart/JS
+niche: apple language
+related_ecosystem: mobile

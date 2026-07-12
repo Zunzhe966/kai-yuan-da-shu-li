@@ -1,0 +1,12 @@
+id: retrofit
+type: project
+name: Retrofit
+repo: https://github.com/square/retrofit
+summary: Android 类型安全 HTTP API 客户端。
+tags: [mobile, android, networking]
+language: Java
+status: active
+use_when: Android 要声明式 API 客户端
+avoid_when: 非 JVM
+niche: android api client
+related_ecosystem: mobile

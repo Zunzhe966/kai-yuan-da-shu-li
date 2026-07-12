@@ -1,0 +1,12 @@
+id: appium
+type: project
+name: Appium
+repo: https://github.com/appium/appium
+summary: 跨端移动自动化测试框架。
+tags: [mobile, testing]
+language: JavaScript
+status: active
+use_when: 原生/混合 App 要跨端自动化
+avoid_when: 只要单元测试
+niche: mobile automation
+related_ecosystem: mobile

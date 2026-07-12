@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-12T00:24:41.941040+00:00",
+  "generated_at": "2026-07-12T00:25:51.628466+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
@@ -10,11 +10,12 @@
     "backend",
     "databases",
     "devops",
+    "mobile",
     "security",
     "web-frontend"
   ],
-  "node_count": 152,
-  "edge_count": 124,
+  "node_count": 168,
+  "edge_count": 145,
   "nodes": [
     {
       "id": "act",
@@ -80,6 +81,23 @@
       "niche": "CLI coding agent"
     },
     {
+      "id": "alamofire",
+      "domain": "mobile",
+      "name": "Alamofire",
+      "repo": "https://github.com/Alamofire/Alamofire",
+      "summary": "Swift HTTP 网络库。",
+      "tags": [
+        "mobile",
+        "ios",
+        "networking"
+      ],
+      "language": "Swift",
+      "status": "active",
+      "use_when": "iOS 要好用的网络层",
+      "avoid_when": "非 Apple 平台",
+      "niche": "ios networking"
+    },
+    {
       "id": "ansible",
       "domain": "devops",
       "name": "Ansible",
@@ -110,6 +128,22 @@
       "use_when": "高吞吐事件流/日志总线",
       "avoid_when": "简单任务队列已够",
       "niche": "event streaming"
+    },
+    {
+      "id": "appium",
+      "domain": "mobile",
+      "name": "Appium",
+      "repo": "https://github.com/appium/appium",
+      "summary": "跨端移动自动化测试框架。",
+      "tags": [
+        "mobile",
+        "testing"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "原生/混合 App 要跨端自动化",
+      "avoid_when": "只要单元测试",
+      "niche": "mobile automation"
     },
     {
       "id": "argo-cd",
@@ -286,6 +320,23 @@
       "use_when": "要少配置自动证书的反向代理",
       "avoid_when": "已有复杂 nginx/traefik 规范不可替换",
       "niche": "auto-HTTPS server"
+    },
+    {
+      "id": "capacitor",
+      "domain": "mobile",
+      "name": "Capacitor",
+      "repo": "https://github.com/ionic-team/capacitor",
+      "summary": "把 Web 应用打包到原生容器。",
+      "tags": [
+        "mobile",
+        "cross-platform",
+        "web"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "已有 Web 应用要上架移动端",
+      "avoid_when": "从零做高交互原生 App",
+      "niche": "web-to-native"
     },
     {
       "id": "cassandra",
@@ -559,6 +610,23 @@
       "niche": "LLM unit testing"
     },
     {
+      "id": "detox",
+      "domain": "mobile",
+      "name": "Detox",
+      "repo": "https://github.com/wix/Detox",
+      "summary": "React Native 灰盒 E2E 测试。",
+      "tags": [
+        "mobile",
+        "testing",
+        "react"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "RN 应用要端到端测试",
+      "avoid_when": "非 RN 项目",
+      "niche": "rn e2e"
+    },
+    {
       "id": "django",
       "domain": "backend",
       "name": "Django",
@@ -639,6 +707,23 @@
       "use_when": "全文检索+日志分析大规模场景",
       "avoid_when": "只要轻量搜索",
       "niche": "search and analytics"
+    },
+    {
+      "id": "expo",
+      "domain": "mobile",
+      "name": "Expo",
+      "repo": "https://github.com/expo/expo",
+      "summary": "React Native 工具链与运行时，加速交付。",
+      "tags": [
+        "mobile",
+        "cross-platform",
+        "react"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "RN 要快速迭代与托管工作流",
+      "avoid_when": "必须深度自定义原生工程且拒绝 Expo",
+      "niche": "rn toolchain"
     },
     {
       "id": "express",
@@ -767,6 +852,22 @@
       "use_when": "要用拖拽快速搭 LLM 流",
       "avoid_when": "要强类型代码一等公民控制",
       "niche": "visual LLM builder"
+    },
+    {
+      "id": "flutter",
+      "domain": "mobile",
+      "name": "Flutter",
+      "repo": "https://github.com/flutter/flutter",
+      "summary": "跨平台 UI 工具包，一套代码多端。",
+      "tags": [
+        "mobile",
+        "cross-platform"
+      ],
+      "language": "Dart",
+      "status": "active",
+      "use_when": "要 Android/iOS/桌面共用 UI 代码",
+      "avoid_when": "只要原生平台极致体验与最小包体",
+      "niche": "cross-platform ui"
     },
     {
       "id": "flux2",
@@ -992,6 +1093,23 @@
       "niche": "structured output helper"
     },
     {
+      "id": "ionic-framework",
+      "domain": "mobile",
+      "name": "Ionic Framework",
+      "repo": "https://github.com/ionic-team/ionic-framework",
+      "summary": "Web 技术做移动/桌面的 UI 框架。",
+      "tags": [
+        "mobile",
+        "cross-platform",
+        "web"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要用 Web 技术做混合应用 UI",
+      "avoid_when": "要纯原生性能体验",
+      "niche": "hybrid ui"
+    },
+    {
       "id": "istio",
       "domain": "devops",
       "name": "Istio",
@@ -1007,6 +1125,23 @@
       "use_when": "K8s 上要流量治理/mTLS/可观测网格",
       "avoid_when": "网格复杂度不可接受、服务很少",
       "niche": "service mesh"
+    },
+    {
+      "id": "jetpack-compose",
+      "domain": "mobile",
+      "name": "Jetpack Compose",
+      "repo": "https://github.com/androidx/androidx",
+      "summary": "Android 现代声明式 UI（AndroidX 单仓入口）。",
+      "tags": [
+        "mobile",
+        "android",
+        "ui"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "新 Android UI 用声明式 Compose",
+      "avoid_when": "维护老 XML View 体系为主",
+      "niche": "android ui"
     },
     {
       "id": "kaiyuan-dashuli",
@@ -1056,6 +1191,39 @@
       "use_when": "要 Redis 兼容且更高多核吞吐",
       "avoid_when": "标准 Redis 已足够",
       "niche": "multithreaded redis-compatible"
+    },
+    {
+      "id": "kotlin-android",
+      "domain": "mobile",
+      "name": "Android Kotlin guides repo",
+      "repo": "https://github.com/android/kotlin-guides",
+      "summary": "Android Kotlin 官方示例与指南入口。",
+      "tags": [
+        "mobile",
+        "android"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "做原生 Android（Kotlin）",
+      "avoid_when": "只要跨平台框架",
+      "niche": "android native"
+    },
+    {
+      "id": "ktor",
+      "domain": "mobile",
+      "name": "Ktor",
+      "repo": "https://github.com/ktorio/ktor",
+      "summary": "Kotlin 异步客户端/服务端框架，常用于移动网络。",
+      "tags": [
+        "mobile",
+        "android",
+        "networking"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "Kotlin 多平台/Android 网络与轻服务",
+      "avoid_when": "只要 Java OkHttp 生态",
+      "niche": "kotlin networking"
     },
     {
       "id": "kubernetes",
@@ -1265,6 +1433,22 @@
       "use_when": "要 MySQL 兼容且偏社区发行",
       "avoid_when": "必须绑定 Oracle MySQL 官方特性",
       "niche": "mysql-compatible"
+    },
+    {
+      "id": "maui",
+      "domain": "mobile",
+      "name": ".NET MAUI",
+      "repo": "https://github.com/dotnet/maui",
+      "summary": ".NET 跨平台应用 UI 框架。",
+      "tags": [
+        "mobile",
+        "cross-platform"
+      ],
+      "language": "C#",
+      "status": "active",
+      "use_when": ".NET 团队要做跨平台客户端",
+      "avoid_when": "非 .NET 技术栈",
+      "niche": "dotnet cross-platform"
     },
     {
       "id": "mcp-python-sdk",
@@ -1504,6 +1688,23 @@
       "use_when": "Vue 项目需要约定式全栈/SSR",
       "avoid_when": "不用 Vue",
       "niche": "vue meta-framework"
+    },
+    {
+      "id": "okhttp",
+      "domain": "mobile",
+      "name": "OkHttp",
+      "repo": "https://github.com/square/okhttp",
+      "summary": "Android/Java HTTP 客户端。",
+      "tags": [
+        "mobile",
+        "android",
+        "networking"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "Android 要可靠 HTTP 栈",
+      "avoid_when": "非 JVM 移动栈",
+      "niche": "android http"
     },
     {
       "id": "ollama",
@@ -1872,6 +2073,23 @@
       "niche": "ui library"
     },
     {
+      "id": "react-native",
+      "domain": "mobile",
+      "name": "React Native",
+      "repo": "https://github.com/facebook/react-native",
+      "summary": "用 React 写原生移动应用。",
+      "tags": [
+        "mobile",
+        "cross-platform",
+        "react"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "Web React 团队要做移动端",
+      "avoid_when": "团队无 JS/React 经验",
+      "niche": "react mobile"
+    },
+    {
       "id": "redis",
       "domain": "databases",
       "name": "Redis",
@@ -1920,6 +2138,23 @@
       "use_when": "重视渐进增强、嵌套路由与 Web fetch 模型",
       "avoid_when": "只要最大众的 Next 约定与教程密度",
       "niche": "web-standards react framework"
+    },
+    {
+      "id": "retrofit",
+      "domain": "mobile",
+      "name": "Retrofit",
+      "repo": "https://github.com/square/retrofit",
+      "summary": "Android 类型安全 HTTP API 客户端。",
+      "tags": [
+        "mobile",
+        "android",
+        "networking"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "Android 要声明式 API 客户端",
+      "avoid_when": "非 JVM",
+      "niche": "android api client"
     },
     {
       "id": "scylladb",
@@ -2096,6 +2331,39 @@
       "use_when": "在意包体与编译期优化的组件开发",
       "avoid_when": "需要最大生态与招聘池",
       "niche": "compiled ui framework"
+    },
+    {
+      "id": "swift",
+      "domain": "mobile",
+      "name": "Swift",
+      "repo": "https://github.com/swiftlang/swift",
+      "summary": "Apple 平台主语言。",
+      "tags": [
+        "mobile",
+        "ios"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "原生 iOS/macOS 开发语言底座",
+      "avoid_when": "只要跨平台 Dart/JS",
+      "niche": "apple language"
+    },
+    {
+      "id": "swiftui-notes",
+      "domain": "mobile",
+      "name": "SwiftUI Lab examples mirror note",
+      "repo": "https://github.com/twostraws/SwiftUI",
+      "summary": "SwiftUI 学习与示例（社区高质量入口）。",
+      "tags": [
+        "mobile",
+        "ios",
+        "ui"
+      ],
+      "language": "Swift",
+      "status": "active",
+      "use_when": "学/做 SwiftUI 界面",
+      "avoid_when": "非 Apple UI",
+      "niche": "ios ui examples"
     },
     {
       "id": "syft",
@@ -3195,6 +3463,132 @@
       "type": "integrates_with",
       "to": "celery",
       "note": "API + 后台任务"
+    },
+    {
+      "from": "fastapi",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "常见 API + Postgres"
+    },
+    {
+      "from": "django",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "Django 常用 Postgres"
+    },
+    {
+      "from": "nestjs",
+      "type": "integrates_with",
+      "to": "prisma",
+      "note": "Nest 常见 ORM"
+    },
+    {
+      "from": "prisma",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "Prisma 常用 Postgres"
+    },
+    {
+      "from": "nextjs",
+      "type": "integrates_with",
+      "to": "nestjs",
+      "note": "BFF/前端常配 Nest API"
+    },
+    {
+      "from": "trivy",
+      "type": "integrates_with",
+      "to": "docker",
+      "note": "镜像构建后扫描"
+    },
+    {
+      "from": "gitleaks",
+      "type": "integrates_with",
+      "to": "github-actions-runner",
+      "note": "CI 防泄漏"
+    },
+    {
+      "from": "redis",
+      "type": "integrates_with",
+      "to": "fastapi",
+      "note": "API 缓存/会话"
+    },
+    {
+      "from": "celery",
+      "type": "integrates_with",
+      "to": "redis",
+      "note": "Celery 常见 broker"
+    },
+    {
+      "from": "bullmq",
+      "type": "depends_on",
+      "to": "redis",
+      "note": "BullMQ 基于 Redis"
+    },
+    {
+      "from": "expo",
+      "type": "depends_on",
+      "to": "react-native",
+      "note": "Expo 建立在 RN 上"
+    },
+    {
+      "from": "react-native",
+      "type": "alternative_to",
+      "to": "flutter",
+      "note": "两大跨平台方案"
+    },
+    {
+      "from": "capacitor",
+      "type": "integrates_with",
+      "to": "ionic-framework",
+      "note": "Web 混合栈常见组合"
+    },
+    {
+      "from": "detox",
+      "type": "integrates_with",
+      "to": "react-native",
+      "note": "RN E2E"
+    },
+    {
+      "from": "retrofit",
+      "type": "integrates_with",
+      "to": "okhttp",
+      "note": "Android 网络栈"
+    },
+    {
+      "from": "alamofire",
+      "type": "integrates_with",
+      "to": "swift",
+      "note": "Swift 网络库"
+    },
+    {
+      "from": "expo",
+      "type": "alternative_to",
+      "to": "react-native",
+      "note": "托管工作流 vs 纯 RN CLI（互补也常替代选型）"
+    },
+    {
+      "from": "flutter",
+      "type": "alternative_to",
+      "to": "maui",
+      "note": ".NET vs Flutter 跨平台"
+    },
+    {
+      "from": "appium",
+      "type": "alternative_to",
+      "to": "detox",
+      "note": "通用自动化 vs RN 灰盒"
+    },
+    {
+      "from": "ktor",
+      "type": "alternative_to",
+      "to": "okhttp",
+      "note": "Kotlin 网络 vs OkHttp"
+    },
+    {
+      "from": "jetpack-compose",
+      "type": "integrates_with",
+      "to": "kotlin-android",
+      "note": "Compose 用于 Android Kotlin"
     }
   ]
 }

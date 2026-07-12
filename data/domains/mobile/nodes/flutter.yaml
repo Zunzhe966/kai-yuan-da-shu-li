@@ -1,0 +1,12 @@
+id: flutter
+type: project
+name: Flutter
+repo: https://github.com/flutter/flutter
+summary: 跨平台 UI 工具包，一套代码多端。
+tags: [mobile, cross-platform]
+language: Dart
+status: active
+use_when: 要 Android/iOS/桌面共用 UI 代码
+avoid_when: 只要原生平台极致体验与最小包体
+niche: cross-platform ui
+related_ecosystem: mobile

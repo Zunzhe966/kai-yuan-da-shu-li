@@ -111,3 +111,15 @@ queries:
     query: Python 分布式后台任务队列
     intent_tags: [queue, python]
     expect_any: [celery]
+  - id: q28
+    query: 一套代码做 Android 和 iOS 跨平台 UI
+    intent_tags: [mobile, cross-platform]
+    expect_any: [flutter, react-native, expo]
+  - id: q29
+    query: React 团队做移动端并要快速迭代
+    intent_tags: [mobile, react]
+    expect_any: [expo, react-native]
+  - id: q30
+    query: 移动应用端到端自动化测试
+    intent_tags: [mobile, testing]
+    expect_any: [appium, detox]

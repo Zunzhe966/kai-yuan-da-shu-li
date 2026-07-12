@@ -1,0 +1,12 @@
+id: maui
+type: project
+name: .NET MAUI
+repo: https://github.com/dotnet/maui
+summary: .NET 跨平台应用 UI 框架。
+tags: [mobile, cross-platform]
+language: C#
+status: active
+use_when: .NET 团队要做跨平台客户端
+avoid_when: 非 .NET 技术栈
+niche: dotnet cross-platform
+related_ecosystem: mobile

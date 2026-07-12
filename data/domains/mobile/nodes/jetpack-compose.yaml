@@ -1,0 +1,12 @@
+id: jetpack-compose
+type: project
+name: Jetpack Compose
+repo: https://github.com/androidx/androidx
+summary: Android 现代声明式 UI（AndroidX 单仓入口）。
+tags: [mobile, android, ui]
+language: Kotlin
+status: active
+use_when: 新 Android UI 用声明式 Compose
+avoid_when: 维护老 XML View 体系为主
+niche: android ui
+related_ecosystem: mobile

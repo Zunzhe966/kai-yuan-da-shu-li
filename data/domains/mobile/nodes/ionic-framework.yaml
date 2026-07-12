@@ -1,0 +1,12 @@
+id: ionic-framework
+type: project
+name: Ionic Framework
+repo: https://github.com/ionic-team/ionic-framework
+summary: Web 技术做移动/桌面的 UI 框架。
+tags: [mobile, cross-platform, web]
+language: TypeScript
+status: active
+use_when: 要用 Web 技术做混合应用 UI
+avoid_when: 要纯原生性能体验
+niche: hybrid ui
+related_ecosystem: mobile

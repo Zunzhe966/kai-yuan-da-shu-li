@@ -1,0 +1,12 @@
+id: ktor
+type: project
+name: Ktor
+repo: https://github.com/ktorio/ktor
+summary: Kotlin 异步客户端/服务端框架，常用于移动网络。
+tags: [mobile, android, networking]
+language: Kotlin
+status: active
+use_when: Kotlin 多平台/Android 网络与轻服务
+avoid_when: 只要 Java OkHttp 生态
+niche: kotlin networking
+related_ecosystem: mobile

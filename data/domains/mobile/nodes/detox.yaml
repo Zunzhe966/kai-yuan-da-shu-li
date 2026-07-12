@@ -1,0 +1,12 @@
+id: detox
+type: project
+name: Detox
+repo: https://github.com/wix/Detox
+summary: React Native 灰盒 E2E 测试。
+tags: [mobile, testing, react]
+language: JavaScript
+status: active
+use_when: RN 应用要端到端测试
+avoid_when: 非 RN 项目
+niche: rn e2e
+related_ecosystem: mobile

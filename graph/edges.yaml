@@ -1,5 +1,5 @@
 version: 0.1.0
-domains: [ai-agents, devops, web-frontend, databases, security, backend]
+domains: [ai-agents, devops, web-frontend, databases, security, backend, mobile]
 edges:
   - from: llama-index
     type: alternative_to
@@ -620,3 +620,108 @@ edges:
     type: integrates_with
     to: celery
     note: API + 后台任务
+
+  - from: fastapi
+    type: integrates_with
+    to: postgresql
+    note: 常见 API + Postgres
+
+  - from: django
+    type: integrates_with
+    to: postgresql
+    note: Django 常用 Postgres
+
+  - from: nestjs
+    type: integrates_with
+    to: prisma
+    note: Nest 常见 ORM
+
+  - from: prisma
+    type: integrates_with
+    to: postgresql
+    note: Prisma 常用 Postgres
+
+  - from: nextjs
+    type: integrates_with
+    to: nestjs
+    note: BFF/前端常配 Nest API
+
+  - from: trivy
+    type: integrates_with
+    to: docker
+    note: 镜像构建后扫描
+
+  - from: gitleaks
+    type: integrates_with
+    to: github-actions-runner
+    note: CI 防泄漏
+
+  - from: redis
+    type: integrates_with
+    to: fastapi
+    note: API 缓存/会话
+
+  - from: celery
+    type: integrates_with
+    to: redis
+    note: Celery 常见 broker
+
+  - from: bullmq
+    type: depends_on
+    to: redis
+    note: BullMQ 基于 Redis
+
+  - from: expo
+    type: depends_on
+    to: react-native
+    note: Expo 建立在 RN 上
+
+  - from: react-native
+    type: alternative_to
+    to: flutter
+    note: 两大跨平台方案
+
+  - from: capacitor
+    type: integrates_with
+    to: ionic-framework
+    note: Web 混合栈常见组合
+
+  - from: detox
+    type: integrates_with
+    to: react-native
+    note: RN E2E
+
+  - from: retrofit
+    type: integrates_with
+    to: okhttp
+    note: Android 网络栈
+
+  - from: alamofire
+    type: integrates_with
+    to: swift
+    note: Swift 网络库
+
+  - from: expo
+    type: alternative_to
+    to: react-native
+    note: 托管工作流 vs 纯 RN CLI（互补也常替代选型）
+
+  - from: flutter
+    type: alternative_to
+    to: maui
+    note: .NET vs Flutter 跨平台
+
+  - from: appium
+    type: alternative_to
+    to: detox
+    note: 通用自动化 vs RN 灰盒
+
+  - from: ktor
+    type: alternative_to
+    to: okhttp
+    note: Kotlin 网络 vs OkHttp
+
+  - from: jetpack-compose
+    type: integrates_with
+    to: kotlin-android
+    note: Compose 用于 Android Kotlin

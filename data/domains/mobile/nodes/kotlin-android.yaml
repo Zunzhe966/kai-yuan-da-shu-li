@@ -1,0 +1,12 @@
+id: kotlin-android
+type: project
+name: Android Kotlin guides repo
+repo: https://github.com/android/kotlin-guides
+summary: Android Kotlin 官方示例与指南入口。
+tags: [mobile, android]
+language: Kotlin
+status: active
+use_when: 做原生 Android（Kotlin）
+avoid_when: 只要跨平台框架
+niche: android native
+related_ecosystem: mobile

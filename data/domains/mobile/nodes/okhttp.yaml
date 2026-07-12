@@ -1,0 +1,12 @@
+id: okhttp
+type: project
+name: OkHttp
+repo: https://github.com/square/okhttp
+summary: Android/Java HTTP 客户端。
+tags: [mobile, android, networking]
+language: Kotlin
+status: active
+use_when: Android 要可靠 HTTP 栈
+avoid_when: 非 JVM 移动栈
+niche: android http
+related_ecosystem: mobile

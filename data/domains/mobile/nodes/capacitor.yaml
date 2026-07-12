@@ -1,0 +1,12 @@
+id: capacitor
+type: project
+name: Capacitor
+repo: https://github.com/ionic-team/capacitor
+summary: 把 Web 应用打包到原生容器。
+tags: [mobile, cross-platform, web]
+language: TypeScript
+status: active
+use_when: 已有 Web 应用要上架移动端
+avoid_when: 从零做高交互原生 App
+niche: web-to-native
+related_ecosystem: mobile

@@ -142,6 +142,12 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid in ("celery", "bullmq"): s += 3
     if "企业级" in query and ("Node" in query or "TypeScript" in query):
         if nid == "nestjs": s += 3
+    if "跨平台" in query or "一套代码" in query:
+        if nid in ("flutter", "react-native", "expo"): s += 3
+    if "React Native" in query or "RN " in query:
+        if nid in ("react-native", "expo", "detox"): s += 2
+    if "移动" in query and "自动化" in query:
+        if nid in ("appium", "detox"): s += 3
     return s
 
 
@@ -183,6 +189,8 @@ def search_projects(
             "SBOM": "sbom",
             "后端": "api",
             "任务队列": "queue",
+            "跨平台": "cross-platform",
+            "移动端": "mobile",
         }
         ql = query.lower()
         for k, v in cues.items():

@@ -1,0 +1,12 @@
+id: swiftui-notes
+type: project
+name: SwiftUI Lab examples mirror note
+repo: https://github.com/twostraws/SwiftUI
+summary: SwiftUI 学习与示例（社区高质量入口）。
+tags: [mobile, ios, ui]
+language: Swift
+status: active
+use_when: 学/做 SwiftUI 界面
+avoid_when: 非 Apple UI
+niche: ios ui examples
+related_ecosystem: mobile
