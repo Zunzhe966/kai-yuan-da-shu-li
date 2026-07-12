@@ -1,0 +1,12 @@
+id: unbound
+type: project
+name: Unbound
+repo: https://github.com/NLnetLabs/unbound
+summary: 验证型递归 DNS 解析器。
+tags: [networking, dns]
+language: C
+status: active
+use_when: 要安全递归解析与 DNSSEC
+avoid_when: 只要权威 DNS 托管
+niche: dns
+related_ecosystem: networking

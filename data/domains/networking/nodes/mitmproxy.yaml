@@ -1,0 +1,12 @@
+id: mitmproxy
+type: project
+name: mitmproxy
+repo: https://github.com/mitmproxy/mitmproxy
+summary: 交互式 HTTPS 中间人代理与流量检查。
+tags: [networking, debugging, proxy]
+language: Python
+status: active
+use_when: 要调试/拦截 HTTPS 客户端流量
+avoid_when: 生产流量治理（应用网关）
+niche: debug proxy
+related_ecosystem: networking

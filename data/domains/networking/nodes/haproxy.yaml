@@ -1,0 +1,12 @@
+id: haproxy
+type: project
+name: HAProxy
+repo: https://github.com/haproxy/haproxy
+summary: 高可用负载均衡与代理。
+tags: [networking, load-balancer, proxy]
+language: C
+status: active
+use_when: 要成熟四/七层负载均衡与高可用
+avoid_when: 只要开发机临时端口转发
+niche: load balancer
+related_ecosystem: networking

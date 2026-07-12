@@ -171,3 +171,15 @@ queries:
     query: 极速静态站点生成器做博客
     intent_tags: [static-site]
     expect_any: [hugo, astro, jekyll]
+  - id: q43
+    query: 云原生动态 API 网关
+    intent_tags: [networking, api-gateway]
+    expect_any: [apisix, kong]
+  - id: q44
+    query: 基于 WireGuard 的零配置组网
+    intent_tags: [networking, vpn]
+    expect_any: [tailscale, headscale, netbird]
+  - id: q45
+    query: 把内网服务穿透到公网
+    intent_tags: [networking, tunnel]
+    expect_any: [frp, cloudflared, gost]

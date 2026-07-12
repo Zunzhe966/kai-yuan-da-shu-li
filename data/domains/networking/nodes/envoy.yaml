@@ -1,0 +1,12 @@
+id: envoy
+type: project
+name: Envoy
+repo: https://github.com/envoyproxy/envoy
+summary: 云原生高性能代理，常作服务网格数据面。
+tags: [networking, proxy, service-mesh]
+language: C++
+status: active
+use_when: 要可编程 L7 代理或网格数据面
+avoid_when: 只要简单反向代理静态站
+niche: proxy
+related_ecosystem: networking

@@ -37,6 +37,9 @@ domains:
   cms-docs:
     title: CMS 与文档站
     description: 经典/无头 CMS、文档生成器与内容静态站
+  networking:
+    title: 网络与边缘
+    description: 代理、网关、网格、DNS、组网 VPN、隧道与排障
 
 # 节点类型
 node_types:

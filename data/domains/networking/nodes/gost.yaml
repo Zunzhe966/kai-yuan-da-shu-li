@@ -1,0 +1,12 @@
+id: gost
+type: project
+name: GOST
+repo: https://github.com/go-gost/gost
+summary: GO 语言的安全隧道与代理工具集。
+tags: [networking, tunnel, proxy]
+language: Go
+status: active
+use_when: 要多协议代理/隧道组合
+avoid_when: 只要单一成熟商业 VPN
+niche: tunnel
+related_ecosystem: networking

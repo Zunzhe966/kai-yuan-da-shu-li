@@ -1,0 +1,31 @@
+domain: networking
+title: 网络与边缘
+status: seeding
+notes: |
+  D19 第十二垂直。网关/网格/DNS/组网/隧道/排障。
+  反代类 nginx/caddy/traefik/istio 已在 devops；wireguard 在 security。
+
+categories:
+  - id: proxy-lb
+    title: 代理与负载均衡
+    node_ids: [envoy, haproxy]
+  - id: api-gateway
+    title: API 网关
+    node_ids: [apisix, kong]
+  - id: mesh-cni
+    title: 网格与 CNI
+    node_ids: [linkerd2, cilium]
+  - id: dns
+    title: DNS
+    node_ids: [coredns, unbound]
+  - id: mesh-vpn
+    title: 组网 VPN
+    node_ids: [tailscale, headscale, netbird]
+  - id: tunnel
+    title: 隧道与穿透
+    node_ids: [frp, cloudflared, gost]
+  - id: debug
+    title: 排障与测量
+    node_ids: [mitmproxy, wireshark, nmap, iperf3]
+
+nodes_dir: nodes

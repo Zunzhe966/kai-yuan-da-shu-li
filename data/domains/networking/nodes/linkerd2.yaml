@@ -1,0 +1,12 @@
+id: linkerd2
+type: project
+name: Linkerd
+repo: https://github.com/linkerd/linkerd2
+summary: 超轻量 Kubernetes 服务网格。
+tags: [networking, service-mesh, kubernetes]
+language: Go
+status: active
+use_when: 要简单可靠的 K8s 网格而非重型控制面
+avoid_when: 非 Kubernetes 环境
+niche: service mesh
+related_ecosystem: networking

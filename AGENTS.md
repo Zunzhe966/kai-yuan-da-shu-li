@@ -9,7 +9,7 @@
 
 2. **定位领域**  
    打开 `data/domains/<domain>/_index.yaml`。  
-   现有领域：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile` · `data-ml` · `devtools` · `desktop` · `cms-docs`。  
+   现有领域：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile` · `data-ml` · `devtools` · `desktop` · `cms-docs` · `networking`。  
    也可用 MCP/HTTP/`dist/atlas-index.json` 做 `domain=all` 检索。
 
 3. **候选召回**  

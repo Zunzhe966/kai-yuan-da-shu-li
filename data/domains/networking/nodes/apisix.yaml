@@ -1,0 +1,12 @@
+id: apisix
+type: project
+name: Apache APISIX
+repo: https://github.com/apache/apisix
+summary: 动态云原生 API 网关。
+tags: [networking, api-gateway]
+language: Lua
+status: active
+use_when: 要动态配置的 API 网关与插件生态
+avoid_when: 只要单机 nginx 反代几个路径
+niche: api gateway
+related_ecosystem: networking

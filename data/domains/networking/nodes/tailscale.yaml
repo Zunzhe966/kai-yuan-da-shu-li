@@ -1,0 +1,12 @@
+id: tailscale
+type: project
+name: Tailscale
+repo: https://github.com/tailscale/tailscale
+summary: 基于 WireGuard 的零配置组网。
+tags: [networking, vpn, mesh]
+language: Go
+status: active
+use_when: 要轻松把设备组进私有网络
+avoid_when: 必须完全自建控制面且无 SaaS
+niche: mesh vpn
+related_ecosystem: networking

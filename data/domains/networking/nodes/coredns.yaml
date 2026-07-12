@@ -1,0 +1,12 @@
+id: coredns
+type: project
+name: CoreDNS
+repo: https://github.com/coredns/coredns
+summary: 可插件化的 DNS 服务器，K8s 默认 DNS。
+tags: [networking, dns]
+language: Go
+status: active
+use_when: 要云原生/可扩展 DNS
+avoid_when: 只要家用路由器级缓存 DNS
+niche: dns
+related_ecosystem: networking

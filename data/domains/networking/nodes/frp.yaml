@@ -1,0 +1,12 @@
+id: frp
+type: project
+name: frp
+repo: https://github.com/fatedier/frp
+summary: 内网穿透，暴露本地服务到公网。
+tags: [networking, tunnel, nat]
+language: Go
+status: active
+use_when: 要把内网服务安全暴露出去
+avoid_when: 已有公网入口与正规反向代理链路
+niche: nat traversal
+related_ecosystem: networking

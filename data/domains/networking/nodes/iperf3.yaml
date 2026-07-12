@@ -1,0 +1,12 @@
+id: iperf3
+type: project
+name: iperf3
+repo: https://github.com/esnet/iperf
+summary: 网络带宽性能测试工具。
+tags: [networking, benchmarking]
+language: C
+status: active
+use_when: 要测链路吞吐与抖动
+avoid_when: 应用层压测（用专门 HTTP 压测器）
+niche: bandwidth test
+related_ecosystem: networking

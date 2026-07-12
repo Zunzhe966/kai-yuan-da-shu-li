@@ -1,0 +1,12 @@
+id: netbird
+type: project
+name: NetBird
+repo: https://github.com/netbirdio/netbird
+summary: 基于 WireGuard 的开源零信任组网。
+tags: [networking, vpn, mesh]
+language: Go
+status: active
+use_when: 要开源零信任网状 VPN 替代
+avoid_when: 已绑定 Tailscale 生态
+niche: mesh vpn
+related_ecosystem: networking

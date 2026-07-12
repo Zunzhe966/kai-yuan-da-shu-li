@@ -181,6 +181,15 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid in ("hugo", "jekyll", "astro"): s += 4
         if nid in ("vitepress", "mkdocs", "docusaurus") and "博客" in query:
             s -= 1
+    if "API 网关" in query:
+        if nid in ("apisix", "kong"): s += 3
+    if "零配置组网" in query or "mesh VPN" in query.lower() or "组网 VPN" in query:
+        if nid in ("tailscale", "headscale", "netbird"): s += 3
+    if "内网穿透" in query:
+        if nid in ("frp", "cloudflared", "gost"): s += 3
+    if "服务网格" in query and "轻量" in query:
+        if nid == "linkerd2": s += 3
+        if nid == "istio": s -= 1
     return s
 
 

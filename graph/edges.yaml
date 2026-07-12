@@ -1085,3 +1085,83 @@ edges:
     type: integrates_with
     to: postgresql
     note: 常接 SQL 仓
+
+  - from: envoy
+    type: alternative_to
+    to: haproxy
+    note: 云原生 L7 代理 vs 经典负载均衡
+
+  - from: apisix
+    type: alternative_to
+    to: kong
+    note: 动态云原生网关 vs Kong 生态
+
+  - from: apisix
+    type: alternative_to
+    to: nginx
+    note: API 网关 vs 经典反代
+
+  - from: linkerd2
+    type: alternative_to
+    to: istio
+    note: 轻量网格 vs 功能全面网格
+
+  - from: cilium
+    type: integrates_with
+    to: kubernetes
+    note: K8s CNI/网络策略
+
+  - from: coredns
+    type: integrates_with
+    to: kubernetes
+    note: 集群 DNS
+
+  - from: unbound
+    type: alternative_to
+    to: coredns
+    note: 递归解析 vs 插件化权威/转发 DNS
+
+  - from: tailscale
+    type: integrates_with
+    to: wireguard
+    note: 建立在 WireGuard
+
+  - from: headscale
+    type: alternative_to
+    to: tailscale
+    note: 自建控制面 vs 托管控制面
+
+  - from: netbird
+    type: alternative_to
+    to: tailscale
+    note: 开源零信任组网替代
+
+  - from: frp
+    type: alternative_to
+    to: cloudflared
+    note: 自建穿透 vs Cloudflare Tunnel
+
+  - from: gost
+    type: alternative_to
+    to: frp
+    note: 多协议隧道工具集 vs frp
+
+  - from: mitmproxy
+    type: alternative_to
+    to: wireshark
+    note: HTTP(S) 调试 vs 全协议抓包
+
+  - from: nmap
+    type: integrates_with
+    to: wireshark
+    note: 发现后常接抓包分析
+
+  - from: envoy
+    type: integrates_with
+    to: istio
+    note: Istio 常用 Envoy 数据面
+
+  - from: haproxy
+    type: alternative_to
+    to: nginx
+    note: LB 专长 vs 通用反代

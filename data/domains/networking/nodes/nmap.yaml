@@ -1,0 +1,12 @@
+id: nmap
+type: project
+name: Nmap
+repo: https://github.com/nmap/nmap
+summary: 网络发现与安全审计扫描器。
+tags: [networking, scanning, security]
+language: C
+status: active
+use_when: 要主机/端口发现与脚本探测
+avoid_when: 只要应用层健康检查
+niche: network scan
+related_ecosystem: networking

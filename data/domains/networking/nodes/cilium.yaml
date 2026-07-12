@@ -1,0 +1,12 @@
+id: cilium
+type: project
+name: Cilium
+repo: https://github.com/cilium/cilium
+summary: 基于 eBPF 的云原生网络与安全。
+tags: [networking, cni, ebpf, kubernetes]
+language: Go
+status: active
+use_when: 要 eBPF 网络、可观测与网络策略
+avoid_when: 只要最简 Docker bridge 网络
+niche: cni
+related_ecosystem: networking

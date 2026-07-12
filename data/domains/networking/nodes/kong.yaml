@@ -1,0 +1,12 @@
+id: kong
+type: project
+name: Kong
+repo: https://github.com/Kong/kong
+summary: 基于 OpenResty 的 API 网关。
+tags: [networking, api-gateway]
+language: Lua
+status: active
+use_when: 要插件化 API 网关与企业能力
+avoid_when: 网关需求极简且团队无 OpenResty 经验
+niche: api gateway
+related_ecosystem: networking

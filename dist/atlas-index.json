@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-12T00:39:02.377778+00:00",
+  "generated_at": "2026-07-12T00:49:48.098626+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
@@ -15,11 +15,12 @@
     "devops",
     "devtools",
     "mobile",
+    "networking",
     "security",
     "web-frontend"
   ],
-  "node_count": 239,
-  "edge_count": 217,
+  "node_count": 257,
+  "edge_count": 233,
   "nodes": [
     {
       "id": "act",
@@ -164,6 +165,22 @@
       "use_when": "集群级批/流数据处理",
       "avoid_when": "单机数据帧已够",
       "niche": "distributed data"
+    },
+    {
+      "id": "apisix",
+      "domain": "networking",
+      "name": "Apache APISIX",
+      "repo": "https://github.com/apache/apisix",
+      "summary": "动态云原生 API 网关。",
+      "tags": [
+        "networking",
+        "api-gateway"
+      ],
+      "language": "Lua",
+      "status": "active",
+      "use_when": "要动态配置的 API 网关与插件生态",
+      "avoid_when": "只要单机 nginx 反代几个路径",
+      "niche": "api gateway"
     },
     {
       "id": "appium",
@@ -473,6 +490,24 @@
       "niche": "dev-friendly vector DB"
     },
     {
+      "id": "cilium",
+      "domain": "networking",
+      "name": "Cilium",
+      "repo": "https://github.com/cilium/cilium",
+      "summary": "基于 eBPF 的云原生网络与安全。",
+      "tags": [
+        "networking",
+        "cni",
+        "ebpf",
+        "kubernetes"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 eBPF 网络、可观测与网络策略",
+      "avoid_when": "只要最简 Docker bridge 网络",
+      "niche": "cni"
+    },
+    {
       "id": "clickhouse",
       "domain": "databases",
       "name": "ClickHouse",
@@ -487,6 +522,22 @@
       "use_when": "大量分析查询/事件明细",
       "avoid_when": "主要是 OLTP 事务业务",
       "niche": "analytical db"
+    },
+    {
+      "id": "cloudflared",
+      "domain": "networking",
+      "name": "cloudflared",
+      "repo": "https://github.com/cloudflare/cloudflared",
+      "summary": "Cloudflare Tunnel 客户端。",
+      "tags": [
+        "networking",
+        "tunnel"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要用 Cloudflare Tunnel 暴露源站",
+      "avoid_when": "完全不想依赖 Cloudflare 控制面",
+      "niche": "tunnel"
     },
     {
       "id": "cockroachdb",
@@ -600,6 +651,22 @@
       "use_when": "要在 VS Code/JetBrains 里开源可控的编码助手",
       "avoid_when": "只要无 IDE 的纯 API Agent",
       "niche": "open IDE copilot"
+    },
+    {
+      "id": "coredns",
+      "domain": "networking",
+      "name": "CoreDNS",
+      "repo": "https://github.com/coredns/coredns",
+      "summary": "可插件化的 DNS 服务器，K8s 默认 DNS。",
+      "tags": [
+        "networking",
+        "dns"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要云原生/可扩展 DNS",
+      "avoid_when": "只要家用路由器级缓存 DNS",
+      "niche": "dns"
     },
     {
       "id": "cosign",
@@ -948,6 +1015,23 @@
       "niche": "web desktop"
     },
     {
+      "id": "envoy",
+      "domain": "networking",
+      "name": "Envoy",
+      "repo": "https://github.com/envoyproxy/envoy",
+      "summary": "云原生高性能代理，常作服务网格数据面。",
+      "tags": [
+        "networking",
+        "proxy",
+        "service-mesh"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要可编程 L7 代理或网格数据面",
+      "avoid_when": "只要简单反向代理静态站",
+      "niche": "proxy"
+    },
+    {
       "id": "expo",
       "domain": "mobile",
       "name": "Expo",
@@ -1176,6 +1260,23 @@
       "niche": "gitops toolkit"
     },
     {
+      "id": "frp",
+      "domain": "networking",
+      "name": "frp",
+      "repo": "https://github.com/fatedier/frp",
+      "summary": "内网穿透，暴露本地服务到公网。",
+      "tags": [
+        "networking",
+        "tunnel",
+        "nat"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要把内网服务安全暴露出去",
+      "avoid_when": "已有公网入口与正规反向代理链路",
+      "niche": "nat traversal"
+    },
+    {
       "id": "fulcio",
       "domain": "security",
       "name": "Fulcio",
@@ -1290,6 +1391,23 @@
       "niche": "secret detection"
     },
     {
+      "id": "gost",
+      "domain": "networking",
+      "name": "GOST",
+      "repo": "https://github.com/go-gost/gost",
+      "summary": "GO 语言的安全隧道与代理工具集。",
+      "tags": [
+        "networking",
+        "tunnel",
+        "proxy"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要多协议代理/隧道组合",
+      "avoid_when": "只要单一成熟商业 VPN",
+      "niche": "tunnel"
+    },
+    {
       "id": "gpt-researcher",
       "domain": "ai-agents",
       "name": "GPT Researcher",
@@ -1386,6 +1504,23 @@
       "niche": "output guardrails"
     },
     {
+      "id": "haproxy",
+      "domain": "networking",
+      "name": "HAProxy",
+      "repo": "https://github.com/haproxy/haproxy",
+      "summary": "高可用负载均衡与代理。",
+      "tags": [
+        "networking",
+        "load-balancer",
+        "proxy"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要成熟四/七层负载均衡与高可用",
+      "avoid_when": "只要开发机临时端口转发",
+      "niche": "load balancer"
+    },
+    {
       "id": "haystack",
       "domain": "ai-agents",
       "name": "Haystack",
@@ -1400,6 +1535,23 @@
       "use_when": "生产向 RAG 管道、组件可替换",
       "avoid_when": "只要最薄的向量检索包装",
       "niche": "RAG pipelines"
+    },
+    {
+      "id": "headscale",
+      "domain": "networking",
+      "name": "Headscale",
+      "repo": "https://github.com/juanfont/headscale",
+      "summary": "Tailscale 控制服务器的开源自托管实现。",
+      "tags": [
+        "networking",
+        "vpn",
+        "self-hosted"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要用 Tailscale 客户端但自建协调服务",
+      "avoid_when": "接受官方托管控制面即可",
+      "niche": "mesh vpn"
     },
     {
       "id": "helix",
@@ -1548,6 +1700,22 @@
       "use_when": "要用 Web 技术做混合应用 UI",
       "avoid_when": "要纯原生性能体验",
       "niche": "hybrid ui"
+    },
+    {
+      "id": "iperf3",
+      "domain": "networking",
+      "name": "iperf3",
+      "repo": "https://github.com/esnet/iperf",
+      "summary": "网络带宽性能测试工具。",
+      "tags": [
+        "networking",
+        "benchmarking"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要测链路吞吐与抖动",
+      "avoid_when": "应用层压测（用专门 HTTP 压测器）",
+      "niche": "bandwidth test"
     },
     {
       "id": "istio",
@@ -1715,6 +1883,22 @@
       "use_when": "要 GraphQL 内容 API 与自定义字段",
       "avoid_when": "只要最简 Markdown 文档",
       "niche": "graphql cms"
+    },
+    {
+      "id": "kong",
+      "domain": "networking",
+      "name": "Kong",
+      "repo": "https://github.com/Kong/kong",
+      "summary": "基于 OpenResty 的 API 网关。",
+      "tags": [
+        "networking",
+        "api-gateway"
+      ],
+      "language": "Lua",
+      "status": "active",
+      "use_when": "要插件化 API 网关与企业能力",
+      "avoid_when": "网关需求极简且团队无 OpenResty 经验",
+      "niche": "api gateway"
     },
     {
       "id": "kotlin-android",
@@ -1913,6 +2097,23 @@
       "use_when": "要更快/更省的 GBDT",
       "avoid_when": "只要单一 XGBoost 栈",
       "niche": "gbdt"
+    },
+    {
+      "id": "linkerd2",
+      "domain": "networking",
+      "name": "Linkerd",
+      "repo": "https://github.com/linkerd/linkerd2",
+      "summary": "超轻量 Kubernetes 服务网格。",
+      "tags": [
+        "networking",
+        "service-mesh",
+        "kubernetes"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要简单可靠的 K8s 网格而非重型控制面",
+      "avoid_when": "非 Kubernetes 环境",
+      "niche": "service mesh"
     },
     {
       "id": "litellm",
@@ -2135,6 +2336,23 @@
       "niche": "runtime manager"
     },
     {
+      "id": "mitmproxy",
+      "domain": "networking",
+      "name": "mitmproxy",
+      "repo": "https://github.com/mitmproxy/mitmproxy",
+      "summary": "交互式 HTTPS 中间人代理与流量检查。",
+      "tags": [
+        "networking",
+        "debugging",
+        "proxy"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要调试/拦截 HTTPS 客户端流量",
+      "avoid_when": "生产流量治理（应用网关）",
+      "niche": "debug proxy"
+    },
+    {
       "id": "mkdocs",
       "domain": "cms-docs",
       "name": "MkDocs",
@@ -2297,6 +2515,23 @@
       "niche": "node enterprise"
     },
     {
+      "id": "netbird",
+      "domain": "networking",
+      "name": "NetBird",
+      "repo": "https://github.com/netbirdio/netbird",
+      "summary": "基于 WireGuard 的开源零信任组网。",
+      "tags": [
+        "networking",
+        "vpn",
+        "mesh"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要开源零信任网状 VPN 替代",
+      "avoid_when": "已绑定 Tailscale 生态",
+      "niche": "mesh vpn"
+    },
+    {
       "id": "neutralino",
       "domain": "desktop",
       "name": "Neutralinojs",
@@ -2362,6 +2597,23 @@
       "use_when": "反向代理、静态站、TLS 终止",
       "avoid_when": "需要应用层服务网格的高级流量治理为主",
       "niche": "reverse proxy"
+    },
+    {
+      "id": "nmap",
+      "domain": "networking",
+      "name": "Nmap",
+      "repo": "https://github.com/nmap/nmap",
+      "summary": "网络发现与安全审计扫描器。",
+      "tags": [
+        "networking",
+        "scanning",
+        "security"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要主机/端口发现与脚本探测",
+      "avoid_when": "只要应用层健康检查",
+      "niche": "network scan"
     },
     {
       "id": "nomad",
@@ -3388,6 +3640,23 @@
       "niche": "sbom generator"
     },
     {
+      "id": "tailscale",
+      "domain": "networking",
+      "name": "Tailscale",
+      "repo": "https://github.com/tailscale/tailscale",
+      "summary": "基于 WireGuard 的零配置组网。",
+      "tags": [
+        "networking",
+        "vpn",
+        "mesh"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要轻松把设备组进私有网络",
+      "avoid_when": "必须完全自建控制面且无 SaaS",
+      "niche": "mesh vpn"
+    },
+    {
       "id": "tailwindcss",
       "domain": "web-frontend",
       "name": "Tailwind CSS",
@@ -3580,6 +3849,22 @@
       "use_when": "要低延迟即时搜索且部署简单",
       "avoid_when": "已深度绑定 Elastic 生态",
       "niche": "instant search"
+    },
+    {
+      "id": "unbound",
+      "domain": "networking",
+      "name": "Unbound",
+      "repo": "https://github.com/NLnetLabs/unbound",
+      "summary": "验证型递归 DNS 解析器。",
+      "tags": [
+        "networking",
+        "dns"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要安全递归解析与 DNSSEC",
+      "avoid_when": "只要权威 DNS 托管",
+      "niche": "dns"
     },
     {
       "id": "uno-platform",
@@ -3823,6 +4108,23 @@
       "use_when": "要简洁高性能组网/远程访问",
       "avoid_when": "必须兼容老旧 IPSec 套件为主",
       "niche": "vpn"
+    },
+    {
+      "id": "wireshark",
+      "domain": "networking",
+      "name": "Wireshark",
+      "repo": "https://github.com/wireshark/wireshark",
+      "summary": "网络协议分析器。",
+      "tags": [
+        "networking",
+        "debugging",
+        "packet-capture"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要深入分析抓包与协议",
+      "avoid_when": "只要应用层 HTTP 日志",
+      "niche": "packet analysis"
     },
     {
       "id": "wordpress",
@@ -5211,6 +5513,102 @@
       "type": "integrates_with",
       "to": "postgresql",
       "note": "常接 SQL 仓"
+    },
+    {
+      "from": "envoy",
+      "type": "alternative_to",
+      "to": "haproxy",
+      "note": "云原生 L7 代理 vs 经典负载均衡"
+    },
+    {
+      "from": "apisix",
+      "type": "alternative_to",
+      "to": "kong",
+      "note": "动态云原生网关 vs Kong 生态"
+    },
+    {
+      "from": "apisix",
+      "type": "alternative_to",
+      "to": "nginx",
+      "note": "API 网关 vs 经典反代"
+    },
+    {
+      "from": "linkerd2",
+      "type": "alternative_to",
+      "to": "istio",
+      "note": "轻量网格 vs 功能全面网格"
+    },
+    {
+      "from": "cilium",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "K8s CNI/网络策略"
+    },
+    {
+      "from": "coredns",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "集群 DNS"
+    },
+    {
+      "from": "unbound",
+      "type": "alternative_to",
+      "to": "coredns",
+      "note": "递归解析 vs 插件化权威/转发 DNS"
+    },
+    {
+      "from": "tailscale",
+      "type": "integrates_with",
+      "to": "wireguard",
+      "note": "建立在 WireGuard"
+    },
+    {
+      "from": "headscale",
+      "type": "alternative_to",
+      "to": "tailscale",
+      "note": "自建控制面 vs 托管控制面"
+    },
+    {
+      "from": "netbird",
+      "type": "alternative_to",
+      "to": "tailscale",
+      "note": "开源零信任组网替代"
+    },
+    {
+      "from": "frp",
+      "type": "alternative_to",
+      "to": "cloudflared",
+      "note": "自建穿透 vs Cloudflare Tunnel"
+    },
+    {
+      "from": "gost",
+      "type": "alternative_to",
+      "to": "frp",
+      "note": "多协议隧道工具集 vs frp"
+    },
+    {
+      "from": "mitmproxy",
+      "type": "alternative_to",
+      "to": "wireshark",
+      "note": "HTTP(S) 调试 vs 全协议抓包"
+    },
+    {
+      "from": "nmap",
+      "type": "integrates_with",
+      "to": "wireshark",
+      "note": "发现后常接抓包分析"
+    },
+    {
+      "from": "envoy",
+      "type": "integrates_with",
+      "to": "istio",
+      "note": "Istio 常用 Envoy 数据面"
+    },
+    {
+      "from": "haproxy",
+      "type": "alternative_to",
+      "to": "nginx",
+      "note": "LB 专长 vs 通用反代"
     }
   ]
 }

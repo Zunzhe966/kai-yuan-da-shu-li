@@ -1,0 +1,12 @@
+id: headscale
+type: project
+name: Headscale
+repo: https://github.com/juanfont/headscale
+summary: Tailscale 控制服务器的开源自托管实现。
+tags: [networking, vpn, self-hosted]
+language: Go
+status: active
+use_when: 要用 Tailscale 客户端但自建协调服务
+avoid_when: 接受官方托管控制面即可
+niche: mesh vpn
+related_ecosystem: networking
