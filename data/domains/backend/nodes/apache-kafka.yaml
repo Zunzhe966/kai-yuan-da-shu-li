@@ -1,0 +1,12 @@
+id: apache-kafka
+type: project
+name: Apache Kafka
+repo: https://github.com/apache/kafka
+summary: 分布式流处理与日志总线。
+tags: [queue, streaming]
+language: Java
+status: active
+use_when: 高吞吐事件流/日志总线
+avoid_when: 简单任务队列已够
+niche: event streaming
+related_ecosystem: backend

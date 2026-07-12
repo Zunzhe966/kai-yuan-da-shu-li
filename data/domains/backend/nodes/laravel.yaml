@@ -1,0 +1,12 @@
+id: laravel
+type: project
+name: Laravel
+repo: https://github.com/laravel/laravel
+summary: 优雅的 PHP Web 框架。
+tags: [api, php, fullstack]
+language: PHP
+status: active
+use_when: PHP 要现代全栈/API 框架
+avoid_when: 不用 PHP
+niche: php framework
+related_ecosystem: backend

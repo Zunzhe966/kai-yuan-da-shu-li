@@ -1,0 +1,12 @@
+id: connect-go
+type: project
+name: Connect
+repo: https://github.com/connectrpc/connect-go
+summary: 简易 Protobuf RPC，兼容 gRPC。
+tags: [rpc, go]
+language: Go
+status: active
+use_when: 要 Protobuf RPC 且更友好的 Go API
+avoid_when: 必须纯官方 gRPC 生态
+niche: protobuf rpc
+related_ecosystem: backend

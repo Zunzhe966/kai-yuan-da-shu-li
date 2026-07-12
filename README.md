@@ -57,6 +57,7 @@ docs/                    # 设计与演进说明
 - `web-frontend`：第三垂直已播种
 - `databases`：第四垂直已播种
 - `security`：第五垂直已播种
+- `backend`：第六垂直已播种
 - Pages 说明：`docs/github-pages.md`  
 - 收割物进 `data/quarantine/`，质检后才可 promote  
 

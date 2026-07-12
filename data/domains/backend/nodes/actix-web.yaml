@@ -1,0 +1,12 @@
+id: actix-web
+type: project
+name: Actix Web
+repo: https://github.com/actix/actix-web
+summary: 高性能 Rust HTTP 框架。
+tags: [api, rust]
+language: Rust
+status: active
+use_when: Rust 要成熟高性能 HTTP 栈
+avoid_when: 只要最简异步（也可看 axum）
+niche: rust http
+related_ecosystem: backend

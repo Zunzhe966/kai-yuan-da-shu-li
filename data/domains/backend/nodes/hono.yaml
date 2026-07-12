@@ -1,0 +1,12 @@
+id: hono
+type: project
+name: Hono
+repo: https://github.com/honojs/hono
+summary: 超轻量多运行时 Web 框架（Edge/Node/Bun）。
+tags: [api, nodejs]
+language: TypeScript
+status: active
+use_when: 要边缘/多运行时轻量 API
+avoid_when: 需要 Nest 级大型模块体系
+niche: edge web framework
+related_ecosystem: backend

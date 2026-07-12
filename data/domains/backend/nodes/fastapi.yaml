@@ -1,0 +1,12 @@
+id: fastapi
+type: project
+name: FastAPI
+repo: https://github.com/fastapi/fastapi
+summary: 高性能 Python API 框架，类型提示与 OpenAPI 一流。
+tags: [api, python]
+language: Python
+status: active
+use_when: Python 要快速做类型友好的 HTTP API
+avoid_when: 要全功能 CMS/Admin 一体（看 Django）
+niche: python api
+related_ecosystem: backend

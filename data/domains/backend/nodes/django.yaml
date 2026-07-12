@@ -1,0 +1,12 @@
+id: django
+type: project
+name: Django
+repo: https://github.com/django/django
+summary: 电池齐全的 Python Web 框架。
+tags: [api, python, fullstack]
+language: Python
+status: active
+use_when: 要 ORM/Admin/认证一体的 Python Web
+avoid_when: 只要极薄 API 层
+niche: python full framework
+related_ecosystem: backend

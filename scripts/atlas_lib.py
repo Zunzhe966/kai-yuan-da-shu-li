@@ -135,6 +135,13 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid in ("trivy", "grype"): s += 3
     if "SBOM" in query:
         if nid in ("syft", "grype"): s += 3
+    if "Python" in query and "API" in query:
+        if nid in ("fastapi", "flask", "django"): s += 2
+        if nid == "fastapi" and ("类型" in query or "OpenAPI" in query or "友好" in query): s += 2
+    if "任务队列" in query or "后台任务" in query:
+        if nid in ("celery", "bullmq"): s += 3
+    if "企业级" in query and ("Node" in query or "TypeScript" in query):
+        if nid == "nestjs": s += 3
     return s
 
 
@@ -174,6 +181,8 @@ def search_projects(
             "漏洞": "scanning",
             "密钥": "secrets",
             "SBOM": "sbom",
+            "后端": "api",
+            "任务队列": "queue",
         }
         ql = query.lower()
         for k, v in cues.items():

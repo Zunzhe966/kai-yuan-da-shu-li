@@ -2,18 +2,19 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-11T23:51:14.787679+00:00",
+  "generated_at": "2026-07-12T00:24:41.941040+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
     "ai-agents",
+    "backend",
     "databases",
     "devops",
     "security",
     "web-frontend"
   ],
-  "node_count": 132,
-  "edge_count": 112,
+  "node_count": 152,
+  "edge_count": 124,
   "nodes": [
     {
       "id": "act",
@@ -30,6 +31,22 @@
       "use_when": "想在推送前本地验证 Actions",
       "avoid_when": "不使用 GitHub Actions",
       "niche": "local GHA runner"
+    },
+    {
+      "id": "actix-web",
+      "domain": "backend",
+      "name": "Actix Web",
+      "repo": "https://github.com/actix/actix-web",
+      "summary": "高性能 Rust HTTP 框架。",
+      "tags": [
+        "api",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "Rust 要成熟高性能 HTTP 栈",
+      "avoid_when": "只要最简异步（也可看 axum）",
+      "niche": "rust http"
     },
     {
       "id": "age",
@@ -77,6 +94,22 @@
       "use_when": "批量配置服务器、应用部署剧本",
       "avoid_when": "主要是不可变镜像/GitOps，不需要 SSH 推送配置",
       "niche": "config management"
+    },
+    {
+      "id": "apache-kafka",
+      "domain": "backend",
+      "name": "Apache Kafka",
+      "repo": "https://github.com/apache/kafka",
+      "summary": "分布式流处理与日志总线。",
+      "tags": [
+        "queue",
+        "streaming"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "高吞吐事件流/日志总线",
+      "avoid_when": "简单任务队列已够",
+      "niche": "event streaming"
     },
     {
       "id": "argo-cd",
@@ -176,6 +209,22 @@
       "niche": "LLM finetune toolkit"
     },
     {
+      "id": "axum",
+      "domain": "backend",
+      "name": "Axum",
+      "repo": "https://github.com/tokio-rs/axum",
+      "summary": "基于 Tokio 的 Rust Web 框架。",
+      "tags": [
+        "api",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "Rust 异步服务要人体工学路由",
+      "avoid_when": "不使用 Tokio 生态",
+      "niche": "rust web"
+    },
+    {
       "id": "bandit",
       "domain": "security",
       "name": "Bandit",
@@ -205,6 +254,22 @@
       "use_when": "任务需要网页点击/填写/抓取",
       "avoid_when": "只需 API/工具调用无浏览器",
       "niche": "browser-using agents"
+    },
+    {
+      "id": "bullmq",
+      "domain": "backend",
+      "name": "BullMQ",
+      "repo": "https://github.com/taskforcesh/bullmq",
+      "summary": "基于 Redis 的 Node 任务队列。",
+      "tags": [
+        "queue",
+        "nodejs"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "Node 要可靠后台任务（Redis）",
+      "avoid_when": "不用 Redis",
+      "niche": "node job queue"
     },
     {
       "id": "caddy",
@@ -237,6 +302,22 @@
       "use_when": "超大规模写入与多活可用",
       "avoid_when": "小团队只要简单 SQL",
       "niche": "wide-column store"
+    },
+    {
+      "id": "celery",
+      "domain": "backend",
+      "name": "Celery",
+      "repo": "https://github.com/celery/celery",
+      "summary": "Python 分布式任务队列。",
+      "tags": [
+        "queue",
+        "python"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python 要异步/定时后台任务",
+      "avoid_when": "只要进程内轻量队列",
+      "niche": "task queue"
     },
     {
       "id": "chromadb",
@@ -301,6 +382,22 @@
       "use_when": "要可视化拼装生成式工作流",
       "avoid_when": "只要文本 Agent/聊天",
       "niche": "node-based genUI"
+    },
+    {
+      "id": "connect-go",
+      "domain": "backend",
+      "name": "Connect",
+      "repo": "https://github.com/connectrpc/connect-go",
+      "summary": "简易 Protobuf RPC，兼容 gRPC。",
+      "tags": [
+        "rpc",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 Protobuf RPC 且更友好的 Go API",
+      "avoid_when": "必须纯官方 gRPC 生态",
+      "niche": "protobuf rpc"
     },
     {
       "id": "consul",
@@ -462,6 +559,23 @@
       "niche": "LLM unit testing"
     },
     {
+      "id": "django",
+      "domain": "backend",
+      "name": "Django",
+      "repo": "https://github.com/django/django",
+      "summary": "电池齐全的 Python Web 框架。",
+      "tags": [
+        "api",
+        "python",
+        "fullstack"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要 ORM/Admin/认证一体的 Python Web",
+      "avoid_when": "只要极薄 API 层",
+      "niche": "python full framework"
+    },
+    {
       "id": "docker",
       "domain": "devops",
       "name": "Docker",
@@ -527,6 +641,22 @@
       "niche": "search and analytics"
     },
     {
+      "id": "express",
+      "domain": "backend",
+      "name": "Express",
+      "repo": "https://github.com/expressjs/express",
+      "summary": "Node.js 最流行的 HTTP 框架。",
+      "tags": [
+        "api",
+        "nodejs"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "Node 要成熟中间件生态的 API/Web",
+      "avoid_when": "要强约束企业架构（看 Nest）",
+      "niche": "node http"
+    },
+    {
       "id": "fail2ban",
       "domain": "security",
       "name": "Fail2Ban",
@@ -559,6 +689,22 @@
       "niche": "vector similarity library"
     },
     {
+      "id": "fastapi",
+      "domain": "backend",
+      "name": "FastAPI",
+      "repo": "https://github.com/fastapi/fastapi",
+      "summary": "高性能 Python API 框架，类型提示与 OpenAPI 一流。",
+      "tags": [
+        "api",
+        "python"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python 要快速做类型友好的 HTTP API",
+      "avoid_when": "要全功能 CMS/Admin 一体（看 Django）",
+      "niche": "python api"
+    },
+    {
       "id": "faster-whisper",
       "domain": "ai-agents",
       "name": "faster-whisper",
@@ -572,6 +718,38 @@
       "use_when": "本地/服务端要快的语音转写",
       "avoid_when": "只要云端语音 API",
       "niche": "speech-to-text"
+    },
+    {
+      "id": "fiber",
+      "domain": "backend",
+      "name": "Fiber",
+      "repo": "https://github.com/gofiber/fiber",
+      "summary": "Express 风格的 Go Web 框架。",
+      "tags": [
+        "api",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "熟悉 Express 想用 Go 写 API",
+      "avoid_when": "团队标准是标准库 net/http + 自研",
+      "niche": "go express-like"
+    },
+    {
+      "id": "flask",
+      "domain": "backend",
+      "name": "Flask",
+      "repo": "https://github.com/pallets/flask",
+      "summary": "轻量 Python Web 微框架。",
+      "tags": [
+        "api",
+        "python"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要最小核心可扩展的 Python Web",
+      "avoid_when": "要开箱即用全家桶",
+      "niche": "python microframework"
     },
     {
       "id": "flowise",
@@ -622,6 +800,22 @@
       "use_when": "自建/理解 Sigstore 证书链",
       "avoid_when": "只用托管 Sigstore 流程",
       "niche": "sigstore ca"
+    },
+    {
+      "id": "gin",
+      "domain": "backend",
+      "name": "Gin",
+      "repo": "https://github.com/gin-gonic/gin",
+      "summary": "高性能 Go HTTP 框架。",
+      "tags": [
+        "api",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "Go 要快速写 HTTP API",
+      "avoid_when": "要更完整生态工具箱可看其他 Go 框架",
+      "niche": "go http"
     },
     {
       "id": "github-actions-runner",
@@ -688,6 +882,22 @@
       "niche": "observability dashboards"
     },
     {
+      "id": "grpc-go",
+      "domain": "backend",
+      "name": "gRPC-Go",
+      "repo": "https://github.com/grpc/grpc-go",
+      "summary": "Go 的 gRPC 实现。",
+      "tags": [
+        "rpc",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "服务间要强契约高性能 RPC",
+      "avoid_when": "只要简单 JSON HTTP",
+      "niche": "rpc"
+    },
+    {
       "id": "grype",
       "domain": "security",
       "name": "Grype",
@@ -749,6 +959,22 @@
       "use_when": "要版本化安装/升级 K8s 应用",
       "avoid_when": "不用 Kubernetes",
       "niche": "k8s package manager"
+    },
+    {
+      "id": "hono",
+      "domain": "backend",
+      "name": "Hono",
+      "repo": "https://github.com/honojs/hono",
+      "summary": "超轻量多运行时 Web 框架（Edge/Node/Bun）。",
+      "tags": [
+        "api",
+        "nodejs"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要边缘/多运行时轻量 API",
+      "avoid_when": "需要 Nest 级大型模块体系",
+      "niche": "edge web framework"
     },
     {
       "id": "instructor",
@@ -928,6 +1154,23 @@
       "use_when": "需要显式状态图、循环、人机审批的 Agent 流程",
       "avoid_when": "只要简单链式 LLM 调用，不想引入图运行时",
       "niche": "graph-based agent orchestration"
+    },
+    {
+      "id": "laravel",
+      "domain": "backend",
+      "name": "Laravel",
+      "repo": "https://github.com/laravel/laravel",
+      "summary": "优雅的 PHP Web 框架。",
+      "tags": [
+        "api",
+        "php",
+        "fullstack"
+      ],
+      "language": "PHP",
+      "status": "active",
+      "use_when": "PHP 要现代全栈/API 框架",
+      "avoid_when": "不用 PHP",
+      "niche": "php framework"
     },
     {
       "id": "litellm",
@@ -1179,6 +1422,22 @@
       "use_when": "强关系网络查询是核心",
       "avoid_when": "简单表关系用 SQL 即可",
       "niche": "graph db"
+    },
+    {
+      "id": "nestjs",
+      "domain": "backend",
+      "name": "NestJS",
+      "repo": "https://github.com/nestjs/nest",
+      "summary": "Angular 风格的 Node 企业框架。",
+      "tags": [
+        "api",
+        "nodejs"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "TypeScript Node 要模块化/依赖注入架构",
+      "avoid_when": "只要几行脚本起服务",
+      "niche": "node enterprise"
     },
     {
       "id": "nextjs",
@@ -1452,6 +1711,22 @@
       "niche": "relational db"
     },
     {
+      "id": "prisma",
+      "domain": "backend",
+      "name": "Prisma",
+      "repo": "https://github.com/prisma/prisma",
+      "summary": "TypeScript ORM / 数据访问层。",
+      "tags": [
+        "orm",
+        "nodejs"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "Node/TS 要类型安全 ORM",
+      "avoid_when": "非 Node 栈",
+      "niche": "ts orm"
+    },
+    {
       "id": "prometheus",
       "domain": "devops",
       "name": "Prometheus",
@@ -1516,6 +1791,21 @@
       "niche": "filtered vector search"
     },
     {
+      "id": "rabbitmq-server",
+      "domain": "backend",
+      "name": "RabbitMQ",
+      "repo": "https://github.com/rabbitmq/rabbitmq-server",
+      "summary": "成熟的消息代理。",
+      "tags": [
+        "queue"
+      ],
+      "language": "Erlang",
+      "status": "active",
+      "use_when": "要传统消息队列语义与路由",
+      "avoid_when": "只要日志型流处理（看 Kafka）",
+      "niche": "message broker"
+    },
+    {
       "id": "radix-ui-primitives",
       "domain": "web-frontend",
       "name": "Radix Primitives",
@@ -1547,6 +1837,23 @@
       "use_when": "要量化 RAG 忠实度/相关性等指标",
       "avoid_when": "还没有可跑的 RAG 流水线",
       "niche": "RAG evaluation"
+    },
+    {
+      "id": "rails",
+      "domain": "backend",
+      "name": "Ruby on Rails",
+      "repo": "https://github.com/rails/rails",
+      "summary": "约定优于配置的 Ruby 全栈框架。",
+      "tags": [
+        "api",
+        "ruby",
+        "fullstack"
+      ],
+      "language": "Ruby",
+      "status": "active",
+      "use_when": "要快速交付 CRUD/全栈 Web",
+      "avoid_when": "团队无 Ruby 经验",
+      "niche": "ruby full framework"
     },
     {
       "id": "react",
@@ -1708,6 +2015,22 @@
       "use_when": "要把密钥落 Git 但需加密",
       "avoid_when": "已有完整密钥中枢且不需要文件级加密",
       "niche": "encrypted config"
+    },
+    {
+      "id": "spring-boot",
+      "domain": "backend",
+      "name": "Spring Boot",
+      "repo": "https://github.com/spring-projects/spring-boot",
+      "summary": "Java 企业应用快速启动框架。",
+      "tags": [
+        "api",
+        "java"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "Java/Kotlin 企业后端与生态集成",
+      "avoid_when": "要极轻量启动与小内存",
+      "niche": "java enterprise"
     },
     {
       "id": "sqlite",
@@ -2800,6 +3123,78 @@
       "type": "same_ecosystem",
       "to": "vault",
       "note": "同一上游仓库，分域收录"
+    },
+    {
+      "from": "flask",
+      "type": "alternative_to",
+      "to": "fastapi",
+      "note": "轻量 vs 类型优先 API"
+    },
+    {
+      "from": "django",
+      "type": "alternative_to",
+      "to": "fastapi",
+      "note": "全家桶 vs API 优先"
+    },
+    {
+      "from": "express",
+      "type": "alternative_to",
+      "to": "nestjs",
+      "note": "灵活中间件 vs 企业架构"
+    },
+    {
+      "from": "hono",
+      "type": "alternative_to",
+      "to": "express",
+      "note": "边缘轻量 vs 经典 Node"
+    },
+    {
+      "from": "fiber",
+      "type": "alternative_to",
+      "to": "gin",
+      "note": "都是 Go HTTP，风格不同"
+    },
+    {
+      "from": "axum",
+      "type": "alternative_to",
+      "to": "actix-web",
+      "note": "Tokio 人体工学 vs Actix 性能栈"
+    },
+    {
+      "from": "connect-go",
+      "type": "alternative_to",
+      "to": "grpc-go",
+      "note": "更友好 API vs 官方 gRPC"
+    },
+    {
+      "from": "bullmq",
+      "type": "alternative_to",
+      "to": "celery",
+      "note": "Node 队列 vs Python 队列"
+    },
+    {
+      "from": "rabbitmq-server",
+      "type": "alternative_to",
+      "to": "apache-kafka",
+      "note": "消息代理 vs 日志流"
+    },
+    {
+      "from": "prisma",
+      "type": "integrates_with",
+      "to": "nestjs",
+      "note": "常见 Nest 数据层"
+    },
+    {
+      "from": "celery",
+      "type": "integrates_with",
+      "to": "django",
+      "note": "Django 常见异步任务"
+    },
+    {
+      "from": "fastapi",
+      "type": "integrates_with",
+      "to": "celery",
+      "note": "API + 后台任务"
     }
   ]
 }

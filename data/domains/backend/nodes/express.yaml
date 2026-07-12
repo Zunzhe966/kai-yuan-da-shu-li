@@ -1,0 +1,12 @@
+id: express
+type: project
+name: Express
+repo: https://github.com/expressjs/express
+summary: Node.js 最流行的 HTTP 框架。
+tags: [api, nodejs]
+language: JavaScript
+status: active
+use_when: Node 要成熟中间件生态的 API/Web
+avoid_when: 要强约束企业架构（看 Nest）
+niche: node http
+related_ecosystem: backend

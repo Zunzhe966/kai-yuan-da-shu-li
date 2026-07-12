@@ -1,0 +1,12 @@
+id: rails
+type: project
+name: Ruby on Rails
+repo: https://github.com/rails/rails
+summary: 约定优于配置的 Ruby 全栈框架。
+tags: [api, ruby, fullstack]
+language: Ruby
+status: active
+use_when: 要快速交付 CRUD/全栈 Web
+avoid_when: 团队无 Ruby 经验
+niche: ruby full framework
+related_ecosystem: backend

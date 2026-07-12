@@ -1,0 +1,12 @@
+id: grpc-go
+type: project
+name: gRPC-Go
+repo: https://github.com/grpc/grpc-go
+summary: Go 的 gRPC 实现。
+tags: [rpc, go]
+language: Go
+status: active
+use_when: 服务间要强契约高性能 RPC
+avoid_when: 只要简单 JSON HTTP
+niche: rpc
+related_ecosystem: backend

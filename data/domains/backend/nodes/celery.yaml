@@ -1,0 +1,12 @@
+id: celery
+type: project
+name: Celery
+repo: https://github.com/celery/celery
+summary: Python 分布式任务队列。
+tags: [queue, python]
+language: Python
+status: active
+use_when: Python 要异步/定时后台任务
+avoid_when: 只要进程内轻量队列
+niche: task queue
+related_ecosystem: backend

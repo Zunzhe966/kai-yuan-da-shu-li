@@ -1,0 +1,12 @@
+id: axum
+type: project
+name: Axum
+repo: https://github.com/tokio-rs/axum
+summary: 基于 Tokio 的 Rust Web 框架。
+tags: [api, rust]
+language: Rust
+status: active
+use_when: Rust 异步服务要人体工学路由
+avoid_when: 不使用 Tokio 生态
+niche: rust web
+related_ecosystem: backend

@@ -1,0 +1,12 @@
+id: gin
+type: project
+name: Gin
+repo: https://github.com/gin-gonic/gin
+summary: 高性能 Go HTTP 框架。
+tags: [api, go]
+language: Go
+status: active
+use_when: Go 要快速写 HTTP API
+avoid_when: 要更完整生态工具箱可看其他 Go 框架
+niche: go http
+related_ecosystem: backend

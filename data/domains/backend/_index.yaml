@@ -1,0 +1,36 @@
+domain: backend
+title: 后端与 API
+status: seeding
+notes: |
+  D11 第六垂直。
+
+categories:
+  - id: python
+    title: Python
+    node_ids: [fastapi, django, flask]
+  - id: nodejs
+    title: Node / TS
+    node_ids: [express, nestjs, hono, prisma]
+  - id: go
+    title: Go
+    node_ids: [gin, fiber]
+  - id: rust
+    title: Rust
+    node_ids: [axum, actix-web]
+  - id: jvm
+    title: JVM
+    node_ids: [spring-boot]
+  - id: ruby
+    title: Ruby
+    node_ids: [rails]
+  - id: php
+    title: PHP
+    node_ids: [laravel]
+  - id: rpc
+    title: RPC
+    node_ids: [grpc-go, connect-go]
+  - id: queue
+    title: 队列与流
+    node_ids: [celery, bullmq, apache-kafka, rabbitmq-server]
+
+nodes_dir: nodes

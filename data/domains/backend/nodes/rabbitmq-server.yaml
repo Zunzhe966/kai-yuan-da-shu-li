@@ -1,0 +1,12 @@
+id: rabbitmq-server
+type: project
+name: RabbitMQ
+repo: https://github.com/rabbitmq/rabbitmq-server
+summary: 成熟的消息代理。
+tags: [queue]
+language: Erlang
+status: active
+use_when: 要传统消息队列语义与路由
+avoid_when: 只要日志型流处理（看 Kafka）
+niche: message broker
+related_ecosystem: backend

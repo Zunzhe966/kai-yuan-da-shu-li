@@ -1,0 +1,12 @@
+id: prisma
+type: project
+name: Prisma
+repo: https://github.com/prisma/prisma
+summary: TypeScript ORM / 数据访问层。
+tags: [orm, nodejs]
+language: TypeScript
+status: active
+use_when: Node/TS 要类型安全 ORM
+avoid_when: 非 Node 栈
+niche: ts orm
+related_ecosystem: backend

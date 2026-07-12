@@ -1,5 +1,5 @@
 version: 0.1.0
-domains: [ai-agents, devops, web-frontend, databases, security]
+domains: [ai-agents, devops, web-frontend, databases, security, backend]
 edges:
   - from: llama-index
     type: alternative_to
@@ -560,3 +560,63 @@ edges:
     type: same_ecosystem
     to: vault
     note: 同一上游仓库，分域收录
+
+  - from: flask
+    type: alternative_to
+    to: fastapi
+    note: 轻量 vs 类型优先 API
+
+  - from: django
+    type: alternative_to
+    to: fastapi
+    note: 全家桶 vs API 优先
+
+  - from: express
+    type: alternative_to
+    to: nestjs
+    note: 灵活中间件 vs 企业架构
+
+  - from: hono
+    type: alternative_to
+    to: express
+    note: 边缘轻量 vs 经典 Node
+
+  - from: fiber
+    type: alternative_to
+    to: gin
+    note: 都是 Go HTTP，风格不同
+
+  - from: axum
+    type: alternative_to
+    to: actix-web
+    note: Tokio 人体工学 vs Actix 性能栈
+
+  - from: connect-go
+    type: alternative_to
+    to: grpc-go
+    note: 更友好 API vs 官方 gRPC
+
+  - from: bullmq
+    type: alternative_to
+    to: celery
+    note: Node 队列 vs Python 队列
+
+  - from: rabbitmq-server
+    type: alternative_to
+    to: apache-kafka
+    note: 消息代理 vs 日志流
+
+  - from: prisma
+    type: integrates_with
+    to: nestjs
+    note: 常见 Nest 数据层
+
+  - from: celery
+    type: integrates_with
+    to: django
+    note: Django 常见异步任务
+
+  - from: fastapi
+    type: integrates_with
+    to: celery
+    note: API + 后台任务

@@ -19,6 +19,9 @@ domains:
   security:
     title: 安全与供应链
     description: 密钥、扫描、SAST、签名、策略、IAM、加固
+  backend:
+    title: 后端与 API
+    description: Web/API 框架、RPC、任务队列与消息
 
 # 节点类型
 node_types:

@@ -1,0 +1,12 @@
+id: bullmq
+type: project
+name: BullMQ
+repo: https://github.com/taskforcesh/bullmq
+summary: 基于 Redis 的 Node 任务队列。
+tags: [queue, nodejs]
+language: TypeScript
+status: active
+use_when: Node 要可靠后台任务（Redis）
+avoid_when: 不用 Redis
+niche: node job queue
+related_ecosystem: backend

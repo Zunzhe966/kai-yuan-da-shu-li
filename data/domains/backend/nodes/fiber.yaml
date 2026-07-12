@@ -1,0 +1,12 @@
+id: fiber
+type: project
+name: Fiber
+repo: https://github.com/gofiber/fiber
+summary: Express 风格的 Go Web 框架。
+tags: [api, go]
+language: Go
+status: active
+use_when: 熟悉 Express 想用 Go 写 API
+avoid_when: 团队标准是标准库 net/http + 自研
+niche: go express-like
+related_ecosystem: backend

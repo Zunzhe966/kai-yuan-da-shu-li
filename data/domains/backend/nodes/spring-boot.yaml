@@ -1,0 +1,12 @@
+id: spring-boot
+type: project
+name: Spring Boot
+repo: https://github.com/spring-projects/spring-boot
+summary: Java 企业应用快速启动框架。
+tags: [api, java]
+language: Java
+status: active
+use_when: Java/Kotlin 企业后端与生态集成
+avoid_when: 要极轻量启动与小内存
+niche: java enterprise
+related_ecosystem: backend

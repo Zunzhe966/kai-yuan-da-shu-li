@@ -99,3 +99,15 @@ queries:
     query: 生成软件物料清单 SBOM
     intent_tags: [sbom]
     expect_any: [syft]
+  - id: q25
+    query: Python 要类型友好的高性能 HTTP API
+    intent_tags: [api, python]
+    expect_any: [fastapi]
+  - id: q26
+    query: Node TypeScript 企业级模块化后端
+    intent_tags: [api, nodejs]
+    expect_any: [nestjs]
+  - id: q27
+    query: Python 分布式后台任务队列
+    intent_tags: [queue, python]
+    expect_any: [celery]

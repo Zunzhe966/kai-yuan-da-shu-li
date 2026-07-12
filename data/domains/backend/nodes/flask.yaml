@@ -1,0 +1,12 @@
+id: flask
+type: project
+name: Flask
+repo: https://github.com/pallets/flask
+summary: 轻量 Python Web 微框架。
+tags: [api, python]
+language: Python
+status: active
+use_when: 要最小核心可扩展的 Python Web
+avoid_when: 要开箱即用全家桶
+niche: python microframework
+related_ecosystem: backend
