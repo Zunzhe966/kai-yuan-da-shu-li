@@ -1,0 +1,12 @@
+id: gtk
+type: project
+name: GTK
+repo: https://github.com/GNOME/gtk
+summary: GNOME 系跨平台 GUI 工具包。
+tags: [desktop, native-ui, linux]
+language: C
+status: active
+use_when: 面向 Linux/GNOME 原生应用
+avoid_when: 主战场是 Windows/macOS 商业客户端
+niche: native ui
+related_ecosystem: desktop

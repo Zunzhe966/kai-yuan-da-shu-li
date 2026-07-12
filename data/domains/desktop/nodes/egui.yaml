@@ -1,0 +1,12 @@
+id: egui
+type: project
+name: egui
+repo: https://github.com/emilk/egui
+summary: Rust 即时模式 GUI，易嵌入工具与游戏。
+tags: [desktop, immediate-mode, rust]
+language: Rust
+status: active
+use_when: Rust 工具/可视化面板要快速出 UI
+avoid_when: 要系统原生控件观感
+niche: immediate mode
+related_ecosystem: desktop

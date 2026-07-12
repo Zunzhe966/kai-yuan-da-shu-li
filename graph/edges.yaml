@@ -865,3 +865,83 @@ edges:
     type: integrates_with
     to: ripgrep
     note: 常用来对比搜索命令性能
+
+- from: tauri
+  type: alternative_to
+  to: electron
+  note: 轻量 WebView vs 捆绑 Chromium
+
+- from: wails
+  type: alternative_to
+  to: electron
+  note: Go WebView 壳 vs Electron
+
+- from: wails
+  type: alternative_to
+  to: tauri
+  note: Go vs Rust 桌面壳
+
+- from: neutralino
+  type: alternative_to
+  to: electron
+  note: 更轻量但生态更小
+
+- from: qt
+  type: alternative_to
+  to: gtk
+  note: 跨平台工业 UI vs GNOME 系
+
+- from: wxwidgets
+  type: alternative_to
+  to: qt
+  note: 原生控件路线不同实现
+
+- from: slint
+  type: alternative_to
+  to: qt
+  note: 现代声明式 vs 传统 Qt
+
+- from: iced
+  type: alternative_to
+  to: egui
+  note: Elm 架构 vs 即时模式
+
+- from: egui
+  type: alternative_to
+  to: imgui
+  note: Rust egui vs C++ Dear ImGui
+
+- from: dearpygui
+  type: alternative_to
+  to: imgui
+  note: Python 友好即时模式
+
+- from: pyside
+  type: alternative_to
+  to: pyqt
+  note: 官方绑定 vs 社区/商业绑定路径
+
+- from: pyqt
+  type: depends_on
+  to: qt
+  note: Python 绑定建立在 Qt
+
+- from: pyside
+  type: depends_on
+  to: qt
+  note: Qt for Python
+
+- from: flutter-desktop
+  type: same_ecosystem
+  to: flutter
+  note: 同一 Flutter 工具链的桌面目标
+
+- from: avalonia
+  type: alternative_to
+  to: uno-platform
+  note: 两种 .NET 跨平台 UI 路线
+
+- from: compose-multiplatform
+  type: alternative_to
+  to: flutter-desktop
+  note: Kotlin 多端 vs Flutter 多端

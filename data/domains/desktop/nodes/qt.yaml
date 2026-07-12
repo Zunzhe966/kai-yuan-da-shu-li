@@ -1,0 +1,12 @@
+id: qt
+type: project
+name: Qt
+repo: https://github.com/qt/qtbase
+summary: 成熟的跨平台原生 UI 框架。
+tags: [desktop, native-ui, cpp]
+language: C++
+status: active
+use_when: 要工业级原生桌面 UI 与长期支持
+avoid_when: 只要 Web 技术快速出原型
+niche: native ui
+related_ecosystem: desktop

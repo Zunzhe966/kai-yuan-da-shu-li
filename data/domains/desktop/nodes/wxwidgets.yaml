@@ -1,0 +1,12 @@
+id: wxwidgets
+type: project
+name: wxWidgets
+repo: https://github.com/wxWidgets/wxWidgets
+summary: 原生控件外观的跨平台 C++ GUI 库。
+tags: [desktop, native-ui, cpp]
+language: C++
+status: active
+use_when: 要尽量接近系统原生观感的 C++ UI
+avoid_when: 要现代声明式 UI 与热更新体验
+niche: native ui
+related_ecosystem: desktop

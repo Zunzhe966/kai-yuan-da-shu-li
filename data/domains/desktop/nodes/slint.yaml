@@ -1,0 +1,12 @@
+id: slint
+type: project
+name: Slint
+repo: https://github.com/slint-ui/slint
+summary: 声明式原生 UI 工具包，多语言绑定。
+tags: [desktop, native-ui, rust]
+language: Rust
+status: active
+use_when: 要现代声明式原生 UI 且可嵌 Rust/C++/JS
+avoid_when: 必须全盘 Web 技术栈
+niche: declarative native
+related_ecosystem: desktop

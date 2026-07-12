@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-12T00:30:36.097665+00:00",
+  "generated_at": "2026-07-12T00:32:28.990096+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
@@ -10,13 +10,14 @@
     "backend",
     "data-ml",
     "databases",
+    "desktop",
     "devops",
     "devtools",
     "mobile",
     "security",
     "web-frontend"
   ],
-  "node_count": 204,
+  "node_count": 222,
   "edge_count": 173,
   "nodes": [
     {
@@ -262,6 +263,23 @@
       "niche": "multi-agent conversation framework"
     },
     {
+      "id": "avalonia",
+      "domain": "desktop",
+      "name": "Avalonia",
+      "repo": "https://github.com/AvaloniaUI/Avalonia",
+      "summary": "跨平台 .NET UI 框架。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "dotnet"
+      ],
+      "language": "C#",
+      "status": "active",
+      "use_when": ".NET 团队要跨 Windows/macOS/Linux 桌面",
+      "avoid_when": "非 .NET 栈",
+      "niche": "dotnet ui"
+    },
+    {
       "id": "axolotl",
       "domain": "ai-agents",
       "name": "Axolotl",
@@ -502,6 +520,23 @@
       "niche": "node-based genUI"
     },
     {
+      "id": "compose-multiplatform",
+      "domain": "desktop",
+      "name": "Compose Multiplatform",
+      "repo": "https://github.com/JetBrains/compose-multiplatform",
+      "summary": "Jetpack Compose 多平台，含桌面目标。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "kotlin"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "Kotlin 团队要共享 UI 到桌面",
+      "avoid_when": "非 JVM/Kotlin 技术栈",
+      "niche": "compose desktop"
+    },
+    {
       "id": "connect-go",
       "domain": "backend",
       "name": "Connect",
@@ -679,6 +714,23 @@
       "niche": "analytics engineering"
     },
     {
+      "id": "dearpygui",
+      "domain": "desktop",
+      "name": "Dear PyGui",
+      "repo": "https://github.com/hoffstadt/DearPyGui",
+      "summary": "Python 即时模式 GPU 加速 GUI。",
+      "tags": [
+        "desktop",
+        "python",
+        "immediate-mode"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python 工具/可视化要高刷新 UI",
+      "avoid_when": "要原生系统控件与标准桌面观感",
+      "niche": "python imgui"
+    },
+    {
       "id": "deepeval",
       "domain": "ai-agents",
       "name": "DeepEval",
@@ -794,6 +846,23 @@
       "niche": "embedded analytics"
     },
     {
+      "id": "egui",
+      "domain": "desktop",
+      "name": "egui",
+      "repo": "https://github.com/emilk/egui",
+      "summary": "Rust 即时模式 GUI，易嵌入工具与游戏。",
+      "tags": [
+        "desktop",
+        "immediate-mode",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "Rust 工具/可视化面板要快速出 UI",
+      "avoid_when": "要系统原生控件观感",
+      "niche": "immediate mode"
+    },
+    {
       "id": "elasticsearch",
       "domain": "databases",
       "name": "Elasticsearch",
@@ -808,6 +877,23 @@
       "use_when": "全文检索+日志分析大规模场景",
       "avoid_when": "只要轻量搜索",
       "niche": "search and analytics"
+    },
+    {
+      "id": "electron",
+      "domain": "desktop",
+      "name": "Electron",
+      "repo": "https://github.com/electron/electron",
+      "summary": "用 Chromium+Node 构建跨平台桌面应用。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "javascript"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要用 Web 技术快速做桌面客户端且接受体积",
+      "avoid_when": "要极小包体与原生性能优先",
+      "niche": "web desktop"
     },
     {
       "id": "expo",
@@ -1004,6 +1090,23 @@
       "niche": "cross-platform ui"
     },
     {
+      "id": "flutter-desktop",
+      "domain": "desktop",
+      "name": "Flutter Desktop",
+      "repo": "https://github.com/flutter/flutter",
+      "summary": "Flutter 的桌面目标（Windows/macOS/Linux）。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "flutter"
+      ],
+      "language": "Dart",
+      "status": "active",
+      "use_when": "已有 Flutter 移动应用要扩展到桌面",
+      "avoid_when": "只要轻量系统 WebView 壳且无 Dart 栈",
+      "niche": "flutter desktop"
+    },
+    {
       "id": "flux2",
       "domain": "devops",
       "name": "Flux",
@@ -1166,6 +1269,23 @@
       "niche": "sbom vuln scan"
     },
     {
+      "id": "gtk",
+      "domain": "desktop",
+      "name": "GTK",
+      "repo": "https://github.com/GNOME/gtk",
+      "summary": "GNOME 系跨平台 GUI 工具包。",
+      "tags": [
+        "desktop",
+        "native-ui",
+        "linux"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "面向 Linux/GNOME 原生应用",
+      "avoid_when": "主战场是 Windows/macOS 商业客户端",
+      "niche": "native ui"
+    },
+    {
       "id": "guardrails-ai",
       "domain": "ai-agents",
       "name": "Guardrails AI",
@@ -1260,6 +1380,40 @@
       "use_when": "对比多条 shell 命令的耗时",
       "avoid_when": "需要应用内 profiler/火焰图",
       "niche": "benchmark"
+    },
+    {
+      "id": "iced",
+      "domain": "desktop",
+      "name": "Iced",
+      "repo": "https://github.com/iced-rs/iced",
+      "summary": "Rust 的 Elm 风格跨平台 GUI 库。",
+      "tags": [
+        "desktop",
+        "native-ui",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "纯 Rust GUI 且偏好 Elm 架构",
+      "avoid_when": "要最成熟商业控件生态",
+      "niche": "rust gui"
+    },
+    {
+      "id": "imgui",
+      "domain": "desktop",
+      "name": "Dear ImGui",
+      "repo": "https://github.com/ocornut/imgui",
+      "summary": "即时模式 GUI，适合工具/调试/游戏内嵌面板。",
+      "tags": [
+        "desktop",
+        "immediate-mode",
+        "tools"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "做开发者工具、调试器或游戏内 UI",
+      "avoid_when": "要面向普通用户的标准桌面应用视觉与无障碍",
+      "niche": "immediate mode"
     },
     {
       "id": "instructor",
@@ -1973,6 +2127,23 @@
       "niche": "node enterprise"
     },
     {
+      "id": "neutralino",
+      "domain": "desktop",
+      "name": "Neutralinojs",
+      "repo": "https://github.com/neutralinojs/neutralinojs",
+      "summary": "轻量跨平台应用框架，避免捆绑完整浏览器。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "javascript"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要极简桌面壳且功能面可控",
+      "avoid_when": "需要完整 Node/Chromium 能力与成熟插件生态",
+      "niche": "lightweight desktop"
+    },
+    {
       "id": "nextjs",
       "domain": "web-frontend",
       "name": "Next.js",
@@ -2407,6 +2578,40 @@
       "niche": "typed python agents"
     },
     {
+      "id": "pyqt",
+      "domain": "desktop",
+      "name": "PyQt",
+      "repo": "https://github.com/Python-PyQt/PyQt",
+      "summary": "Qt 的 Python 绑定（商业许可需注意）。",
+      "tags": [
+        "desktop",
+        "python",
+        "native-ui"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python 做功能完整桌面 GUI",
+      "avoid_when": "要避开 GPL/商业许可复杂度",
+      "niche": "python gui"
+    },
+    {
+      "id": "pyside",
+      "domain": "desktop",
+      "name": "PySide (Qt for Python)",
+      "repo": "https://github.com/qtproject/pyside-setup",
+      "summary": "Qt 官方 Python 绑定。",
+      "tags": [
+        "desktop",
+        "python",
+        "native-ui"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Python + Qt 且偏好官方绑定许可路径",
+      "avoid_when": "只要极简脚本弹窗",
+      "niche": "python gui"
+    },
+    {
       "id": "pytorch",
       "domain": "data-ml",
       "name": "PyTorch",
@@ -2437,6 +2642,23 @@
       "use_when": "需要可过滤的向量检索与较稳的生产部署",
       "avoid_when": "只要进程内玩具级向量表",
       "niche": "filtered vector search"
+    },
+    {
+      "id": "qt",
+      "domain": "desktop",
+      "name": "Qt",
+      "repo": "https://github.com/qt/qtbase",
+      "summary": "成熟的跨平台原生 UI 框架。",
+      "tags": [
+        "desktop",
+        "native-ui",
+        "cpp"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要工业级原生桌面 UI 与长期支持",
+      "avoid_when": "只要 Web 技术快速出原型",
+      "niche": "native ui"
     },
     {
       "id": "rabbitmq-server",
@@ -2734,6 +2956,23 @@
       "niche": "structured generation runtime"
     },
     {
+      "id": "slint",
+      "domain": "desktop",
+      "name": "Slint",
+      "repo": "https://github.com/slint-ui/slint",
+      "summary": "声明式原生 UI 工具包，多语言绑定。",
+      "tags": [
+        "desktop",
+        "native-ui",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要现代声明式原生 UI 且可嵌 Rust/C++/JS",
+      "avoid_when": "必须全盘 Web 技术栈",
+      "niche": "declarative native"
+    },
+    {
       "id": "smolagents",
       "domain": "ai-agents",
       "name": "smolagents",
@@ -2927,6 +3166,23 @@
       "niche": "server state"
     },
     {
+      "id": "tauri",
+      "domain": "desktop",
+      "name": "Tauri",
+      "repo": "https://github.com/tauri-apps/tauri",
+      "summary": "Rust 后端 + 系统 WebView 的轻量桌面框架。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要更小安装包与更强系统安全边界的桌面应用",
+      "avoid_when": "深度依赖 Electron 专用生态与 Node 原生模块",
+      "niche": "webview desktop"
+    },
+    {
       "id": "tensorflow",
       "domain": "data-ml",
       "name": "TensorFlow",
@@ -3070,6 +3326,23 @@
       "use_when": "要低延迟即时搜索且部署简单",
       "avoid_when": "已深度绑定 Elastic 生态",
       "niche": "instant search"
+    },
+    {
+      "id": "uno-platform",
+      "domain": "desktop",
+      "name": "Uno Platform",
+      "repo": "https://github.com/unoplatform/uno",
+      "summary": "用 C#/XAML 做跨平台应用（含桌面）。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "dotnet"
+      ],
+      "language": "C#",
+      "status": "active",
+      "use_when": "要 WinUI/XAML 技能复用到多端",
+      "avoid_when": "只要简单工具面板且不想上 XAML",
+      "niche": "xaml multiplatform"
     },
     {
       "id": "unstructured",
@@ -3216,6 +3489,23 @@
       "niche": "progressive framework"
     },
     {
+      "id": "wails",
+      "domain": "desktop",
+      "name": "Wails",
+      "repo": "https://github.com/wailsapp/wails",
+      "summary": "Go + 系统 WebView 构建桌面应用。",
+      "tags": [
+        "desktop",
+        "cross-platform",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "后端想用 Go 且要桌面壳",
+      "avoid_when": "团队主栈是 Rust/TS 且已选定 Tauri/Electron",
+      "niche": "go desktop"
+    },
+    {
       "id": "weaviate",
       "domain": "ai-agents",
       "name": "Weaviate",
@@ -3262,6 +3552,23 @@
       "use_when": "要简洁高性能组网/远程访问",
       "avoid_when": "必须兼容老旧 IPSec 套件为主",
       "niche": "vpn"
+    },
+    {
+      "id": "wxwidgets",
+      "domain": "desktop",
+      "name": "wxWidgets",
+      "repo": "https://github.com/wxWidgets/wxWidgets",
+      "summary": "原生控件外观的跨平台 C++ GUI 库。",
+      "tags": [
+        "desktop",
+        "native-ui",
+        "cpp"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要尽量接近系统原生观感的 C++ UI",
+      "avoid_when": "要现代声明式 UI 与热更新体验",
+      "niche": "native ui"
     },
     {
       "id": "xgboost",
@@ -4349,9 +4656,9 @@
     },
     {
       "from": "hyperfine",
-      "type": "integrates_with",
-      "to": "ripgrep",
-      "note": "常用来对比搜索命令性能"
+      "type": "alternative_to",
+      "to": "flutter-desktop",
+      "note": "Kotlin 多端 vs Flutter 多端"
     }
   ]
 }

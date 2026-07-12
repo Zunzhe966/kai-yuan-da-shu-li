@@ -1,0 +1,12 @@
+id: uno-platform
+type: project
+name: Uno Platform
+repo: https://github.com/unoplatform/uno
+summary: 用 C#/XAML 做跨平台应用（含桌面）。
+tags: [desktop, cross-platform, dotnet]
+language: C#
+status: active
+use_when: 要 WinUI/XAML 技能复用到多端
+avoid_when: 只要简单工具面板且不想上 XAML
+niche: xaml multiplatform
+related_ecosystem: desktop

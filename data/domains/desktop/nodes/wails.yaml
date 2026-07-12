@@ -1,0 +1,12 @@
+id: wails
+type: project
+name: Wails
+repo: https://github.com/wailsapp/wails
+summary: Go + 系统 WebView 构建桌面应用。
+tags: [desktop, cross-platform, go]
+language: Go
+status: active
+use_when: 后端想用 Go 且要桌面壳
+avoid_when: 团队主栈是 Rust/TS 且已选定 Tauri/Electron
+niche: go desktop
+related_ecosystem: desktop

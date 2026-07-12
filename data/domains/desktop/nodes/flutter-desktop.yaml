@@ -1,0 +1,12 @@
+id: flutter-desktop
+type: project
+name: Flutter Desktop
+repo: https://github.com/flutter/flutter
+summary: Flutter 的桌面目标（Windows/macOS/Linux）。
+tags: [desktop, cross-platform, flutter]
+language: Dart
+status: active
+use_when: 已有 Flutter 移动应用要扩展到桌面
+avoid_when: 只要轻量系统 WebView 壳且无 Dart 栈
+niche: flutter desktop
+related_ecosystem: desktop

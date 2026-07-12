@@ -1,0 +1,12 @@
+id: pyside
+type: project
+name: PySide (Qt for Python)
+repo: https://github.com/qtproject/pyside-setup
+summary: Qt 官方 Python 绑定。
+tags: [desktop, python, native-ui]
+language: Python
+status: active
+use_when: Python + Qt 且偏好官方绑定许可路径
+avoid_when: 只要极简脚本弹窗
+niche: python gui
+related_ecosystem: desktop

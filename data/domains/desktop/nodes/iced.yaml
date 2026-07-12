@@ -1,0 +1,12 @@
+id: iced
+type: project
+name: Iced
+repo: https://github.com/iced-rs/iced
+summary: Rust 的 Elm 风格跨平台 GUI 库。
+tags: [desktop, native-ui, rust]
+language: Rust
+status: active
+use_when: 纯 Rust GUI 且偏好 Elm 架构
+avoid_when: 要最成熟商业控件生态
+niche: rust gui
+related_ecosystem: desktop

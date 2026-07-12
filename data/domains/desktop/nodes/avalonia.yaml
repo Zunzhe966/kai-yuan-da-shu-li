@@ -1,0 +1,12 @@
+id: avalonia
+type: project
+name: Avalonia
+repo: https://github.com/AvaloniaUI/Avalonia
+summary: 跨平台 .NET UI 框架。
+tags: [desktop, cross-platform, dotnet]
+language: C#
+status: active
+use_when: .NET 团队要跨 Windows/macOS/Linux 桌面
+avoid_when: 非 .NET 栈
+niche: dotnet ui
+related_ecosystem: desktop

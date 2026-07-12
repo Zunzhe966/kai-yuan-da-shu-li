@@ -1,0 +1,12 @@
+id: imgui
+type: project
+name: Dear ImGui
+repo: https://github.com/ocornut/imgui
+summary: 即时模式 GUI，适合工具/调试/游戏内嵌面板。
+tags: [desktop, immediate-mode, tools]
+language: C++
+status: active
+use_when: 做开发者工具、调试器或游戏内 UI
+avoid_when: 要面向普通用户的标准桌面应用视觉与无障碍
+niche: immediate mode
+related_ecosystem: desktop

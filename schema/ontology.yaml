@@ -31,6 +31,9 @@ domains:
   devtools:
     title: 开发者工具与 CLI
     description: 搜索、任务运行、版本管理、语言工具链、终端编辑器
+  desktop:
+    title: 桌面应用
+    description: WebView 壳、原生 UI、即时模式与多端桌面目标
 
 # 节点类型
 node_types:

@@ -1,0 +1,12 @@
+id: pyqt
+type: project
+name: PyQt
+repo: https://github.com/Python-PyQt/PyQt
+summary: Qt 的 Python 绑定（商业许可需注意）。
+tags: [desktop, python, native-ui]
+language: Python
+status: active
+use_when: Python 做功能完整桌面 GUI
+avoid_when: 要避开 GPL/商业许可复杂度
+niche: python gui
+related_ecosystem: desktop

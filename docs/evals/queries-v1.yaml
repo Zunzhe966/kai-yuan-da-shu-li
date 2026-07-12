@@ -147,3 +147,15 @@ queries:
     query: 极速 Python 包管理和虚拟环境
     intent_tags: [python, package-manager]
     expect_any: [uv]
+  - id: q37
+    query: 用 Web 技术做跨平台桌面应用
+    intent_tags: [desktop, javascript]
+    expect_any: [electron, tauri, wails, neutralino]
+  - id: q38
+    query: 轻量桌面客户端不要捆绑 Chromium
+    intent_tags: [desktop]
+    expect_any: [tauri, wails, neutralino]
+  - id: q39
+    query: Python 做桌面 GUI
+    intent_tags: [desktop, python]
+    expect_any: [pyqt, pyside, dearpygui]

@@ -1,0 +1,24 @@
+domain: desktop
+title: 桌面应用
+status: seeding
+notes: |
+  D16 第十垂直。
+
+categories:
+  - id: webview-shell
+    title: WebView / 浏览器壳
+    node_ids: [electron, tauri, wails, neutralino]
+  - id: native-ui
+    title: 原生 UI
+    node_ids: [qt, gtk, wxwidgets, slint, iced]
+  - id: immediate
+    title: 即时模式
+    node_ids: [imgui, egui, dearpygui]
+  - id: multiplatform
+    title: 多端框架桌面目标
+    node_ids: [flutter-desktop, compose-multiplatform, avalonia, uno-platform]
+  - id: python-gui
+    title: Python GUI
+    node_ids: [pyqt, pyside, dearpygui]
+
+nodes_dir: nodes

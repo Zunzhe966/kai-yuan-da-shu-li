@@ -1,0 +1,12 @@
+id: electron
+type: project
+name: Electron
+repo: https://github.com/electron/electron
+summary: 用 Chromium+Node 构建跨平台桌面应用。
+tags: [desktop, cross-platform, javascript]
+language: C++
+status: active
+use_when: 要用 Web 技术快速做桌面客户端且接受体积
+avoid_when: 要极小包体与原生性能优先
+niche: web desktop
+related_ecosystem: desktop

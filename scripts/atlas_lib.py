@@ -166,6 +166,13 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid == "ruff": s += 3
     if "终端编辑器" in query:
         if nid in ("helix", "neovim"): s += 3
+    if "桌面应用" in query or "桌面客户端" in query:
+        if nid in ("electron", "tauri", "wails"): s += 3
+    if "轻量" in query and "桌面" in query:
+        if nid in ("tauri", "neutralino", "wails"): s += 2
+        if nid == "electron": s -= 1
+    if "Python" in query and "GUI" in query:
+        if nid in ("pyqt", "pyside", "dearpygui"): s += 3
     return s
 
 

@@ -1,0 +1,12 @@
+id: tauri
+type: project
+name: Tauri
+repo: https://github.com/tauri-apps/tauri
+summary: Rust 后端 + 系统 WebView 的轻量桌面框架。
+tags: [desktop, cross-platform, rust]
+language: Rust
+status: active
+use_when: 要更小安装包与更强系统安全边界的桌面应用
+avoid_when: 深度依赖 Electron 专用生态与 Node 原生模块
+niche: webview desktop
+related_ecosystem: desktop

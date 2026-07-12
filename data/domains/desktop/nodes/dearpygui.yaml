@@ -1,0 +1,12 @@
+id: dearpygui
+type: project
+name: Dear PyGui
+repo: https://github.com/hoffstadt/DearPyGui
+summary: Python 即时模式 GPU 加速 GUI。
+tags: [desktop, python, immediate-mode]
+language: Python
+status: active
+use_when: Python 工具/可视化要高刷新 UI
+avoid_when: 要原生系统控件与标准桌面观感
+niche: python imgui
+related_ecosystem: desktop
