@@ -1,0 +1,12 @@
+id: astro
+type: project
+name: Astro
+repo: https://github.com/withastro/astro
+summary: 内容优先的多框架静态/混合站点。
+tags: [static-site, content, javascript]
+language: TypeScript
+status: active
+use_when: 内容站要多框架岛屿架构与优秀性能
+avoid_when: 只要单页应用框架
+niche: content site
+related_ecosystem: ssg

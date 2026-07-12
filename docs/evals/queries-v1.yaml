@@ -159,3 +159,15 @@ queries:
     query: Python 做桌面 GUI
     intent_tags: [desktop, python]
     expect_any: [pyqt, pyside, dearpygui]
+  - id: q40
+    query: React 产品文档站生成器
+    intent_tags: [docs, react]
+    expect_any: [docusaurus, nextra, starlight]
+  - id: q41
+    query: 自托管无头 CMS
+    intent_tags: [cms, headless]
+    expect_any: [strapi, directus, payload, keystone]
+  - id: q42
+    query: 极速静态站点生成器做博客
+    intent_tags: [static-site]
+    expect_any: [hugo, astro, jekyll]

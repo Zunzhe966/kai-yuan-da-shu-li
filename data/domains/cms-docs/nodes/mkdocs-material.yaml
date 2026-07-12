@@ -1,0 +1,12 @@
+id: mkdocs-material
+type: project
+name: Material for MkDocs
+repo: https://github.com/squidfunk/mkdocs-material
+summary: MkDocs 最流行的 Material 主题。
+tags: [docs, static-site, python]
+language: Python
+status: active
+use_when: MkDocs 要开箱好看的文档 UI
+avoid_when: 不用 MkDocs
+niche: docs theme
+related_ecosystem: docs

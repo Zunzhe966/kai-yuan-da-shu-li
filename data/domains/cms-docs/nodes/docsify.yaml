@@ -1,0 +1,12 @@
+id: docsify
+type: project
+name: docsify
+repo: https://github.com/docsifyjs/docsify
+summary: 无需构建的文档站点生成器。
+tags: [docs, static-site, javascript]
+language: JavaScript
+status: active
+use_when: 要零构建把 Markdown 变成文档站
+avoid_when: 要 SEO 强的预渲染静态站
+niche: runtime docs
+related_ecosystem: docs

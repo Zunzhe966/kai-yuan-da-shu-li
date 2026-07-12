@@ -1,0 +1,12 @@
+id: nextra
+type: project
+name: Nextra
+repo: https://github.com/shuding/nextra
+summary: 基于 Next.js 的文档/站点框架。
+tags: [docs, nextjs, react]
+language: TypeScript
+status: active
+use_when: Next.js 团队要文档/知识库站
+avoid_when: 不想依赖 Next
+niche: docs site
+related_ecosystem: docs

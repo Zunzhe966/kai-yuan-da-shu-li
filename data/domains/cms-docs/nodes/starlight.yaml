@@ -1,0 +1,12 @@
+id: starlight
+type: project
+name: Starlight
+repo: https://github.com/withastro/starlight
+summary: Astro 官方文档主题套件。
+tags: [docs, static-site, astro]
+language: TypeScript
+status: active
+use_when: 用 Astro 做产品文档站
+avoid_when: 非 Astro 栈
+niche: docs theme
+related_ecosystem: docs

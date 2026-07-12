@@ -1,0 +1,12 @@
+id: gitbook-oss
+type: project
+name: GitBook (legacy open)
+repo: https://github.com/GitbookIO/gitbook
+summary: 早期开源 GitBook（现产品已商业化，仓供参考）。
+tags: [docs, legacy]
+language: JavaScript
+status: active
+use_when: 研究历史 GitBook 开源实现
+avoid_when: 要当前托管文档产品请用官方云
+niche: legacy docs
+related_ecosystem: docs

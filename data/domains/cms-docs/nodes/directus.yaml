@@ -1,0 +1,12 @@
+id: directus
+type: project
+name: Directus
+repo: https://github.com/directus/directus
+summary: 把 SQL 数据库瞬间变成无头 CMS/API。
+tags: [cms, headless, sql]
+language: TypeScript
+status: active
+use_when: 已有 SQL 库要快速变内容 API
+avoid_when: 要从零只要博客主题生态
+niche: db-backed cms
+related_ecosystem: cms

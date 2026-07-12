@@ -34,6 +34,9 @@ domains:
   desktop:
     title: 桌面应用
     description: WebView 壳、原生 UI、即时模式与多端桌面目标
+  cms-docs:
+    title: CMS 与文档站
+    description: 经典/无头 CMS、文档生成器与内容静态站
 
 # 节点类型
 node_types:

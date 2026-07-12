@@ -1,0 +1,12 @@
+id: keystone
+type: project
+name: Keystone
+repo: https://github.com/keystonejs/keystone
+summary: 基于 GraphQL 的 Node CMS 框架。
+tags: [cms, headless, graphql]
+language: TypeScript
+status: active
+use_when: 要 GraphQL 内容 API 与自定义字段
+avoid_when: 只要最简 Markdown 文档
+niche: graphql cms
+related_ecosystem: cms

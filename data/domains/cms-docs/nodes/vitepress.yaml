@@ -1,0 +1,12 @@
+id: vitepress
+type: project
+name: VitePress
+repo: https://github.com/vuejs/vitepress
+summary: Vite + Vue 的静态文档站。
+tags: [docs, static-site, vue]
+language: TypeScript
+status: active
+use_when: Vue/Vite 生态要快速文档站
+avoid_when: 要强版本化与庞大插件市场
+niche: docs site
+related_ecosystem: docs

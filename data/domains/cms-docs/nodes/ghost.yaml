@@ -1,0 +1,12 @@
+id: ghost
+type: project
+name: Ghost
+repo: https://github.com/TryGhost/Ghost
+summary: 面向出版的现代 Node CMS。
+tags: [cms, node, blogging]
+language: JavaScript
+status: active
+use_when: 要会员制出版/新闻站且偏 Node
+avoid_when: 只要纯静态文档且无会员
+niche: publishing cms
+related_ecosystem: cms

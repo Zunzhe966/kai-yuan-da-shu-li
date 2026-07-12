@@ -173,6 +173,12 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid == "electron": s -= 1
     if "Python" in query and "GUI" in query:
         if nid in ("pyqt", "pyside", "dearpygui"): s += 3
+    if "文档站" in query or "产品文档" in query:
+        if nid in ("docusaurus", "vitepress", "mkdocs", "starlight", "nextra"): s += 3
+    if "无头 CMS" in query or "headless" in query.lower():
+        if nid in ("strapi", "directus", "payload", "keystone"): s += 3
+    if "静态站点" in query or "博客引擎" in query:
+        if nid in ("hugo", "jekyll", "astro"): s += 2
     return s
 
 

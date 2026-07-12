@@ -1,0 +1,12 @@
+id: sphinx
+type: project
+name: Sphinx
+repo: https://github.com/sphinx-doc/sphinx
+summary: Python 生态经典文档工具。
+tags: [docs, python]
+language: Python
+status: active
+use_when: 要 API 文档与复杂交叉引用
+avoid_when: 只要轻量产品手册 Markdown 站
+niche: api docs
+related_ecosystem: docs

@@ -1,0 +1,12 @@
+id: hugo
+type: project
+name: Hugo
+repo: https://github.com/gohugoio/hugo
+summary: 极速 Go 静态站点生成器。
+tags: [static-site, blog, docs]
+language: Go
+status: active
+use_when: 要极快构建的博客/文档/营销页
+avoid_when: 要强 React 组件化页面
+niche: ssg
+related_ecosystem: ssg

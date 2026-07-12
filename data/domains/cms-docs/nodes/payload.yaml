@@ -1,0 +1,12 @@
+id: payload
+type: project
+name: Payload
+repo: https://github.com/payloadcms/payload
+summary: TypeScript 无头 CMS，代码优先。
+tags: [cms, headless, typescript]
+language: TypeScript
+status: active
+use_when: TS 团队要代码优先的无头 CMS
+avoid_when: 非 Node/TS 栈
+niche: code-first cms
+related_ecosystem: cms

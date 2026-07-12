@@ -1,0 +1,12 @@
+id: mkdocs
+type: project
+name: MkDocs
+repo: https://github.com/mkdocs/mkdocs
+summary: Python Markdown 文档静态站点。
+tags: [docs, static-site, python]
+language: Python
+status: active
+use_when: Python 项目要用 Markdown 出文档站
+avoid_when: 要 React 组件化文档体验
+niche: docs site
+related_ecosystem: docs

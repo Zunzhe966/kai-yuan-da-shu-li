@@ -8,4 +8,4 @@ Agent-first 开源知识图谱入口。
 - Pages 设置：[github-pages.md](./github-pages.md)
 - 协议：仓库根目录 `llms.txt` / `AGENTS.md`
 
-当前 domains：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile` · `data-ml` · `devtools` · `desktop`。
+当前 domains：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile` · `data-ml` · `devtools` · `desktop` · `cms-docs`。

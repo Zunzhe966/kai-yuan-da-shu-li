@@ -1011,3 +1011,77 @@ edges:
     to: redis
     note: 常见 broker
 
+  - from: ghost
+    type: alternative_to
+    to: wordpress
+    note: 现代出版 CMS vs 经典 PHP CMS
+
+  - from: strapi
+    type: alternative_to
+    to: directus
+    note: 自研内容模型 vs DB 即 CMS
+
+  - from: payload
+    type: alternative_to
+    to: strapi
+    note: 代码优先 TS vs 传统无头 CMS
+
+  - from: keystone
+    type: alternative_to
+    to: payload
+    note: GraphQL CMS 路线差异
+
+  - from: vitepress
+    type: alternative_to
+    to: docusaurus
+    note: Vue 文档站 vs React 文档站
+
+  - from: mkdocs
+    type: alternative_to
+    to: sphinx
+    note: 轻量 Markdown vs 重型 API 文档
+
+  - from: mkdocs-material
+    type: depends_on
+    to: mkdocs
+    note: 主题建立在 MkDocs
+
+  - from: starlight
+    type: depends_on
+    to: astro
+    note: Astro 文档套件
+
+  - from: nextra
+    type: depends_on
+    to: nextjs
+    note: 建立在 Next.js
+
+  - from: docsify
+    type: alternative_to
+    to: mkdocs
+    note: 运行时渲染 vs 预构建
+
+  - from: hugo
+    type: alternative_to
+    to: jekyll
+    note: 极速 Go SSG vs Ruby/GH Pages 经典
+
+  - from: astro
+    type: alternative_to
+    to: hugo
+    note: 岛屿架构内容站 vs 经典 SSG
+
+  - from: astro
+    type: alternative_to
+    to: nextjs
+    note: 内容优先 vs 全功能 React 元框架
+
+  - from: docusaurus
+    type: alternative_to
+    to: nextra
+    note: 独立文档框架 vs Next 文档层
+
+  - from: directus
+    type: integrates_with
+    to: postgresql
+    note: 常接 SQL 仓

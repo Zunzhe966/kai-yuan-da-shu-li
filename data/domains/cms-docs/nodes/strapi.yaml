@@ -1,0 +1,12 @@
+id: strapi
+type: project
+name: Strapi
+repo: https://github.com/strapi/strapi
+summary: 开源无头 CMS，可自托管。
+tags: [cms, headless, node]
+language: JavaScript
+status: active
+use_when: 要自托管无头 CMS 给多前端供内容
+avoid_when: 只要 Git 驱动的文档站
+niche: headless cms
+related_ecosystem: cms

@@ -1,0 +1,12 @@
+id: jekyll
+type: project
+name: Jekyll
+repo: https://github.com/jekyll/jekyll
+summary: GitHub Pages 默认静态站引擎。
+tags: [static-site, blog, ruby]
+language: Ruby
+status: active
+use_when: 要贴合 GitHub Pages 的博客/文档
+avoid_when: 要现代 JS 工具链与组件
+niche: ssg
+related_ecosystem: ssg

@@ -1,0 +1,12 @@
+id: wordpress
+type: project
+name: WordPress
+repo: https://github.com/WordPress/WordPress
+summary: 全球最流行的 PHP 内容管理系统。
+tags: [cms, php, blogging]
+language: PHP
+status: active
+use_when: 要成熟插件生态的内容站/博客
+avoid_when: 要无头 CMS 或纯静态文档站
+niche: classic cms
+related_ecosystem: cms

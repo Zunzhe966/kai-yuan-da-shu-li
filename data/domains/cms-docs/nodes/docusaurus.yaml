@@ -1,0 +1,12 @@
+id: docusaurus
+type: project
+name: Docusaurus
+repo: https://github.com/facebook/docusaurus
+summary: React 文档网站生成器。
+tags: [docs, static-site, react]
+language: TypeScript
+status: active
+use_when: 要版本化产品文档站且用 React
+avoid_when: 只要极简 Markdown 预览
+niche: docs site
+related_ecosystem: docs

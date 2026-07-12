@@ -1,0 +1,21 @@
+domain: cms-docs
+title: CMS 与文档站
+status: seeding
+notes: |
+  D18 第十一垂直。
+
+categories:
+  - id: classic-cms
+    title: 经典 / 出版 CMS
+    node_ids: [wordpress, ghost]
+  - id: headless
+    title: 无头 CMS
+    node_ids: [strapi, directus, payload, keystone]
+  - id: docs
+    title: 文档站
+    node_ids: [docusaurus, vitepress, mkdocs, mkdocs-material, sphinx, docsify, nextra, starlight]
+  - id: ssg
+    title: 静态站 / 内容站
+    node_ids: [hugo, jekyll, astro, gitbook-oss]
+
+nodes_dir: nodes
