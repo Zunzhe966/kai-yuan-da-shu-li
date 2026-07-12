@@ -1,0 +1,12 @@
+id: jaeger
+type: project
+name: Jaeger
+repo: https://github.com/jaegertracing/jaeger
+summary: 分布式追踪系统。
+tags: [observability, tracing]
+language: Go
+status: active
+use_when: 要开源链路追踪后端与 UI
+avoid_when: 只要指标仪表盘不要链路
+niche: tracing
+related_ecosystem: observability

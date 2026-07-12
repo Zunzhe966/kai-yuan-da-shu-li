@@ -40,6 +40,9 @@ domains:
   networking:
     title: 网络与边缘
     description: 代理、网关、网格、DNS、组网 VPN、隧道与排障
+  observability:
+    title: 可观测性
+    description: 指标、日志、链路、APM、采集管道与可用性监控
 
 # 节点类型
 node_types:

@@ -1,0 +1,12 @@
+id: fluent-bit
+type: project
+name: Fluent Bit
+repo: https://github.com/fluent/fluent-bit
+summary: 轻量日志/指标转发代理。
+tags: [observability, logging, collector]
+language: C
+status: active
+use_when: 边缘/容器侧要轻量采集转发
+avoid_when: 要重型复杂路由用 Fluentd 插件生态
+niche: log shipper
+related_ecosystem: observability

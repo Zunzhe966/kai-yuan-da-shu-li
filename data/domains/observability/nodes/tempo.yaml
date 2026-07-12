@@ -1,0 +1,12 @@
+id: tempo
+type: project
+name: Grafana Tempo
+repo: https://github.com/grafana/tempo
+summary: 高基数友好的分布式追踪后端。
+tags: [observability, tracing, grafana]
+language: Go
+status: active
+use_when: Grafana 生态要成本可控的 trace 存储
+avoid_when: 非 Grafana 栈且只要一体式 APM
+niche: tracing
+related_ecosystem: observability

@@ -1,0 +1,12 @@
+id: grafana-alloy
+type: project
+name: Grafana Alloy
+repo: https://github.com/grafana/alloy
+summary: Grafana 开源遥测采集器（Agent 后继）。
+tags: [observability, collector, grafana]
+language: Go
+status: active
+use_when: Grafana 栈要统一采集器
+avoid_when: 只要厂商中立 OTel Collector
+niche: collector
+related_ecosystem: observability

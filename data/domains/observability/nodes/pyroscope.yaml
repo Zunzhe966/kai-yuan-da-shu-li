@@ -1,0 +1,12 @@
+id: pyroscope
+type: project
+name: Pyroscope
+repo: https://github.com/grafana/pyroscope
+summary: 持续性能分析（profiling）平台。
+tags: [observability, profiling]
+language: Go
+status: active
+use_when: 要持续 CPU/内存剖析定位热点
+avoid_when: 只要偶发本地 pprof 一次采样
+niche: profiling
+related_ecosystem: observability

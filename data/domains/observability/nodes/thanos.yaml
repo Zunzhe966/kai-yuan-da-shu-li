@@ -1,0 +1,12 @@
+id: thanos
+type: project
+name: Thanos
+repo: https://github.com/thanos-io/thanos
+summary: Prometheus 高可用与长期存储组件。
+tags: [observability, metrics]
+language: Go
+status: active
+use_when: 多集群 Prometheus 要全局查询与对象存储
+avoid_when: 只要单机短周期指标
+niche: metrics
+related_ecosystem: observability

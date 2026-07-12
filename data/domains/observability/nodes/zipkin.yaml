@@ -1,0 +1,12 @@
+id: zipkin
+type: project
+name: Zipkin
+repo: https://github.com/openzipkin/zipkin
+summary: 经典分布式追踪系统。
+tags: [observability, tracing]
+language: Java
+status: active
+use_when: 要轻量经典 tracing 后端
+avoid_when: 要与 OTel 深度一体的现代栈
+niche: tracing
+related_ecosystem: observability

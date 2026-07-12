@@ -1,0 +1,12 @@
+id: signoz
+type: project
+name: SigNoz
+repo: https://github.com/SigNoz/signoz
+summary: 开源 APM，基于 OpenTelemetry。
+tags: [observability, apm, otel]
+language: TypeScript
+status: active
+use_when: 要一体式开源 APM 替代商业方案
+avoid_when: 已有拆开的 Prometheus+Jaeger+Grafana 且满意
+niche: apm
+related_ecosystem: observability

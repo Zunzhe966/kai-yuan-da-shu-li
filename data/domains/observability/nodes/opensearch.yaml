@@ -1,0 +1,12 @@
+id: opensearch
+type: project
+name: OpenSearch
+repo: https://github.com/opensearch-project/opensearch
+summary: Elasticsearch 开源分支，搜索与分析。
+tags: [observability, logging, search]
+language: Java
+status: active
+use_when: 要开源许可清晰的 ES 兼容搜索分析
+avoid_when: 已深度绑定 Elastic 官方许可产品
+niche: logging search
+related_ecosystem: observability

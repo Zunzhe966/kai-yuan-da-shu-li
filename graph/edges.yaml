@@ -1240,3 +1240,113 @@ edges:
     type: integrates_with
     to: fastapi
     note: Python 服务常用 uv 管依赖
+
+  - from: jaeger
+    type: alternative_to
+    to: zipkin
+    note: 现代 tracing vs 经典 Zipkin
+
+  - from: tempo
+    type: alternative_to
+    to: jaeger
+    note: Grafana 生态 trace vs Jaeger
+
+  - from: loki
+    type: alternative_to
+    to: elasticsearch
+    note: 标签索引日志 vs 全文检索日志
+
+  - from: opensearch
+    type: alternative_to
+    to: elasticsearch
+    note: 开源分支 vs Elastic
+
+  - from: mimir
+    type: alternative_to
+    to: thanos
+    note: Grafana 长期指标 vs Thanos
+
+  - from: victoriametrics
+    type: alternative_to
+    to: prometheus
+    note: 兼容存储/单二进制 vs 经典 Prometheus
+
+  - from: thanos
+    type: integrates_with
+    to: prometheus
+    note: 扩展 Prometheus
+
+  - from: mimir
+    type: integrates_with
+    to: grafana
+    note: Grafana 查询后端
+
+  - from: loki
+    type: integrates_with
+    to: grafana
+    note: 日志面板常见组合
+
+  - from: tempo
+    type: integrates_with
+    to: grafana
+    note: Trace 视图
+
+  - from: fluent-bit
+    type: alternative_to
+    to: fluentd
+    note: 轻量 vs 插件丰富
+
+  - from: vector-dev
+    type: alternative_to
+    to: fluent-bit
+    note: Rust 管道 vs Fluent Bit
+
+  - from: grafana-alloy
+    type: alternative_to
+    to: opentelemetry-collector
+    note: Grafana 采集器 vs 中立 OTel Collector
+
+  - from: signoz
+    type: integrates_with
+    to: opentelemetry-collector
+    note: 基于 OTel 的一体 APM
+
+  - from: sentry
+    type: alternative_to
+    to: signoz
+    note: 错误/发行版导向 vs 全栈 OTel APM
+
+  - from: pyroscope
+    type: integrates_with
+    to: grafana
+    note: 持续剖析常接 Grafana
+
+  - from: opentelemetry-collector
+    type: integrates_with
+    to: jaeger
+    note: 导出 traces 到 Jaeger
+
+  - from: opentelemetry-collector
+    type: integrates_with
+    to: prometheus
+    note: 指标管线常见下游
+
+  - from: uptime-kuma
+    type: alternative_to
+    to: prometheus
+    note: 简单可用性 vs 完整指标系统
+
+  - from: fluent-bit
+    type: integrates_with
+    to: loki
+    note: 常见日志转发目标
+
+  - from: graylog
+    type: alternative_to
+    to: loki
+    note: 一体日志平台 vs 标签索引日志
+
+  - from: graylog
+    type: alternative_to
+    to: elasticsearch
+    note: 日志平台 vs 纯搜索引擎后端

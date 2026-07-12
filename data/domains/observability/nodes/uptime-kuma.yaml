@@ -1,0 +1,12 @@
+id: uptime-kuma
+type: project
+name: Uptime Kuma
+repo: https://github.com/louislam/uptime-kuma
+summary: 自托管监控与状态页。
+tags: [observability, uptime]
+language: JavaScript
+status: active
+use_when: 要简单好看的可用性监控与状态页
+avoid_when: 要全集群指标/链路的完整可观测平台
+niche: uptime
+related_ecosystem: observability

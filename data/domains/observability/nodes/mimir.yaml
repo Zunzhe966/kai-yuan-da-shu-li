@@ -1,0 +1,12 @@
+id: mimir
+type: project
+name: Grafana Mimir
+repo: https://github.com/grafana/mimir
+summary: 长期可扩展的 Prometheus 兼容指标后端。
+tags: [observability, metrics, grafana]
+language: Go
+status: active
+use_when: 要水平扩展的 Prometheus 长期存储
+avoid_when: 单机 Prometheus 已足够
+niche: metrics
+related_ecosystem: observability

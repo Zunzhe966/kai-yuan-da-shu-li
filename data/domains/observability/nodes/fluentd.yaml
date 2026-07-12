@@ -1,0 +1,12 @@
+id: fluentd
+type: project
+name: Fluentd
+repo: https://github.com/fluent/fluentd
+summary: 统一日志层，插件丰富。
+tags: [observability, logging, collector]
+language: Ruby
+status: active
+use_when: 要灵活路由与丰富输出插件的日志管道
+avoid_when: 资源极紧只要 Fluent Bit
+niche: log shipper
+related_ecosystem: observability

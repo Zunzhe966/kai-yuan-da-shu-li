@@ -1,0 +1,12 @@
+id: vector-dev
+type: project
+name: Vector
+repo: https://github.com/vectordotdev/vector
+summary: 高性能可观测数据管道（日志/指标）。
+tags: [observability, logging, collector]
+language: Rust
+status: active
+use_when: 要高吞吐、可配置的遥测管道
+avoid_when: 只要最简 sidecar 且团队已定 Fluent Bit
+niche: telemetry pipeline
+related_ecosystem: observability

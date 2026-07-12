@@ -1,0 +1,12 @@
+id: graylog
+type: project
+name: Graylog
+repo: https://github.com/Graylog2/graylog2-server
+summary: 集中式日志管理平台。
+tags: [observability, logging]
+language: Java
+status: active
+use_when: 要带告警/仪表盘的集中日志平台
+avoid_when: 只要轻量 Loki 或纯搜索引擎
+niche: logging platform
+related_ecosystem: observability

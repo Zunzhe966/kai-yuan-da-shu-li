@@ -1,0 +1,12 @@
+id: opentelemetry-collector
+type: project
+name: OpenTelemetry Collector
+repo: https://github.com/open-telemetry/opentelemetry-collector
+summary: 厂商中立的遥测数据采集、处理与导出管道。
+tags: [observability, otel, collector]
+language: Go
+status: active
+use_when: 要统一接收/处理 traces/metrics/logs
+avoid_when: 只要应用内埋点 SDK、无独立采集器需求
+niche: otel collector
+related_ecosystem: observability

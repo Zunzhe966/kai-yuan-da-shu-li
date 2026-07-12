@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-12T00:50:33.026447+00:00",
+  "generated_at": "2026-07-12T00:52:19.690971+00:00",
   "repo": "https://github.com/Zunzhe966/kaiyuan-dashuli",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json",
   "domains": [
@@ -16,11 +16,12 @@
     "devtools",
     "mobile",
     "networking",
+    "observability",
     "security",
     "web-frontend"
   ],
-  "node_count": 263,
-  "edge_count": 248,
+  "node_count": 281,
+  "edge_count": 270,
   "nodes": [
     {
       "id": "act",
@@ -1259,6 +1260,40 @@
       "niche": "visual LLM builder"
     },
     {
+      "id": "fluent-bit",
+      "domain": "observability",
+      "name": "Fluent Bit",
+      "repo": "https://github.com/fluent/fluent-bit",
+      "summary": "轻量日志/指标转发代理。",
+      "tags": [
+        "observability",
+        "logging",
+        "collector"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "边缘/容器侧要轻量采集转发",
+      "avoid_when": "要重型复杂路由用 Fluentd 插件生态",
+      "niche": "log shipper"
+    },
+    {
+      "id": "fluentd",
+      "domain": "observability",
+      "name": "Fluentd",
+      "repo": "https://github.com/fluent/fluentd",
+      "summary": "统一日志层，插件丰富。",
+      "tags": [
+        "observability",
+        "logging",
+        "collector"
+      ],
+      "language": "Ruby",
+      "status": "active",
+      "use_when": "要灵活路由与丰富输出插件的日志管道",
+      "avoid_when": "资源极紧只要 Fluent Bit",
+      "niche": "log shipper"
+    },
+    {
       "id": "flutter",
       "domain": "mobile",
       "name": "Flutter",
@@ -1487,6 +1522,39 @@
       "use_when": "要把指标/日志/追踪做成看板",
       "avoid_when": "只需命令行看瞬时指标",
       "niche": "observability dashboards"
+    },
+    {
+      "id": "grafana-alloy",
+      "domain": "observability",
+      "name": "Grafana Alloy",
+      "repo": "https://github.com/grafana/alloy",
+      "summary": "Grafana 开源遥测采集器（Agent 后继）。",
+      "tags": [
+        "observability",
+        "collector",
+        "grafana"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "Grafana 栈要统一采集器",
+      "avoid_when": "只要厂商中立 OTel Collector",
+      "niche": "collector"
+    },
+    {
+      "id": "graylog",
+      "domain": "observability",
+      "name": "Graylog",
+      "repo": "https://github.com/Graylog2/graylog2-server",
+      "summary": "集中式日志管理平台。",
+      "tags": [
+        "observability",
+        "logging"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要带告警/仪表盘的集中日志平台",
+      "avoid_when": "只要轻量 Loki 或纯搜索引擎",
+      "niche": "logging platform"
     },
     {
       "id": "grpc-go",
@@ -1782,6 +1850,22 @@
       "use_when": "K8s 上要流量治理/mTLS/可观测网格",
       "avoid_when": "网格复杂度不可接受、服务很少",
       "niche": "service mesh"
+    },
+    {
+      "id": "jaeger",
+      "domain": "observability",
+      "name": "Jaeger",
+      "repo": "https://github.com/jaegertracing/jaeger",
+      "summary": "分布式追踪系统。",
+      "tags": [
+        "observability",
+        "tracing"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要开源链路追踪后端与 UI",
+      "avoid_when": "只要指标仪表盘不要链路",
+      "niche": "tracing"
     },
     {
       "id": "jax",
@@ -2260,6 +2344,23 @@
       "niche": "foundation model eval"
     },
     {
+      "id": "loki",
+      "domain": "observability",
+      "name": "Grafana Loki",
+      "repo": "https://github.com/grafana/loki",
+      "summary": "像 Prometheus 一样的日志聚合系统。",
+      "tags": [
+        "observability",
+        "logging",
+        "grafana"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要与 Prometheus/Grafana 同风格的日志栈",
+      "avoid_when": "要全文检索型日志平台（ELK）",
+      "niche": "logging"
+    },
+    {
       "id": "maestro",
       "domain": "mobile",
       "name": "Maestro",
@@ -2401,6 +2502,23 @@
       "use_when": "十亿级向量、分布式检索",
       "avoid_when": "单机小语料原型",
       "niche": "large-scale vector DB"
+    },
+    {
+      "id": "mimir",
+      "domain": "observability",
+      "name": "Grafana Mimir",
+      "repo": "https://github.com/grafana/mimir",
+      "summary": "长期可扩展的 Prometheus 兼容指标后端。",
+      "tags": [
+        "observability",
+        "metrics",
+        "grafana"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要水平扩展的 Prometheus 长期存储",
+      "avoid_when": "单机 Prometheus 已足够",
+      "niche": "metrics"
     },
     {
       "id": "mise",
@@ -2844,6 +2962,40 @@
       "niche": "openai-native agents"
     },
     {
+      "id": "opensearch",
+      "domain": "observability",
+      "name": "OpenSearch",
+      "repo": "https://github.com/opensearch-project/opensearch",
+      "summary": "Elasticsearch 开源分支，搜索与分析。",
+      "tags": [
+        "observability",
+        "logging",
+        "search"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要开源许可清晰的 ES 兼容搜索分析",
+      "avoid_when": "已深度绑定 Elastic 官方许可产品",
+      "niche": "logging search"
+    },
+    {
+      "id": "opentelemetry-collector",
+      "domain": "observability",
+      "name": "OpenTelemetry Collector",
+      "repo": "https://github.com/open-telemetry/opentelemetry-collector",
+      "summary": "厂商中立的遥测数据采集、处理与导出管道。",
+      "tags": [
+        "observability",
+        "otel",
+        "collector"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要统一接收/处理 traces/metrics/logs",
+      "avoid_when": "只要应用内埋点 SDK、无独立采集器需求",
+      "niche": "otel collector"
+    },
+    {
       "id": "opentelemetry-python",
       "domain": "ai-agents",
       "name": "OpenTelemetry Python",
@@ -3132,6 +3284,22 @@
       "use_when": "Python 做功能完整桌面 GUI",
       "avoid_when": "要避开 GPL/商业许可复杂度",
       "niche": "python gui"
+    },
+    {
+      "id": "pyroscope",
+      "domain": "observability",
+      "name": "Pyroscope",
+      "repo": "https://github.com/grafana/pyroscope",
+      "summary": "持续性能分析（profiling）平台。",
+      "tags": [
+        "observability",
+        "profiling"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要持续 CPU/内存剖析定位热点",
+      "avoid_when": "只要偶发本地 pprof 一次采样",
+      "niche": "profiling"
     },
     {
       "id": "pyside",
@@ -3479,6 +3647,23 @@
       "niche": "sast"
     },
     {
+      "id": "sentry",
+      "domain": "observability",
+      "name": "Sentry",
+      "repo": "https://github.com/getsentry/sentry",
+      "summary": "应用错误监控与性能追踪平台。",
+      "tags": [
+        "observability",
+        "apm",
+        "errors"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要错误聚合、发行版追踪与前端/后端 APM",
+      "avoid_when": "只要基础设施指标不要应用错误",
+      "niche": "error tracking"
+    },
+    {
       "id": "sglang",
       "domain": "ai-agents",
       "name": "SGLang",
@@ -3510,6 +3695,23 @@
       "use_when": "Flutter 应用要绕过商店发补丁级更新",
       "avoid_when": "非 Flutter 或不允许热更新策略",
       "niche": "flutter code push"
+    },
+    {
+      "id": "signoz",
+      "domain": "observability",
+      "name": "SigNoz",
+      "repo": "https://github.com/SigNoz/signoz",
+      "summary": "开源 APM，基于 OpenTelemetry。",
+      "tags": [
+        "observability",
+        "apm",
+        "otel"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要一体式开源 APM 替代商业方案",
+      "avoid_when": "已有拆开的 Prometheus+Jaeger+Grafana 且满意",
+      "niche": "apm"
     },
     {
       "id": "slint",
@@ -3806,6 +4008,23 @@
       "niche": "webview desktop"
     },
     {
+      "id": "tempo",
+      "domain": "observability",
+      "name": "Grafana Tempo",
+      "repo": "https://github.com/grafana/tempo",
+      "summary": "高基数友好的分布式追踪后端。",
+      "tags": [
+        "observability",
+        "tracing",
+        "grafana"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "Grafana 生态要成本可控的 trace 存储",
+      "avoid_when": "非 Grafana 栈且只要一体式 APM",
+      "niche": "tracing"
+    },
+    {
       "id": "tensorflow",
       "domain": "data-ml",
       "name": "TensorFlow",
@@ -3836,6 +4055,22 @@
       "use_when": "要用代码管理云资源与基础设施",
       "avoid_when": "只改几台机器配置、无云 API 需求",
       "niche": "infrastructure as code"
+    },
+    {
+      "id": "thanos",
+      "domain": "observability",
+      "name": "Thanos",
+      "repo": "https://github.com/thanos-io/thanos",
+      "summary": "Prometheus 高可用与长期存储组件。",
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "多集群 Prometheus 要全局查询与对象存储",
+      "avoid_when": "只要单机短周期指标",
+      "niche": "metrics"
     },
     {
       "id": "tidb",
@@ -4000,6 +4235,22 @@
       "niche": "document ETL"
     },
     {
+      "id": "uptime-kuma",
+      "domain": "observability",
+      "name": "Uptime Kuma",
+      "repo": "https://github.com/louislam/uptime-kuma",
+      "summary": "自托管监控与状态页。",
+      "tags": [
+        "observability",
+        "uptime"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要简单好看的可用性监控与状态页",
+      "avoid_when": "要全集群指标/链路的完整可观测平台",
+      "niche": "uptime"
+    },
+    {
       "id": "uv",
       "domain": "devtools",
       "name": "uv",
@@ -4048,6 +4299,23 @@
       "niche": "secrets management"
     },
     {
+      "id": "vector-dev",
+      "domain": "observability",
+      "name": "Vector",
+      "repo": "https://github.com/vectordotdev/vector",
+      "summary": "高性能可观测数据管道（日志/指标）。",
+      "tags": [
+        "observability",
+        "logging",
+        "collector"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要高吞吐、可配置的遥测管道",
+      "avoid_when": "只要最简 sidecar 且团队已定 Fluent Bit",
+      "niche": "telemetry pipeline"
+    },
+    {
       "id": "vercel-ai",
       "domain": "ai-agents",
       "name": "Vercel AI SDK",
@@ -4062,6 +4330,22 @@
       "use_when": "Next.js/Web 流式聊天与工具调用",
       "avoid_when": "后端批处理/非 TS 栈",
       "niche": "web streaming AI SDK"
+    },
+    {
+      "id": "victoriametrics",
+      "domain": "observability",
+      "name": "VictoriaMetrics",
+      "repo": "https://github.com/VictoriaMetrics/VictoriaMetrics",
+      "summary": "高性能、低成本的 Prometheus 兼容时序库。",
+      "tags": [
+        "observability",
+        "metrics"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要更省资源的 Prometheus 兼容存储",
+      "avoid_when": "必须严格 Grafana-only 官方组件",
+      "niche": "metrics"
     },
     {
       "id": "vite",
@@ -4292,6 +4576,22 @@
       "use_when": "在终端改/查 YAML 配置",
       "avoid_when": "只需 JSON 且已用 jq 足够",
       "niche": "yaml cli"
+    },
+    {
+      "id": "zipkin",
+      "domain": "observability",
+      "name": "Zipkin",
+      "repo": "https://github.com/openzipkin/zipkin",
+      "summary": "经典分布式追踪系统。",
+      "tags": [
+        "observability",
+        "tracing"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要轻量经典 tracing 后端",
+      "avoid_when": "要与 OTel 深度一体的现代栈",
+      "niche": "tracing"
     },
     {
       "id": "zustand",
@@ -5799,6 +6099,138 @@
       "type": "integrates_with",
       "to": "fastapi",
       "note": "Python 服务常用 uv 管依赖"
+    },
+    {
+      "from": "jaeger",
+      "type": "alternative_to",
+      "to": "zipkin",
+      "note": "现代 tracing vs 经典 Zipkin"
+    },
+    {
+      "from": "tempo",
+      "type": "alternative_to",
+      "to": "jaeger",
+      "note": "Grafana 生态 trace vs Jaeger"
+    },
+    {
+      "from": "loki",
+      "type": "alternative_to",
+      "to": "elasticsearch",
+      "note": "标签索引日志 vs 全文检索日志"
+    },
+    {
+      "from": "opensearch",
+      "type": "alternative_to",
+      "to": "elasticsearch",
+      "note": "开源分支 vs Elastic"
+    },
+    {
+      "from": "mimir",
+      "type": "alternative_to",
+      "to": "thanos",
+      "note": "Grafana 长期指标 vs Thanos"
+    },
+    {
+      "from": "victoriametrics",
+      "type": "alternative_to",
+      "to": "prometheus",
+      "note": "兼容存储/单二进制 vs 经典 Prometheus"
+    },
+    {
+      "from": "thanos",
+      "type": "integrates_with",
+      "to": "prometheus",
+      "note": "扩展 Prometheus"
+    },
+    {
+      "from": "mimir",
+      "type": "integrates_with",
+      "to": "grafana",
+      "note": "Grafana 查询后端"
+    },
+    {
+      "from": "loki",
+      "type": "integrates_with",
+      "to": "grafana",
+      "note": "日志面板常见组合"
+    },
+    {
+      "from": "tempo",
+      "type": "integrates_with",
+      "to": "grafana",
+      "note": "Trace 视图"
+    },
+    {
+      "from": "fluent-bit",
+      "type": "alternative_to",
+      "to": "fluentd",
+      "note": "轻量 vs 插件丰富"
+    },
+    {
+      "from": "vector-dev",
+      "type": "alternative_to",
+      "to": "fluent-bit",
+      "note": "Rust 管道 vs Fluent Bit"
+    },
+    {
+      "from": "grafana-alloy",
+      "type": "alternative_to",
+      "to": "opentelemetry-collector",
+      "note": "Grafana 采集器 vs 中立 OTel Collector"
+    },
+    {
+      "from": "signoz",
+      "type": "integrates_with",
+      "to": "opentelemetry-collector",
+      "note": "基于 OTel 的一体 APM"
+    },
+    {
+      "from": "sentry",
+      "type": "alternative_to",
+      "to": "signoz",
+      "note": "错误/发行版导向 vs 全栈 OTel APM"
+    },
+    {
+      "from": "pyroscope",
+      "type": "integrates_with",
+      "to": "grafana",
+      "note": "持续剖析常接 Grafana"
+    },
+    {
+      "from": "opentelemetry-collector",
+      "type": "integrates_with",
+      "to": "jaeger",
+      "note": "导出 traces 到 Jaeger"
+    },
+    {
+      "from": "opentelemetry-collector",
+      "type": "integrates_with",
+      "to": "prometheus",
+      "note": "指标管线常见下游"
+    },
+    {
+      "from": "uptime-kuma",
+      "type": "alternative_to",
+      "to": "prometheus",
+      "note": "简单可用性 vs 完整指标系统"
+    },
+    {
+      "from": "fluent-bit",
+      "type": "integrates_with",
+      "to": "loki",
+      "note": "常见日志转发目标"
+    },
+    {
+      "from": "graylog",
+      "type": "alternative_to",
+      "to": "loki",
+      "note": "一体日志平台 vs 标签索引日志"
+    },
+    {
+      "from": "graylog",
+      "type": "alternative_to",
+      "to": "elasticsearch",
+      "note": "日志平台 vs 纯搜索引擎后端"
     }
   ]
 }

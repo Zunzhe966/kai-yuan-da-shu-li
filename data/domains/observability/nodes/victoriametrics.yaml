@@ -1,0 +1,12 @@
+id: victoriametrics
+type: project
+name: VictoriaMetrics
+repo: https://github.com/VictoriaMetrics/VictoriaMetrics
+summary: 高性能、低成本的 Prometheus 兼容时序库。
+tags: [observability, metrics]
+language: Go
+status: active
+use_when: 要更省资源的 Prometheus 兼容存储
+avoid_when: 必须严格 Grafana-only 官方组件
+niche: metrics
+related_ecosystem: observability

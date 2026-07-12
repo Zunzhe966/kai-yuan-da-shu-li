@@ -196,6 +196,14 @@ def _score(query: str, intent_tags: set[str], nid: str, n: dict[str, str]) -> fl
         if nid == "shorebird": s += 3
     if "Kotlin" in query and "多平台" in query:
         if nid == "kmp": s += 3
+    if "分布式追踪" in query or "链路追踪" in query:
+        if nid in ("jaeger", "tempo", "zipkin"): s += 3
+    if "日志聚合" in query or ("日志" in query and "Loki" in query):
+        if nid in ("loki", "graylog", "opensearch"): s += 2
+    if "OpenTelemetry Collector" in query or "遥测采集器" in query:
+        if nid in ("opentelemetry-collector", "grafana-alloy", "vector-dev"): s += 3
+    if "错误监控" in query or "应用错误" in query:
+        if nid in ("sentry", "signoz"): s += 3
     return s
 
 

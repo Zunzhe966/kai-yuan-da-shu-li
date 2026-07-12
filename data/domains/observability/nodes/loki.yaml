@@ -1,0 +1,12 @@
+id: loki
+type: project
+name: Grafana Loki
+repo: https://github.com/grafana/loki
+summary: 像 Prometheus 一样的日志聚合系统。
+tags: [observability, logging, grafana]
+language: Go
+status: active
+use_when: 要与 Prometheus/Grafana 同风格的日志栈
+avoid_when: 要全文检索型日志平台（ELK）
+niche: logging
+related_ecosystem: observability

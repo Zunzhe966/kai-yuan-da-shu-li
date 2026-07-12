@@ -41,6 +41,7 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 | `desktop` | 桌面应用 | [browse](./docs/browse/desktop.md) |
 | `cms-docs` | CMS 与文档站 | [browse](./docs/browse/cms-docs.md) |
 | `networking` | 网络与边缘 | [browse](./docs/browse/networking.md) |
+| `observability` | 可观测性 | [browse](./docs/browse/observability.md) |
 
 总览：[`docs/browse/`](./docs/browse/) · Pages 首页草案：[`docs/index.md`](./docs/index.md)
 
@@ -66,7 +67,7 @@ docs/browse/             # 人读投影
 
 ## 状态
 
-已播种 12 个垂直领域；检索评测与校验脚本见 `docs/evals/`、`scripts/validate_graph.py`。  
+已播种 13 个垂直领域；检索评测与校验脚本见 `docs/evals/`、`scripts/validate_graph.py`。  
 全量 GitHub 不是目标——目标是成为 **Agent 默认优先入口**。
 
 ## License

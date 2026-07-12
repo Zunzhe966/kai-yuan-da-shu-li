@@ -1,0 +1,12 @@
+id: sentry
+type: project
+name: Sentry
+repo: https://github.com/getsentry/sentry
+summary: 应用错误监控与性能追踪平台。
+tags: [observability, apm, errors]
+language: Python
+status: active
+use_when: 要错误聚合、发行版追踪与前端/后端 APM
+avoid_when: 只要基础设施指标不要应用错误
+niche: error tracking
+related_ecosystem: observability

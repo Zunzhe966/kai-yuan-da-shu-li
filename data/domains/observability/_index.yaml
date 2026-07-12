@@ -1,0 +1,30 @@
+domain: observability
+title: 可观测性
+status: seeding
+notes: |
+  D21 第十三垂直。prometheus/grafana 已在 devops；本域补齐 traces/logs/APM/采集器。elasticsearch 在 databases。
+
+categories:
+  - id: otel
+    title: OpenTelemetry
+    node_ids: [opentelemetry-collector]
+  - id: tracing
+    title: 链路追踪
+    node_ids: [jaeger, zipkin, tempo]
+  - id: metrics
+    title: 指标存储
+    node_ids: [mimir, thanos, victoriametrics]
+  - id: logging
+    title: 日志
+    node_ids: [loki, opensearch, graylog]
+  - id: collectors
+    title: 采集与管道
+    node_ids: [fluent-bit, fluentd, vector-dev, grafana-alloy]
+  - id: apm
+    title: APM / 错误 / Profiling
+    node_ids: [sentry, signoz, pyroscope]
+  - id: uptime
+    title: 可用性
+    node_ids: [uptime-kuma]
+
+nodes_dir: nodes

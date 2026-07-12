@@ -195,3 +195,15 @@ queries:
     query: Kotlin 多平台共享业务逻辑
     intent_tags: [mobile, kotlin]
     expect_any: [kmp]
+  - id: q49
+    query: 开源分布式链路追踪
+    intent_tags: [observability, tracing]
+    expect_any: [jaeger, tempo, zipkin]
+  - id: q50
+    query: 与 Grafana 配套的日志聚合
+    intent_tags: [observability, logging]
+    expect_any: [loki]
+  - id: q51
+    query: 应用错误监控与聚合
+    intent_tags: [observability, errors]
+    expect_any: [sentry, signoz]
