@@ -1,5 +1,6 @@
 version: 1
-domain: ai-agents
+domain: all
+# per-query domain defaults to all in run_retrieval_eval.py
 queries:
   - id: q1
     query: 我想做多 Agent 角色分工协作，Python

@@ -50,3 +50,7 @@
 - 不要把本仓库当成代码托管；这里是**索引与图谱**
 - 不要只按 star 排序；看 `niche`、维护状态与 `use_when`
 - 不要一次倾倒 20 个链接；默认 1–3 个，说清取舍
+
+## 评测
+
+本地复验：`.venv/bin/python scripts/run_retrieval_eval.py`（默认全域 `domain=all`，阈值 ≥80%）。
