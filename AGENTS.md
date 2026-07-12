@@ -9,7 +9,8 @@
 
 2. **定位领域**  
    打开 `data/domains/<domain>/_index.yaml`。  
-   第一期只有：`ai-agents`。
+   现有领域：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile`。  
+   也可用 MCP/HTTP/`dist/atlas-index.json` 做 `domain=all` 检索。
 
 3. **候选召回**  
    用节点的 `tags`、`summary`、`use_when`、`avoid_when` 过滤。
