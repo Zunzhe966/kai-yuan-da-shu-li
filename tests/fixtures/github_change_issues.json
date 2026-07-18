@@ -1,0 +1,29 @@
+[
+  {
+    "id": "I_kwDOExample101",
+    "number": 101,
+    "title": "[agent-change] alpha repository missing",
+    "body": "### Project ID\n\nalpha\n\n### Baseline hash\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n### Change type\n\nrepository_missing\n\n### Observed value\n\nHTTP 404\n\n### Short description\n\nThe upstream repository now returns 404.\n\n### Evidence URL\n\nhttps://github.com/a/a\n\n### Upstream fingerprint\n\n404\n\n### Observed at\n\n2026-07-18T08:00:00Z\n",
+    "url": "https://github.com/Zunzhe966/kaiyuan-dashuli/issues/101",
+    "createdAt": "2026-07-18T08:02:00Z",
+    "author": {"login": "agent-one"}
+  },
+  {
+    "id": "I_kwDOExample102",
+    "number": 102,
+    "title": "[agent-change] alpha unavailable",
+    "body": "### Project ID\n\nalpha\n\n### Baseline hash\n\naaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n\n### Change type\n\nrepository_missing\n\n### Observed value\n\nNot found\n\n### Short description\n\nI could no longer open the repository.\n\n### Evidence URL\n\nhttps://github.com/a/a\n\n### Upstream fingerprint\n\n404\n\n### Observed at\n\n2026-07-18T08:05:00Z\n",
+    "url": "https://github.com/Zunzhe966/kaiyuan-dashuli/issues/102",
+    "createdAt": "2026-07-18T08:06:00Z",
+    "author": {"login": "agent-two"}
+  },
+  {
+    "id": "I_kwDOExample103",
+    "number": 103,
+    "title": "[agent-change] beta summary mismatch",
+    "body": "### Project ID\n\nbeta\n\n### Baseline hash\n\nbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\n\n### Change type\n\nsummary_mismatch\n\n### Observed value\n\nNow focused on local deployment\n\n### Short description\n\nThe README describes a different primary use case.\n\n### Evidence URL\n\nhttps://github.com/b/b#readme\n\n### Upstream fingerprint\n\nreadme-local-deployment\n\n### Observed at\n\n2026-07-18T09:00:00Z\n",
+    "url": "https://github.com/Zunzhe966/kaiyuan-dashuli/issues/103",
+    "createdAt": "2026-07-18T09:01:00Z",
+    "author": {"login": "agent-three"}
+  }
+]

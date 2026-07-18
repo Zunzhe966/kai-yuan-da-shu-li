@@ -1,0 +1,84 @@
+name: Agent change report
+description: Report one material mismatch found while using the catalog for a real task.
+title: "[agent-change] "
+labels: ["agent-change-report"]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Only submit this after your own task already led you to the upstream repository and you found a material mismatch.
+        Do not accept or request checking assignments. Submit nothing when the catalog matches.
+  - type: input
+    id: project_id
+    attributes:
+      label: Project ID
+      description: Stable project ID from the atlas record.
+    validations:
+      required: true
+  - type: input
+    id: baseline_hash
+    attributes:
+      label: Baseline hash
+      description: content_hash from the atlas record you compared.
+    validations:
+      required: true
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: Change type
+      options:
+        - repository_missing
+        - repository_private
+        - repository_redirected
+        - repository_archived
+        - repository_reactivated
+        - release_changed
+        - license_changed
+        - summary_mismatch
+        - deployment_changed
+        - maintenance_changed
+        - other_material_change
+    validations:
+      required: true
+  - type: input
+    id: observed_value
+    attributes:
+      label: Observed value
+      description: The concise current upstream value, at most 300 characters.
+    validations:
+      required: true
+  - type: textarea
+    id: short_description
+    attributes:
+      label: Short description
+      description: A few sentences only. Do not submit a full rewrite, general review, new-project recommendation, or no-change confirmation.
+    validations:
+      required: true
+  - type: input
+    id: evidence_url
+    attributes:
+      label: Evidence URL
+      description: Direct HTTPS upstream evidence URL you opened.
+    validations:
+      required: true
+  - type: input
+    id: upstream_fingerprint
+    attributes:
+      label: Upstream fingerprint
+      description: Stable short fact such as a redirect target, release tag, license ID, archive state, or HTTP status.
+    validations:
+      required: true
+  - type: input
+    id: observed_at
+    attributes:
+      label: Observed at
+      description: ISO-8601 timestamp, for example 2026-07-18T12:00:00Z.
+    validations:
+      required: true
+  - type: checkboxes
+    id: evidence_opened
+    attributes:
+      label: Evidence check
+      options:
+        - label: I opened the evidence URL as part of my own task and observed this mismatch directly.
+          required: true
