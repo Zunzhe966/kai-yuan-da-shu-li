@@ -68,6 +68,24 @@ class BuildStaticSiteTests(unittest.TestCase):
             self.assertIn('id="load-more"', home)
             self.assertIn('data-page-size="20"', home)
 
+    def test_rebuild_removes_stale_project_pages(self):
+        def node(name):
+            return {
+                "domain": "devtools",
+                "name": name.title(),
+                "repo": f"https://github.com/example/{name}",
+                "summary": "A test project.",
+                "tag_list": ["test"],
+                "status": "active",
+            }
+
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            build_site(output, {"alpha": node("alpha")}, [], "https://atlas.example")
+            build_site(output, {"beta": node("beta")}, [], "https://atlas.example")
+            self.assertFalse((output / "projects/alpha/index.html").exists())
+            self.assertTrue((output / "projects/beta/index.html").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

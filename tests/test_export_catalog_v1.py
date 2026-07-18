@@ -43,6 +43,35 @@ class ExportCatalogV1Tests(unittest.TestCase):
             self.assertEqual([item["id"] for item in search], ["alpha", "beta"])
             self.assertEqual(search[0]["language"], "Python")
 
+    def test_export_removes_records_that_are_no_longer_in_source(self):
+        def node(domain, name):
+            return {
+                "domain": domain,
+                "name": name.title(),
+                "repo": f"https://github.com/example/{name}",
+                "summary": "A test project.",
+                "tag_list": ["test"],
+                "status": "active",
+            }
+
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "v1"
+            export_catalog(
+                output,
+                {"alpha": node("devtools", "alpha")},
+                [],
+                generated_at="2026-07-17T00:00:00Z",
+            )
+            export_catalog(
+                output,
+                {"beta": node("backend", "beta")},
+                [],
+                generated_at="2026-07-18T00:00:00Z",
+            )
+            self.assertFalse((output / "nodes/alpha.json").exists())
+            self.assertFalse((output / "domains/devtools.json").exists())
+            self.assertTrue((output / "nodes/beta.json").exists())
+
 
 if __name__ == "__main__":
     unittest.main()

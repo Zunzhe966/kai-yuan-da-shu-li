@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -36,6 +37,10 @@ def export_catalog(
     records = [build_public_record(node_id, nodes[node_id]) for node_id in sorted(nodes)]
     domains = _facet_values(records, "domain")
     tags = sorted({tag for record in records for tag in record["tags"]})
+    if output.exists():
+        if output.is_symlink() or not output.is_dir():
+            raise ValueError(f"catalog output must be a directory: {output}")
+        shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True)
     _write_json(
         output / "meta.json",

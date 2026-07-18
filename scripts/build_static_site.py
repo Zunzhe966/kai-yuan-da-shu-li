@@ -241,6 +241,10 @@ def build_site(
     )
     records = [build_public_record(node_id, nodes[node_id]) for node_id in sorted(nodes)]
     domains = sorted({record["domain"] for record in records})
+    if output.exists():
+        if output.is_symlink() or not output.is_dir():
+            raise ValueError(f"site output must be a directory: {output}")
+        shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True)
     export_catalog(output / "api/v1", nodes, edges, generated_at)
     assets = output / "assets"
