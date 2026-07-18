@@ -7,3 +7,5 @@ __pycache__/
 .cursor/
 build/
 var/feedback/
+.playwright-cli/
+output/
