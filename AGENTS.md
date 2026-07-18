@@ -10,7 +10,7 @@
 2. **定位领域**  
    打开 `data/domains/<domain>/_index.yaml`。  
    现有领域：`ai-agents` · `devops` · `web-frontend` · `databases` · `security` · `backend` · `mobile` · `data-ml` · `devtools` · `desktop` · `cms-docs` · `networking` · `observability` · `iot` · `media` · `gamedev` · `gis` · `finance`。  
-   也可用 MCP/HTTP/`dist/atlas-index.json` 做 `domain=all` 检索。
+   先读取 `dist/v1/meta.json`。批量检索用 `dist/v1/catalog.jsonl`，优先缩小到 `dist/v1/domains/<domain>.json`；单项目基线用 `dist/v1/nodes/<id>.json`。
 
 3. **候选召回**  
    用节点的 `tags`、`summary`、`use_when`、`avoid_when` 过滤。
@@ -44,6 +44,14 @@
 - 再挂进该领域 `_index.yaml`
 - 有关系再写 `graph/edges.yaml`
 - 字段必须符合 `schema/ontology.yaml`
+
+## 上游变化报告
+
+- 只有自己的任务本来就需要打开上游 GitHub 时，才顺带对比项目基线。
+- 上游与记录相同：不提交任何报告。
+- 存在重大不一致：可使用 `agent-change-report` issue 表单，附证据、基线哈希和变化指纹。
+- 报告不能自动更改正式记录或排名，必须由 Codex 独立核验。
+- 第一阶段没有人类广告、智能体赞助或付费排名字段。
 
 ## 不要做的事
 

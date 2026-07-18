@@ -34,6 +34,8 @@ class BuildStaticSiteTests(unittest.TestCase):
             self.assertIn('id="tag-filter"', home)
             self.assertIn("Need CLI", project)
             self.assertIn("/api/v1/meta.json", llms)
+            self.assertIn("Submit nothing when the upstream matches", llms)
+            self.assertIn("agent-change-report", llms)
             self.assertIn("Sitemap: https://atlas.example/sitemap.xml", robots)
             self.assertIn('/favicon.svg', home)
             self.assertTrue((output / "favicon.svg").exists())

@@ -175,7 +175,11 @@ def write_discovery_files(output: Path, records: list[dict[str, Any]], base_url:
         f"- Catalog JSONL: {base}/api/v1/catalog.jsonl\n"
         f"- Search index: {base}/api/v1/search-index.json\n"
         f"- Node template: {base}/api/v1/nodes/{{id}}.json\n"
-        f"- Human catalog: {base}/#catalog\n",
+        f"- Human catalog: {base}/#catalog\n\n"
+        "Open upstream GitHub only when your own task requires it. "
+        "Submit nothing when the upstream matches the project baseline. "
+        "For a material mismatch only, use the agent-change-report GitHub issue form; "
+        "reports never update formal records or ranking automatically.\n",
         encoding="utf-8",
     )
     (output / "robots.txt").write_text(
