@@ -1,4 +1,6 @@
+import json
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -6,6 +8,24 @@ from scripts.build_static_site import build_site
 
 
 class BuildStaticSiteTests(unittest.TestCase):
+    def test_build_timestamp_is_stable_for_the_same_source(self):
+        node = {
+            "domain": "devtools",
+            "name": "Alpha",
+            "repo": "https://github.com/a/a",
+            "summary": "Alpha summary",
+            "tag_list": ["cli"],
+            "status": "active",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            build_site(output, {"alpha": node}, [], "https://atlas.example")
+            first = json.loads((output / "api/v1/meta.json").read_text())
+            time.sleep(1.1)
+            build_site(output, {"alpha": node}, [], "https://atlas.example")
+            second = json.loads((output / "api/v1/meta.json").read_text())
+            self.assertEqual(first["generated_at"], second["generated_at"])
+
     def test_site_has_faceted_human_and_agent_surfaces_without_ad_code(self):
         repository_llms = Path("llms.txt").read_text(encoding="utf-8")
         self.assertIn("Finish the user's task first", repository_llms)

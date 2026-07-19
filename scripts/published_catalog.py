@@ -2,7 +2,36 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import subprocess
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def stable_generated_at() -> str:
+    """Return a reproducible source timestamp for exported artifacts."""
+    raw_epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    if raw_epoch is None:
+        try:
+            raw_epoch = subprocess.check_output(
+                ["git", "log", "-1", "--format=%ct", "--", "data", "graph", "schema"],
+                cwd=ROOT,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+            if not raw_epoch:
+                raw_epoch = None
+        except (OSError, subprocess.CalledProcessError):
+            raw_epoch = None
+    try:
+        timestamp = datetime.fromtimestamp(int(raw_epoch), timezone.utc)
+    except (TypeError, ValueError, OverflowError, OSError):
+        timestamp = datetime.now(timezone.utc)
+    return timestamp.replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def _tags(node: dict[str, Any]) -> list[str]:

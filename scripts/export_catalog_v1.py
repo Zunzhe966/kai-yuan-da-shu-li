@@ -4,7 +4,6 @@ import argparse
 import json
 import shutil
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -12,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from atlas_lib import load_edges, load_nodes  # noqa: E402
-from published_catalog import build_public_record  # noqa: E402
+from published_catalog import build_public_record, stable_generated_at  # noqa: E402
 
 
 def _write_json(path: Path, payload: Any) -> None:
@@ -102,12 +101,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "dist/v1")
     args = parser.parse_args()
-    generated_at = (
-        datetime.now(timezone.utc)
-        .replace(microsecond=0)
-        .isoformat()
-        .replace("+00:00", "Z")
-    )
+    generated_at = stable_generated_at()
     export_catalog(args.output, load_nodes(None), load_edges(), generated_at)
     print(f"wrote catalog v1 to {args.output}")
     return 0
