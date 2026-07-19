@@ -3,10 +3,12 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import shlex
 import subprocess
 import tempfile
 from datetime import datetime
 from pathlib import Path
+from typing import Callable
 from urllib.parse import urlparse
 
 
@@ -40,6 +42,22 @@ def _cleanup_digests(digest_dir: Path, open_fingerprints: set[str]) -> None:
             digest.unlink()
 
 
+def _issue_delete_args(node_id: str) -> list[str]:
+    return [
+        "gh",
+        "api",
+        "graphql",
+        "-f",
+        "query=mutation($issueId:ID!){deleteIssue(input:{issueId:$issueId}){clientMutationId}}",
+        "-F",
+        f"issueId={node_id}",
+    ]
+
+
+def _delete_github_issue(node_id: str) -> None:
+    subprocess.run(_issue_delete_args(node_id), check=True)
+
+
 def finish_event(
     *,
     state_path: Path,
@@ -51,6 +69,8 @@ def finish_event(
     formal_commit: str,
     verification_dir: Path,
     digest_dir: Path,
+    delete_github_issues: bool = False,
+    issue_deleter: Callable[[str], None] | None = None,
 ) -> list[str]:
     if resolution not in RESOLUTIONS:
         raise ValueError("unsupported resolution")
@@ -76,6 +96,20 @@ def finish_event(
     if event is None:
         raise ValueError("event is not open")
 
+    issue_node_ids = list(event.get("issue_node_ids", []))
+    commands = [shlex.join(_issue_delete_args(node_id)) for node_id in issue_node_ids]
+    if not delete_github_issues:
+        return commands
+
+    delete_issue = issue_deleter or _delete_github_issue
+    remaining_issue_ids = list(issue_node_ids)
+    for node_id in issue_node_ids:
+        delete_issue(node_id)
+        remaining_issue_ids.remove(node_id)
+        if remaining_issue_ids:
+            event["issue_node_ids"] = list(remaining_issue_ids)
+            _atomic_json(state_path, state)
+
     verification_dir.mkdir(parents=True, exist_ok=True)
     month = parsed_time.astimezone().strftime("%Y-%m")
     record = {
@@ -94,11 +128,7 @@ def finish_event(
     state["unique_events"] = len(state["events"])
     _atomic_json(state_path, state)
     _cleanup_digests(digest_dir, {item["fingerprint"] for item in state["events"]})
-    return [
-        "gh api graphql -f query='mutation($issueId:ID!){deleteIssue(input:{issueId:$issueId}){clientMutationId}}' "
-        f"-F issueId={node_id}"
-        for node_id in event.get("issue_node_ids", [])
-    ]
+    return commands
 
 
 def main() -> int:
@@ -124,12 +154,10 @@ def main() -> int:
         formal_commit=args.formal_commit,
         verification_dir=args.verification_dir,
         digest_dir=args.digest_dir,
+        delete_github_issues=args.delete_github_issues,
     )
     for command in commands:
         print(command)
-    if args.delete_github_issues:
-        for command in commands:
-            subprocess.run(command, shell=True, check=True)
     return 0
 
 

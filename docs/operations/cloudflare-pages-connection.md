@@ -17,12 +17,12 @@
 项目名称：kai-yuan-da-shu-li
 生产分支：main
 框架预设：None
-构建命令：python3 scripts/build_static_site.py --output build/site --base-url "$CF_PAGES_URL"
+构建命令：python3 scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
 构建输出目录：build/site
 根目录：/
 ```
 
-保存后等待第一次构建。成功后 Cloudflare 会提供一个类似 `kai-yuan-da-shu-li.pages.dev` 的免费地址。
+保存后等待第一次构建。成功后先使用固定的免费地址 `https://kai-yuan-da-shu-li.pages.dev`。预览部署会有临时地址，但不得将临时地址写入 sitemap、robots 或 `llms.txt`。
 
 ## 第一次验收
 

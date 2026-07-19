@@ -7,6 +7,15 @@ from scripts.build_static_site import build_site
 
 
 class SurfaceConsistencyTests(unittest.TestCase):
+    def test_cloudflare_build_uses_the_stable_production_url(self):
+        for path in (
+            Path("docs/operations/cloudflare-pages-connection.md"),
+            Path("docs/operations/static-release.md"),
+        ):
+            text = path.read_text(encoding="utf-8")
+            self.assertIn("https://kai-yuan-da-shu-li.pages.dev", text)
+            self.assertNotIn("$CF_PAGES_URL", text)
+
     def test_phase_one_documents_ad_surfaces_without_enabling_them(self):
         advertising_path = Path("docs/advertising.md")
         self.assertTrue(advertising_path.exists())

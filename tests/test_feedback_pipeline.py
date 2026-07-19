@@ -55,7 +55,7 @@ class FeedbackPipelineTests(unittest.TestCase):
             self.assertIsNone(result)
             self.assertFalse(output.exists())
 
-    def test_finish_event_records_resolution_and_returns_dry_run_deletions(self):
+    def test_finish_event_preview_does_not_change_local_state(self):
         commit = subprocess.run(
             ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
         ).stdout.strip()
@@ -89,11 +89,104 @@ class FeedbackPipelineTests(unittest.TestCase):
                 verification_dir=root / "verification",
                 digest_dir=digest_dir,
             )
+            self.assertEqual(json.loads(state_path.read_text()), state)
+            self.assertFalse((root / "verification").exists())
+            self.assertIn("I_kwDOExample101", commands[0])
+            self.assertTrue(digest.exists())
+
+    def test_finish_event_records_and_cleans_only_after_issue_deletion_succeeds(self):
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+        ).stdout.strip()
+        fingerprint = "f" * 64
+        state = {
+            "events": [
+                {
+                    "fingerprint": fingerprint,
+                    "project_id": "alpha",
+                    "evidence_url": "https://github.com/a/a",
+                    "issue_node_ids": ["I_kwDOExample101"],
+                }
+            ]
+        }
+        deleted = []
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            state_path = root / "open-events.json"
+            state_path.write_text(json.dumps(state))
+            digest_dir = root / "digests"
+            digest_dir.mkdir()
+            digest = digest_dir / "2026-07-18.md"
+            digest.write_text(f"event `{fingerprint}`\n")
+
+            finish_event(
+                state_path=state_path,
+                fingerprint=fingerprint,
+                resolution="false-positive",
+                evidence_url="https://github.com/a/a",
+                verified_at="2026-07-18T10:00:00Z",
+                verifier="Codex",
+                formal_commit=commit,
+                verification_dir=root / "verification",
+                digest_dir=digest_dir,
+                delete_github_issues=True,
+                issue_deleter=deleted.append,
+            )
+
+            self.assertEqual(deleted, ["I_kwDOExample101"])
             self.assertEqual(json.loads(state_path.read_text())["events"], [])
             record = json.loads((root / "verification/2026-07.jsonl").read_text())
             self.assertEqual(record["formal_commit"], commit)
-            self.assertIn("I_kwDOExample101", commands[0])
             self.assertFalse(digest.exists())
+
+    def test_finish_event_keeps_remaining_issue_ids_when_deletion_fails(self):
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], check=True, capture_output=True, text=True
+        ).stdout.strip()
+        fingerprint = "f" * 64
+        state = {
+            "events": [
+                {
+                    "fingerprint": fingerprint,
+                    "project_id": "alpha",
+                    "evidence_url": "https://github.com/a/a",
+                    "issue_node_ids": ["I_kwDOExample101", "I_kwDOExample102"],
+                }
+            ]
+        }
+
+        def fail_on_second_issue(node_id):
+            if node_id == "I_kwDOExample102":
+                raise subprocess.CalledProcessError(1, ["gh", "api"])
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            state_path = root / "open-events.json"
+            state_path.write_text(json.dumps(state))
+            digest_dir = root / "digests"
+            digest_dir.mkdir()
+            digest = digest_dir / "2026-07-18.md"
+            digest.write_text(f"event `{fingerprint}`\n")
+
+            with self.assertRaises(subprocess.CalledProcessError):
+                finish_event(
+                    state_path=state_path,
+                    fingerprint=fingerprint,
+                    resolution="false-positive",
+                    evidence_url="https://github.com/a/a",
+                    verified_at="2026-07-18T10:00:00Z",
+                    verifier="Codex",
+                    formal_commit=commit,
+                    verification_dir=root / "verification",
+                    digest_dir=digest_dir,
+                    delete_github_issues=True,
+                    issue_deleter=fail_on_second_issue,
+                )
+
+            saved_event = json.loads(state_path.read_text())["events"][0]
+            self.assertEqual(saved_event["issue_node_ids"], ["I_kwDOExample102"])
+            self.assertFalse((root / "verification").exists())
+            self.assertTrue(digest.exists())
 
     def test_finish_event_rejects_unknown_commit(self):
         with tempfile.TemporaryDirectory() as directory:

@@ -6,7 +6,6 @@ import html
 import json
 import shutil
 import sys
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -15,7 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from atlas_lib import load_edges, load_nodes  # noqa: E402
 from export_catalog_v1 import export_catalog  # noqa: E402
-from published_catalog import build_public_record  # noqa: E402
+from published_catalog import build_public_record, stable_generated_at  # noqa: E402
 
 
 DOMAIN_LABELS = {
@@ -241,9 +240,7 @@ def build_site(
     edges: list[dict[str, str]],
     base_url: str,
 ) -> None:
-    generated_at = (
-        datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-    )
+    generated_at = stable_generated_at()
     records = [build_public_record(node_id, nodes[node_id]) for node_id in sorted(nodes)]
     domains = sorted({record["domain"] for record in records})
     if output.exists():

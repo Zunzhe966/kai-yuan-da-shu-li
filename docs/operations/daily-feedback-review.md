@@ -17,9 +17,9 @@
 3. 判断为真实变化、误报或目录已经修复。
 4. 真实变化只编辑受影响的正式记录，并运行图谱校验、测试和检索评测。
 5. 提交正式数据变化，在 Git commit 正文记录证据 URL。
-6. 第一次运行 `finish_change_event.py` 时不加 `--delete-github-issues`。
+6. 第一次运行 `finish_change_event.py` 时不加 `--delete-github-issues`；这只预览删除命令，不写核验记录，不清理本地事件。
 7. 检查它打印的 GitHub issue 删除命令。
-8. 确认无误后，只有需要永久删除临时 issue 时才加 `--delete-github-issues` 再运行。
+8. 确认无误后，加 `--delete-github-issues` 再运行。只有远程 issue 全部删除成功后才写核验记录并清理事件；中途失败会保留剩余 issue 编号供重试。
 9. 提交 `data/verification/YYYY-MM.jsonl` 中新增的简短核验记录。
 
 报告不能自动修改 YAML，未解决的事件不能删除。只有一份日报中的所有事件都解决后，临时日报才会清理。

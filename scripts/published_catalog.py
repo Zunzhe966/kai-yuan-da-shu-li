@@ -2,7 +2,38 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
+import subprocess
+from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def stable_generated_at(repo_root: Path = ROOT) -> str:
+    """Return a reproducible source timestamp for exported artifacts."""
+    raw_epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    if raw_epoch is None:
+        try:
+            raw_epoch = subprocess.check_output(
+                ["git", "show", "-s", "--format=%ct", "HEAD"],
+                cwd=repo_root,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            ).strip()
+        except (OSError, subprocess.CalledProcessError) as error:
+            raise RuntimeError(
+                "set SOURCE_DATE_EPOCH or build from a Git checkout with HEAD"
+            ) from error
+        if not raw_epoch:
+            raise RuntimeError("set SOURCE_DATE_EPOCH or build from a Git checkout with HEAD")
+    try:
+        timestamp = datetime.fromtimestamp(int(raw_epoch), timezone.utc)
+    except (TypeError, ValueError, OverflowError, OSError) as error:
+        raise ValueError("SOURCE_DATE_EPOCH or Git HEAD timestamp is invalid") from error
+    return timestamp.replace(microsecond=0).isoformat().replace("+00:00", "Z")
 
 
 def _tags(node: dict[str, Any]) -> list[str]:

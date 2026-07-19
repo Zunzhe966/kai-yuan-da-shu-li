@@ -1,7 +1,7 @@
 const normalize = value => String(value || "").toLowerCase().trim();
 
 async function loadIndex() {
-  const response = await fetch("/api/v1/search-index.json", { cache: "force-cache" });
+  const response = await fetch("/api/v1/search-index.json", { cache: "no-cache" });
   if (!response.ok) throw new Error(`search index ${response.status}`);
   return response.json();
 }
