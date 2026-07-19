@@ -51,7 +51,7 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 | `gis` | 地理空间 | [browse](./docs/browse/gis.md) |
 | `finance` | 金融与记账 | [browse](./docs/browse/finance.md) |
 
-总览：[`docs/browse/`](./docs/browse/) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md)
+总览：[`docs/browse/`](./docs/browse/) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md) · 广告隔离规则：[`docs/advertising.md`](./docs/advertising.md)
 
 ## 给人类
 

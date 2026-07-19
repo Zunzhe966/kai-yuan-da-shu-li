@@ -7,6 +7,17 @@ from scripts.build_static_site import build_site
 
 
 class SurfaceConsistencyTests(unittest.TestCase):
+    def test_phase_one_documents_ad_surfaces_without_enabling_them(self):
+        advertising_path = Path("docs/advertising.md")
+        self.assertTrue(advertising_path.exists())
+        advertising = advertising_path.read_text(encoding="utf-8")
+        readme = Path("README.md").read_text(encoding="utf-8")
+        self.assertIn("真人页面广告", advertising)
+        self.assertIn("sponsored_results", advertising)
+        for field in ("advertiser", "campaign_id", "starts_at", "ends_at", "landing_url"):
+            self.assertIn(field, advertising)
+        self.assertIn("docs/advertising.md", readme)
+
     def test_machine_and_human_pages_share_summary_and_bidirectional_relations(self):
         nodes = {
             "alpha": {
@@ -38,6 +49,19 @@ class SurfaceConsistencyTests(unittest.TestCase):
             self.assertIn("Alpha", beta)
             self.assertNotIn("paid_rank", json.dumps(record))
             self.assertNotIn("sponsored", json.dumps(record).lower())
+            all_machine_data = "\n".join(
+                path.read_text(encoding="utf-8", errors="ignore")
+                for path in (output / "api/v1").rglob("*")
+                if path.is_file() and path.suffix != ".gz"
+            )
+            all_human_html = "\n".join(
+                path.read_text(encoding="utf-8", errors="ignore")
+                for path in output.rglob("*.html")
+            )
+            self.assertNotIn("sponsored_results", all_machine_data)
+            self.assertNotIn("paid_rank", all_machine_data)
+            self.assertNotIn("adsbygoogle", all_human_html)
+            self.assertNotIn("doubleclick", all_human_html)
 
 
 if __name__ == "__main__":
