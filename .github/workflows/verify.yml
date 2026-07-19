@@ -1,0 +1,30 @@
+name: verify
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m venv .venv
+      - run: .venv/bin/pip install -r requirements.txt
+      - run: .venv/bin/python scripts/validate_graph.py
+      - run: .venv/bin/python -m unittest discover -s tests -v
+      - run: .venv/bin/python scripts/export_catalog_v1.py --output build/catalog-v1
+      - run: .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://example.invalid
+      - run: .venv/bin/python scripts/build_release.py --site build/site --output build/releases --release-name ci
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-static-release
+          path: build/releases/
+          retention-days: 7

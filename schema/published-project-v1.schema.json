@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kaiyuan-dashuli.example/schema/published-project-v1.schema.json",
+  "title": "Published project record v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "domain",
+    "name",
+    "repo",
+    "summary",
+    "tags",
+    "status",
+    "verification_status",
+    "evidence_urls",
+    "content_hash"
+  ],
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "domain": {"type": "string"},
+    "name": {"type": "string"},
+    "repo": {"type": "string", "format": "uri"},
+    "summary": {"type": "string"},
+    "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "language": {"type": "string"},
+    "license": {"type": "string"},
+    "status": {"type": "string"},
+    "use_when": {"type": "string"},
+    "avoid_when": {"type": "string"},
+    "niche": {"type": "string"},
+    "source_updated_at": {"type": ["string", "null"]},
+    "verified_at": {"type": ["string", "null"]},
+    "verification_status": {
+      "enum": ["unverified", "verified", "needs_review", "missing", "archived"]
+    },
+    "evidence_urls": {"type": "array", "items": {"type": "string", "format": "uri"}},
+    "content_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

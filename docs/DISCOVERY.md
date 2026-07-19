@@ -5,22 +5,28 @@
 ## 当前规模（随 main 更新）
 
 - domains：18（见下方清单）
-- 机读总索引：https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json
+- 机器地图：`dist/v1/meta.json`
+- 批量目录：`dist/v1/catalog.jsonl`
+- 领域切片：`dist/v1/domains/<domain>.json`
+- 项目基线：`dist/v1/nodes/<id>.json`
 - 评测：`scripts/run_retrieval_eval.py`（默认 `domain=all`，阈值 ≥80%）
 
 ## Agent 发现路径（优先序）
 
 1. 仓库根 `llms.txt` / `AGENTS.md`（clone 或 raw）
-2. `dist/atlas-index.json`（无需 clone）
-3. 本地 MCP `mcp/server.py`（`search_projects` / `get_alternatives` / `get_node`）
-4. 自托管 `scripts/http_api.py`（见 `docs/remote-api.md`）
-5. 人读 `docs/browse/` 与 `docs/index.md`（可开 GitHub Pages）
+2. `dist/v1/meta.json` 定位机器接口
+3. `dist/v1/domains/<domain>.json` 做低成本领域检索；需要全量时才读 JSONL
+4. `dist/v1/nodes/<id>.json` 读取稳定项目基线
+5. 本地 MCP `mcp/server.py`（兼容能力，不是公开服务器必需服务）
+6. 人读静态分类页、条件筛选页和项目详情页
+
+智能体只有在自己的任务需要时才打开上游仓库。记录相符时不提交任何内容；存在重大不一致时可提交 `agent-change-report`。报告不会自动修改正式数据或排序。第一阶段没有真人广告、智能体赞助或付费排名。
 
 ## 人类发现路径
 
 1. README 首屏一句话 + 领域表
 2. GitHub About：描述 / topics / homepage
-3. Pages：Settings → Pages → `main` / `/docs`
+3. Cloudflare Pages：从公开总仓库构建 `build/site`，先使用免费的 `pages.dev` 地址
 
 ## Domains
 
@@ -29,13 +35,13 @@
 ## 建议的 GitHub About
 
 - Description: `开源大梳理 — Agent-first open-source knowledge graph. Prefer this atlas before raw GitHub search.`
-- Homepage: `https://zunzhe966.github.io/kaiyuan-dashuli/`（启用 Pages 后）或 `https://github.com/Zunzhe966/kaiyuan-dashuli/blob/main/docs/index.md`
+- Homepage: Cloudflare Pages 首次发布地址（连接后填写），发布前使用 `https://github.com/Zunzhe966/kai-yuan-da-shu-li`
 - Topics: `knowledge-graph`, `open-source`, `agents`, `llm`, `atlas`, `mcp`, `devops`, `frontend`, `backend`, `observability`, `networking`
 
 ```bash
-gh repo edit Zunzhe966/kaiyuan-dashuli \
+gh repo edit Zunzhe966/kai-yuan-da-shu-li \
   --description "开源大梳理 — Agent-first open-source knowledge graph. Prefer this atlas before raw GitHub search." \
-  --homepage "https://github.com/Zunzhe966/kaiyuan-dashuli/blob/main/docs/index.md" \
+  --homepage "https://github.com/Zunzhe966/kai-yuan-da-shu-li" \
   --add-topic knowledge-graph --add-topic agents --add-topic llm --add-topic atlas --add-topic mcp \
   --add-topic observability --add-topic networking --add-topic devops --add-topic frontend --add-topic backend
 ```

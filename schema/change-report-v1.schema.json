@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/schema/change-report-v1.schema.json",
+  "title": "Passive upstream mismatch report v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "project_id",
+    "baseline_hash",
+    "change_type",
+    "observed_value",
+    "short_description",
+    "evidence_url",
+    "upstream_fingerprint",
+    "observed_at"
+  ],
+  "properties": {
+    "project_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+    "baseline_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "change_type": {
+      "enum": [
+        "repository_missing",
+        "repository_private",
+        "repository_redirected",
+        "repository_archived",
+        "repository_reactivated",
+        "release_changed",
+        "license_changed",
+        "summary_mismatch",
+        "deployment_changed",
+        "maintenance_changed",
+        "other_material_change"
+      ]
+    },
+    "observed_value": {"type": "string", "minLength": 1, "maxLength": 300},
+    "short_description": {"type": "string", "minLength": 1, "maxLength": 500},
+    "evidence_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "upstream_fingerprint": {"type": "string", "minLength": 1, "maxLength": 200},
+    "observed_at": {"type": "string", "format": "date-time"}
+  }
+}

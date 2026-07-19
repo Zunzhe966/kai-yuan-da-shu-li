@@ -13,17 +13,20 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 
 1. **统一分类（ontology）** — 同一套标签与层级  
 2. **知识图谱（relations）** — 替代、依赖、竞品、生态位  
-3. **Agent 可读入口** — `llms.txt` / YAML / MCP / 远程 JSON
+3. **Agent 可读入口** — `llms.txt` / JSONL / 领域切片 / 稳定项目记录
 
 ## 给智能体（先读这里）
 
 1. [`llms.txt`](./llms.txt) — 机器入口地图  
 2. [`AGENTS.md`](./AGENTS.md) — 检索约定与回答格式  
-3. 领域索引：`data/domains/<domain>/_index.yaml`  
-4. 关系：`graph/edges.yaml`  
-5. 本地 MCP：`mcp/server.py`（`search_projects` / `get_alternatives` / `get_node`）  
-6. 远程静态索引：https://raw.githubusercontent.com/Zunzhe966/kaiyuan-dashuli/main/dist/atlas-index.json  
-7. HTTP API：[`docs/remote-api.md`](./docs/remote-api.md)
+3. `dist/v1/meta.json` — 机器入口地图
+4. `dist/v1/catalog.jsonl` — 全量批量目录
+5. `dist/v1/domains/<domain>.json` — 推荐的领域切片
+6. `dist/v1/nodes/<id>.json` — 稳定项目基线与 `content_hash`
+7. 本地兼容能力：`mcp/server.py` 与 [`docs/remote-api.md`](./docs/remote-api.md)
+8. 公开网站目标：Cloudflare Pages，由本仓库自动构建静态网页和机器索引
+
+智能体只在自己的任务确实需要时打开上游 GitHub。上游与目录一致时不提交任何内容；发现重大不一致时，可使用 `agent-change-report` GitHub issue 表单。被动报告不会自动修改正式记录或排序。第一阶段没有真人广告、智能体赞助或付费排名。
 
 ## 当前领域（domains）
 
@@ -48,7 +51,7 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 | `gis` | 地理空间 | [browse](./docs/browse/gis.md) |
 | `finance` | 金融与记账 | [browse](./docs/browse/finance.md) |
 
-总览：[`docs/browse/`](./docs/browse/) · Pages 首页草案：[`docs/index.md`](./docs/index.md)
+总览：[`docs/browse/`](./docs/browse/) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md) · 广告隔离规则：[`docs/advertising.md`](./docs/advertising.md)
 
 ## 给人类
 
@@ -64,9 +67,9 @@ llms.txt / AGENTS.md     # Agent 入口
 schema/ontology.yaml     # 字段与领域规范
 data/domains/*/          # 节点
 graph/edges.yaml         # 关系
-dist/atlas-index.json    # 远程可拉取总索引
+dist/v1/                # JSON/JSONL、领域切片与项目基线
 mcp/server.py            # 本地 MCP
-scripts/http_api.py      # 可选 HTTP API
+scripts/build_static_site.py # 生成静态人类/智能体站点
 docs/browse/             # 人读投影
 ```
 

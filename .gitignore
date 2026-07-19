@@ -5,3 +5,7 @@
 __pycache__/
 .venv/
 .cursor/
+build/
+var/feedback/
+.playwright-cli/
+output/
