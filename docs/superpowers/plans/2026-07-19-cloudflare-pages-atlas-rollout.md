@@ -27,7 +27,7 @@
 
 - [ ] **Step 1: 记录公开、私人和服务器边界**
 
-在 `docs/operations/scope-and-safety.md` 记录公开总仓库地址、当前 389 个项目、未来分类仓库规则、私人仓库不公开规则、Cloudflare Pages 发布目标，以及搬瓦工只保留现有中转职责。
+在 `docs/operations/scope-and-safety.md` 记录公开总仓库地址、当前提交基线的 371 个项目、未来分类仓库规则、私人仓库不公开规则、Cloudflare Pages 发布目标，以及搬瓦工只保留现有中转职责。另一个窗口的未提交数据不复制到本分支。
 
 - [ ] **Step 2: 记录只读核查证据**
 
