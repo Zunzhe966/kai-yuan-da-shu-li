@@ -1,0 +1,7 @@
+version: 1
+sources:
+  - name: atlas-main
+    url: https://github.com/Zunzhe966/kai-yuan-da-shu-li
+    visibility: public
+    revision: b7684417b33e3b0b5ca79824c4cba27c7e50452b
+    content_path: data/domains
