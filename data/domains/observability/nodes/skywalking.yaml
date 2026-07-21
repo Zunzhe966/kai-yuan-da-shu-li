@@ -1,0 +1,16 @@
+id: skywalking
+type: project
+name: Apache SkyWalking
+repo: https://github.com/apache/skywalking
+summary: 应用性能监控与分布式追踪平台，偏 APM 一体化。
+tags: [observability]
+language: Java
+status: active
+use_when: 要开源 APM（拓扑、追踪、指标）一体化
+avoid_when: 只要轻量 tracing 后端（Jaeger/Tempo）
+niche: apm
+related_ecosystem: apache
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

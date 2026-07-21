@@ -1,0 +1,16 @@
+id: angular
+type: project
+name: Angular
+repo: https://github.com/angular/angular
+summary: Google 主导的 TypeScript 前端框架，偏完整应用脚手架与强约定。
+tags: [ui]
+language: TypeScript
+status: active
+use_when: 要企业级约定齐全的前端框架与工具链
+avoid_when: 只要轻量库或极简打包
+niche: spa framework
+related_ecosystem: angular
+license: MIT
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

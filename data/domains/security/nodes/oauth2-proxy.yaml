@@ -1,0 +1,16 @@
+id: oauth2-proxy
+type: project
+name: OAuth2 Proxy
+repo: https://github.com/oauth2-proxy/oauth2-proxy
+summary: 为 HTTP 服务提供 OAuth2/OIDC 反向代理鉴权。
+tags: [security]
+language: Go
+status: active
+use_when: 要把现有服务快速挂上 IdP 登录墙
+avoid_when: 要完整 IAM 产品（Keycloak/Authentik）
+niche: auth proxy
+related_ecosystem: oauth2
+license: MIT
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

@@ -1,0 +1,16 @@
+id: eslint
+type: project
+name: ESLint
+repo: https://github.com/eslint/eslint
+summary: JavaScript/TypeScript 可插拔静态检查工具。
+tags: [ui]
+language: JavaScript
+status: active
+use_when: 要成熟规则生态约束前端代码质量
+avoid_when: 只要开箱极速 format/lint 可先看 Biome
+niche: linter
+related_ecosystem: eslint
+license: MIT
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

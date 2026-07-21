@@ -1,0 +1,16 @@
+id: crowdsec
+type: project
+name: CrowdSec
+repo: https://github.com/crowdsecurity/crowdsec
+summary: 协作式行为检测与封禁，常作 fail2ban 类场景的现代替代。
+tags: [security]
+language: Go
+status: active
+use_when: 要日志驱动的入侵检测与共享信号封禁
+avoid_when: 只要极简单机 fail2ban
+niche: ids ips
+related_ecosystem: crowdsec
+license: MIT
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

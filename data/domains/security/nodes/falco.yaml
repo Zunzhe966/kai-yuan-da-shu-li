@@ -1,0 +1,16 @@
+id: falco
+type: project
+name: Falco
+repo: https://github.com/falcosecurity/falco
+summary: 云原生运行时安全检测，基于内核事件规则告警。
+tags: [security]
+language: C++
+status: active
+use_when: K8s/主机要运行时异常行为检测
+avoid_when: 只要镜像静态扫描（Trivy/Grype）
+niche: runtime security
+related_ecosystem: cncf
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

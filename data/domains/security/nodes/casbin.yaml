@@ -1,0 +1,16 @@
+id: casbin
+type: project
+name: Casbin
+repo: https://github.com/casbin/casbin
+summary: 多语言访问控制库，支持 ACL/RBAC/ABAC 等模型。
+tags: [security]
+language: Go
+status: active
+use_when: 要在应用内嵌入灵活授权模型
+avoid_when: 只要网关/网格策略（OPA/Kyverno）
+niche: authorization library
+related_ecosystem: casbin
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

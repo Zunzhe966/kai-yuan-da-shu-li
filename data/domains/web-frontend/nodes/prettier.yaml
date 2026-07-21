@@ -1,0 +1,16 @@
+id: prettier
+type: project
+name: Prettier
+repo: https://github.com/prettier/prettier
+summary: 固执己见的代码格式化工具，前端生态事实标准之一。
+tags: [ui]
+language: JavaScript
+status: active
+use_when: 要统一多语言前端代码风格、减少格式争论
+avoid_when: 只要更快的一体 format/lint（可看 Biome）
+niche: formatter
+related_ecosystem: prettier
+license: MIT
+source_updated_at: 2026-07-21T20:37:48Z
+verified_at: 2026-07-21T20:37:48Z
+verification_status: verified

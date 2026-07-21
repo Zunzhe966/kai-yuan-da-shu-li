@@ -13,16 +13,16 @@ categories:
     node_ids: [jaeger, zipkin, tempo]
   - id: metrics
     title: 指标存储
-    node_ids: [mimir, thanos, victoriametrics]
+    node_ids: [mimir, thanos, victoriametrics, netdata]
   - id: logging
     title: 日志
-    node_ids: [loki, opensearch, graylog]
+    node_ids: [loki, opensearch, graylog, openobserve]
   - id: collectors
     title: 采集与管道
     node_ids: [fluent-bit, fluentd, vector-dev, grafana-alloy]
   - id: apm
     title: APM / 错误 / Profiling
-    node_ids: [sentry, signoz, pyroscope]
+    node_ids: [sentry, signoz, pyroscope, skywalking]
   - id: uptime
     title: 可用性
     node_ids: [uptime-kuma]

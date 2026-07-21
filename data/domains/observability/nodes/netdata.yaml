@@ -1,0 +1,16 @@
+id: netdata
+type: project
+name: Netdata
+repo: https://github.com/netdata/netdata
+summary: 实时主机与容器指标可视化与告警，偏运维即时排障。
+tags: [observability]
+language: C
+status: active
+use_when: 要开箱即用的实时主机监控面板
+avoid_when: 只要长期指标存储与大规模联邦（Prometheus 生态）
+niche: realtime monitoring
+related_ecosystem: netdata
+license: GPL-3.0
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified
