@@ -4,11 +4,11 @@
 
 - GitHub 保存源文件、目录数据、设计历史和验证记录。
 - Cloudflare Pages 保存并分发公开网站，不使用搬瓦工作为网站源站。
-- `build/` 全部是可重新生成的临时产物，可以删除。
+- `build/` 全部是可重新生成的临时产物，可以删除；不作为需要长期同步到本机或 Cloudflare 的数据副本。
 - 网站不运行爬虫、模型、数据库、动态搜索或账号服务。
-- GitHub Actions 只验证和生成 7 天临时制品，不自动公开或部署。
+- GitHub Actions 在 GitHub 云端临时检出当前提交、安装依赖、验证图谱、运行测试与检索评测，并生成 7 天临时制品；它不需要使用者本机持有完整副本。
 
-## 本地发布
+## 本地复现（可选）
 
 依次运行：
 
@@ -21,11 +21,24 @@
 shasum -a 256 build/releases/*.tar.gz
 ```
 
-公开前把 `https://example.invalid` 替换为 Cloudflare Pages 提供的正式发布地址或用户确认的自定义域名，再重新生成发现文件和站点地图。
+这些命令用于开发时复现或排障，不是生产发布的必经步骤。正式验证以 GitHub Actions 的本次提交记录为准。
+
+## 云端发布链路
+
+```text
+Pull request
+→ GitHub Actions 云端验证
+→ 验证通过后合并到受保护的 main
+→ Cloudflare Pages 拉取该 main 提交并独立构建 build/site
+→ 自动发布 pages.dev
+→ 线上 api/v1/meta.json 作为发布后事实核验
+```
+
+Cloudflare 不上传或复用 GitHub Actions 的 artifact；它从 GitHub 当前提交独立构建，因此源代码、构建命令和输出目录必须固定在仓库设置中。
 
 ## Cloudflare Pages 发布
 
-当前生产项目是手动直传，GitHub `main` 更新不会自动上线。每次发布必须先生成并校验本节的发布包，再由已登录 Cloudflare 账户将 `build/site` 作为新部署上传；上传会替换生产站内容，执行前应确认版本、域名和发布时机。
+当前生产项目仍是手动直传，GitHub `main` 更新不会自动上线。过渡期只能由已登录 Cloudflare 账户手动发布；连接 GitHub 后必须停止把手动上传当作常规流程。
 
 未来连接 GitHub 后，生产分支更新可以自动重新构建。连接时构建参数固定为：
 
@@ -37,7 +50,7 @@ shasum -a 256 build/releases/*.tar.gz
 根目录：/
 ```
 
-第一次连接必须由用户在浏览器中确认 GitHub 授权，并且只授权 `Zunzhe966/kai-yuan-da-shu-li`。在正式连接完成前，仍按手动直传流程发布。当前使用固定的 `https://kai-yuan-da-shu-li.pages.dev`；自有域名确认并绑定后，必须以正式域名重新构建，避免 sitemap、robots 和 `llms.txt` 继续指向旧地址。
+第一次连接必须只授权 `Zunzhe966/kai-yuan-da-shu-li`。在正式连接完成前，仍按手动直传流程发布。连接后，为 `main` 启用 GitHub 受保护分支，要求 `verify / test-and-build` 通过才允许合并；否则 Cloudflare 可能收到尚未通过验证的提交。当前使用固定的 `https://kai-yuan-da-shu-li.pages.dev`；自有域名确认并绑定后，必须以正式域名重新构建，避免 sitemap、robots 和 `llms.txt` 继续指向旧地址。
 
 ## 回滚
 
