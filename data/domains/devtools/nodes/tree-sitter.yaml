@@ -10,3 +10,7 @@ use_when: 要给编辑器/工具做可靠语法树
 avoid_when: 只需一次性正则抽取文本
 niche: parser
 related_ecosystem: editor
+license: MIT
+source_updated_at: 2026-07-20T21:46:30Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

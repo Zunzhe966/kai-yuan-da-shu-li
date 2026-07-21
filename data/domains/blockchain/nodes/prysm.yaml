@@ -10,3 +10,7 @@ use_when: 要运行以太坊信标链/验证者客户端
 avoid_when: 只要 L2 应用开发
 niche: eth consensus
 related_ecosystem: ethereum
+license: GPL-3.0
+source_updated_at: 2026-07-21T12:56:05Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

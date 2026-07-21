@@ -10,3 +10,7 @@ use_when: 要更省资源的 Prometheus 兼容存储
 avoid_when: 必须严格 Grafana-only 官方组件
 niche: metrics
 related_ecosystem: observability
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:43:02Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

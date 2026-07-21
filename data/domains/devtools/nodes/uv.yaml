@@ -10,3 +10,7 @@ use_when: 要快的 venv/依赖解析/锁文件工作流
 avoid_when: 必须兼容遗留纯 pip/poetry 流程且无迁移窗口
 niche: python package
 related_ecosystem: python
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:45:06Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

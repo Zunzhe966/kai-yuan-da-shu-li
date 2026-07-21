@@ -10,3 +10,7 @@ use_when: 要运行比特币全节点/参考实现
 avoid_when: 只要中心化交易所账户 API
 niche: btc client
 related_ecosystem: bitcoin
+license: MIT
+source_updated_at: 2026-07-21T12:23:40Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

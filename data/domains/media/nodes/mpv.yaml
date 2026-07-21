@@ -10,3 +10,7 @@ use_when: 要可脚本化、高可控的本地播放器
 avoid_when: 要媒体库管理与多用户服务
 niche: player
 related_ecosystem: media
+license: 
+source_updated_at: 2026-07-14T19:13:03Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

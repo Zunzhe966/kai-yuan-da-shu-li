@@ -10,3 +10,7 @@ use_when: 要调度容器/非容器任务又不想上满血 K8s
 avoid_when: 团队标准已是 Kubernetes 且生态绑定深
 niche: workload scheduler
 related_ecosystem: devops
+license: 
+source_updated_at: 2026-07-21T12:42:29Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

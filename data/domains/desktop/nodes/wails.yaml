@@ -10,3 +10,7 @@ use_when: 后端想用 Go 且要桌面壳
 avoid_when: 团队主栈是 Rust/TS 且已选定 Tauri/Electron
 niche: go desktop
 related_ecosystem: desktop
+license: MIT
+source_updated_at: 2026-07-21T00:34:10Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

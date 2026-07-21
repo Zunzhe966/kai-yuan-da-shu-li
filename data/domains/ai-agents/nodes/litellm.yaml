@@ -10,3 +10,7 @@ use_when: 要一套接口打多个模型供应商并做路由/限流
 avoid_when: 只用单一官方 SDK 且无路由需求
 niche: multi-provider LLM proxy
 related_ecosystem: litellm
+license: 
+source_updated_at: 2026-07-21T08:12:56Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

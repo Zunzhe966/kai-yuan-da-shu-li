@@ -10,3 +10,7 @@ use_when: 要用 MQTT 统一接入 Zigbee 设备
 avoid_when: 全屋已是 Z-Wave/Matter 且无 Zigbee
 niche: zigbee bridge
 related_ecosystem: iot
+license: GPL-3.0
+source_updated_at: 2026-07-20T21:25:06Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

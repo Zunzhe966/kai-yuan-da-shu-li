@@ -10,3 +10,7 @@ use_when: 在意包体与编译期优化的组件开发
 avoid_when: 需要最大生态与招聘池
 niche: compiled ui framework
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T12:43:33Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

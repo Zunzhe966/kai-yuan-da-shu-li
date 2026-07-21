@@ -10,3 +10,7 @@ use_when: 要简单好看的可用性监控与状态页
 avoid_when: 要全集群指标/链路的完整可观测平台
 niche: uptime
 related_ecosystem: observability
+license: MIT
+source_updated_at: 2026-07-21T00:20:49Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

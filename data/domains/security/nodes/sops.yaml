@@ -10,3 +10,7 @@ use_when: 要把密钥落 Git 但需加密
 avoid_when: 已有完整密钥中枢且不需要文件级加密
 niche: encrypted config
 related_ecosystem: security
+license: MPL-2.0
+source_updated_at: 2026-07-21T04:41:29Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

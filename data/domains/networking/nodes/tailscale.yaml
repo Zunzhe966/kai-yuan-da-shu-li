@@ -10,3 +10,7 @@ use_when: 要轻松把设备组进私有网络
 avoid_when: 必须完全自建控制面且无 SaaS
 niche: mesh vpn
 related_ecosystem: networking
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T13:30:53Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

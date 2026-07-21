@@ -10,3 +10,7 @@ use_when: 要多轨录音混音的开源 DAW
 avoid_when: 只要简单剪一段播客音轨
 niche: daw
 related_ecosystem: media
+license: 
+source_updated_at: 2026-07-20T22:09:56Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: 要精确坐标参考系转换
 avoid_when: 只要粗略展示无需严谨投影
 niche: projection
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-07T20:41:21Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

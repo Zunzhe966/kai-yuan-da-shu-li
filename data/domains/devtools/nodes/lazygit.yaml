@@ -10,3 +10,7 @@ use_when: 在终端可视化处理分支/暂存/变基
 avoid_when: 只要脚本化 git 且无交互需求
 niche: git tui
 related_ecosystem: cli
+license: MIT
+source_updated_at: 2026-07-21T09:52:43Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要用纯文本账本做复式记账
 avoid_when: 要图形界面会计软件
 niche: plaintext accounting
 related_ecosystem: finance
+license: 
+source_updated_at: 2026-07-03T20:57:54Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

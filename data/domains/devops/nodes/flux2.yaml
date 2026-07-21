@@ -10,3 +10,7 @@ use_when: K8s GitOps 且偏 Flux 生态
 avoid_when: 已选定 Argo CD 且无双栈需求
 niche: gitops toolkit
 related_ecosystem: devops
+license: Apache-2.0
+source_updated_at: 2026-07-13T14:23:53Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

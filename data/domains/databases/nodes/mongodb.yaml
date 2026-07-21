@@ -10,3 +10,7 @@ use_when: 文档模型更贴合业务、灵活 schema
 avoid_when: 强事务多表关系是核心
 niche: document db
 related_ecosystem: databases
+license: 
+source_updated_at: 2026-07-21T13:37:02Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

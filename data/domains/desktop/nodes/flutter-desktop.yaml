@@ -10,3 +10,7 @@ use_when: 已有 Flutter 移动应用要扩展到桌面
 avoid_when: 只要轻量系统 WebView 壳且无 Dart 栈
 niche: flutter desktop
 related_ecosystem: desktop
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T11:39:09Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

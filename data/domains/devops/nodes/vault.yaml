@@ -10,3 +10,7 @@ use_when: 要统一管理密钥、动态凭证、加密即服务
 avoid_when: 只用云厂商密钥管理且无多云密钥需求
 niche: secrets management
 related_ecosystem: devops
+license: 
+source_updated_at: 2026-07-21T01:54:52Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

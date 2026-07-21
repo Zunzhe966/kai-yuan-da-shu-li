@@ -10,3 +10,7 @@ use_when: 要审计友好的代币/权限等合约组件
 avoid_when: 非 EVM 合约平台
 niche: contract libs
 related_ecosystem: ethereum
+license: MIT
+source_updated_at: 2026-07-20T19:45:31Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

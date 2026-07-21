@@ -10,3 +10,7 @@ use_when: 要构建组件化 SPA/复杂交互 UI
 avoid_when: 只要静态页或极简站点无组件状态
 niche: ui library
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T08:32:37Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

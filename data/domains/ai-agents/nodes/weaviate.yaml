@@ -10,3 +10,7 @@ use_when: 需要带模块/混合检索的向量库
 avoid_when: 只要嵌入式玩具级向量表
 niche: vector database
 related_ecosystem: ai-agents
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T13:14:04Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要运行/对接以太坊执行层节点
 avoid_when: 只要应用层合约开发不跑节点
 niche: eth client
 related_ecosystem: ethereum
+license: LGPL-3.0
+source_updated_at: 2026-07-21T09:05:46Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

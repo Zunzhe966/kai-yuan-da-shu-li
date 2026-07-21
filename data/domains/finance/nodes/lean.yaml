@@ -10,3 +10,7 @@ use_when: 要多资产算法交易与云/本地引擎
 avoid_when: 只要轻量 Python 脚本回测
 niche: algo engine
 related_ecosystem: finance
+license: Apache-2.0
+source_updated_at: 2026-07-20T21:43:01Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

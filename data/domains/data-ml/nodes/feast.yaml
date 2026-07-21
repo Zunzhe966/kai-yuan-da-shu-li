@@ -10,3 +10,7 @@ use_when: 在线/离线特征需要统一管理
 avoid_when: 特征很少、无服务化需求
 niche: feature store
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-20T14:13:56Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

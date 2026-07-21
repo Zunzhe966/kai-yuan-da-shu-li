@@ -10,3 +10,7 @@ use_when: 要强类型、依赖注入式 Agent 与结构化结果
 avoid_when: 需要巨型现成集成市场
 niche: typed python agents
 related_ecosystem: pydantic
+license: MIT
+source_updated_at: 2026-07-21T12:00:50Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

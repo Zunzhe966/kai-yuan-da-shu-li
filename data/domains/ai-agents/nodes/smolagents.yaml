@@ -10,3 +10,7 @@ use_when: 要轻量 Python Agent 且贴近 HF 生态
 avoid_when: 需要超大集成市场或企业复杂编排
 niche: lightweight HF agents
 related_ecosystem: ai-agents
+license: Apache-2.0
+source_updated_at: 2026-07-14T18:34:47Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

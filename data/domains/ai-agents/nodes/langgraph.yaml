@@ -10,3 +10,7 @@ use_when: 需要显式状态图、循环、人机审批的 Agent 流程
 avoid_when: 只要简单链式 LLM 调用，不想引入图运行时
 niche: graph-based agent orchestration
 related_ecosystem: langchain
+license: MIT
+source_updated_at: 2026-07-20T20:57:26Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

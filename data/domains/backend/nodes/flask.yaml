@@ -10,3 +10,7 @@ use_when: 要最小核心可扩展的 Python Web
 avoid_when: 要开箱即用全家桶
 niche: python microframework
 related_ecosystem: backend
+license: BSD-3-Clause
+source_updated_at: 2026-06-10T18:03:29Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

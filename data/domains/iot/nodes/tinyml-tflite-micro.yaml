@@ -10,3 +10,7 @@ use_when: 要在 MCU 跑小型 ML 推理
 avoid_when: 有 GPU/服务器可跑完整框架
 niche: tinyml
 related_ecosystem: iot
+license: Apache-2.0
+source_updated_at: 2026-07-20T18:27:02Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

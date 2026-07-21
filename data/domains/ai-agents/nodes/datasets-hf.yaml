@@ -10,3 +10,7 @@ use_when: 训练/评测需要标准数据集管道
 avoid_when: 只有几个本地 JSON 样例
 niche: dataset pipeline
 related_ecosystem: huggingface
+license: Apache-2.0
+source_updated_at: 2026-07-21T10:24:31Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

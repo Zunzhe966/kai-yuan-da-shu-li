@@ -74,7 +74,21 @@ node_types:
 # 项目节点必填/选填字段
 project_fields:
   required: [id, name, repo, summary, tags, status]
-  optional: [homepage, language, license, use_when, avoid_when, niche, related_ecosystem, quality_notes]
+  optional:
+    [
+      homepage,
+      language,
+      license,
+      use_when,
+      avoid_when,
+      niche,
+      related_ecosystem,
+      quality_notes,
+      source_updated_at,
+      verified_at,
+      verification_status,
+      evidence_urls,
+    ]
 
 # 关系类型
 edge_types:

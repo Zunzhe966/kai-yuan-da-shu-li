@@ -10,3 +10,7 @@ use_when: 要成熟轻量 RTOS 内核与生态
 avoid_when: 要完整发行版式 Zephyr 设备模型
 niche: rtos
 related_ecosystem: iot
+license: MIT
+source_updated_at: 2026-07-15T20:37:00Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

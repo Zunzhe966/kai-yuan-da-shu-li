@@ -10,3 +10,7 @@ use_when: 要简单可靠的 K8s 网格而非重型控制面
 avoid_when: 非 Kubernetes 环境
 niche: service mesh
 related_ecosystem: networking
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:21:05Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

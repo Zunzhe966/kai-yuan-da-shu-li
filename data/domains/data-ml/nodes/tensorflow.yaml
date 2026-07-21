@@ -10,3 +10,7 @@ use_when: TF/Keras 生态或移动/嵌入部署路径
 avoid_when: 团队标准已是 PyTorch
 niche: deep learning
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:44:42Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

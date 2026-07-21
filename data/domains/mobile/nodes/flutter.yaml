@@ -10,3 +10,7 @@ use_when: 要 Android/iOS/桌面共用 UI 代码
 avoid_when: 只要原生平台极致体验与最小包体
 niche: cross-platform ui
 related_ecosystem: mobile
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T11:39:09Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

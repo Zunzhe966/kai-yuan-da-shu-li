@@ -10,3 +10,7 @@ use_when: 要在 Android/iOS 共享 Kotlin 业务层
 avoid_when: 要完整跨端 UI 一体化（更看 Compose MP/Flutter）
 niche: shared logic
 related_ecosystem: mobile
+license: 
+source_updated_at: 2026-07-21T13:59:07Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

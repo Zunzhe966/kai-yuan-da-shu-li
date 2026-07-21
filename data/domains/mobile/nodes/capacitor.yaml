@@ -10,3 +10,7 @@ use_when: 已有 Web 应用要上架移动端
 avoid_when: 从零做高交互原生 App
 niche: web-to-native
 related_ecosystem: mobile
+license: MIT
+source_updated_at: 2026-07-14T17:39:34Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

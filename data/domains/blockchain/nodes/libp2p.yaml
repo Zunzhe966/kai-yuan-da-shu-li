@@ -10,3 +10,7 @@ use_when: 要自建 P2P 网络能力
 avoid_when: 只要 HTTPS API 客户端
 niche: p2p
 related_ecosystem: web3
+license: MIT
+source_updated_at: 2026-07-15T21:10:43Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

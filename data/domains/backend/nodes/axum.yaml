@@ -10,3 +10,7 @@ use_when: Rust 异步服务要人体工学路由
 avoid_when: 不使用 Tokio 生态
 niche: rust web
 related_ecosystem: backend
+license: MIT
+source_updated_at: 2026-07-21T02:23:58Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

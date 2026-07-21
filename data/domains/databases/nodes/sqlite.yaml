@@ -10,3 +10,7 @@ use_when: 嵌入式/本地/测试要零运维 SQL
 avoid_when: 需要多写高并发网络数据库服务
 niche: embedded sql
 related_ecosystem: databases
+license: 
+source_updated_at: 2026-07-21T13:30:16Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

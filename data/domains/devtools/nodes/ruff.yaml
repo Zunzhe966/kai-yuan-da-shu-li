@@ -10,3 +10,7 @@ use_when: 要快速统一 Python 风格与静态检查
 avoid_when: 依赖仅 flake8 插件生态且尚未迁移
 niche: python tooling
 related_ecosystem: python
+license: MIT
+source_updated_at: 2026-07-21T13:49:30Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

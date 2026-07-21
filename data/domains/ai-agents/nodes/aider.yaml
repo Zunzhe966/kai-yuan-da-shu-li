@@ -10,3 +10,7 @@ use_when: 命令行驱动、以 git 为中心的编码 Agent
 avoid_when: 要 IDE 内嵌体验为主
 niche: CLI coding agent
 related_ecosystem: aider
+license: Apache-2.0
+source_updated_at: 2026-05-22T14:02:20Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

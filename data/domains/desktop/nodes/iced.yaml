@@ -10,3 +10,7 @@ use_when: 纯 Rust GUI 且偏好 Elm 架构
 avoid_when: 要最成熟商业控件生态
 niche: rust gui
 related_ecosystem: desktop
+license: MIT
+source_updated_at: 2026-07-21T07:25:27Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

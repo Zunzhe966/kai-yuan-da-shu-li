@@ -10,3 +10,7 @@ use_when: 要深度定制打包或兼容既有 webpack 配置
 avoid_when: 新项目更想零配置快速体验（看 Vite）
 niche: module bundler
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:46:59Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

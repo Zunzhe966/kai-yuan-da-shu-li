@@ -10,3 +10,7 @@ use_when: 要桌面端制图、分析与数据管理
 avoid_when: 只要嵌入网页的轻量地图组件
 niche: desktop gis
 related_ecosystem: gis
+license: GPL-2.0
+source_updated_at: 2026-07-21T07:03:08Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

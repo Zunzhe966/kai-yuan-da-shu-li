@@ -10,3 +10,7 @@ use_when: 浏览器里做 3D 可视化/轻游戏
 avoid_when: 要 AAA 原生引擎
 niche: web 3d
 related_ecosystem: gamedev
+license: MIT
+source_updated_at: 2026-07-21T12:23:11Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要图像/视频分析与视觉算法
 avoid_when: 只要简单改图尺寸
 niche: computer vision
 related_ecosystem: media
+license: Apache-2.0
+source_updated_at: 2026-07-21T09:39:11Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

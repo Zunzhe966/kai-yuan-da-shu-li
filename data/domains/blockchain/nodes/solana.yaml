@@ -10,3 +10,7 @@ use_when: 要了解/运行 Solana 验证相关组件
 avoid_when: 只要 EVM
 niche: l1
 related_ecosystem: solana
+license: Apache-2.0
+source_updated_at: 2025-01-22T19:41:54Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

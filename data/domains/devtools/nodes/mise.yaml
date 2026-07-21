@@ -10,3 +10,7 @@ use_when: 一个工具管 Node/Python/Go 等多运行时版本
 avoid_when: 团队已统一容器且不在宿主机装运行时
 niche: runtime manager
 related_ecosystem: cli
+license: MIT
+source_updated_at: 2026-07-21T04:21:37Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

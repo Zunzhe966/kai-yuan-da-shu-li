@@ -10,3 +10,7 @@ use_when: 要成熟四/七层负载均衡与高可用
 avoid_when: 只要开发机临时端口转发
 niche: load balancer
 related_ecosystem: networking
+license: 
+source_updated_at: 2026-07-21T13:19:30Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

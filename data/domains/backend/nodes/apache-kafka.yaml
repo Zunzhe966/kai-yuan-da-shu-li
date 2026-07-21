@@ -10,3 +10,7 @@ use_when: 高吞吐事件流/日志总线
 avoid_when: 简单任务队列已够
 niche: event streaming
 related_ecosystem: backend
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:37:47Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要用 Web 技术快速做桌面客户端且接受体积
 avoid_when: 要极小包体与原生性能优先
 niche: web desktop
 related_ecosystem: desktop
+license: MIT
+source_updated_at: 2026-07-21T13:01:08Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

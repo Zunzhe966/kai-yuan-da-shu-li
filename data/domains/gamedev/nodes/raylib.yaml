@@ -10,3 +10,7 @@ use_when: 教学或快速做 2D/简单 3D 原型
 avoid_when: 要完整场景编辑器与资源管线
 niche: game lib
 related_ecosystem: gamedev
+license: Zlib
+source_updated_at: 2026-07-21T06:41:04Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

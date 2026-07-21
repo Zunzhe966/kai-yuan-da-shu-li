@@ -10,3 +10,7 @@ use_when: 要用 Web 技术做混合应用 UI
 avoid_when: 要纯原生性能体验
 niche: hybrid ui
 related_ecosystem: mobile
+license: MIT
+source_updated_at: 2026-07-21T04:33:39Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要 WinUI/XAML 技能复用到多端
 avoid_when: 只要简单工具面板且不想上 XAML
 niche: xaml multiplatform
 related_ecosystem: desktop
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:46:27Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

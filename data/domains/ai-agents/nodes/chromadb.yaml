@@ -10,3 +10,7 @@ use_when: 快速原型 RAG、本地/轻量向量存储
 avoid_when: 超大规模分布式检索（看 Milvus/Qdrant）
 niche: dev-friendly vector DB
 related_ecosystem: chroma
+license: Apache-2.0
+source_updated_at: 2026-07-21T02:13:04Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

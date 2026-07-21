@@ -10,3 +10,7 @@ use_when: Vue/Vite 生态要快速文档站
 avoid_when: 要强版本化与庞大插件市场
 niche: docs site
 related_ecosystem: docs
+license: MIT
+source_updated_at: 2026-07-21T08:00:45Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

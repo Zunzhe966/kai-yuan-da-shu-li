@@ -10,3 +10,7 @@ use_when: 要类型友好的现代 EVM 客户端库
 avoid_when: 维护旧 ethers v5 大项目且无重写
 niche: web3 js
 related_ecosystem: ethereum
+license: 
+source_updated_at: 2026-07-21T11:41:54Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

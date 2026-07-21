@@ -10,3 +10,7 @@ use_when: Python 里做矢量数据分析
 avoid_when: 超大规模需分布式空间计算
 niche: python gis
 related_ecosystem: gis
+license: BSD-3-Clause
+source_updated_at: 2026-07-07T02:41:40Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

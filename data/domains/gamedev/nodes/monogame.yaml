@@ -10,3 +10,7 @@ use_when: .NET 团队要跨平台 2D/3D 框架
 avoid_when: 非 C# 栈
 niche: dotnet gamedev
 related_ecosystem: gamedev
+license: 
+source_updated_at: 2026-07-19T03:09:58Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

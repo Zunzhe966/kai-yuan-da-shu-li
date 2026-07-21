@@ -10,3 +10,7 @@ use_when: Java/Kotlin 企业后端与生态集成
 avoid_when: 要极轻量启动与小内存
 niche: java enterprise
 related_ecosystem: backend
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:18:44Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

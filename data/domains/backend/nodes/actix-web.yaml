@@ -10,3 +10,7 @@ use_when: Rust 要成熟高性能 HTTP 栈
 avoid_when: 只要最简异步（也可看 axum）
 niche: rust http
 related_ecosystem: backend
+license: Apache-2.0
+source_updated_at: 2026-07-20T23:46:43Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

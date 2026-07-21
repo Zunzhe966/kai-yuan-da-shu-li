@@ -10,3 +10,7 @@ use_when: 大量服务端数据获取、缓存与同步
 avoid_when: 几乎无远程数据
 niche: server state
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:05:26Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 做原生 Android（Kotlin）
 avoid_when: 只要跨平台框架
 niche: android native
 related_ecosystem: mobile
+license: 
+source_updated_at: 2018-10-16T15:24:07Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

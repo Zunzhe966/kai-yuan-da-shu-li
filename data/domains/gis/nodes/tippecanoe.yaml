@@ -10,3 +10,7 @@ use_when: 要把矢量数据打成 MBTiles/矢量瓦片
 avoid_when: 只要即时动态查询无预切片
 niche: tiling
 related_ecosystem: gis
+license: BSD-2-Clause
+source_updated_at: 2026-07-16T14:42:57Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要渐进增强或更易上手的组件框架
 avoid_when: 团队标准已是 React 生态且迁移成本高
 niche: progressive framework
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:47:14Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

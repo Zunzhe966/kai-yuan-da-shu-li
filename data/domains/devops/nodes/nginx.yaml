@@ -10,3 +10,7 @@ use_when: 反向代理、静态站、TLS 终止
 avoid_when: 需要应用层服务网格的高级流量治理为主
 niche: reverse proxy
 related_ecosystem: devops
+license: BSD-2-Clause
+source_updated_at: 2026-07-17T22:02:44Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

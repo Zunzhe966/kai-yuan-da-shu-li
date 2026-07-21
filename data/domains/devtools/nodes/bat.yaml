@@ -10,3 +10,7 @@ use_when: 终端里阅读源码想要高亮与行号
 avoid_when: 脚本管道里只要纯文本输出
 niche: file viewer
 related_ecosystem: cli
+license: Apache-2.0
+source_updated_at: 2026-07-01T20:15:58Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

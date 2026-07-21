@@ -10,3 +10,7 @@ use_when: React 应用要钱包连接与链上读写
 avoid_when: 非 React 前端
 niche: web3 react
 related_ecosystem: ethereum
+license: MIT
+source_updated_at: 2026-07-20T20:47:02Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 只要可靠 JSON/结构化对象，不要整套 Agent 框架
 avoid_when: 需要完整多 Agent 运行时
 niche: structured output helper
 related_ecosystem: instructor
+license: MIT
+source_updated_at: 2026-07-13T06:07:46Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

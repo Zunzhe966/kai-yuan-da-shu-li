@@ -10,3 +10,7 @@ use_when: 要尽量接近系统原生观感的 C++ UI
 avoid_when: 要现代声明式 UI 与热更新体验
 niche: native ui
 related_ecosystem: desktop
+license: 
+source_updated_at: 2026-07-21T09:56:37Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: K8s 上要流量治理/mTLS/可观测网格
 avoid_when: 网格复杂度不可接受、服务很少
 niche: service mesh
 related_ecosystem: devops
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:11:05Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

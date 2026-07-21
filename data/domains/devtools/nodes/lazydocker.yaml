@@ -10,3 +10,7 @@ use_when: 在终端快速看容器/日志/资源
 avoid_when: 只要 CI 里 docker CLI 非交互命令
 niche: docker tui
 related_ecosystem: cli
+license: MIT
+source_updated_at: 2026-04-19T02:51:06Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

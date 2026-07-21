@@ -10,3 +10,7 @@ use_when: 强关系网络查询是核心
 avoid_when: 简单表关系用 SQL 即可
 niche: graph db
 related_ecosystem: databases
+license: GPL-3.0
+source_updated_at: 2026-07-08T10:14:21Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

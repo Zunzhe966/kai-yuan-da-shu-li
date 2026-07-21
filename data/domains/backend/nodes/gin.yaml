@@ -10,3 +10,7 @@ use_when: Go 要快速写 HTTP API
 avoid_when: 要更完整生态工具箱可看其他 Go 框架
 niche: go http
 related_ecosystem: backend
+license: MIT
+source_updated_at: 2026-07-16T22:32:47Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

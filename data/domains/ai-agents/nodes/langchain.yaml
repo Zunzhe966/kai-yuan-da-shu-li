@@ -10,3 +10,7 @@ use_when: 需要大量现成集成、教程多、快速原型
 avoid_when: 想要极简可控的核心抽象，或讨厌重依赖
 niche: general-purpose LLM app framework
 related_ecosystem: langchain
+license: MIT
+source_updated_at: 2026-07-21T10:47:27Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

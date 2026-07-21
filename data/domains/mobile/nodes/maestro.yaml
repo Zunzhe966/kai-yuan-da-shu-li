@@ -10,3 +10,7 @@ use_when: 要用 YAML 风格快速写移动端 UI 测试
 avoid_when: 要深度接入原生 XCTest/Espresso 体系
 niche: mobile e2e
 related_ecosystem: mobile
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:38:07Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

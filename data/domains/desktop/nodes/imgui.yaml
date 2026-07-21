@@ -10,3 +10,7 @@ use_when: 做开发者工具、调试器或游戏内 UI
 avoid_when: 要面向普通用户的标准桌面应用视觉与无障碍
 niche: immediate mode
 related_ecosystem: desktop
+license: MIT
+source_updated_at: 2026-07-21T12:55:16Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要 API 文档与复杂交叉引用
 avoid_when: 只要轻量产品手册 Markdown 站
 niche: api docs
 related_ecosystem: docs
+license: 
+source_updated_at: 2026-07-19T23:32:31Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

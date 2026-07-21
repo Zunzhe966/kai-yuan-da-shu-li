@@ -10,3 +10,7 @@ use_when: 要与 Prometheus/Grafana 同风格的日志栈
 avoid_when: 要全文检索型日志平台（ELK）
 niche: logging
 related_ecosystem: observability
+license: AGPL-3.0
+source_updated_at: 2026-07-21T13:05:31Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

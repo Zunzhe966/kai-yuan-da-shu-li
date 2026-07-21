@@ -10,3 +10,7 @@ use_when: 要开源时间线视频剪辑
 avoid_when: 要好莱坞级合成管线
 niche: video editor
 related_ecosystem: media
+license: GPL-3.0
+source_updated_at: 2026-07-21T04:42:18Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

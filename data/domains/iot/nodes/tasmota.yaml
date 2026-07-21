@@ -10,3 +10,7 @@ use_when: 要刷开源固件接管消费级 Wi-Fi 设备
 avoid_when: 设备不支持或要官方保修
 niche: device firmware
 related_ecosystem: iot
+license: GPL-3.0
+source_updated_at: 2026-07-21T12:04:20Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要极简桌面壳且功能面可控
 avoid_when: 需要完整 Node/Chromium 能力与成熟插件生态
 niche: lightweight desktop
 related_ecosystem: desktop
+license: 
+source_updated_at: 2026-07-20T15:06:38Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

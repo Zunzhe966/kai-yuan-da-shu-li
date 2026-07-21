@@ -10,3 +10,7 @@ use_when: 要可靠的端到端/多浏览器自动化
 avoid_when: 只要组件单测、不测真实浏览器
 niche: e2e testing
 related_ecosystem: web
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:36:48Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

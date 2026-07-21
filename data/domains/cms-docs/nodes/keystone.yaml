@@ -10,3 +10,7 @@ use_when: 要 GraphQL 内容 API 与自定义字段
 avoid_when: 只要最简 Markdown 文档
 niche: graphql cms
 related_ecosystem: cms
+license: MIT
+source_updated_at: 2026-07-21T06:23:36Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

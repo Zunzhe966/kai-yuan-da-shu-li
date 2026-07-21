@@ -10,3 +10,7 @@ use_when: 要快速参数扫描与向量化回测
 avoid_when: 要精细订单簿级仿真
 niche: vector backtest
 related_ecosystem: finance
+license: 
+source_updated_at: 2026-07-14T12:35:25Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

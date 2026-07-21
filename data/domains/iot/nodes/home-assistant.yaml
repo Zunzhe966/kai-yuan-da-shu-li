@@ -10,3 +10,7 @@ use_when: 要自托管智能家居中枢与海量集成
 avoid_when: 只要单设备脚本无家庭场景
 niche: home automation
 related_ecosystem: iot
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:51:26Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

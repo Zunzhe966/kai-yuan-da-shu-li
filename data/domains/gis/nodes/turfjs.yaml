@@ -10,3 +10,7 @@ use_when: 前端做缓冲/布尔/测距等空间运算
 avoid_when: 要数据库级海量空间 SQL
 niche: js spatial
 related_ecosystem: gis
+license: MIT
+source_updated_at: 2026-07-21T13:42:22Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要在 VS Code/JetBrains 里开源可控的编码助手
 avoid_when: 只要无 IDE 的纯 API Agent
 niche: open IDE copilot
 related_ecosystem: continue
+license: Apache-2.0
+source_updated_at: 2026-07-21T08:03:28Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

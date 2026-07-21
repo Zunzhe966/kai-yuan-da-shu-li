@@ -10,3 +10,7 @@ use_when: 要现代声明式原生 UI 且可嵌 Rust/C++/JS
 avoid_when: 必须全盘 Web 技术栈
 niche: declarative native
 related_ecosystem: desktop
+license: 
+source_updated_at: 2026-07-21T13:01:56Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

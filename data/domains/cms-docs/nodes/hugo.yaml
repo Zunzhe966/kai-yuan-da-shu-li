@@ -10,3 +10,7 @@ use_when: 要极快构建的博客/文档/营销页
 avoid_when: 要强 React 组件化页面
 niche: ssg
 related_ecosystem: ssg
+license: Apache-2.0
+source_updated_at: 2026-07-13T08:58:38Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

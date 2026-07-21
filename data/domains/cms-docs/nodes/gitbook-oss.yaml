@@ -10,3 +10,7 @@ use_when: 研究历史 GitBook 开源实现
 avoid_when: 要当前托管文档产品请用官方云
 niche: legacy docs
 related_ecosystem: docs
+license: GPL-3.0
+source_updated_at: 2026-07-21T12:48:39Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

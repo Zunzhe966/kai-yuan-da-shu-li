@@ -10,3 +10,7 @@ use_when: 要从网站下载音视频并后处理
 avoid_when: 要合法仅限官方客户端的内容分发
 niche: downloader
 related_ecosystem: media
+license: Unlicense
+source_updated_at: 2026-07-20T23:41:13Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

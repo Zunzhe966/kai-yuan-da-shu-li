@@ -10,3 +10,7 @@ use_when: CPU/消费级 GPU 本地跑量化模型、嵌入式部署
 avoid_when: 需要多租户高并发 OpenAI 兼容服务集群
 niche: local ggml inference
 related_ecosystem: ggml
+license: MIT
+source_updated_at: 2026-07-20T23:47:42Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

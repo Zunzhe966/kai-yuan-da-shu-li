@@ -10,3 +10,7 @@ use_when: 要开源 3D/动画/合成工作流
 avoid_when: 只要 2D 截图标注
 niche: 3d suite
 related_ecosystem: media
+license: 
+source_updated_at: 2026-07-21T13:25:48Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

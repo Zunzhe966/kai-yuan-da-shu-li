@@ -10,3 +10,7 @@ use_when: 要把内网服务安全暴露出去
 avoid_when: 已有公网入口与正规反向代理链路
 niche: nat traversal
 related_ecosystem: networking
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:00:41Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要可访问的无样式组件底座
 avoid_when: 只要开箱即用完整主题组件库
 niche: headless components
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T11:41:20Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

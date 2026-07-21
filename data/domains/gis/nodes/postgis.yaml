@@ -10,3 +10,7 @@ use_when: 要在 Postgres 里做空间查询与索引
 avoid_when: 只要文件级 GIS 无数据库
 niche: spatial db
 related_ecosystem: gis
+license: GPL-2.0
+source_updated_at: 2026-07-21T06:39:32Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

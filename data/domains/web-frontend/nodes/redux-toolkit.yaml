@@ -10,3 +10,7 @@ use_when: 要可预期、可追溯的大型状态管理
 avoid_when: 状态很简单，不想引入样板
 niche: predictable state
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-20T12:18:02Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

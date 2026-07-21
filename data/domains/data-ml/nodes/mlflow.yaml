@@ -10,3 +10,7 @@ use_when: 要记录实验/模型注册
 avoid_when: 一次性脚本无实验管理需求
 niche: mlops tracking
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-21T10:54:41Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

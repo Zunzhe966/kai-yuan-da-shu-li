@@ -10,3 +10,7 @@ use_when: 要错误聚合、发行版追踪与前端/后端 APM
 avoid_when: 只要基础设施指标不要应用错误
 niche: error tracking
 related_ecosystem: observability
+license: 
+source_updated_at: 2026-07-21T13:45:10Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

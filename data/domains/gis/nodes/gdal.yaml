@@ -10,3 +10,7 @@ use_when: 要读写/重投影/转换地理空间数据
 avoid_when: 只要展示一张底图
 niche: geo data
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-21T09:03:40Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

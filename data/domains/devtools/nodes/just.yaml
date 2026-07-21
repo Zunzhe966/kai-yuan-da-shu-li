@@ -10,3 +10,7 @@ use_when: 想用简洁语法组织项目常用命令
 avoid_when: 需要完整 Make 依赖图与隐式规则
 niche: task runner
 related_ecosystem: cli
+license: CC0-1.0
+source_updated_at: 2026-07-19T01:57:26Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

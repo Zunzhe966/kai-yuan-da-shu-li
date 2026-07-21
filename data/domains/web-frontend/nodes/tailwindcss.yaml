@@ -10,3 +10,7 @@ use_when: 要用 utility-first 快速做 UI
 avoid_when: 设计系统强制传统 BEM/CSS-in-JS 且禁止 utility
 niche: utility css
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-16T17:15:19Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

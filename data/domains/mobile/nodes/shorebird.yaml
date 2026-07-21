@@ -10,3 +10,7 @@ use_when: Flutter 应用要绕过商店发补丁级更新
 avoid_when: 非 Flutter 或不允许热更新策略
 niche: flutter code push
 related_ecosystem: mobile
+license: 
+source_updated_at: 2026-07-21T00:46:09Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

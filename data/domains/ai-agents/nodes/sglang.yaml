@@ -10,3 +10,7 @@ use_when: 自托管推理且在意结构化解码/吞吐
 avoid_when: 只要最简单本地聊天
 niche: structured generation runtime
 related_ecosystem: sglang
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:47:46Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

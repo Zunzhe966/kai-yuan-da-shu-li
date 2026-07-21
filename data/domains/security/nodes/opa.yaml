@@ -10,3 +10,7 @@ use_when: 要把授权/准入策略代码化
 avoid_when: 只要简单 RBAC 配置
 niche: policy engine
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T11:00:14Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

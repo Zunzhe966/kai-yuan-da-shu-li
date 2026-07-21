@@ -10,3 +10,7 @@ use_when: Android 要可靠 HTTP 栈
 avoid_when: 非 JVM 移动栈
 niche: android http
 related_ecosystem: mobile
+license: Apache-2.0
+source_updated_at: 2026-07-20T02:31:20Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

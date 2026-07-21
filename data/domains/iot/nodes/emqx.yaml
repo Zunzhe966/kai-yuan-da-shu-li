@@ -10,3 +10,7 @@ use_when: 要高并发 MQTT 与规则引擎
 avoid_when: 家庭实验室只要 Mosquitto
 niche: mqtt broker
 related_ecosystem: iot
+license: 
+source_updated_at: 2026-07-21T13:01:34Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: 推理侧需要强约束文法/JSON 生成
 avoid_when: 只用托管 API 且供应商已提供 JSON mode
 niche: constrained decoding
 related_ecosystem: outlines
+license: Apache-2.0
+source_updated_at: 2026-07-21T07:40:24Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

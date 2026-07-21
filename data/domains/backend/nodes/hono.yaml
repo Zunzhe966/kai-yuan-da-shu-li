@@ -10,3 +10,7 @@ use_when: 要边缘/多运行时轻量 API
 avoid_when: 需要 Nest 级大型模块体系
 niche: edge web framework
 related_ecosystem: backend
+license: MIT
+source_updated_at: 2026-07-21T11:26:53Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

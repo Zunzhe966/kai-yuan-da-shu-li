@@ -10,3 +10,7 @@ use_when: 研究开放世界 RPG 引擎或玩 OpenMW
 avoid_when: 要通用新项目引擎
 niche: engine remake
 related_ecosystem: gamedev
+license: GPL-3.0
+source_updated_at: 2026-07-20T16:36:30Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

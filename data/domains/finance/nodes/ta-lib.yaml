@@ -10,3 +10,7 @@ use_when: 要经典技术指标计算
 avoid_when: 只要基本涨跌幅统计
 niche: indicators
 related_ecosystem: finance
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T07:40:57Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

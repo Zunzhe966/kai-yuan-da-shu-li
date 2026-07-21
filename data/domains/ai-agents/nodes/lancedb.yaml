@@ -10,3 +10,7 @@ use_when: 嵌入式/湖仓一体的向量与多模态检索
 avoid_when: 只要经典独立向量服务
 niche: embedded multimodal vector DB
 related_ecosystem: lancedb
+license: Apache-2.0
+source_updated_at: 2026-07-21T06:57:09Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

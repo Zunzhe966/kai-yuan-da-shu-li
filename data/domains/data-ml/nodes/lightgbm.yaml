@@ -10,3 +10,7 @@ use_when: 要更快/更省的 GBDT
 avoid_when: 只要单一 XGBoost 栈
 niche: gbdt
 related_ecosystem: data-ml
+license: MIT
+source_updated_at: 2026-07-20T03:33:02Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

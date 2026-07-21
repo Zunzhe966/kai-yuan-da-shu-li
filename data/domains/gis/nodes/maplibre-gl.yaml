@@ -10,3 +10,7 @@ use_when: 要开源矢量瓦片漂亮底图渲染
 avoid_when: 绑定专有 Mapbox 条款可接受且需要其云
 niche: vector tiles
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-21T08:34:08Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review
