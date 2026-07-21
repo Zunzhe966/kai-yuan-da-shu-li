@@ -16,7 +16,7 @@ categories:
     node_ids: [redis, keydb, valkey]
   - id: distributed
     title: 分布式
-    node_ids: [cassandra, scylladb, cockroachdb, tidb]
+    node_ids: [cassandra, scylladb, cockroachdb, tidb, yugabyte]
   - id: analytics
     title: 分析 OLAP
     node_ids: [clickhouse, duckdb, elasticsearch, timescaledb]

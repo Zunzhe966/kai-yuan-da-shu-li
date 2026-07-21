@@ -1,0 +1,16 @@
+id: yugabyte
+type: project
+name: YugabyteDB
+repo: https://github.com/yugabyte/yugabyte-db
+summary: 分布式 SQL 数据库，PostgreSQL 兼容 API，偏云原生多区。
+tags: [distributed]
+language: C++
+status: active
+use_when: 要 Postgres 兼容且跨区分布式强一致 SQL
+avoid_when: 单机/主从 Postgres 已够，或只要 TiDB/Cockroach 生态更熟
+niche: distributed sql
+related_ecosystem: yugabyte
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

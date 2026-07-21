@@ -1,0 +1,16 @@
+id: tekton
+type: project
+name: Tekton
+repo: https://github.com/tektoncd/pipeline
+summary: Kubernetes 原生 CI/CD 流水线 API 与控制器。
+tags: [ci]
+language: Go
+status: active
+use_when: 流水线要声明在集群内、以 CRD 方式编排
+avoid_when: 只要经典 Jenkins 插件或托管 GitHub Actions
+niche: k8s native ci
+related_ecosystem: cncf
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

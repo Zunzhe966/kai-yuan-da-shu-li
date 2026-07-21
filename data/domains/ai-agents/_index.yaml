@@ -25,7 +25,7 @@ categories:
     node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers, faster-whisper, localai]
   - id: eval-quality
     title: 评测与质量
-    node_ids: [ragas, deepeval, arize-phoenix, lm-evaluation-harness, promptfoo]
+    node_ids: [ragas, deepeval, arize-phoenix, lm-evaluation-harness, promptfoo, trulens]
   - id: observability
     title: 观测与追踪
     node_ids: [arize-phoenix, langfuse, opentelemetry-python]
@@ -40,6 +40,6 @@ categories:
     node_ids: [datasets-hf]
   - id: agent-ui
     title: Agent / Chat UI
-    node_ids: [vercel-ai, open-webui, continue, flowise, comfyui]
+    node_ids: [vercel-ai, open-webui, continue, flowise, comfyui, anythingllm]
 
 nodes_dir: nodes

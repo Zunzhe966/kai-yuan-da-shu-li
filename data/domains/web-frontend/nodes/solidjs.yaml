@@ -1,0 +1,16 @@
+id: solidjs
+type: project
+name: SolidJS
+repo: https://github.com/solidjs/solid
+summary: 细粒度响应式 UI 框架，无虚拟 DOM，性能取向明确。
+tags: [ui]
+language: TypeScript
+status: active
+use_when: 要 React 心智附近但更细粒度响应式与更小运行时
+avoid_when: 要最大生态与招聘池（React/Vue）
+niche: reactive ui
+related_ecosystem: solid
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

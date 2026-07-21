@@ -1,0 +1,16 @@
+id: kingfisher
+type: project
+name: Kingfisher
+repo: https://github.com/onevcat/Kingfisher
+summary: Swift 图片下载与缓存库，iOS/macOS 常用。
+tags: [mobile]
+language: Swift
+status: active
+use_when: 原生 Swift UI 要成熟图片加载缓存
+avoid_when: 跨端统一用其它图片栈或只要系统 API
+niche: ios image loading
+related_ecosystem: ios
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

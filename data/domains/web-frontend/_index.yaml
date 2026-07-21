@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: frameworks
     title: UI 框架 / 状态
-    node_ids: [react, vue, svelte, radix-ui-primitives, zustand, redux-toolkit, tanstack-query, angular, preact]
+    node_ids: [react, vue, svelte, radix-ui-primitives, zustand, redux-toolkit, tanstack-query, angular, preact, solidjs]
   - id: meta-frameworks
     title: 元框架
-    node_ids: [nextjs, nuxt, remix, astro]
+    node_ids: [nextjs, nuxt, remix, astro, qwik]
   - id: tooling
     title: 工程化
     node_ids: [vite, webpack, storybook, turborepo, pnpm, eslint, prettier]
@@ -19,6 +19,6 @@ categories:
     node_ids: [tailwindcss, radix-ui-primitives]
   - id: testing
     title: 测试与文档
-    node_ids: [playwright, cypress, vitest, storybook]
+    node_ids: [playwright, cypress, vitest, storybook, jest]
 
 nodes_dir: nodes

@@ -1,0 +1,16 @@
+id: teleport
+type: project
+name: Teleport
+repo: https://github.com/gravitational/teleport
+summary: 基础设施访问平台（SSH/K8s/DB），身份与审计一体（AGPL）。
+tags: [security]
+language: Go
+status: active
+use_when: 要统一零信任访问主机/K8s/数据库并接受 AGPL
+avoid_when: 只要简单 VPN（WireGuard）或 IdP 登录墙（oauth2-proxy）
+niche: infra access
+related_ecosystem: teleport
+license: AGPL-3.0
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

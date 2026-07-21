@@ -1,0 +1,16 @@
+id: qwik
+type: project
+name: Qwik
+repo: https://github.com/QwikDev/qwik
+summary: 可恢复性优先的前端框架，偏极致首屏与懒执行。
+tags: [ui]
+language: TypeScript
+status: active
+use_when: 要极致 TTFB/可恢复性的站点或应用壳
+avoid_when: 团队只要 Next/Nuxt 常规元框架路径
+niche: resumable meta
+related_ecosystem: qwik
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

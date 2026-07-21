@@ -1,0 +1,16 @@
+id: linkerd
+type: project
+name: Linkerd
+repo: https://github.com/linkerd/linkerd2
+summary: 轻量级 Kubernetes service mesh，偏运维简单与超低延迟代理。
+tags: [networking, orchestration]
+language: Go
+status: active
+use_when: 要 K8s 网格能力但希望比 Istio 更轻、运维面更小
+avoid_when: 要最全流量治理与庞大插件生态（看 Istio）
+niche: service mesh
+related_ecosystem: cncf
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

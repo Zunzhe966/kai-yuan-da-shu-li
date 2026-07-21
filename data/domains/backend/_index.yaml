@@ -19,7 +19,7 @@ categories:
     node_ids: [axum, actix-web, sqlx, tokio]
   - id: jvm
     title: JVM
-    node_ids: [spring-boot]
+    node_ids: [spring-boot, quarkus]
   - id: ruby
     title: Ruby
     node_ids: [rails]

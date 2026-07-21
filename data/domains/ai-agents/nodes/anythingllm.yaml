@@ -1,0 +1,16 @@
+id: anythingllm
+type: project
+name: AnythingLLM
+repo: https://github.com/Mintplex-Labs/anything-llm
+summary: 可自托管的多用户文档问答/Agent 工作区，偏产品化桌面与服务端。
+tags: [ui, rag, agent-framework]
+language: JavaScript
+status: active
+use_when: 要开箱文档库+聊天工作区且可自托管
+avoid_when: 只要模型 UI（Open WebUI）或只要编排框架无产品壳
+niche: doc chat workspace
+related_ecosystem: anythingllm
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

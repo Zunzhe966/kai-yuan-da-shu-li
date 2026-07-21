@@ -1,0 +1,16 @@
+id: quarkus
+type: project
+name: Quarkus
+repo: https://github.com/quarkusio/quarkus
+summary: 面向云原生的 Java 框架，启动快、原生镜像友好。
+tags: [backend]
+language: Java
+status: active
+use_when: Java 服务要容器友好与快速启动，而非传统 Spring 全家桶
+avoid_when: 团队标准是 Spring Boot 且无迁移动力
+niche: cloud native java
+related_ecosystem: quarkus
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

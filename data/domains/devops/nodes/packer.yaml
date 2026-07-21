@@ -1,0 +1,16 @@
+id: packer
+type: project
+name: Packer
+repo: https://github.com/hashicorp/packer
+summary: 多云/多平台机器镜像构建工具（许可含 BSL 条款，需阅读 LICENSE）。
+tags: [iac]
+language: Go
+status: active
+use_when: 要可重复构建 AMI/镜像黄金镜像
+avoid_when: 只要容器镜像构建（Dockerfile/buildah）
+niche: image builder
+related_ecosystem: hashicorp
+license: BUSL-1.1
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified
