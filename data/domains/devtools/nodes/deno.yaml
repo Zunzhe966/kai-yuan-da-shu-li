@@ -1,0 +1,16 @@
+id: deno
+type: project
+name: Deno
+repo: https://github.com/denoland/deno
+summary: 安全优先的 TS/JS 运行时，内置工具链。
+tags: [devtools, typescript, runtime]
+language: Rust
+status: active
+use_when: 要默认安全权限模型与内置 TS 运行时
+avoid_when: 要最大 Node 生态兼容或 Bun 式一体打包优先
+niche: js runtime
+related_ecosystem: deno
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

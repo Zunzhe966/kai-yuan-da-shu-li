@@ -1,0 +1,16 @@
+id: fnm
+type: project
+name: fnm
+repo: https://github.com/Schniz/fnm
+summary: 快速 Node.js 版本管理器（Rust）。
+tags: [devtools, version-manager, nodejs]
+language: Rust
+status: active
+use_when: 只要 Node 版本切换且追求启动速度
+avoid_when: 要统一多语言版本管理（mise/asdf）
+niche: node version manager
+related_ecosystem: nodejs
+license: GPL-3.0
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

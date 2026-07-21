@@ -16,7 +16,7 @@ categories:
     node_ids: [jq, yq]
   - id: runners
     title: 任务与版本
-    node_ids: [just, mise, asdf]
+    node_ids: [just, mise, asdf, nix, fnm, fvm]
   - id: tui
     title: Git/Docker TUI
     node_ids: [lazygit, lazydocker, starship, zoxide]
@@ -25,7 +25,7 @@ categories:
     node_ids: [hyperfine]
   - id: lang-tooling
     title: 语言工具链
-    node_ids: [ruff, uv, biome]
+    node_ids: [ruff, uv, biome, bun, deno]
   - id: editors
     title: 编辑器与解析
     node_ids: [helix, neovim, tree-sitter]

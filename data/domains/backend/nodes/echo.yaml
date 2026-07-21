@@ -1,0 +1,16 @@
+id: echo
+type: project
+name: Echo
+repo: https://github.com/labstack/echo
+summary: 高性能 Go HTTP 框架，中间件与路由简洁。
+tags: [backend, go, framework]
+language: Go
+status: active
+use_when: 要轻量 Go Web/API 框架且 API 比净 chi 更完整
+avoid_when: 只要极简路由库或已选定 Gin/Fiber
+niche: go web
+related_ecosystem: echo
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

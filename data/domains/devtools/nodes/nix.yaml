@@ -1,0 +1,16 @@
+id: nix
+type: project
+name: Nix
+repo: https://github.com/NixOS/nix
+summary: 纯函数式包管理与可复现构建系统。
+tags: [devtools, package-manager, devops-tools]
+language: C++
+status: active
+use_when: 要可复现开发环境与声明式依赖锁定
+avoid_when: 只要多语言版本切换（mise/asdf）且不愿学 Nix 语言
+niche: reproducible package manager
+related_ecosystem: nix
+license: LGPL-2.1
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

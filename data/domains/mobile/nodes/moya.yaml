@@ -1,0 +1,16 @@
+id: moya
+type: project
+name: Moya
+repo: https://github.com/Moya/Moya
+summary: 基于 Alamofire 的网络抽象层，偏协议化 API 定义。
+tags: [mobile, ios, networking, library]
+language: Swift
+status: active
+use_when: 要在 Alamofire 上再做类型化 API Provider 抽象
+avoid_when: 只要直接 Alamofire/URLSession 且不想多一层
+niche: ios networking
+related_ecosystem: alamofire
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

@@ -52,7 +52,7 @@
 | q44 | 基于 WireGuard 的零配置组网 | tailscale, netbird, headscale | Y | Y |
 | q45 | 把内网服务穿透到公网 | gost, frp, cloudflared | Y | Y |
 | q46 | 移动端 UI 自动化测试不要太重 | maestro, detox, appium | Y | Y |
-| q47 | Flutter 应用代码热更新 | shorebird, flutter-desktop, flutter | Y | Y |
+| q47 | Flutter 应用代码热更新 | shorebird, flutter-desktop, fvm | Y | Y |
 | q48 | Kotlin 多平台共享业务逻辑 | kmp, ktor, kotlin-android | Y | Y |
 | q49 | 开源分布式链路追踪 | zipkin, tempo, jaeger | Y | Y |
 | q50 | 与 Grafana 配套的日志聚合 | loki, opensearch, graylog | Y | Y |
@@ -767,10 +767,10 @@
   - use_when: 已有 Flutter 移动应用要扩展到桌面
   - avoid_when: 只要轻量系统 WebView 壳且无 Dart 栈
   - repo: https://github.com/flutter/flutter
-- **Flutter** (`flutter` / mobile)
-  - use_when: 要 Android/iOS/桌面共用 UI 代码
-  - avoid_when: 只要原生平台极致体验与最小包体
-  - repo: https://github.com/flutter/flutter
+- **FVM** (`fvm` / devtools)
+  - use_when: 多 Flutter 项目需要隔离 SDK 版本
+  - avoid_when: 单项目且全局 Flutter 安装已足够
+  - repo: https://github.com/fluttertools/fvm
 - result: PASS (hit=True, compliant=True)
 
 ### q48 — Kotlin 多平台共享业务逻辑

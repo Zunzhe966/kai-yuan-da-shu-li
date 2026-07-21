@@ -1,0 +1,16 @@
+id: fvm
+type: project
+name: FVM
+repo: https://github.com/fluttertools/fvm
+summary: Flutter SDK 版本管理，按项目锁定 Flutter 通道。
+tags: [devtools, version-manager, flutter]
+language: Dart
+status: active
+use_when: 多 Flutter 项目需要隔离 SDK 版本
+avoid_when: 单项目且全局 Flutter 安装已足够
+niche: flutter version manager
+related_ecosystem: flutter
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

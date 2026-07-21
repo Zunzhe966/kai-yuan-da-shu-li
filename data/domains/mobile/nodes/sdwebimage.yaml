@@ -1,0 +1,16 @@
+id: sdwebimage
+type: project
+name: SDWebImage
+repo: https://github.com/SDWebImage/SDWebImage
+summary: iOS/macOS 异步图片加载与缓存库。
+tags: [mobile, ios, library]
+language: Objective-C
+status: active
+use_when: 要成熟的 UIKit 图片加载缓存方案
+avoid_when: 只要 SwiftUI 原生栈或跨端 Flutter 图片方案
+niche: ios image
+related_ecosystem: ios
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

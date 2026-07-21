@@ -2973,3 +2973,91 @@ edges:
     type: integrates_with
     to: wireshark
     note: batch9 density
+  - from: micronaut
+    type: alternative_to
+    to: quarkus
+    note: batch10 density
+  - from: micronaut
+    type: alternative_to
+    to: spring-boot
+    note: batch10 density
+  - from: echo
+    type: alternative_to
+    to: gin
+    note: batch10 density
+  - from: echo
+    type: alternative_to
+    to: fiber
+    note: batch10 density
+  - from: echo
+    type: alternative_to
+    to: chi
+    note: batch10 density
+  - from: rocket
+    type: alternative_to
+    to: axum
+    note: batch10 density
+  - from: rocket
+    type: alternative_to
+    to: actix-web
+    note: batch10 density
+  - from: vapor
+    type: alternative_to
+    to: nestjs
+    note: batch10 density
+  - from: vapor
+    type: integrates_with
+    to: swift
+    note: batch10 density
+  - from: nix
+    type: alternative_to
+    to: mise
+    note: batch10 density
+  - from: fnm
+    type: alternative_to
+    to: mise
+    note: batch10 density
+  - from: fnm
+    type: alternative_to
+    to: asdf
+    note: batch10 density
+  - from: bun
+    type: alternative_to
+    to: deno
+    note: batch10 density
+  - from: deno
+    type: alternative_to
+    to: bun
+    note: batch10 density
+  - from: fvm
+    type: integrates_with
+    to: flutter
+    note: batch10 density
+  - from: fvm
+    type: alternative_to
+    to: mise
+    note: batch10 density
+  - from: sdwebimage
+    type: alternative_to
+    to: kingfisher
+    note: batch10 density
+  - from: glide
+    type: alternative_to
+    to: coil
+    note: batch10 density
+  - from: moya
+    type: depends_on
+    to: alamofire
+    note: batch10 density
+  - from: moya
+    type: alternative_to
+    to: alamofire
+    note: batch10 density
+  - from: kingfisher
+    type: alternative_to
+    to: sdwebimage
+    note: batch10 density
+  - from: coil
+    type: alternative_to
+    to: glide
+    note: batch10 density

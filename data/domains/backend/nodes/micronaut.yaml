@@ -1,0 +1,16 @@
+id: micronaut
+type: project
+name: Micronaut
+repo: https://github.com/micronaut-projects/micronaut-core
+summary: 面向云原生的 JVM 框架，编译期 DI、低内存启动快。
+tags: [backend, java, framework]
+language: Java
+status: active
+use_when: 要 JVM 微服务且强调启动时间与内存，对比 Spring 更轻
+avoid_when: 团队已深绑 Spring 生态且无迁移意愿
+niche: jvm framework
+related_ecosystem: micronaut
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

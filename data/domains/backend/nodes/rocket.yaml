@@ -1,0 +1,16 @@
+id: rocket
+type: project
+name: Rocket
+repo: https://github.com/rwf2/Rocket
+summary: 偏类型安全的 Rust Web 框架，宏驱动路由。
+tags: [backend, rust, framework]
+language: Rust
+status: active
+use_when: 要 Rust Web 且偏好编译期请求守卫与宏 API
+avoid_when: 要更贴 Tokio 生态的 Axum 风格或异步生态更广的 Actix
+niche: rust web
+related_ecosystem: rocket
+license: Apache-2.0 OR MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

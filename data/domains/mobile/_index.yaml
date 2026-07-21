@@ -10,10 +10,10 @@ categories:
     node_ids: [flutter, react-native, expo, ionic-framework, capacitor, maui]
   - id: android
     title: Android
-    node_ids: [kotlin-android, okhttp, retrofit, ktor, jetpack-compose, lottie-android, coil]
+    node_ids: [kotlin-android, okhttp, retrofit, ktor, jetpack-compose, lottie-android, coil, glide]
   - id: ios
     title: iOS
-    node_ids: [swift, alamofire, swiftui-notes, kingfisher]
+    node_ids: [swift, alamofire, swiftui-notes, kingfisher, sdwebimage, moya]
   - id: testing
     title: 移动测试
     node_ids: [detox, appium]

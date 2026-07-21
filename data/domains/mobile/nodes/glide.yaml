@@ -1,0 +1,16 @@
+id: glide
+type: project
+name: Glide
+repo: https://github.com/bumptech/glide
+summary: Android 图片加载与缓存库。
+tags: [mobile, android, library]
+language: Java
+status: active
+use_when: 要 Android 图片加载且生态资料丰富
+avoid_when: 只要 Kotlin 优先的 Coil 或跨端方案
+niche: android image
+related_ecosystem: android
+license: BSD-2-Clause
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified

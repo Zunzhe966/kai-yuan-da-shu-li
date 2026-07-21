@@ -13,19 +13,22 @@ categories:
     node_ids: [express, nestjs, hono, prisma]
   - id: go
     title: Go
-    node_ids: [gin, fiber, chi]
+    node_ids: [gin, fiber, chi, echo]
   - id: rust
     title: Rust
-    node_ids: [axum, actix-web, sqlx, tokio]
+    node_ids: [axum, actix-web, rocket, sqlx, tokio]
   - id: jvm
     title: JVM
-    node_ids: [spring-boot, quarkus]
+    node_ids: [spring-boot, quarkus, micronaut]
   - id: ruby
     title: Ruby
     node_ids: [rails]
   - id: php
     title: PHP
     node_ids: [laravel]
+  - id: swift
+    title: Swift
+    node_ids: [vapor]
   - id: rpc
     title: RPC
     node_ids: [grpc-go, connect-go]

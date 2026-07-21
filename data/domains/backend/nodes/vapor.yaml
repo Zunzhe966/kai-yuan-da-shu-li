@@ -1,0 +1,16 @@
+id: vapor
+type: project
+name: Vapor
+repo: https://github.com/vapor/vapor
+summary: Swift 服务端 Web 框架。
+tags: [backend, swift, framework]
+language: Swift
+status: active
+use_when: 要用 Swift 写服务端 API 并共享移动端语言技能
+avoid_when: 团队无 Swift 服务端经验或只要 JVM/Go/Node
+niche: swift server
+related_ecosystem: vapor
+license: MIT
+source_updated_at: 2026-07-21T21:15:18Z
+verified_at: 2026-07-21T21:15:18Z
+verification_status: verified
