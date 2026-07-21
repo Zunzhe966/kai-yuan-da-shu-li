@@ -1,0 +1,16 @@
+id: librenms
+type: project
+name: LibreNMS
+repo: https://github.com/librenms/librenms
+summary: 自动发现的网络监控系统（NMS），偏 SNMP 设备监控。
+tags: [observability, network, metrics]
+language: PHP
+status: active
+use_when: 要监控交换机/路由器等网络设备并自动发现
+avoid_when: 只要云原生指标/日志（Prometheus/Loki）或主机轻量面板
+niche: nms
+related_ecosystem: librenms
+license: GPL-3.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

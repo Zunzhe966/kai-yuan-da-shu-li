@@ -1,0 +1,16 @@
+id: wazuh
+type: project
+name: Wazuh
+repo: https://github.com/wazuh/wazuh
+summary: 开源 XDR/SIEM 平台，主机入侵检测与安全事件分析。
+tags: [security, siem, ids, scanning]
+language: C
+status: active
+use_when: 要自托管主机安全监测/合规与告警中枢
+avoid_when: 只要容器运行时威胁检测（Falco）或单纯漏洞扫描
+niche: siem xdr
+related_ecosystem: wazuh
+license: GPL-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

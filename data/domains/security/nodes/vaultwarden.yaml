@@ -1,0 +1,16 @@
+id: vaultwarden
+type: project
+name: Vaultwarden
+repo: https://github.com/dani-garcia/vaultwarden
+summary: 兼容 Bitwarden API 的轻量自托管密码管理服务端。
+tags: [security, secrets, self-hosted]
+language: Rust
+status: active
+use_when: 要自托管密码库且资源占用低于官方 Bitwarden 服务端
+avoid_when: 要官方 Bitwarden 企业支持或桌面本地库（KeePass）
+niche: password manager server
+related_ecosystem: bitwarden
+license: AGPL-3.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

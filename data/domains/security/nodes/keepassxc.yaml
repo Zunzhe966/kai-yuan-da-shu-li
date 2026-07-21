@@ -1,0 +1,16 @@
+id: keepassxc
+type: project
+name: KeePassXC
+repo: https://github.com/keepassxreboot/keepassxc
+summary: 跨平台本地密码管理器（KeePass 兼容）。
+tags: [security, secrets, desktop]
+language: C++
+status: active
+use_when: 要离线/本地文件密码库且跨平台桌面客户端
+avoid_when: 要团队云同步优先的自托管口令服务
+niche: local password manager
+related_ecosystem: keepass
+license: GPL-3.0 OR GPL-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

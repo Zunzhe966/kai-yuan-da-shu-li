@@ -1,0 +1,16 @@
+id: strongswan
+type: project
+name: strongSwan
+repo: https://github.com/strongswan/strongswan
+summary: 开源 IPsec VPN 实现，支持 IKEv1/IKEv2。
+tags: [networking, vpn, ipsec]
+language: C
+status: active
+use_when: 要标准 IPsec/IKE 站点或远程接入 VPN
+avoid_when: 只要 WireGuard 风格简单点对点隧道
+niche: ipsec vpn
+related_ecosystem: ipsec
+license: GPL-2.0-or-later
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

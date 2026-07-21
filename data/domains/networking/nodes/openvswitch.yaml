@@ -1,0 +1,16 @@
+id: openvswitch
+type: project
+name: Open vSwitch
+repo: https://github.com/openvswitch/ovs
+summary: 可编程多层虚拟交换机，广泛用于 SDN/云网络。
+tags: [networking, sdn, virtualization]
+language: C
+status: active
+use_when: 要可编程虚拟交换机或 OpenFlow/OVN 数据面
+avoid_when: 只要主机防火墙或简单容器 CNI
+niche: virtual switch
+related_ecosystem: ovs
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

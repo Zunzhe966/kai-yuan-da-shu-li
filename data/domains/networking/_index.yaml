@@ -8,22 +8,25 @@ notes: |
 categories:
   - id: proxy-lb
     title: 代理与负载均衡
-    node_ids: [envoy, haproxy]
+    node_ids: [envoy, haproxy, metallb]
   - id: api-gateway
     title: API 网关
     node_ids: [apisix, kong, nats-server]
   - id: mesh-cni
     title: 网格与 CNI
-    node_ids: [linkerd2, cilium]
+    node_ids: [linkerd2, cilium, openvswitch]
   - id: dns
     title: DNS
-    node_ids: [coredns, unbound]
+    node_ids: [coredns, unbound, dnsmasq]
   - id: mesh-vpn
     title: 组网 VPN
-    node_ids: [tailscale, headscale, netbird]
+    node_ids: [tailscale, headscale, netbird, strongswan]
   - id: tunnel
     title: 隧道与穿透
     node_ids: [frp, cloudflared, gost]
+  - id: routing
+    title: 动态路由
+    node_ids: [frr, bird]
   - id: debug
     title: 排障与测量
     node_ids: [mitmproxy, wireshark, nmap, iperf3]

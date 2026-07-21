@@ -20,7 +20,7 @@
 | q12 | 统一多个模型供应商的 API 路由 | localai, litellm, vllm | Y | Y |
 | q13 | Kubernetes 上做 GitOps 持续交付 | flux2, argo-cd, tekton | Y | Y |
 | q14 | 不想上满血 K8s，只要轻量工作负载调度 | nomad, linkerd, k3s | Y | Y |
-| q15 | 基础设施即代码，团队更熟 Python/TS | pulumi, terraform, vault | Y | Y |
+| q15 | 基础设施即代码，团队更熟 Python/TS | pulumi, terraform, checkov | Y | Y |
 | q16 | React 项目要 SSR 和文件系统路由 | nextjs, remix, nuxt | Y | Y |
 | q17 | 前端要快速本地开发和现代打包 | vite, webpack | Y | Y |
 | q18 | 多浏览器端到端测试 | playwright, cypress, vitest | Y | Y |
@@ -28,7 +28,7 @@
 | q20 | 低延迟缓存和会话存储 | redis, keydb, valkey | Y | Y |
 | q21 | 大量事件明细做分析查询 | duckdb, clickhouse, timescaledb | Y | Y |
 | q22 | CI 里扫描容器镜像漏洞 | trivy, grype, gitleaks | Y | Y |
-| q23 | 防止 Git 仓库密钥泄漏 | gitleaks, sops, vault-hashicorp | Y | Y |
+| q23 | 防止 Git 仓库密钥泄漏 | gitleaks, sops, wazuh | Y | Y |
 | q24 | 生成软件物料清单 SBOM | syft, grype | Y | Y |
 | q25 | Python 要类型友好的高性能 HTTP API | fastapi, flask, django | Y | Y |
 | q26 | Node TypeScript 企业级模块化后端 | nestjs, express, hono | Y | Y |
@@ -299,10 +299,10 @@
   - use_when: 要用代码管理云资源与基础设施
   - avoid_when: 只改几台机器配置、无云 API 需求
   - repo: https://github.com/hashicorp/terraform
-- **Vault** (`vault` / devops)
-  - use_when: 要统一管理密钥、动态凭证、加密即服务
-  - avoid_when: 只用云厂商密钥管理且无多云密钥需求
-  - repo: https://github.com/hashicorp/vault
+- **Checkov** (`checkov` / security)
+  - use_when: 要在 CI 扫描 Terraform/K8s/Helm 等 IaC 配置风险
+  - avoid_when: 只要运行时容器威胁检测或密钥泄露扫描
+  - repo: https://github.com/bridgecrewio/checkov
 - result: PASS (hit=True, compliant=True)
 
 ### q16 — React 项目要 SSR 和文件系统路由
@@ -415,10 +415,10 @@
   - use_when: 要把密钥落 Git 但需加密
   - avoid_when: 已有完整密钥中枢且不需要文件级加密
   - repo: https://github.com/getsops/sops
-- **HashiCorp Vault** (`vault-hashicorp` / security)
-  - use_when: 要集中管理密钥、动态数据库凭证、加密服务
-  - avoid_when: 只要云厂商单云 KMS
-  - repo: https://github.com/hashicorp/vault
+- **Wazuh** (`wazuh` / security)
+  - use_when: 要自托管主机安全监测/合规与告警中枢
+  - avoid_when: 只要容器运行时威胁检测（Falco）或单纯漏洞扫描
+  - repo: https://github.com/wazuh/wazuh
 - result: PASS (hit=True, compliant=True)
 
 ### q24 — 生成软件物料清单 SBOM

@@ -2841,3 +2841,135 @@ edges:
     type: alternative_to
     to: mdbook
     note: batch8 density
+  - from: frr
+    type: alternative_to
+    to: bird
+    note: batch9 density
+  - from: bird
+    type: alternative_to
+    to: frr
+    note: batch9 density
+  - from: metallb
+    type: integrates_with
+    to: cilium
+    note: batch9 density
+  - from: metallb
+    type: integrates_with
+    to: envoy
+    note: batch9 density
+  - from: openvswitch
+    type: integrates_with
+    to: cilium
+    note: batch9 density
+  - from: strongswan
+    type: alternative_to
+    to: wireguard
+    note: batch9 density
+  - from: dnsmasq
+    type: alternative_to
+    to: unbound
+    note: batch9 density
+  - from: dnsmasq
+    type: alternative_to
+    to: coredns
+    note: batch9 density
+  - from: headscale
+    type: alternative_to
+    to: netbird
+    note: batch9 density
+  - from: cloudflared
+    type: alternative_to
+    to: frp
+    note: batch9 density
+  - from: kong
+    type: alternative_to
+    to: apisix
+    note: batch9 density
+  - from: linkerd2
+    type: alternative_to
+    to: cilium
+    note: batch9 density
+  - from: victoria-logs
+    type: integrates_with
+    to: victoriametrics
+    note: batch9 density
+  - from: victoria-logs
+    type: alternative_to
+    to: loki
+    note: batch9 density
+  - from: librenms
+    type: alternative_to
+    to: zabbix
+    note: batch9 density
+  - from: librenms
+    type: alternative_to
+    to: netdata
+    note: batch9 density
+  - from: fluentd
+    type: alternative_to
+    to: fluent-bit
+    note: batch9 density
+  - from: grafana-alloy
+    type: alternative_to
+    to: vector-dev
+    note: batch9 density
+  - from: pyroscope
+    type: integrates_with
+    to: grafana-alloy
+    note: batch9 density
+  - from: zipkin
+    type: alternative_to
+    to: jaeger
+    note: batch9 density
+  - from: opensearch
+    type: alternative_to
+    to: loki
+    note: batch9 density
+  - from: vaultwarden
+    type: alternative_to
+    to: keepassxc
+    note: batch9 density
+  - from: keepassxc
+    type: alternative_to
+    to: vaultwarden
+    note: batch9 density
+  - from: wazuh
+    type: alternative_to
+    to: falco
+    note: batch9 density
+  - from: wazuh
+    type: alternative_to
+    to: crowdsec
+    note: batch9 density
+  - from: checkov
+    type: alternative_to
+    to: trivy
+    note: batch9 density
+  - from: checkov
+    type: integrates_with
+    to: terraform
+    note: batch9 density
+  - from: defectdojo
+    type: integrates_with
+    to: trivy
+    note: batch9 density
+  - from: defectdojo
+    type: integrates_with
+    to: semgrep
+    note: batch9 density
+  - from: age
+    type: alternative_to
+    to: sops
+    note: batch9 density
+  - from: osv-scanner
+    type: alternative_to
+    to: grype
+    note: batch9 density
+  - from: fulcio
+    type: integrates_with
+    to: cosign
+    note: batch9 density
+  - from: mitmproxy
+    type: integrates_with
+    to: wireshark
+    note: batch9 density

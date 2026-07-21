@@ -1,0 +1,16 @@
+id: defectdojo
+type: project
+name: DefectDojo
+repo: https://github.com/DefectDojo/django-DefectDojo
+summary: 开源漏洞管理平台，汇总多工具扫描结果与工单。
+tags: [security, scanning, devops-tools]
+language: Python
+status: active
+use_when: 要把多源漏洞扫描结果集中管理与跟踪修复
+avoid_when: 只要单次 CI 扫描器本身（Trivy/Semgrep）
+niche: vuln management
+related_ecosystem: defectdojo
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

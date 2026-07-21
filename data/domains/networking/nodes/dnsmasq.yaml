@@ -1,0 +1,16 @@
+id: dnsmasq
+type: project
+name: dnsmasq
+repo: https://github.com/imp/dnsmasq
+summary: 轻量 DNS/DHCP/TFTP 服务，常用于家用路由与实验室网络。
+tags: [networking, dns, dhcp]
+language: C
+status: active
+use_when: 要嵌入式或小型网络的 DNS+DHCP 一体服务
+avoid_when: 要权威 DNS 大规模服务（Unbound/Bind/CoreDNS 更合适）
+niche: lightweight dns dhcp
+related_ecosystem: dnsmasq
+license: GPL-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

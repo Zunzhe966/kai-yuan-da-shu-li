@@ -1,0 +1,16 @@
+id: metallb
+type: project
+name: MetalLB
+repo: https://github.com/metallb/metallb
+summary: 为裸机 Kubernetes 集群提供 LoadBalancer 类型服务的实现。
+tags: [networking, kubernetes, load-balancer]
+language: Go
+status: active
+use_when: 裸机 K8s 需要 Service LoadBalancer IP
+avoid_when: 已在云厂商 LB 上或不跑 Kubernetes
+niche: k8s lb
+related_ecosystem: kubernetes
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

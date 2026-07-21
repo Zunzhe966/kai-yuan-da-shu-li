@@ -1,0 +1,16 @@
+id: checkov
+type: project
+name: Checkov
+repo: https://github.com/bridgecrewio/checkov
+summary: 基础设施即代码（IaC）静态安全与合规扫描。
+tags: [security, iac, sast, scanning]
+language: Python
+status: active
+use_when: 要在 CI 扫描 Terraform/K8s/Helm 等 IaC 配置风险
+avoid_when: 只要运行时容器威胁检测或密钥泄露扫描
+niche: iac scanning
+related_ecosystem: checkov
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

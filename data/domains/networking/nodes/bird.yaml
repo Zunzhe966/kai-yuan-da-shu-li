@@ -1,0 +1,16 @@
+id: bird
+type: project
+name: BIRD
+repo: https://github.com/CZ-NIC/bird
+summary: 轻量 Internet 路由守护进程，常用于 IXP 与边缘 BGP。
+tags: [networking, routing, bgp]
+language: C
+status: active
+use_when: 要轻量可控的 BGP/路由守护，尤其互联网交换场景
+avoid_when: 要完整厂商级多协议路由套件或 SDN 控制器
+niche: bgp daemon
+related_ecosystem: bird
+license: GPL-2.0-or-later
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

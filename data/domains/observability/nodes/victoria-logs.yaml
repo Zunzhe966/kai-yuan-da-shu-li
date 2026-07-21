@@ -1,0 +1,16 @@
+id: victoria-logs
+type: project
+name: VictoriaLogs
+repo: https://github.com/VictoriaMetrics/VictoriaLogs
+summary: VictoriaMetrics 生态的日志存储与查询系统。
+tags: [observability, logging]
+language: Go
+status: active
+use_when: 已用 VictoriaMetrics 指标栈并要同生态日志库
+avoid_when: 只要完整 APM/追踪或重度 Elasticsearch 生态
+niche: logs
+related_ecosystem: victoriametrics
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

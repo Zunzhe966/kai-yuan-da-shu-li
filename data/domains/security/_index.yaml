@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: secrets
     title: 密钥与加密
-    node_ids: [vault-hashicorp, sops, age, gitleaks]
+    node_ids: [vault-hashicorp, sops, age, gitleaks, vaultwarden, keepassxc]
   - id: scanning
     title: 漏洞/SCA/SBOM
-    node_ids: [trivy, grype, syft, osv-scanner, gitleaks]
+    node_ids: [trivy, grype, syft, osv-scanner, gitleaks, checkov, defectdojo]
   - id: sast
     title: 静态应用安全
     node_ids: [semgrep, bandit]
@@ -25,6 +25,6 @@ categories:
     node_ids: [keycloak, authentik, oauth2-proxy, teleport]
   - id: hardening
     title: 主机与网络加固
-    node_ids: [fail2ban, wireguard, falco, crowdsec, suricata]
+    node_ids: [fail2ban, wireguard, falco, crowdsec, suricata, wazuh]
 
 nodes_dir: nodes

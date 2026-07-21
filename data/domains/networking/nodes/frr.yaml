@@ -1,0 +1,16 @@
+id: frr
+type: project
+name: FRRouting
+repo: https://github.com/FRRouting/frr
+summary: Linux/Unix 上的开源 IP 路由协议套件（BGP/OSPF/IS-IS 等）。
+tags: [networking, routing, bgp]
+language: C
+status: active
+use_when: 要在通用 Linux 上跑完整动态路由协议栈
+avoid_when: 只要容器网络策略或简单反向代理
+niche: ip routing
+related_ecosystem: frr
+license: GPL-2.0-or-later
+source_updated_at: 2026-07-21T21:10:23Z
+verified_at: 2026-07-21T21:10:23Z
+verification_status: verified

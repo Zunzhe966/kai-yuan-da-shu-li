@@ -9,4 +9,5 @@
 | [batch1-gap-table.md](./batch1-gap-table.md) | 首批缺口：已补 / 暂缓 / 拒绝 |
 | [harvest-pipeline.md](./harvest-pipeline.md) | 候选→quarantine→正式 |
 | [no-edges.md](./no-edges.md) | 无边残差（当前应为 0） |
+| [batch9-density.md](./batch9-density.md) | Batch9：networking/observability/security 密度 |
 | [batch8-density.md](./batch8-density.md) | Batch8：desktop/finance/blockchain/cms-docs 密度 |
