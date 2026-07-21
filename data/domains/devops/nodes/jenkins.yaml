@@ -1,0 +1,16 @@
+id: jenkins
+type: project
+name: Jenkins
+repo: https://github.com/jenkinsci/jenkins
+summary: 可扩展的自动化服务器，经典 CI/CD 编排与插件生态。
+tags: [ci]
+language: Java
+status: active
+use_when: 要高度可定制的自托管流水线与庞大插件生态
+avoid_when: 只要轻量 GitHub Actions 级托管 CI
+niche: ci server
+related_ecosystem: jenkins
+license: MIT
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

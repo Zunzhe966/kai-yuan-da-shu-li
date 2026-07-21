@@ -1,8 +1,8 @@
 id: pyqt
 type: project
 name: PyQt
-repo: https://github.com/Python-PyQt/PyQt
-summary: Qt 的 Python 绑定（商业许可需注意）。
+repo: https://www.riverbankcomputing.com/software/pyqt/
+summary: Qt 的 Python 绑定（Riverbank；GPL 与商业双轨许可需注意）。
 tags: [desktop, python, native-ui]
 language: Python
 status: active
@@ -11,8 +11,7 @@ avoid_when: 要避开 GPL/商业许可复杂度
 niche: python gui
 related_ecosystem: desktop
 license: GPL-3.0-only
-source_updated_at: 
-verified_at: 2026-07-21T15:06:53Z
+homepage: https://www.riverbankcomputing.com/software/pyqt/
+verified_at: 2026-07-22T04:30:00Z
 verification_status: needs_review
-homepage: https://riverbankcomputing.com/software/pyqt/
-quality_notes: license-review:no-public-github-canonical; riverbank GPL/commercial dual
+quality_notes: no-public-github-canonical; riverbank site is upstream entry

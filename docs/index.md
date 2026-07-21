@@ -16,6 +16,8 @@ Agent-first 开源知识图谱入口。找库时先查本仓，再跳上游。
 | Pages 设置 | [github-pages.md](./github-pages.md) |
 | 运营状态台账 | [operations/operations-status.md](./operations/operations-status.md) |
 | 评测 | [evals/agent-retrieval-eval.md](./evals/agent-retrieval-eval.md) |
+| 选型级收录标准 | [inclusion-criteria.md](./inclusion-criteria.md) |
+| 缺口与扩图 | [gaps/](./gaps/) |
 
 ## Domains（19）
 

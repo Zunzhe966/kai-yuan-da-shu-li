@@ -1,0 +1,16 @@
+id: harbor
+type: project
+name: Harbor
+repo: https://github.com/goharbor/harbor
+summary: 云原生制品仓库，支持镜像签名、扫描与复制。
+tags: [containers, security]
+language: Go
+status: active
+use_when: 要自托管可信镜像/制品仓库并带安全扫描
+avoid_when: 只要公有云托管 registry
+niche: container registry
+related_ecosystem: cncf
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

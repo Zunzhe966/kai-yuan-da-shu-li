@@ -1,0 +1,16 @@
+id: localai
+type: project
+name: LocalAI
+repo: https://github.com/mudler/LocalAI
+summary: 自托管 OpenAI 兼容推理引擎，可在消费级硬件跑多模态模型。
+tags: [local-llm, llm-api]
+language: Go
+status: active
+use_when: 要 OpenAI 兼容本地 API、硬件杂、模型种类多
+avoid_when: 只要极简一键聊天（可先看 Ollama）
+niche: openai-compatible local engine
+related_ecosystem: localai
+license: MIT
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

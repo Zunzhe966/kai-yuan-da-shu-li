@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: containers
     title: 容器运行时
-    node_ids: [docker, kubernetes, traefik, podman, nomad, containerd]
+    node_ids: [docker, kubernetes, traefik, podman, nomad, containerd, harbor]
   - id: orchestration
     title: 编排
-    node_ids: [kubernetes, helm, argo-cd, nomad, istio, flux2, crossplane]
+    node_ids: [kubernetes, helm, argo-cd, nomad, istio, flux2, crossplane, k3s]
   - id: iac
     title: 基础设施即代码
     node_ids: [terraform, pulumi, ansible, vault, crossplane]
@@ -19,9 +19,9 @@ categories:
     node_ids: [prometheus, grafana]
   - id: networking
     title: 网络与网关
-    node_ids: [traefik, nginx, consul, istio, caddy]
+    node_ids: [traefik, nginx, consul, istio, caddy, cert-manager]
   - id: ci
     title: CI / GitOps
-    node_ids: [argo-cd, github-actions-runner, act, flux2]
+    node_ids: [argo-cd, github-actions-runner, act, flux2, jenkins]
 
 nodes_dir: nodes

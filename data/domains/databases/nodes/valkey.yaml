@@ -1,0 +1,16 @@
+id: valkey
+type: project
+name: Valkey
+repo: https://github.com/valkey-io/valkey
+summary: Redis 兼容的开源内存数据存储，Linux 基金会托管。
+tags: [kv]
+language: C
+status: active
+use_when: 要 Redis 协议兼容缓存/实时结构且偏好社区分叉治理
+avoid_when: 深度绑定 Redis 专有模块且无法迁移
+niche: redis-compatible
+related_ecosystem: valkey
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

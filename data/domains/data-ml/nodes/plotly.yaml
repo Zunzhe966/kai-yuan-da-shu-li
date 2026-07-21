@@ -2,7 +2,7 @@ id: plotly
 type: project
 name: Plotly
 repo: https://github.com/plotly/plotly.py
-summary: 交互可视化库。
+summary: 基于 Web 的 Python 交互式可视化与图表库。
 tags: [viz, python]
 language: Python
 status: active

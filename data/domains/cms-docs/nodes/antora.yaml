@@ -1,8 +1,8 @@
 id: antora
 type: project
 name: Antora
-repo: https://github.com/antora/antora
-summary: 多仓 AsciiDoc 文档站点生成器。
+repo: https://gitlab.com/antora/antora
+summary: 多仓 AsciiDoc 文档站点生成器（源码在 GitLab）。
 tags: [docs, static-site]
 language: JavaScript
 status: active
@@ -11,8 +11,7 @@ avoid_when: 单仓简单 Markdown 手册
 niche: docs site
 related_ecosystem: docs
 license: MPL-2.0
-source_updated_at: 
-verified_at: 2026-07-21T15:06:53Z
+homepage: https://antora.org/
+verified_at: 2026-07-22T04:30:00Z
 verification_status: verified
-homepage: https://gitlab.com/antora/antora
-quality_notes: license-source:gitlab-antora; github-mirror-404
+quality_notes: canonical-on-gitlab; github.com/antora/antora returns 404

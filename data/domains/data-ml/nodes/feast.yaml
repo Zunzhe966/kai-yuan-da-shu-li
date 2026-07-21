@@ -2,7 +2,7 @@ id: feast
 type: project
 name: Feast
 repo: https://github.com/feast-dev/feast
-summary: 特征存储。
+summary: 面向 ML 的在线/离线特征存储与特征服务。
 tags: [mlops, ml]
 language: Python
 status: active

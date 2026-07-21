@@ -1,0 +1,17 @@
+id: dify
+type: project
+name: Dify
+repo: https://github.com/langgenius/dify
+summary: 开源 LLM 应用开发平台，支持工作流、RAG 与模型接入的可视化编排。
+tags: [agent-framework, rag, orchestration, ui]
+language: TypeScript
+status: active
+use_when: 要快速搭可运营的 Agent/RAG 工作台且可自托管
+avoid_when: 只要代码库级框架、不要产品化控制台
+niche: llm app platform
+related_ecosystem: dify
+license: LicenseRef-Dify-Apache-2.0-Modified
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified
+quality_notes: modified Apache-2.0 additional conditions; read LICENSE

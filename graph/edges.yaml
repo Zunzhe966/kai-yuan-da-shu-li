@@ -2030,3 +2030,113 @@ edges:
     type: integrates_with
     to: ccxt
     note: 已有则可能存在
+
+# batch1 gap fill 2026-07-22
+  - from: dify
+    type: alternative_to
+    to: flowise
+    note: batch1 gap fill
+  - from: dify
+    type: alternative_to
+    to: open-webui
+    note: batch1 gap fill
+  - from: dify
+    type: integrates_with
+    to: ollama
+    note: batch1 gap fill
+  - from: localai
+    type: alternative_to
+    to: ollama
+    note: batch1 gap fill
+  - from: localai
+    type: alternative_to
+    to: vllm
+    note: batch1 gap fill
+  - from: localai
+    type: integrates_with
+    to: open-webui
+    note: batch1 gap fill
+  - from: promptfoo
+    type: alternative_to
+    to: deepeval
+    note: batch1 gap fill
+  - from: promptfoo
+    type: alternative_to
+    to: ragas
+    note: batch1 gap fill
+  - from: promptfoo
+    type: integrates_with
+    to: litellm
+    note: batch1 gap fill
+  - from: k3s
+    type: alternative_to
+    to: kubernetes
+    note: batch1 gap fill
+  - from: k3s
+    type: integrates_with
+    to: helm
+    note: batch1 gap fill
+  - from: k3s
+    type: integrates_with
+    to: traefik
+    note: batch1 gap fill
+  - from: cert-manager
+    type: integrates_with
+    to: kubernetes
+    note: batch1 gap fill
+  - from: cert-manager
+    type: integrates_with
+    to: nginx
+    note: batch1 gap fill
+  - from: cert-manager
+    type: integrates_with
+    to: traefik
+    note: batch1 gap fill
+  - from: jenkins
+    type: alternative_to
+    to: github-actions-runner
+    note: batch1 gap fill
+  - from: jenkins
+    type: alternative_to
+    to: argo-cd
+    note: batch1 gap fill
+  - from: harbor
+    type: integrates_with
+    to: kubernetes
+    note: batch1 gap fill
+  - from: harbor
+    type: integrates_with
+    to: docker
+    note: batch1 gap fill
+  - from: harbor
+    type: integrates_with
+    to: helm
+    note: batch1 gap fill
+  - from: valkey
+    type: alternative_to
+    to: redis
+    note: batch1 gap fill
+  - from: valkey
+    type: alternative_to
+    to: keydb
+    note: batch1 gap fill
+  - from: timescaledb
+    type: depends_on
+    to: postgresql
+    note: batch1 gap fill
+  - from: timescaledb
+    type: alternative_to
+    to: clickhouse
+    note: batch1 gap fill
+  - from: pgvector
+    type: depends_on
+    to: postgresql
+    note: batch1 gap fill
+  - from: pgvector
+    type: alternative_to
+    to: qdrant
+    note: batch1 gap fill
+  - from: pgvector
+    type: alternative_to
+    to: chromadb
+    note: batch1 gap fill

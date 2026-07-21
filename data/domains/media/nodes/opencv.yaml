@@ -2,7 +2,7 @@ id: opencv
 type: project
 name: OpenCV
 repo: https://github.com/opencv/opencv
-summary: 计算机视觉库。
+summary: 跨平台计算机视觉与图像视频处理库。
 tags: [media, vision, library]
 language: C++
 status: active

@@ -1,0 +1,16 @@
+id: pgvector
+type: project
+name: pgvector
+repo: https://github.com/pgvector/pgvector
+summary: PostgreSQL 向量相似度检索扩展，适合把向量检索留在库内。
+tags: [vector-db, rag]
+language: C
+status: active
+use_when: 已有 Postgres、向量量级中等、想少引入独立向量库
+avoid_when: 超大规模向量检索要专用引擎（Milvus/Qdrant 等）
+niche: postgres vector
+related_ecosystem: postgresql
+license: PostgreSQL
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

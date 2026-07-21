@@ -2,7 +2,7 @@ id: neo4j
 type: project
 name: Neo4j
 repo: https://github.com/neo4j/neo4j
-summary: 原生图数据库。
+summary: 原生属性图数据库，擅长复杂关系遍历查询。
 tags: [graph]
 language: Java
 status: active

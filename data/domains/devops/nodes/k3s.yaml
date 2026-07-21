@@ -1,0 +1,16 @@
+id: k3s
+type: project
+name: K3s
+repo: https://github.com/k3s-io/k3s
+summary: 轻量级 Kubernetes 发行版，适合边缘与小集群。
+tags: [orchestration, containers]
+language: Go
+status: active
+use_when: 边缘/小团队要完整 K8s API 但安装要轻
+avoid_when: 超大规模多租户管控面（看上游 Kubernetes/发行版）
+niche: lightweight kubernetes
+related_ecosystem: kubernetes
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

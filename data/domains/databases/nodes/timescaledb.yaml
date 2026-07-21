@@ -1,0 +1,17 @@
+id: timescaledb
+type: project
+name: TimescaleDB
+repo: https://github.com/timescale/timescaledb
+summary: 基于 PostgreSQL 的时序/实时分析扩展（部分组件许可证不同）。
+tags: [analytics]
+language: C
+status: active
+use_when: 已用 Postgres 且要以扩展做高写入时序分析
+avoid_when: 只要纯 Apache 组件或专用时序库更简单
+niche: postgres timeseries
+related_ecosystem: postgresql
+license: Apache-2.0 OR LicenseRef-Timescale
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified
+quality_notes: mixed Apache and Timescale License by path

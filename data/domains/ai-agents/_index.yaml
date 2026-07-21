@@ -7,7 +7,7 @@ notes: |
 categories:
   - id: agent-frameworks
     title: Agent / LLM 应用框架
-    node_ids: [autogen, llama-index, langchain, langgraph, crewai, semantic-kernel, dspy, pydantic-ai, openai-agents-python, vercel-ai, litellm, mem0, browser-use, aider, gpt-researcher, smolagents, open-interpreter, n8n, flowise]
+    node_ids: [autogen, llama-index, langchain, langgraph, crewai, semantic-kernel, dspy, pydantic-ai, openai-agents-python, vercel-ai, litellm, mem0, browser-use, aider, gpt-researcher, smolagents, open-interpreter, n8n, flowise, dify]
   - id: multi-agent
     title: 多 Agent 协作
     node_ids: [autogen, crewai, openai-agents-python, gpt-researcher, metagpt]
@@ -22,10 +22,10 @@ categories:
     node_ids: [kaiyuan-dashuli, modelcontextprotocol-servers, mcp-python-sdk]
   - id: local-llm
     title: 本地 / 推理运行时
-    node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers, faster-whisper]
+    node_ids: [ollama, vllm, llama-cpp, sglang, outlines, open-webui, transformers, faster-whisper, localai]
   - id: eval-quality
     title: 评测与质量
-    node_ids: [ragas, deepeval, arize-phoenix, lm-evaluation-harness]
+    node_ids: [ragas, deepeval, arize-phoenix, lm-evaluation-harness, promptfoo]
   - id: observability
     title: 观测与追踪
     node_ids: [arize-phoenix, langfuse, opentelemetry-python]

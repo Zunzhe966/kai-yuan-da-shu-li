@@ -9,24 +9,24 @@
 | q1 | 我想做多 Agent 角色分工协作，Python | openai-agents-python, autogen, metagpt | Y | Y |
 | q2 | 本地笔记本快速跑开源模型聊天 | ollama, open-webui, llama-cpp | Y | Y |
 | q3 | GPU 服务器高并发自托管推理 | vllm, sglang, llama-cpp | Y | Y |
-| q4 | 做文档问答 RAG，偏数据连接与索引 | haystack, crawl4ai, chromadb | Y | Y |
+| q4 | 做文档问答 RAG，偏数据连接与索引 | haystack, dify, crawl4ai | Y | Y |
 | q5 | 需要向量库，先快速原型 | lancedb, chromadb, qdrant | Y | Y |
-| q6 | 生产环境要带过滤条件的向量检索 | weaviate, qdrant, milvus | Y | Y |
+| q6 | 生产环境要带过滤条件的向量检索 | weaviate, qdrant, pgvector | Y | Y |
 | q7 | 给 Agent 接 MCP 工具 | modelcontextprotocol-servers, mcp-python-sdk, kaiyuan-dashuli | Y | Y |
 | q8 | 追踪生产环境 LLM 调用和提示版本 | langfuse, opentelemetry-python, zipkin | Y | Y |
-| q9 | 把 RAG 质量纳入自动评测 | ragas, haystack, crawl4ai | Y | Y |
-| q10 | 只要强类型结构化输出，不要重型 Agent 框架 | instructor, pydantic-ai, outlines | Y | Y |
+| q9 | 把 RAG 质量纳入自动评测 | ragas, haystack, dify | Y | Y |
+| q10 | 只要强类型结构化输出，不要重型 Agent 框架 | instructor, pydantic-ai, promptfoo | Y | Y |
 | q11 | VS Code 里开源编码助手 | continue, vercel-ai, swiftui-notes | Y | Y |
-| q12 | 统一多个模型供应商的 API 路由 | litellm, vllm, sglang | Y | Y |
+| q12 | 统一多个模型供应商的 API 路由 | localai, litellm, vllm | Y | Y |
 | q13 | Kubernetes 上做 GitOps 持续交付 | flux2, argo-cd, kubernetes | Y | Y |
-| q14 | 不想上满血 K8s，只要轻量工作负载调度 | nomad, istio, helm | Y | Y |
+| q14 | 不想上满血 K8s，只要轻量工作负载调度 | nomad, k3s, istio | Y | Y |
 | q15 | 基础设施即代码，团队更熟 Python/TS | pulumi, terraform, vault | Y | Y |
 | q16 | React 项目要 SSR 和文件系统路由 | nextjs, remix, nuxt | Y | Y |
 | q17 | 前端要快速本地开发和现代打包 | vite, webpack | Y | Y |
 | q18 | 多浏览器端到端测试 | playwright, cypress, vitest | Y | Y |
 | q19 | 嵌入式单文件 SQL 数据库 | sqlite, postgresql, tidb | Y | Y |
-| q20 | 低延迟缓存和会话存储 | redis, keydb, mongodb | Y | Y |
-| q21 | 大量事件明细做分析查询 | duckdb, clickhouse, elasticsearch | Y | Y |
+| q20 | 低延迟缓存和会话存储 | redis, keydb, valkey | Y | Y |
+| q21 | 大量事件明细做分析查询 | duckdb, clickhouse, timescaledb | Y | Y |
 | q22 | CI 里扫描容器镜像漏洞 | trivy, grype, gitleaks | Y | Y |
 | q23 | 防止 Git 仓库密钥泄漏 | gitleaks, sops, vault-hashicorp | Y | Y |
 | q24 | 生成软件物料清单 SBOM | syft, grype | Y | Y |
@@ -130,14 +130,14 @@
   - use_when: 生产向 RAG 管道、组件可替换
   - avoid_when: 只要最薄的向量检索包装
   - repo: https://github.com/deepset-ai/haystack
+- **Dify** (`dify` / ai-agents)
+  - use_when: 要快速搭可运营的 Agent/RAG 工作台且可自托管
+  - avoid_when: 只要代码库级框架、不要产品化控制台
+  - repo: https://github.com/langgenius/dify
 - **Crawl4AI** (`crawl4ai` / ai-agents)
   - use_when: Agent/RAG 需要干净网页语料
   - avoid_when: 只要单一 API 数据源
   - repo: https://github.com/unclecode/crawl4ai
-- **Chroma** (`chromadb` / ai-agents)
-  - use_when: 快速原型 RAG、本地/轻量向量存储
-  - avoid_when: 超大规模分布式检索（看 Milvus/Qdrant）
-  - repo: https://github.com/chroma-core/chroma
 - result: PASS (hit=True, compliant=True)
 
 ### q5 — 需要向量库，先快速原型
@@ -164,10 +164,10 @@
   - use_when: 需要可过滤的向量检索与较稳的生产部署
   - avoid_when: 只要进程内玩具级向量表
   - repo: https://github.com/qdrant/qdrant
-- **Milvus** (`milvus` / ai-agents)
-  - use_when: 十亿级向量、分布式检索
-  - avoid_when: 单机小语料原型
-  - repo: https://github.com/milvus-io/milvus
+- **pgvector** (`pgvector` / databases)
+  - use_when: 已有 Postgres、向量量级中等、想少引入独立向量库
+  - avoid_when: 超大规模向量检索要专用引擎（Milvus/Qdrant 等）
+  - repo: https://github.com/pgvector/pgvector
 - result: PASS (hit=True, compliant=True)
 
 ### q7 — 给 Agent 接 MCP 工具
@@ -209,10 +209,10 @@
   - use_when: 生产向 RAG 管道、组件可替换
   - avoid_when: 只要最薄的向量检索包装
   - repo: https://github.com/deepset-ai/haystack
-- **Crawl4AI** (`crawl4ai` / ai-agents)
-  - use_when: Agent/RAG 需要干净网页语料
-  - avoid_when: 只要单一 API 数据源
-  - repo: https://github.com/unclecode/crawl4ai
+- **Dify** (`dify` / ai-agents)
+  - use_when: 要快速搭可运营的 Agent/RAG 工作台且可自托管
+  - avoid_when: 只要代码库级框架、不要产品化控制台
+  - repo: https://github.com/langgenius/dify
 - result: PASS (hit=True, compliant=True)
 
 ### q10 — 只要强类型结构化输出，不要重型 Agent 框架
@@ -224,10 +224,10 @@
   - use_when: 要强类型、依赖注入式 Agent 与结构化结果
   - avoid_when: 需要巨型现成集成市场
   - repo: https://github.com/pydantic/pydantic-ai
-- **Outlines** (`outlines` / ai-agents)
-  - use_when: 推理侧需要强约束文法/JSON 生成
-  - avoid_when: 只用托管 API 且供应商已提供 JSON mode
-  - repo: https://github.com/dottxt-ai/outlines
+- **promptfoo** (`promptfoo` / ai-agents)
+  - use_when: 要把提示词/Agent 行为做成可回归的评测与对比
+  - avoid_when: 只要一次性手工试聊
+  - repo: https://github.com/promptfoo/promptfoo
 - result: PASS (hit=True, compliant=True)
 
 ### q11 — VS Code 里开源编码助手
@@ -246,6 +246,10 @@
 - result: PASS (hit=True, compliant=True)
 
 ### q12 — 统一多个模型供应商的 API 路由
+- **LocalAI** (`localai` / ai-agents)
+  - use_when: 要 OpenAI 兼容本地 API、硬件杂、模型种类多
+  - avoid_when: 只要极简一键聊天（可先看 Ollama）
+  - repo: https://github.com/mudler/LocalAI
 - **LiteLLM** (`litellm` / ai-agents)
   - use_when: 要一套接口打多个模型供应商并做路由/限流
   - avoid_when: 只用单一官方 SDK 且无路由需求
@@ -254,10 +258,6 @@
   - use_when: GPU 集群/服务器上要高并发开源模型推理
   - avoid_when: 笔记本一键试用（更看 Ollama）
   - repo: https://github.com/vllm-project/vllm
-- **SGLang** (`sglang` / ai-agents)
-  - use_when: 自托管推理且在意结构化解码/吞吐
-  - avoid_when: 只要最简单本地聊天
-  - repo: https://github.com/sgl-project/sglang
 - result: PASS (hit=True, compliant=True)
 
 ### q13 — Kubernetes 上做 GitOps 持续交付
@@ -280,14 +280,14 @@
   - use_when: 要调度容器/非容器任务又不想上满血 K8s
   - avoid_when: 团队标准已是 Kubernetes 且生态绑定深
   - repo: https://github.com/hashicorp/nomad
+- **K3s** (`k3s` / devops)
+  - use_when: 边缘/小团队要完整 K8s API 但安装要轻
+  - avoid_when: 超大规模多租户管控面（看上游 Kubernetes/发行版）
+  - repo: https://github.com/k3s-io/k3s
 - **Istio** (`istio` / devops)
   - use_when: K8s 上要流量治理/mTLS/可观测网格
   - avoid_when: 网格复杂度不可接受、服务很少
   - repo: https://github.com/istio/istio
-- **Helm** (`helm` / devops)
-  - use_when: 要版本化安装/升级 K8s 应用
-  - avoid_when: 不用 Kubernetes
-  - repo: https://github.com/helm/helm
 - result: PASS (hit=True, compliant=True)
 
 ### q15 — 基础设施即代码，团队更熟 Python/TS
@@ -370,10 +370,10 @@
   - use_when: 要 Redis 兼容且更高多核吞吐
   - avoid_when: 标准 Redis 已足够
   - repo: https://github.com/Snapchat/KeyDB
-- **MongoDB** (`mongodb` / databases)
-  - use_when: 文档模型更贴合业务、灵活 schema
-  - avoid_when: 强事务多表关系是核心
-  - repo: https://github.com/mongodb/mongo
+- **Valkey** (`valkey` / databases)
+  - use_when: 要 Redis 协议兼容缓存/实时结构且偏好社区分叉治理
+  - avoid_when: 深度绑定 Redis 专有模块且无法迁移
+  - repo: https://github.com/valkey-io/valkey
 - result: PASS (hit=True, compliant=True)
 
 ### q21 — 大量事件明细做分析查询
@@ -385,10 +385,10 @@
   - use_when: 大量分析查询/事件明细
   - avoid_when: 主要是 OLTP 事务业务
   - repo: https://github.com/ClickHouse/ClickHouse
-- **Elasticsearch** (`elasticsearch` / databases)
-  - use_when: 全文检索+日志分析大规模场景
-  - avoid_when: 只要轻量搜索
-  - repo: https://github.com/elastic/elasticsearch
+- **TimescaleDB** (`timescaledb` / databases)
+  - use_when: 已用 Postgres 且要以扩展做高写入时序分析
+  - avoid_when: 只要纯 Apache 组件或专用时序库更简单
+  - repo: https://github.com/timescale/timescaledb
 - result: PASS (hit=True, compliant=True)
 
 ### q22 — CI 里扫描容器镜像漏洞
@@ -642,7 +642,7 @@
 - **PyQt** (`pyqt` / desktop)
   - use_when: Python 做功能完整桌面 GUI
   - avoid_when: 要避开 GPL/商业许可复杂度
-  - repo: https://github.com/Python-PyQt/PyQt
+  - repo: https://www.riverbankcomputing.com/software/pyqt/
 - **PySide (Qt for Python)** (`pyside` / desktop)
   - use_when: Python + Qt 且偏好官方绑定许可路径
   - avoid_when: 只要极简脚本弹窗

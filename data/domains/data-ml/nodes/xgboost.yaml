@@ -2,7 +2,7 @@ id: xgboost
 type: project
 name: XGBoost
 repo: https://github.com/dmlc/xgboost
-summary: 梯度提升树库。
+summary: 高性能梯度提升决策树库，常用于表格数据建模。
 tags: [ml, python]
 language: C++
 status: active

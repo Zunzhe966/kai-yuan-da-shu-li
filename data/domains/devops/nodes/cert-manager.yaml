@@ -1,0 +1,16 @@
+id: cert-manager
+type: project
+name: cert-manager
+repo: https://github.com/cert-manager/cert-manager
+summary: Kubernetes 证书签发与轮换控制器，常对接 Let’s Encrypt。
+tags: [networking, orchestration]
+language: Go
+status: active
+use_when: 集群内 Ingress/工作负载要自动 TLS 证书生命周期
+avoid_when: 单机或无 K8s 的证书场景
+niche: k8s certificates
+related_ecosystem: kubernetes
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:32:39Z
+verified_at: 2026-07-21T20:32:39Z
+verification_status: verified

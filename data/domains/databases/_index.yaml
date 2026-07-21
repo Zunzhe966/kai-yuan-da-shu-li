@@ -13,18 +13,18 @@ categories:
     node_ids: [mongodb]
   - id: kv
     title: KV / 缓存
-    node_ids: [redis, keydb]
+    node_ids: [redis, keydb, valkey]
   - id: distributed
     title: 分布式
     node_ids: [cassandra, scylladb, cockroachdb, tidb]
   - id: analytics
     title: 分析 OLAP
-    node_ids: [clickhouse, duckdb, elasticsearch]
+    node_ids: [clickhouse, duckdb, elasticsearch, timescaledb]
   - id: graph
     title: 图数据库
     node_ids: [neo4j]
   - id: search
     title: 搜索
-    node_ids: [meilisearch, elasticsearch, typesense]
+    node_ids: [meilisearch, elasticsearch, typesense, pgvector]
 
 nodes_dir: nodes
