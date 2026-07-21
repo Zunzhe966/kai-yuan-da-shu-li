@@ -1,0 +1,16 @@
+id: hummingbot
+type: project
+name: Hummingbot
+repo: https://github.com/hummingbot/hummingbot
+summary: 开源加密货币高频/做市交易机器人框架。
+tags: [finance, trading-bot, crypto, trading]
+language: Python
+status: active
+use_when: 要自建加密货币做市或策略机器人并可对接多交易所
+avoid_when: 要传统股票回测框架或个人记账
+niche: crypto trading bot
+related_ecosystem: hummingbot
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

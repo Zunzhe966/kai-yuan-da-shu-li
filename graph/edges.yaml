@@ -2705,3 +2705,139 @@ edges:
     type: integrates_with
     to: threejs
     note: batch7 density
+  - from: fyne
+    type: alternative_to
+    to: gtk
+    note: batch8 density
+  - from: fyne
+    type: alternative_to
+    to: qt
+    note: batch8 density
+  - from: nwjs
+    type: alternative_to
+    to: electron
+    note: batch8 density
+  - from: nwjs
+    type: alternative_to
+    to: tauri
+    note: batch8 density
+  - from: dioxus
+    type: alternative_to
+    to: egui
+    note: batch8 density
+  - from: dioxus
+    type: alternative_to
+    to: iced
+    note: batch8 density
+  - from: dioxus
+    type: alternative_to
+    to: tauri
+    note: batch8 density
+  - from: slint
+    type: alternative_to
+    to: dioxus
+    note: batch8 density
+  - from: wails
+    type: alternative_to
+    to: fyne
+    note: batch8 density
+  - from: ghostfolio
+    type: alternative_to
+    to: firefly-iii
+    note: batch8 density
+  - from: ghostfolio
+    type: alternative_to
+    to: actual-budget
+    note: batch8 density
+  - from: hummingbot
+    type: alternative_to
+    to: freqtrade
+    note: batch8 density
+  - from: hummingbot
+    type: depends_on
+    to: ccxt
+    note: batch8 density
+  - from: akaunting
+    type: alternative_to
+    to: firefly-iii
+    note: batch8 density
+  - from: akaunting
+    type: alternative_to
+    to: gnucash
+    note: batch8 density
+  - from: killbill
+    type: alternative_to
+    to: akaunting
+    note: batch8 density
+  - from: openbb
+    type: integrates_with
+    to: ccxt
+    note: batch8 density
+  - from: reth
+    type: alternative_to
+    to: go-ethereum
+    note: batch8 density
+  - from: reth
+    type: integrates_with
+    to: prysm
+    note: batch8 density
+  - from: bitcoinjs-lib
+    type: integrates_with
+    to: bitcoin-core
+    note: batch8 density
+  - from: cometbft
+    type: integrates_with
+    to: cosmos-sdk
+    note: batch8 density
+  - from: cometbft
+    type: alternative_to
+    to: substrate
+    note: batch8 density
+  - from: foundry
+    type: integrates_with
+    to: reth
+    note: batch8 density
+  - from: thegraph
+    type: integrates_with
+    to: reth
+    note: batch8 density
+  - from: mdbook
+    type: alternative_to
+    to: gitbook-oss
+    note: batch8 density
+  - from: mdbook
+    type: alternative_to
+    to: mkdocs
+    note: batch8 density
+  - from: bookstack
+    type: alternative_to
+    to: wikijs
+    note: batch8 density
+  - from: bookstack
+    type: alternative_to
+    to: ghost
+    note: batch8 density
+  - from: wikijs
+    type: alternative_to
+    to: bookstack
+    note: batch8 density
+  - from: wikijs
+    type: alternative_to
+    to: docusaurus
+    note: batch8 density
+  - from: quarto
+    type: alternative_to
+    to: sphinx
+    note: batch8 density
+  - from: quarto
+    type: alternative_to
+    to: mkdocs
+    note: batch8 density
+  - from: hugo
+    type: alternative_to
+    to: mdbook
+    note: batch8 density
+  - from: antora
+    type: alternative_to
+    to: mdbook
+    note: batch8 density

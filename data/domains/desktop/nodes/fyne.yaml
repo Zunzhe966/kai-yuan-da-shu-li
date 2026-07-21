@@ -1,0 +1,16 @@
+id: fyne
+type: project
+name: Fyne
+repo: https://github.com/fyne-io/fyne
+summary: 用 Go 编写的跨平台 GUI 工具包，Material 风格。
+tags: [desktop, go, cross-platform, ui]
+language: Go
+status: active
+use_when: 要用纯 Go 做桌面/移动端原生感界面且不依赖 WebView
+avoid_when: 需要完整 Web 生态或重度 Electron 插件
+niche: go gui
+related_ecosystem: fyne
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

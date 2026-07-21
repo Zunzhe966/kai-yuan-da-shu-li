@@ -1,0 +1,16 @@
+id: wikijs
+type: project
+name: Wiki.js
+repo: https://github.com/requarks/wiki
+summary: 基于 Node.js 的现代 Wiki，支持多存储后端与 Markdown。
+tags: [docs, wiki, self-hosted, nodejs]
+language: JavaScript
+status: active
+use_when: 要自托管现代 Wiki 并接 Git/DB 等存储
+avoid_when: 只要静态站点生成或无头 CMS API
+niche: wiki
+related_ecosystem: wikijs
+license: AGPL-3.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

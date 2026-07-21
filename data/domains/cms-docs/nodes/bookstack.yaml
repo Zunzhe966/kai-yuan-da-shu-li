@@ -1,0 +1,16 @@
+id: bookstack
+type: project
+name: BookStack
+repo: https://codeberg.org/bookstack/bookstack
+summary: 面向团队的结构化知识库/文档 Wiki（Book→Chapter→Page）。
+tags: [docs, wiki, self-hosted, cms]
+language: PHP
+status: active
+use_when: 要自托管层级化知识库而非无头 CMS
+avoid_when: 只要 Git 驱动静态文档站或无头内容 API
+niche: structured wiki
+related_ecosystem: bookstack
+license: MIT
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

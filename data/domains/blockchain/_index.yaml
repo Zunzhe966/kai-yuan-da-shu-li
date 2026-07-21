@@ -7,13 +7,13 @@ notes: |
 categories:
   - id: ethereum
     title: 以太坊
-    node_ids: [go-ethereum, prysm, solidity, openzeppelin-contracts, foundry, hardhat, ethersjs, viem, wagmi]
+    node_ids: [go-ethereum, prysm, solidity, openzeppelin-contracts, foundry, hardhat, ethersjs, viem, wagmi, reth]
   - id: bitcoin
     title: 比特币
-    node_ids: [bitcoin-core, lnd]
+    node_ids: [bitcoin-core, lnd, bitcoinjs-lib]
   - id: alt-l1
     title: 其他链框架
-    node_ids: [solana, anchor, substrate, cosmos-sdk]
+    node_ids: [solana, anchor, substrate, cosmos-sdk, cometbft]
   - id: web3-infra
     title: Web3 基础设施
     node_ids: [ipfs, libp2p, thegraph]

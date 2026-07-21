@@ -7,15 +7,15 @@ notes: |
 categories:
   - id: trading
     title: 交易与回测
-    node_ids: [ccxt, freqtrade, zipline-reloaded, backtrader, vectorbt, lean]
+    node_ids: [ccxt, freqtrade, zipline-reloaded, backtrader, vectorbt, lean, hummingbot]
   - id: indicators-data
     title: 指标与行情
     node_ids: [ta-lib, pandas-ta, yfinance, akshare, openbb]
   - id: personal
     title: 个人财务
-    node_ids: [firefly-iii, actual-budget, gnucash, ledger-cli, hledger, beancount]
+    node_ids: [firefly-iii, actual-budget, gnucash, ledger-cli, hledger, beancount, ghostfolio]
   - id: billing
     title: 计费支付
-    node_ids: [killbill, stripe-mock]
+    node_ids: [killbill, stripe-mock, akaunting]
 
 nodes_dir: nodes

@@ -42,7 +42,7 @@
 | q34 | 代码库正则快速搜索 | ripgrep, fzf, fd | Y | Y |
 | q35 | 交互式模糊查找文件 | fzf, ripgrep, fd | Y | Y |
 | q36 | 极速 Python 包管理和虚拟环境 | uv, ruff, rasterio | Y | Y |
-| q37 | 用 Web 技术做跨平台桌面应用 | electron, wails, tauri | Y | Y |
+| q37 | 用 Web 技术做跨平台桌面应用 | electron, nwjs, wails | Y | Y |
 | q38 | 轻量桌面客户端不要捆绑 Chromium | wails, tauri, electron | Y | Y |
 | q39 | Python 做桌面 GUI | pyqt, pyside, dearpygui | Y | Y |
 | q40 | React 产品文档站生成器 | docusaurus, nextra, vitepress | Y | Y |
@@ -69,9 +69,9 @@
 | q61 | 开源桌面 GIS 制图软件 | qgis, grass-gis, openlayers | Y | Y |
 | q62 | 网页嵌入轻量交互地图 | leaflet, openlayers, maplibre-gl | Y | Y |
 | q63 | PostgreSQL 空间数据库扩展 | postgis, turfjs, tippecanoe | Y | Y |
-| q64 | 开源加密货币交易机器人 | freqtrade, ccxt, zipline-reloaded | Y | Y |
+| q64 | 开源加密货币交易机器人 | freqtrade, ccxt, hummingbot | Y | Y |
 | q65 | Python 量化策略回测框架 | backtrader, zipline-reloaded, vectorbt | Y | Y |
-| q66 | 自托管个人记账和预算 | firefly-iii, actual-budget, zipline-reloaded | Y | Y |
+| q66 | 自托管个人记账和预算 | ghostfolio, firefly-iii, actual-budget | Y | Y |
 | q67 | Solidity 合约需要高速本地测试和脚本化部署 | foundry, hardhat, solidity | Y | Y |
 
 **通过率：67/67 = 100%**
@@ -613,14 +613,14 @@
   - use_when: 要用 Web 技术快速做桌面客户端且接受体积
   - avoid_when: 要极小包体与原生性能优先
   - repo: https://github.com/electron/electron
+- **NW.js** (`nwjs` / desktop)
+  - use_when: 要 Web 技术做桌面且需要从页面直接访问 Node API
+  - avoid_when: 要更小体积与更强进程隔离（优先 Tauri/Wails）
+  - repo: https://github.com/nwjs/nw.js
 - **Wails** (`wails` / desktop)
   - use_when: 后端想用 Go 且要桌面壳
   - avoid_when: 团队主栈是 Rust/TS 且已选定 Tauri/Electron
   - repo: https://github.com/wailsapp/wails
-- **Tauri** (`tauri` / desktop)
-  - use_when: 要更小安装包与更强系统安全边界的桌面应用
-  - avoid_when: 深度依赖 Electron 专用生态与 Node 原生模块
-  - repo: https://github.com/tauri-apps/tauri
 - result: PASS (hit=True, compliant=True)
 
 ### q38 — 轻量桌面客户端不要捆绑 Chromium
@@ -1022,10 +1022,10 @@
   - use_when: 要对接多家交易所行情与下单 API
   - avoid_when: 只要传统股票券商接口
   - repo: https://github.com/ccxt/ccxt
-- **Zipline-Reloaded** (`zipline-reloaded` / finance)
-  - use_when: 要事件驱动的股票策略回测
-  - avoid_when: 只要简单向量化回测脚本
-  - repo: https://github.com/stefan-jansen/zipline-reloaded
+- **Hummingbot** (`hummingbot` / finance)
+  - use_when: 要自建加密货币做市或策略机器人并可对接多交易所
+  - avoid_when: 要传统股票回测框架或个人记账
+  - repo: https://github.com/hummingbot/hummingbot
 - result: PASS (hit=True, compliant=True)
 
 ### q65 — Python 量化策略回测框架
@@ -1044,6 +1044,10 @@
 - result: PASS (hit=True, compliant=True)
 
 ### q66 — 自托管个人记账和预算
+- **Ghostfolio** (`ghostfolio` / finance)
+  - use_when: 要自托管跟踪多资产投资组合与净值
+  - avoid_when: 只要日常流水记账（Firefly/Actual）或交易策略回测
+  - repo: https://github.com/ghostfolio/ghostfolio
 - **Firefly III** (`firefly-iii` / finance)
   - use_when: 要自托管记账与预算
   - avoid_when: 只要交易策略回测
@@ -1052,10 +1056,6 @@
   - use_when: 要本地/可同步的预算记账
   - avoid_when: 要企业总账
   - repo: https://github.com/actualbudget/actual
-- **Zipline-Reloaded** (`zipline-reloaded` / finance)
-  - use_when: 要事件驱动的股票策略回测
-  - avoid_when: 只要简单向量化回测脚本
-  - repo: https://github.com/stefan-jansen/zipline-reloaded
 - result: PASS (hit=True, compliant=True)
 
 ### q67 — Solidity 合约需要高速本地测试和脚本化部署
