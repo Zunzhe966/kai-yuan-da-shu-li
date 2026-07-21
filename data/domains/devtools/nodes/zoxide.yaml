@@ -1,0 +1,16 @@
+id: zoxide
+type: project
+name: zoxide
+repo: https://github.com/ajeetdsouza/zoxide
+summary: 更智能的 cd，按使用频率跳转目录。
+tags: [cli]
+language: Rust
+status: active
+use_when: 终端频繁跳目录要记忆式跳转
+avoid_when: 只要原生 cd
+niche: directory jumper
+related_ecosystem: shell
+license: MIT
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

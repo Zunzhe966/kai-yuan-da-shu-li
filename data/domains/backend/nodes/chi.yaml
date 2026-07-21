@@ -1,0 +1,16 @@
+id: chi
+type: project
+name: chi
+repo: https://github.com/go-chi/chi
+summary: 轻量可组合的 Go HTTP 路由器，兼容 net/http。
+tags: [backend]
+language: Go
+status: active
+use_when: Go 服务要简洁路由且不绑大框架
+avoid_when: 要全能电池框架（可看 Gin/Fiber）
+niche: go router
+related_ecosystem: go
+license: MIT
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

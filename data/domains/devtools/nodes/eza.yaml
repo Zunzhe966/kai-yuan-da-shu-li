@@ -1,0 +1,16 @@
+id: eza
+type: project
+name: eza
+repo: https://github.com/eza-community/eza
+summary: 现代 ls 替代，彩色与 git 集成。
+tags: [cli]
+language: Rust
+status: active
+use_when: 要更友好的目录列表
+avoid_when: 只要 POSIX ls 脚本兼容
+niche: ls alternative
+related_ecosystem: shell
+license: EUPL-1.2
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

@@ -10,7 +10,7 @@ categories:
     node_ids: [ripgrep, fd, fzf]
   - id: viewers
     title: 阅读与 Diff
-    node_ids: [bat, delta]
+    node_ids: [bat, delta, eza]
   - id: data-cli
     title: 数据 CLI
     node_ids: [jq, yq]
@@ -19,7 +19,7 @@ categories:
     node_ids: [just, mise]
   - id: tui
     title: Git/Docker TUI
-    node_ids: [lazygit, lazydocker]
+    node_ids: [lazygit, lazydocker, starship, zoxide]
   - id: bench
     title: 基准
     node_ids: [hyperfine]

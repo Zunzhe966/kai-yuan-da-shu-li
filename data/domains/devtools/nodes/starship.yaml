@@ -1,0 +1,16 @@
+id: starship
+type: project
+name: Starship
+repo: https://github.com/starship/starship
+summary: 跨 shell 的快速可定制提示符。
+tags: [cli]
+language: Rust
+status: active
+use_when: 要统一美观的多 shell 提示符
+avoid_when: 只要系统默认提示
+niche: prompt
+related_ecosystem: shell
+license: ISC
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified
