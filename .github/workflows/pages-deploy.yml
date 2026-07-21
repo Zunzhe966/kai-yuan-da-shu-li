@@ -10,7 +10,8 @@ permissions:
 
 concurrency:
   group: pages-deploy-${{ github.ref }}
-  cancel-in-progress: true
+  # Do not cancel in-flight deploys: rapid main merges were racing CDN probes and emailing failures.
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -55,40 +56,57 @@ jobs:
           META_URL: https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json
         run: |
           set -euo pipefail
-          code=""
-          for _ in 1 2 3 4 5 6 7 8; do
-            code=$(curl -sS -o /tmp/live-meta.json -w "%{http_code}" "$META_URL" || true)
-            if [[ "$code" == "200" ]]; then
-              break
-            fi
-            sleep 5
-          done
-          if [[ "$code" != "200" ]]; then
-            echo "::error title=Live probe failed::${META_URL} returned HTTP ${code:-none}"
-            exit 1
-          fi
+          # Cloudflare Pages edge can lag behind upload; wait until live scale matches this build
+          # (not merely HTTP 200 with stale CDN cache — that was spamming failure emails).
           .venv/bin/python - <<'PY'
           import json
           import os
+          import time
+          import urllib.request
           from pathlib import Path
 
-          live = json.loads(Path("/tmp/live-meta.json").read_text(encoding="utf-8"))
+          meta_url = os.environ["META_URL"]
           built = json.loads(Path("build/site/api/v1/meta.json").read_text(encoding="utf-8"))
-          print(f"probe_http=200")
+          want_n, want_e = built.get("node_count"), built.get("edge_count")
+          live = None
+          code = "none"
+          # ~3 minutes: 24 * 8s
+          for attempt in range(1, 25):
+              try:
+                  req = urllib.request.Request(meta_url, headers={"Cache-Control": "no-cache", "Pragma": "no-cache"})
+                  with urllib.request.urlopen(req, timeout=30) as resp:
+                      code = str(resp.status)
+                      live = json.loads(resp.read().decode("utf-8"))
+              except Exception as exc:
+                  code = f"err:{exc}"
+                  live = None
+              if live is not None and live.get("node_count") == want_n and live.get("edge_count") == want_e:
+                  break
+              if live is None:
+                  live_s = "none"
+              else:
+                  live_s = f"{live.get('node_count')}/{live.get('edge_count')}"
+              print(f"probe_wait attempt={attempt} http={code} live={live_s} want={want_n}/{want_e}")
+              time.sleep(8)
+          else:
+              live_s = "none" if live is None else f"{live.get('node_count')}/{live.get('edge_count')}"
+              raise SystemExit(
+                  "live meta scale mismatch vs this build after retries: "
+                  f"live={live_s} built={want_n}/{want_e} last_http={code}"
+              )
+
+          print(f"probe_http={code}")
           print(f"probe_commit={os.environ.get('GITHUB_SHA', '')}")
           print(f"probe_run_id={os.environ.get('GITHUB_RUN_ID', '')}")
-          print(f"probe_run_url=https://github.com/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}")
+          print(
+              f"probe_run_url=https://github.com/{os.environ.get('GITHUB_REPOSITORY', '')}"
+              f"/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}"
+          )
           print(f"probe_domains={len(live.get('domains', []))}")
           print(f"probe_node_count={live.get('node_count')}")
           print(f"probe_edge_count={live.get('edge_count')}")
           print(f"probe_generated_at={live.get('generated_at')}")
-          print(f"built_node_count={built.get('node_count')}")
-          print(f"built_edge_count={built.get('edge_count')}")
-          if live.get("node_count") != built.get("node_count") or live.get("edge_count") != built.get("edge_count"):
-              raise SystemExit(
-                  "live meta scale mismatch vs this build: "
-                  f"live={live.get('node_count')}/{live.get('edge_count')} "
-                  f"built={built.get('node_count')}/{built.get('edge_count')}"
-              )
+          print(f"built_node_count={want_n}")
+          print(f"built_edge_count={want_e}")
           print("post_deploy_probe=OK")
           PY
