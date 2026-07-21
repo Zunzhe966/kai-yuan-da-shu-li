@@ -10,3 +10,7 @@ use_when: DataFrame 工作流里算技术指标
 avoid_when: 要 TA-Lib 原生性能绑定
 niche: indicators
 related_ecosystem: finance
+license:
+source_updated_at:
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

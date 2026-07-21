@@ -10,3 +10,7 @@ use_when: 要比特币闪电网络节点与支付通道
 avoid_when: 非比特币支付场景
 niche: lightning
 related_ecosystem: bitcoin
+license: MIT
+source_updated_at: 2026-07-18T02:21:18Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

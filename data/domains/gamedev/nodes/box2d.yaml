@@ -10,3 +10,7 @@ use_when: 2D 游戏需要刚体物理
 avoid_when: 3D 物理为主
 niche: physics
 related_ecosystem: gamedev
+license: MIT
+source_updated_at: 2026-07-20T05:10:57Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

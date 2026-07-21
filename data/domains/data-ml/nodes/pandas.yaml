@@ -10,3 +10,7 @@ use_when: Python 做表格数据处理与分析
 avoid_when: 超大规模分布式表处理（看 Spark/Polars）
 niche: dataframe
 related_ecosystem: data-ml
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T01:14:58Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

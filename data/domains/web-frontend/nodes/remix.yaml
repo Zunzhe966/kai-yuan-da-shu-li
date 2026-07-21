@@ -10,3 +10,7 @@ use_when: 重视渐进增强、嵌套路由与 Web fetch 模型
 avoid_when: 只要最大众的 Next 约定与教程密度
 niche: web-standards react framework
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-20T17:13:34Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

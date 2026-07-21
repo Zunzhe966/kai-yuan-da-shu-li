@@ -10,3 +10,7 @@ use_when: 要开源 tracing + 评估一体化工作台
 avoid_when: 只要极简日志打印
 niche: AI observability workbench
 related_ecosystem: arize
+license: 
+source_updated_at: 2026-07-21T13:37:13Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

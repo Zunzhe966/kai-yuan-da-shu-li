@@ -10,3 +10,7 @@ use_when: 要 MySQL 兼容且偏社区发行
 avoid_when: 必须绑定 Oracle MySQL 官方特性
 niche: mysql-compatible
 related_ecosystem: databases
+license: GPL-2.0
+source_updated_at: 2026-07-21T13:43:23Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

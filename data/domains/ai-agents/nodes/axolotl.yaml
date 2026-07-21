@@ -10,3 +10,7 @@ use_when: 要用现成配置跑开源模型 SFT/偏好训练
 avoid_when: 只需调用托管微调 API
 niche: LLM finetune toolkit
 related_ecosystem: axolotl
+license: Apache-2.0
+source_updated_at: 2026-07-17T18:25:22Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

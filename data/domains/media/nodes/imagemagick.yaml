@@ -10,3 +10,7 @@ use_when: 要批量转格式/缩放/合成图片
 avoid_when: 要交互式图层设计（用专业编辑器）
 niche: image cli
 related_ecosystem: media
+license: 
+source_updated_at: 2026-07-21T13:05:54Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

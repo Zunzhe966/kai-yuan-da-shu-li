@@ -10,3 +10,7 @@ use_when: 本地/进程内分析 SQL
 avoid_when: 需要分布式集群 OLAP
 niche: embedded analytics
 related_ecosystem: databases
+license: MIT
+source_updated_at: 2026-07-21T13:46:28Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

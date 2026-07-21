@@ -10,3 +10,7 @@ use_when: 要 rootless/无 dockerd 的容器工作流
 avoid_when: 团队标准已是 Docker Desktop 且无迁移动机
 niche: daemonless containers
 related_ecosystem: devops
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:32:07Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

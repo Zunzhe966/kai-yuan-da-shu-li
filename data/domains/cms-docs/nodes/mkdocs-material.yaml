@@ -10,3 +10,7 @@ use_when: MkDocs 要开箱好看的文档 UI
 avoid_when: 不用 MkDocs
 niche: docs theme
 related_ecosystem: docs
+license: MIT
+source_updated_at: 2026-07-17T16:20:51Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 容器环境要自动发现与动态路由
 avoid_when: 静态单机 nginx 已足够
 niche: cloud-native edge router
 related_ecosystem: devops
+license: MIT
+source_updated_at: 2026-07-20T14:24:06Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

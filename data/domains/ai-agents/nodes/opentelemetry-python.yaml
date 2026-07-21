@@ -10,3 +10,7 @@ use_when: 要把 LLM 服务接入标准 tracing/metrics
 avoid_when: 只要 LLM 专用控制台、不接通用 OTel
 niche: otel sdk
 related_ecosystem: ai-agents
+license: Apache-2.0
+source_updated_at: 2026-07-20T19:14:28Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

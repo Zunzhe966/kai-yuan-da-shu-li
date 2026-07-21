@@ -10,3 +10,7 @@ use_when: K8s 集群要 YAML 友好的策略治理
 avoid_when: 不用 Kubernetes
 niche: k8s policy
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:46:26Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

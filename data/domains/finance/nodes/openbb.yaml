@@ -10,3 +10,7 @@ use_when: 要一站式开源投研终端/数据路由
 avoid_when: 只要单个数据下载脚本
 niche: research platform
 related_ecosystem: finance
+license: 
+source_updated_at: 2026-07-21T13:40:44Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

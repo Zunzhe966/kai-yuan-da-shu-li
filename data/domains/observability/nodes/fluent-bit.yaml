@@ -10,3 +10,7 @@ use_when: 边缘/容器侧要轻量采集转发
 avoid_when: 要重型复杂路由用 Fluentd 插件生态
 niche: log shipper
 related_ecosystem: observability
+license: Apache-2.0
+source_updated_at: 2026-07-21T06:30:53Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

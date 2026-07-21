@@ -10,3 +10,7 @@ use_when: 要插件化 API 网关与企业能力
 avoid_when: 网关需求极简且团队无 OpenResty 经验
 niche: api gateway
 related_ecosystem: networking
+license: Apache-2.0
+source_updated_at: 2026-07-21T10:07:39Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

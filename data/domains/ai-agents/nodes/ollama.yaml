@@ -10,3 +10,7 @@ use_when: 本地/内网推理、快速试用开源模型
 avoid_when: 需要大规模分布式推理集群（应看 vLLM 等）
 niche: local LLM runner
 related_ecosystem: ollama
+license: MIT
+source_updated_at: 2026-07-20T23:22:48Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

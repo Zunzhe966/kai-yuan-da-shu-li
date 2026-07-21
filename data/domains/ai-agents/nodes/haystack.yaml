@@ -10,3 +10,7 @@ use_when: 生产向 RAG 管道、组件可替换
 avoid_when: 只要最薄的向量检索包装
 niche: RAG pipelines
 related_ecosystem: haystack
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:20:24Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

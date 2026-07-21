@@ -10,3 +10,7 @@ use_when: 要开源、轻量、一体化的 2D/3D 引擎
 avoid_when: 团队已深度绑定商业引擎管线
 niche: game engine
 related_ecosystem: gamedev
+license: MIT
+source_updated_at: 2026-07-20T23:37:49Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

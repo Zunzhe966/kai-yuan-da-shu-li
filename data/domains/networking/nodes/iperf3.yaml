@@ -10,3 +10,7 @@ use_when: 要测链路吞吐与抖动
 avoid_when: 应用层压测（用专门 HTTP 压测器）
 niche: bandwidth test
 related_ecosystem: networking
+license: 
+source_updated_at: 2026-07-10T19:21:20Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

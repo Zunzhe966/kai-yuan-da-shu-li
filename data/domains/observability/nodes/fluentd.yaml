@@ -10,3 +10,7 @@ use_when: 要灵活路由与丰富输出插件的日志管道
 avoid_when: 资源极紧只要 Fluent Bit
 niche: log shipper
 related_ecosystem: observability
+license: Apache-2.0
+source_updated_at: 2026-07-21T02:37:43Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

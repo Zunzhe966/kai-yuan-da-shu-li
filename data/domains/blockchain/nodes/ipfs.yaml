@@ -10,3 +10,7 @@ use_when: 要内容寻址的分布式文件存储
 avoid_when: 只要中心化对象存储
 niche: p2p storage
 related_ecosystem: web3
+license: 
+source_updated_at: 2026-07-20T20:52:16Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

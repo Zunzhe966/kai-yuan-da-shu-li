@@ -10,3 +10,7 @@ use_when: 需要可靠通用 SQL 数据库与强生态
 avoid_when: 只要嵌入式单文件库
 niche: relational db
 related_ecosystem: databases
+license: 
+source_updated_at: 2026-07-21T13:43:24Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

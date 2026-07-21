@@ -10,3 +10,7 @@ use_when: 要开源许可清晰的 ES 兼容搜索分析
 avoid_when: 已深度绑定 Elastic 官方许可产品
 niche: logging search
 related_ecosystem: observability
+license: Apache-2.0
+source_updated_at: 2026-07-21T00:59:25Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

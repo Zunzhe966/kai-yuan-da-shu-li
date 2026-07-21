@@ -10,3 +10,7 @@ use_when: 要版本化产品文档站且用 React
 avoid_when: 只要极简 Markdown 预览
 niche: docs site
 related_ecosystem: docs
+license: MIT
+source_updated_at: 2026-07-17T20:38:09Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

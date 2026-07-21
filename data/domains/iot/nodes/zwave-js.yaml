@@ -10,3 +10,7 @@ use_when: 要驱动 Z-Wave 控制器与设备
 avoid_when: 无 Z-Wave 硬件
 niche: zwave
 related_ecosystem: iot
+license: MIT
+source_updated_at: 2026-07-17T08:08:35Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

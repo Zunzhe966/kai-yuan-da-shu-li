@@ -10,3 +10,7 @@ use_when: 要对输出做结构/安全/策略校验
 avoid_when: 模型已可靠且只需自由文本
 niche: output guardrails
 related_ecosystem: guardrails
+license: Apache-2.0
+source_updated_at: 2026-07-17T20:17:50Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

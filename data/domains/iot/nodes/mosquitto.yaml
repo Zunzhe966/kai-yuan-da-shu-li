@@ -10,3 +10,7 @@ use_when: 要自托管 MQTT 消息总线
 avoid_when: 只要云厂商托管 MQTT
 niche: mqtt broker
 related_ecosystem: iot
+license: 
+source_updated_at: 2026-06-30T13:29:10Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

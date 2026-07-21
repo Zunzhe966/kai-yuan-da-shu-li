@@ -10,3 +10,7 @@ use_when: 要动态配置的 API 网关与插件生态
 avoid_when: 只要单机 nginx 反代几个路径
 niche: api gateway
 related_ecosystem: networking
+license: Apache-2.0
+source_updated_at: 2026-07-20T17:54:48Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

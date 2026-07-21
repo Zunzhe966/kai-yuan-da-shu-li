@@ -10,3 +10,7 @@ use_when: Python 项目要基础安全 lint
 avoid_when: 多语言或要跨语言统一引擎
 niche: python sast
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T00:59:27Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

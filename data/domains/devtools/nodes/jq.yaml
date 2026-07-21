@@ -10,3 +10,7 @@ use_when: 在 shell 里解析/变换 JSON
 avoid_when: 要处理超大流式数据且 jq 内存吃紧
 niche: json cli
 related_ecosystem: cli
+license: 
+source_updated_at: 2026-07-19T12:27:46Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

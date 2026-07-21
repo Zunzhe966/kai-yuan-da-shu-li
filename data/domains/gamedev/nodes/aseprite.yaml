@@ -10,3 +10,7 @@ use_when: 要像素精灵与动画制作
 avoid_when: 要 3D 资产管线
 niche: pixel art
 related_ecosystem: gamedev
+license: 
+source_updated_at: 2026-07-21T12:15:01Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

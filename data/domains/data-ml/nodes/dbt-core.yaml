@@ -10,3 +10,7 @@ use_when: 仓内用 SQL 做可版本化变换
 avoid_when: 没有数仓/分析工程流程
 niche: analytics engineering
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-21T09:55:42Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

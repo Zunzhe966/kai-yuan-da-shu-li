@@ -10,3 +10,7 @@ use_when: 团队熟悉 MySQL/生态工具链
 avoid_when: 需要更强标准 SQL/扩展（常看 Postgres）
 niche: relational db
 related_ecosystem: databases
+license: 
+source_updated_at: 2026-07-14T09:17:16Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: GPU 集群/服务器上要高并发开源模型推理
 avoid_when: 笔记本一键试用（更看 Ollama）
 niche: high-throughput inference
 related_ecosystem: vllm
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:36:44Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

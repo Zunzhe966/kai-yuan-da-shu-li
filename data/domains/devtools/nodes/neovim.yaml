@@ -10,3 +10,7 @@ use_when: 需要高度可定制的终端编辑器与插件生态
 avoid_when: 不想维护配置只想开箱即用
 niche: editor
 related_ecosystem: editor
+license: 
+source_updated_at: 2026-07-21T12:56:43Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

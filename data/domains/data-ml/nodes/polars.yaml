@@ -10,3 +10,7 @@ use_when: 要比 pandas 更快的本地/懒执行表处理
 avoid_when: 只要最大学术/教程生态
 niche: fast dataframe
 related_ecosystem: data-ml
+license: MIT
+source_updated_at: 2026-07-21T13:00:42Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

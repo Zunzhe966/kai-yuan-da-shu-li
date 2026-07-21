@@ -10,3 +10,7 @@ use_when: 前端/Node 与以太坊交互
 avoid_when: 非 EVM 链为主
 niche: web3 js
 related_ecosystem: ethereum
+license: MIT
+source_updated_at: 2026-06-18T05:08:13Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要交互图表/仪表盘组件
 avoid_when: 只要出版级静态图
 niche: interactive viz
 related_ecosystem: data-ml
+license: MIT
+source_updated_at: 2026-07-20T16:37:01Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

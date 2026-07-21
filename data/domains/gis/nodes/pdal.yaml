@@ -10,3 +10,7 @@ use_when: 要处理 LiDAR/点云管道
 avoid_when: 只要 2D 矢量地图
 niche: point cloud
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-16T16:56:45Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

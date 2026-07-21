@@ -10,3 +10,7 @@ use_when: 需要可过滤的向量检索与较稳的生产部署
 avoid_when: 只要进程内玩具级向量表
 niche: filtered vector search
 related_ecosystem: qdrant
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:36:20Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

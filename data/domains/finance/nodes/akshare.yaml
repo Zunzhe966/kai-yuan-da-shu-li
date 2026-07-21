@@ -10,3 +10,7 @@ use_when: 要 A 股/国内财经公开数据
 avoid_when: 只要美股 Yahoo 源
 niche: cn market data
 related_ecosystem: finance
+license: MIT
+source_updated_at: 2026-07-21T09:01:58Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

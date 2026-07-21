@@ -10,3 +10,7 @@ use_when: 核心需求是文档问答、索引与检索增强
 avoid_when: 主要做多 Agent 协作且不需要复杂数据连接器
 niche: data framework for LLM apps
 related_ecosystem: llama-index
+license: MIT
+source_updated_at: 2026-07-21T03:30:55Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

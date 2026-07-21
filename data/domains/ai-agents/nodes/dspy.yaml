@@ -10,3 +10,7 @@ use_when: 要用数据驱动优化提示/程序而非手写死 prompt
 avoid_when: 一次性脚本、不想引入优化循环
 niche: programmatic prompt optimization
 related_ecosystem: dspy
+license: MIT
+source_updated_at: 2026-07-20T15:18:05Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

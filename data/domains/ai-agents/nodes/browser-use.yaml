@@ -10,3 +10,7 @@ use_when: 任务需要网页点击/填写/抓取
 avoid_when: 只需 API/工具调用无浏览器
 niche: browser-using agents
 related_ecosystem: browser-use
+license: MIT
+source_updated_at: 2026-07-20T17:26:41Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要自托管记账与预算
 avoid_when: 只要交易策略回测
 niche: personal finance
 related_ecosystem: finance
+license: AGPL-3.0
+source_updated_at: 2026-07-21T03:52:48Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要更小安装包与更强系统安全边界的桌面应用
 avoid_when: 深度依赖 Electron 专用生态与 Node 原生模块
 niche: webview desktop
 related_ecosystem: desktop
+license: Apache-2.0
+source_updated_at: 2026-07-21T08:38:42Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要对接多家交易所行情与下单 API
 avoid_when: 只要传统股票券商接口
 niche: crypto api
 related_ecosystem: finance
+license: MIT
+source_updated_at: 2026-07-20T20:59:24Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

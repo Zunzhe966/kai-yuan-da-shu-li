@@ -10,3 +10,7 @@ use_when: iOS 要好用的网络层
 avoid_when: 非 Apple 平台
 niche: ios networking
 related_ecosystem: mobile
+license: MIT
+source_updated_at: 2026-07-21T02:07:57Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

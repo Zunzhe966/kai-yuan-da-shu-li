@@ -10,3 +10,7 @@ use_when: 十亿级向量、分布式检索
 avoid_when: 单机小语料原型
 niche: large-scale vector DB
 related_ecosystem: milvus
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:42:42Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

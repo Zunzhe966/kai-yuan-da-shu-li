@@ -10,3 +10,7 @@ use_when: 熟悉 Express 想用 Go 写 API
 avoid_when: 团队标准是标准库 net/http + 自研
 niche: go express-like
 related_ecosystem: backend
+license: MIT
+source_updated_at: 2026-07-21T13:12:27Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 用多角色流水线生成软件方案/代码原型
 avoid_when: 任务简单不需要「虚拟公司」开销
 niche: software-company multi-agent
 related_ecosystem: metagpt
+license: MIT
+source_updated_at: 2026-01-21T10:12:33Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

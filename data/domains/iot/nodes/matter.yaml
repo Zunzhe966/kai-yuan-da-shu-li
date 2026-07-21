@@ -10,3 +10,7 @@ use_when: 要做 Matter 设备/控制器开发
 avoid_when: 只要应用层集成现成 Matter 设备
 niche: matter
 related_ecosystem: iot
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:36:27Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

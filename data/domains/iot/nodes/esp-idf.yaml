@@ -10,3 +10,7 @@ use_when: 要官方级 ESP32 深度开发
 avoid_when: 只要快速 YAML 刷机（ESPHome）
 niche: esp sdk
 related_ecosystem: iot
+license: Apache-2.0
+source_updated_at: 2026-07-21T06:37:51Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

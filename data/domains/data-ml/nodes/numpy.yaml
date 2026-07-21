@@ -10,3 +10,7 @@ use_when: 数组数值计算与科学栈底座
 avoid_when: 只要高层表格 API
 niche: ndarray
 related_ecosystem: data-ml
+license: 
+source_updated_at: 2026-07-21T04:20:15Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

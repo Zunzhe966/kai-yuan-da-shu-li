@@ -10,3 +10,7 @@ use_when: 要在地图上做大规模数据可视化
 avoid_when: 只要普通标记与路径
 niche: geo viz
 related_ecosystem: gis
+license: MIT
+source_updated_at: 2026-07-20T16:54:20Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

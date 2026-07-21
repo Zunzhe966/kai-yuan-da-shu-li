@@ -10,3 +10,7 @@ use_when: Next.js/Web 流式聊天与工具调用
 avoid_when: 后端批处理/非 TS 栈
 niche: web streaming AI SDK
 related_ecosystem: vercel
+license: 
+source_updated_at: 2026-07-21T13:58:03Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

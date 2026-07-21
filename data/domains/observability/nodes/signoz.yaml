@@ -10,3 +10,7 @@ use_when: 要一体式开源 APM 替代商业方案
 avoid_when: 已有拆开的 Prometheus+Jaeger+Grafana 且满意
 niche: apm
 related_ecosystem: observability
+license: 
+source_updated_at: 2026-07-21T13:55:40Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

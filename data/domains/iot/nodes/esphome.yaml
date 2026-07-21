@@ -10,3 +10,7 @@ use_when: 要用声明式配置刷 ESP 传感器/开关
 avoid_when: 要完全手写底层 IDF 驱动
 niche: esp firmware
 related_ecosystem: iot
+license: 
+source_updated_at: 2026-07-21T02:37:01Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: 要 BaaS（Auth/Realtime/Storage）+ Postgres
 avoid_when: 只要纯数据库内核无 BaaS
 niche: postgres baas
 related_ecosystem: databases
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:51:57Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

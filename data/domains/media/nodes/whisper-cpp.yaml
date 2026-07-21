@@ -10,3 +10,7 @@ use_when: 要本地离线语音转文字
 avoid_when: 只要云端 ASR API
 niche: speech to text
 related_ecosystem: media
+license: MIT
+source_updated_at: 2026-07-11T15:53:59Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

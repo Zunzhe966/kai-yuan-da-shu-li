@@ -10,3 +10,7 @@ use_when: CI/预提交要防密钥进 Git
 avoid_when: 不做源码仓密钥检测
 niche: secret detection
 related_ecosystem: security
+license: MIT
+source_updated_at: 2026-07-20T16:05:26Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

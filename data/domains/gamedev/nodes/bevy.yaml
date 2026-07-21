@@ -10,3 +10,7 @@ use_when: 要用 Rust ECS 做游戏/交互应用
 avoid_when: 要开箱即用的可视化编辑器为主
 niche: rust engine
 related_ecosystem: gamedev
+license: Apache-2.0
+source_updated_at: 2026-07-21T06:15:01Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

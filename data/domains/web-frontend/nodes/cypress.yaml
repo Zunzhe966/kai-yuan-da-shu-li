@@ -10,3 +10,7 @@ use_when: 团队熟悉 Cypress 工作流与时间旅行调试
 avoid_when: 需要多浏览器引擎一等支持（更看 Playwright）
 niche: e2e testing
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:39:55Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: CI 里扫镜像与依赖漏洞
 avoid_when: 只要代码 SAST 不涉及供应链制品
 niche: vuln scanner
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:18:36Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

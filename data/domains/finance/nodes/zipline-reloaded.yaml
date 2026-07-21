@@ -10,3 +10,7 @@ use_when: 要事件驱动的股票策略回测
 avoid_when: 只要简单向量化回测脚本
 niche: backtest
 related_ecosystem: finance
+license: Apache-2.0
+source_updated_at: 2026-01-06T13:01:54Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: Node/TS 要类型安全 ORM
 avoid_when: 非 Node 栈
 niche: ts orm
 related_ecosystem: backend
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:48:14Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

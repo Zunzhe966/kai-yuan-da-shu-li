@@ -10,3 +10,7 @@ use_when: 本地/服务端要快的语音转写
 avoid_when: 只要云端语音 API
 niche: speech-to-text
 related_ecosystem: ai-agents
+license: MIT
+source_updated_at: 2025-11-19T14:40:46Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

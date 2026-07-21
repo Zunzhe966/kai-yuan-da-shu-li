@@ -10,3 +10,7 @@ use_when: 要灵活的 Python 策略回测框架
 avoid_when: 要超大规模机构级回测平台
 niche: backtest
 related_ecosystem: finance
+license: GPL-3.0
+source_updated_at: 2024-08-19T17:47:36Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

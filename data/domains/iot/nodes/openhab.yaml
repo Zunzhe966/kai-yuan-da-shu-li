@@ -10,3 +10,7 @@ use_when: 要规则引擎强的家庭自动化替代
 avoid_when: 更熟 Home Assistant 生态
 niche: home automation
 related_ecosystem: iot
+license: EPL-2.0
+source_updated_at: 2026-07-20T17:07:46Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

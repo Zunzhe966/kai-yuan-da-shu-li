@@ -10,3 +10,7 @@ use_when: 要可编程音视频管道嵌入应用
 avoid_when: 只要一次性 ffmpeg 命令
 niche: av framework
 related_ecosystem: media
+license: 
+source_updated_at: 2026-07-21T12:20:55Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

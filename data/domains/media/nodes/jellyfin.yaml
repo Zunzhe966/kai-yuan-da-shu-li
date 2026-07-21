@@ -10,3 +10,7 @@ use_when: 要自托管影视/音乐库与多端播放
 avoid_when: 只要单机播放文件
 niche: media server
 related_ecosystem: media
+license: GPL-2.0
+source_updated_at: 2026-07-21T12:52:59Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

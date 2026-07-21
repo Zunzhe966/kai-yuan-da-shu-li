@@ -10,3 +10,7 @@ use_when: 自建/理解 Sigstore 证书链
 avoid_when: 只用托管 Sigstore 流程
 niche: sigstore ca
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-20T02:33:41Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

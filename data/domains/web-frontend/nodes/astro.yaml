@@ -10,3 +10,7 @@ use_when: 内容站/文档站要少 JS 默认
 avoid_when: 重交互 SPA 是主形态
 niche: content-first meta-framework
 related_ecosystem: web
+license: 
+source_updated_at: 2026-07-21T13:40:55Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

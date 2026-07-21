@@ -10,3 +10,7 @@ use_when: 优化/统计/稀疏等科学算法
 avoid_when: 只要深度学习训练框架
 niche: scientific computing
 related_ecosystem: data-ml
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T01:49:57Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

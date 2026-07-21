@@ -10,3 +10,7 @@ use_when: 要本地/可同步的预算记账
 avoid_when: 要企业总账
 niche: budgeting
 related_ecosystem: finance
+license: MIT
+source_updated_at: 2026-07-20T23:22:28Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

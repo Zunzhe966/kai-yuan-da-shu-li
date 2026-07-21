@@ -10,3 +10,7 @@ use_when: 表格竞赛/生产树模型
 avoid_when: 非表格深度模型主战场
 niche: gbdt
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:52:26Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要为镜像/目录生成软件物料清单
 avoid_when: 不需要供应链清单
 niche: sbom generator
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:11:44Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

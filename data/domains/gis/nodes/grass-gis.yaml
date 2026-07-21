@@ -10,3 +10,7 @@ use_when: 要科学级栅格/矢量地理处理
 avoid_when: 只要轻量制图 UI
 niche: geo processing
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-21T02:30:14Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

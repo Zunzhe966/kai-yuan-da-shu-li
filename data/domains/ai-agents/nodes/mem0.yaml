@@ -10,3 +10,7 @@ use_when: 聊天/Agent 需要跨会话记忆
 avoid_when: 无状态单次完成任务
 niche: agent memory layer
 related_ecosystem: mem0
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:17:43Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

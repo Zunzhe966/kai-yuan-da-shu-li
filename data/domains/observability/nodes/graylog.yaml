@@ -10,3 +10,7 @@ use_when: 要带告警/仪表盘的集中日志平台
 avoid_when: 只要轻量 Loki 或纯搜索引擎
 niche: logging platform
 related_ecosystem: observability
+license: 
+source_updated_at: 2026-07-21T13:36:05Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

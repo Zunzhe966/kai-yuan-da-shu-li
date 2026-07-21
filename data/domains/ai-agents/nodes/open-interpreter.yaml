@@ -10,3 +10,7 @@ use_when: 需要本地代码执行型通用 Agent
 avoid_when: 不能给模型本机执行权限
 niche: local code-exec agent
 related_ecosystem: ai-agents
+license: Apache-2.0
+source_updated_at: 2026-07-18T19:26:26Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 需要长篇调研报告自动生成
 avoid_when: 短问答或单次工具调用
 niche: research agent
 related_ecosystem: gpt-researcher
+license: Apache-2.0
+source_updated_at: 2026-07-18T07:56:55Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

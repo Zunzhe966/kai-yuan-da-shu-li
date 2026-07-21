@@ -10,3 +10,7 @@ use_when: 要 Cosmos 生态应用链
 avoid_when: 只要 EVM 合约 dApp
 niche: chain framework
 related_ecosystem: cosmos
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:41:40Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

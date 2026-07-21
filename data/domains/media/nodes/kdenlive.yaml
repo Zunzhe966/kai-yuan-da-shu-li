@@ -10,3 +10,7 @@ use_when: 要功能较全的开源非编
 avoid_when: 只要命令行转码
 niche: video editor
 related_ecosystem: media
+license: GPL-3.0
+source_updated_at: 2026-07-21T12:22:21Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

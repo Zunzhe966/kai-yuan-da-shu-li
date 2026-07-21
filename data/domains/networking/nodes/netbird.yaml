@@ -10,3 +10,7 @@ use_when: 要开源零信任网状 VPN 替代
 avoid_when: 已绑定 Tailscale 生态
 niche: mesh vpn
 related_ecosystem: networking
+license: 
+source_updated_at: 2026-07-21T13:50:38Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

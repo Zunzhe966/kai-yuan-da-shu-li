@@ -10,3 +10,7 @@ use_when: 要在 Solana 上开发程序/IDL
 avoid_when: EVM 合约开发为主
 niche: solana tooling
 related_ecosystem: solana
+license: Apache-2.0
+source_updated_at: 2026-07-20T16:48:16Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

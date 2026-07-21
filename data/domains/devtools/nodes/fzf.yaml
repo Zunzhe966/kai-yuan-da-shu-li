@@ -10,3 +10,7 @@ use_when: 交互式从列表/历史/文件中模糊挑选
 avoid_when: 非交互批处理且无需人机选择
 niche: fuzzy finder
 related_ecosystem: cli
+license: MIT
+source_updated_at: 2026-07-20T13:42:51Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

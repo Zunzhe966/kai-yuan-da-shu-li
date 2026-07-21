@@ -10,3 +10,7 @@ use_when: 教学/创客快速原型
 avoid_when: 要生产级安全与复杂网络栈
 niche: maker
 related_ecosystem: iot
+license: 
+source_updated_at: 2026-07-01T23:19:13Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

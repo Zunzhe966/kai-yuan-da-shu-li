@@ -10,3 +10,7 @@ use_when: 要发布 WMS/WFS 等地图服务
 avoid_when: 只要静态瓦片托管
 niche: geo server
 related_ecosystem: gis
+license: 
+source_updated_at: 2026-07-21T13:59:20Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

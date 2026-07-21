@@ -10,3 +10,7 @@ use_when: 研究/微调/自定义模型推理管线
 avoid_when: 只要一键聊天、不碰模型内部
 niche: model zoo runtime
 related_ecosystem: huggingface
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:42:14Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

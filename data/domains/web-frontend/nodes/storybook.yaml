@@ -10,3 +10,7 @@ use_when: 要隔离开发/文档化组件
 avoid_when: 没有组件库协作需求
 niche: component workshop
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:33:26Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

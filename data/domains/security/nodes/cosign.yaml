@@ -10,3 +10,7 @@ use_when: 要给镜像/制品签名并验证
 avoid_when: 无供应链签名合规需求
 niche: artifact signing
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-20T16:52:04Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

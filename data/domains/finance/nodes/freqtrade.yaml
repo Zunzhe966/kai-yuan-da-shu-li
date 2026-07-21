@@ -10,3 +10,7 @@ use_when: 要策略化加密货币自动交易
 avoid_when: 要股票/期货为主且无加密需求
 niche: trading bot
 related_ecosystem: finance
+license: GPL-3.0
+source_updated_at: 2026-07-21T05:19:55Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

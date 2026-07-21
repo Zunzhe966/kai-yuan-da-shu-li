@@ -10,3 +10,7 @@ use_when: 要底层容器运行时或定制 CRI
 avoid_when: 只要 Docker 用户体验封装
 niche: container runtime
 related_ecosystem: devops
+license: Apache-2.0
+source_updated_at: 2026-07-21T03:46:50Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

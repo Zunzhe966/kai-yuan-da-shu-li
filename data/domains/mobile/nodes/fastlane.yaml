@@ -10,3 +10,7 @@ use_when: 要自动化证书、截图、商店发布流水线
 avoid_when: 只要本地跑通 App 无发布
 niche: mobile release
 related_ecosystem: mobile
+license: MIT
+source_updated_at: 2026-07-17T16:49:51Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 要自托管无头 CMS 给多前端供内容
 avoid_when: 只要 Git 驱动的文档站
 niche: headless cms
 related_ecosystem: cms
+license: 
+source_updated_at: 2026-07-21T13:50:31Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

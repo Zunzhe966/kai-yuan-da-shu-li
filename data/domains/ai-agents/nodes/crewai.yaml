@@ -10,3 +10,7 @@ use_when: 多角色分工完成复杂任务原型
 avoid_when: 单 Agent 工具调用已足够，或要极细粒度状态控制
 niche: role-based multi-agent crews
 related_ecosystem: crewai
+license: MIT
+source_updated_at: 2026-07-21T11:37:10Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

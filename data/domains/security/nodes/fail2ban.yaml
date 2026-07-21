@@ -10,3 +10,7 @@ use_when: 主机要防 SSH/服务爆破
 avoid_when: 流量已在边缘 WAF/零信任完整覆盖
 niche: host intrusion prevention
 related_ecosystem: security
+license: 
+source_updated_at: 2026-06-23T23:16:17Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

@@ -10,3 +10,7 @@ use_when: Vue 项目需要约定式全栈/SSR
 avoid_when: 不用 Vue
 niche: vue meta-framework
 related_ecosystem: web
+license: MIT
+source_updated_at: 2026-07-21T13:43:19Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

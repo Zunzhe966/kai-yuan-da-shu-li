@@ -10,3 +10,7 @@ use_when: 要监测 Wi-Fi/蓝牙等无线环境
 avoid_when: 只要应用层 MQTT 设备控制
 niche: wireless monitor
 related_ecosystem: iot
+license: 
+source_updated_at: 2026-07-20T20:40:39Z
+verified_at: 2026-07-21T13:57:00Z
+verification_status: needs_review

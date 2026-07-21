@@ -10,3 +10,7 @@ use_when: 已有 SBOM 要扫漏洞
 avoid_when: 需要一体化容器扫描 UI
 niche: sbom vuln scan
 related_ecosystem: security
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:52:30Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

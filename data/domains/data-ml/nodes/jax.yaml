@@ -10,3 +10,7 @@ use_when: 要函数式/可微科学计算与加速
 avoid_when: 只要高层 Keras 式 API
 niche: composable numerics
 related_ecosystem: data-ml
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:51:12Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

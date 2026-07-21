@@ -10,3 +10,7 @@ use_when: 要把 PDF/HTML 等弄成可索引文本
 avoid_when: 数据已是干净文本
 niche: document ETL
 related_ecosystem: ai-agents
+license: Apache-2.0
+source_updated_at: 2026-07-20T13:07:20Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

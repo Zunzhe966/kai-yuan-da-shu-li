@@ -10,3 +10,7 @@ use_when: Python 工具/可视化要高刷新 UI
 avoid_when: 要原生系统控件与标准桌面观感
 niche: python imgui
 related_ecosystem: desktop
+license: MIT
+source_updated_at: 2026-05-13T12:24:29Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

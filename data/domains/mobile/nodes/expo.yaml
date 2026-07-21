@@ -10,3 +10,7 @@ use_when: RN 要快速迭代与托管工作流
 avoid_when: 必须深度自定义原生工程且拒绝 Expo
 niche: rn toolchain
 related_ecosystem: mobile
+license: MIT
+source_updated_at: 2026-07-21T13:42:42Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

@@ -10,3 +10,7 @@ use_when: 想把 git diff/show 读得更清楚
 avoid_when: 纯脚本解析 patch 不需要人类可读
 niche: diff viewer
 related_ecosystem: cli
+license: MIT
+source_updated_at: 2026-07-21T12:06:11Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

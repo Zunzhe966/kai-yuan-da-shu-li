@@ -10,3 +10,7 @@ use_when: 城市街道网络分析与可视化
 avoid_when: 只要底图展示
 niche: osm analytics
 related_ecosystem: gis
+license: MIT
+source_updated_at: 2026-07-20T15:28:34Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

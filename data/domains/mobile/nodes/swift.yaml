@@ -10,3 +10,7 @@ use_when: 原生 iOS/macOS 开发语言底座
 avoid_when: 只要跨平台 Dart/JS
 niche: apple language
 related_ecosystem: mobile
+license: Apache-2.0
+source_updated_at: 2026-07-21T12:54:45Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

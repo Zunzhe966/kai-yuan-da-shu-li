@@ -10,3 +10,7 @@ use_when: 需要多角色 Agent 对话协作原型
 avoid_when: 只要单 Agent 工具调用，不想引入多 Agent 复杂度
 niche: multi-agent conversation framework
 related_ecosystem: autogen
+license: CC-BY-4.0
+source_updated_at: 2026-04-15T11:59:09Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified

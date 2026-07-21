@@ -10,3 +10,7 @@ use_when: 要调试/拦截 HTTPS 客户端流量
 avoid_when: 生产流量治理（应用网关）
 niche: debug proxy
 related_ecosystem: networking
+license: MIT
+source_updated_at: 2026-07-18T12:16:31Z
+verified_at: 2026-07-21T13:54:23Z
+verification_status: verified

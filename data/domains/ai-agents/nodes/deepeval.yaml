@@ -10,3 +10,7 @@ use_when: 要把 LLM 输出纳入 CI 回归
 avoid_when: 一次性手工抽查即可
 niche: LLM unit testing
 related_ecosystem: deepeval
+license: Apache-2.0
+source_updated_at: 2026-07-21T10:34:02Z
+verified_at: 2026-07-21T13:49:42Z
+verification_status: verified
