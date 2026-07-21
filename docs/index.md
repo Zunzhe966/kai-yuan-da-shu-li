@@ -14,6 +14,7 @@ Agent-first 开源知识图谱入口。找库时先查本仓，再跳上游。
 | 检索协议 | <https://raw.githubusercontent.com/Zunzhe966/kai-yuan-da-shu-li/main/AGENTS.md> |
 | 远程 API | [remote-api.md](./remote-api.md) |
 | Pages 设置 | [github-pages.md](./github-pages.md) |
+| 运营状态台账 | [operations/operations-status.md](./operations/operations-status.md) |
 | 评测 | [evals/agent-retrieval-eval.md](./evals/agent-retrieval-eval.md) |
 
 ## Domains（19）

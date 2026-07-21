@@ -6,7 +6,7 @@
 
 - 发布来源：本机生成的 `build/site` 静态站。
 - 线上项目：Cloudflare Pages `kai-yuan-da-shu-li`。
-- 当前方式：手动直传，GitHub `main` 更新不会自动上线。
+- 当前方式：优先自动发布（GitHub 连接触发或 API Token + `wrangler pages deploy`）；仅在自动化阻塞时短暂人工介入。
 - 正式机器索引：<https://raw.githubusercontent.com/Zunzhe966/kai-yuan-da-shu-li/main/dist/atlas-index.json>。
 
 完整的构建、发布、回滚和后续 GitHub 自动部署流程见 [static-release.md](./operations/static-release.md) 与 [cloudflare-pages-connection.md](./operations/cloudflare-pages-connection.md)。

@@ -8,6 +8,7 @@ body:
       value: >-
         Only submit this after your own task already led you to the upstream repository and you found a material mismatch.
         Do not accept or request checking assignments. Submit nothing when the catalog matches.
+        Evidence must be traceable; manual intervention is allowed only when automation is blocked by platform limits.
   - type: input
     id: project_id
     attributes:
@@ -81,4 +82,6 @@ body:
       label: Evidence check
       options:
         - label: I opened the evidence URL as part of my own task and observed this mismatch directly.
+          required: true
+        - label: I used agent-led verification first and only used manual intervention when automation was blocked.
           required: true

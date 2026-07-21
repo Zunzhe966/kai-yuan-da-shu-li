@@ -1,6 +1,6 @@
 # Remote API smoke (D8, historical snapshot)
 
-Date: 2026-07-12. This record captures an early local smoke test and does not describe the current public site or catalog size. For current state, read `dist/v1/meta.json`, the public `api/v1/meta.json`, and `开源大梳理项目总账.md` in the private management workspace.
+Date: 2026-07-12. This record captures an early local smoke test and does not describe the current public site or catalog size. For current state, read `dist/v1/meta.json`, the public `api/v1/meta.json`, and `docs/operations/operations-status.md`.
 
 ## Static index
 
