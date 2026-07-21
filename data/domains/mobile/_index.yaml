@@ -13,7 +13,7 @@ categories:
     node_ids: [kotlin-android, okhttp, retrofit, ktor, jetpack-compose, lottie-android, coil]
   - id: ios
     title: iOS
-    node_ids: [swift, alamofire, swiftui-notes]
+    node_ids: [swift, alamofire, swiftui-notes, kingfisher]
   - id: testing
     title: 移动测试
     node_ids: [detox, appium]

@@ -13,13 +13,13 @@
 | q5 | 需要向量库，先快速原型 | lancedb, chromadb, qdrant | Y | Y |
 | q6 | 生产环境要带过滤条件的向量检索 | weaviate, qdrant, pgvector | Y | Y |
 | q7 | 给 Agent 接 MCP 工具 | modelcontextprotocol-servers, mcp-python-sdk, kaiyuan-dashuli | Y | Y |
-| q8 | 追踪生产环境 LLM 调用和提示版本 | langfuse, opentelemetry-python, zipkin | Y | Y |
-| q9 | 把 RAG 质量纳入自动评测 | ragas, haystack, dify | Y | Y |
+| q8 | 追踪生产环境 LLM 调用和提示版本 | langfuse, opentelemetry-python, trulens | Y | Y |
+| q9 | 把 RAG 质量纳入自动评测 | ragas, trulens, haystack | Y | Y |
 | q10 | 只要强类型结构化输出，不要重型 Agent 框架 | instructor, pydantic-ai, promptfoo | Y | Y |
 | q11 | VS Code 里开源编码助手 | continue, vercel-ai, swiftui-notes | Y | Y |
 | q12 | 统一多个模型供应商的 API 路由 | localai, litellm, vllm | Y | Y |
-| q13 | Kubernetes 上做 GitOps 持续交付 | flux2, argo-cd, kubernetes | Y | Y |
-| q14 | 不想上满血 K8s，只要轻量工作负载调度 | nomad, k3s, istio | Y | Y |
+| q13 | Kubernetes 上做 GitOps 持续交付 | flux2, argo-cd, tekton | Y | Y |
+| q14 | 不想上满血 K8s，只要轻量工作负载调度 | nomad, linkerd, k3s | Y | Y |
 | q15 | 基础设施即代码，团队更熟 Python/TS | pulumi, terraform, vault | Y | Y |
 | q16 | React 项目要 SSR 和文件系统路由 | nextjs, remix, nuxt | Y | Y |
 | q17 | 前端要快速本地开发和现代打包 | vite, webpack | Y | Y |
@@ -194,10 +194,10 @@
   - use_when: 要把 LLM 服务接入标准 tracing/metrics
   - avoid_when: 只要 LLM 专用控制台、不接通用 OTel
   - repo: https://github.com/open-telemetry/opentelemetry-python
-- **Zipkin** (`zipkin` / observability)
-  - use_when: 要轻量经典 tracing 后端
-  - avoid_when: 要与 OTel 深度一体的现代栈
-  - repo: https://github.com/openzipkin/zipkin
+- **TruLens** (`trulens` / ai-agents)
+  - use_when: 要把 RAG/Agent 质量评估接到应用反馈闭环
+  - avoid_when: 只要基准跑分（lm-eval）或提示词红队（promptfoo）
+  - repo: https://github.com/truera/trulens
 - result: PASS (hit=True, compliant=True)
 
 ### q9 — 把 RAG 质量纳入自动评测
@@ -205,14 +205,14 @@
   - use_when: 要量化 RAG 忠实度/相关性等指标
   - avoid_when: 还没有可跑的 RAG 流水线
   - repo: https://github.com/explodinggradients/ragas
+- **TruLens** (`trulens` / ai-agents)
+  - use_when: 要把 RAG/Agent 质量评估接到应用反馈闭环
+  - avoid_when: 只要基准跑分（lm-eval）或提示词红队（promptfoo）
+  - repo: https://github.com/truera/trulens
 - **Haystack** (`haystack` / ai-agents)
   - use_when: 生产向 RAG 管道、组件可替换
   - avoid_when: 只要最薄的向量检索包装
   - repo: https://github.com/deepset-ai/haystack
-- **Dify** (`dify` / ai-agents)
-  - use_when: 要快速搭可运营的 Agent/RAG 工作台且可自托管
-  - avoid_when: 只要代码库级框架、不要产品化控制台
-  - repo: https://github.com/langgenius/dify
 - result: PASS (hit=True, compliant=True)
 
 ### q10 — 只要强类型结构化输出，不要重型 Agent 框架
@@ -269,10 +269,10 @@
   - use_when: 要用 Git 作为 K8s 期望状态源
   - avoid_when: 不用 Kubernetes 或不做 GitOps
   - repo: https://github.com/argoproj/argo-cd
-- **Kubernetes** (`kubernetes` / devops)
-  - use_when: 多机/多服务需要编排、自愈、滚动发布
-  - avoid_when: 单机小服务，K8s 运维成本过高
-  - repo: https://github.com/kubernetes/kubernetes
+- **Tekton** (`tekton` / devops)
+  - use_when: 流水线要声明在集群内、以 CRD 方式编排
+  - avoid_when: 只要经典 Jenkins 插件或托管 GitHub Actions
+  - repo: https://github.com/tektoncd/pipeline
 - result: PASS (hit=True, compliant=True)
 
 ### q14 — 不想上满血 K8s，只要轻量工作负载调度
@@ -280,14 +280,14 @@
   - use_when: 要调度容器/非容器任务又不想上满血 K8s
   - avoid_when: 团队标准已是 Kubernetes 且生态绑定深
   - repo: https://github.com/hashicorp/nomad
+- **Linkerd** (`linkerd` / devops)
+  - use_when: 要 K8s 网格能力但希望比 Istio 更轻、运维面更小
+  - avoid_when: 要最全流量治理与庞大插件生态（看 Istio）
+  - repo: https://github.com/linkerd/linkerd2
 - **K3s** (`k3s` / devops)
   - use_when: 边缘/小团队要完整 K8s API 但安装要轻
   - avoid_when: 超大规模多租户管控面（看上游 Kubernetes/发行版）
   - repo: https://github.com/k3s-io/k3s
-- **Istio** (`istio` / devops)
-  - use_when: K8s 上要流量治理/mTLS/可观测网格
-  - avoid_when: 网格复杂度不可接受、服务很少
-  - repo: https://github.com/istio/istio
 - result: PASS (hit=True, compliant=True)
 
 ### q15 — 基础设施即代码，团队更熟 Python/TS

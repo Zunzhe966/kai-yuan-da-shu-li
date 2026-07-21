@@ -1,0 +1,16 @@
+id: trulens
+type: project
+name: TruLens
+repo: https://github.com/truera/trulens
+summary: LLM/RAG 应用评估与可观测反馈库，偏反馈回路。
+tags: [eval, observability]
+language: Python
+status: active
+use_when: 要把 RAG/Agent 质量评估接到应用反馈闭环
+avoid_when: 只要基准跑分（lm-eval）或提示词红队（promptfoo）
+niche: llm eval feedback
+related_ecosystem: trulens
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

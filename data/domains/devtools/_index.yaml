@@ -16,7 +16,7 @@ categories:
     node_ids: [jq, yq]
   - id: runners
     title: 任务与版本
-    node_ids: [just, mise]
+    node_ids: [just, mise, asdf]
   - id: tui
     title: Git/Docker TUI
     node_ids: [lazygit, lazydocker, starship, zoxide]

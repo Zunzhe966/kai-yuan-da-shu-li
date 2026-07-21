@@ -1,0 +1,16 @@
+id: jest
+type: project
+name: Jest
+repo: https://github.com/jestjs/jest
+summary: JavaScript 测试框架，快照与大生态，前端事实标准之一。
+tags: [ui]
+language: JavaScript
+status: active
+use_when: 要成熟 Jest 生态与快照测试
+avoid_when: Vite 项目只要更快的 Vitest 同源体验
+niche: js test runner
+related_ecosystem: jest
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified

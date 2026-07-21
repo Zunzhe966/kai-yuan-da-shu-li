@@ -2331,3 +2331,169 @@ edges:
     type: alternative_to
     to: firefly-iii
     note: batch4 gap fill
+
+# batch5 2026-07-22
+  - from: linkerd
+    type: alternative_to
+    to: istio
+    note: batch5 deferred resolution
+  - from: linkerd
+    type: integrates_with
+    to: kubernetes
+    note: batch5 deferred resolution
+  - from: tekton
+    type: alternative_to
+    to: jenkins
+    note: batch5 deferred resolution
+  - from: tekton
+    type: alternative_to
+    to: argo-cd
+    note: batch5 deferred resolution
+  - from: tekton
+    type: integrates_with
+    to: kubernetes
+    note: batch5 deferred resolution
+  - from: packer
+    type: integrates_with
+    to: terraform
+    note: batch5 deferred resolution
+  - from: packer
+    type: integrates_with
+    to: ansible
+    note: batch5 deferred resolution
+  - from: yugabyte
+    type: alternative_to
+    to: cockroachdb
+    note: batch5 deferred resolution
+  - from: yugabyte
+    type: alternative_to
+    to: tidb
+    note: batch5 deferred resolution
+  - from: yugabyte
+    type: alternative_to
+    to: postgresql
+    note: batch5 deferred resolution
+  - from: trulens
+    type: alternative_to
+    to: deepeval
+    note: batch5 deferred resolution
+  - from: trulens
+    type: alternative_to
+    to: ragas
+    note: batch5 deferred resolution
+  - from: trulens
+    type: alternative_to
+    to: arize-phoenix
+    note: batch5 deferred resolution
+  - from: anythingllm
+    type: alternative_to
+    to: open-webui
+    note: batch5 deferred resolution
+  - from: anythingllm
+    type: alternative_to
+    to: dify
+    note: batch5 deferred resolution
+  - from: anythingllm
+    type: integrates_with
+    to: ollama
+    note: batch5 deferred resolution
+  - from: solidjs
+    type: alternative_to
+    to: react
+    note: batch5 deferred resolution
+  - from: solidjs
+    type: alternative_to
+    to: preact
+    note: batch5 deferred resolution
+  - from: solidjs
+    type: alternative_to
+    to: vue
+    note: batch5 deferred resolution
+  - from: qwik
+    type: alternative_to
+    to: nextjs
+    note: batch5 deferred resolution
+  - from: qwik
+    type: alternative_to
+    to: astro
+    note: batch5 deferred resolution
+  - from: jest
+    type: alternative_to
+    to: vitest
+    note: batch5 deferred resolution
+  - from: teleport
+    type: alternative_to
+    to: wireguard
+    note: batch5 deferred resolution
+  - from: teleport
+    type: alternative_to
+    to: oauth2-proxy
+    note: batch5 deferred resolution
+  - from: teleport
+    type: integrates_with
+    to: kubernetes
+    note: batch5 deferred resolution
+  - from: suricata
+    type: alternative_to
+    to: crowdsec
+    note: batch5 deferred resolution
+  - from: suricata
+    type: alternative_to
+    to: fail2ban
+    note: batch5 deferred resolution
+  - from: asdf
+    type: alternative_to
+    to: mise
+    note: batch5 deferred resolution
+  - from: quarkus
+    type: alternative_to
+    to: spring-boot
+    note: batch5 deferred resolution
+  - from: kingfisher
+    type: integrates_with
+    to: swift
+    note: batch5 deferred resolution
+  - from: kingfisher
+    type: alternative_to
+    to: coil
+    note: batch5 deferred resolution
+  - from: dify
+    type: integrates_with
+    to: qdrant
+    note: batch5 edge density
+  - from: k3s
+    type: integrates_with
+    to: cert-manager
+    note: batch5 edge density
+  - from: harbor
+    type: integrates_with
+    to: trivy
+    note: batch5 edge density
+  - from: valkey
+    type: integrates_with
+    to: postgresql
+    note: batch5 edge density
+  - from: pgvector
+    type: integrates_with
+    to: langchain
+    note: batch5 edge density
+  - from: temporal
+    type: integrates_with
+    to: postgresql
+    note: batch5 edge density
+  - from: chi
+    type: integrates_with
+    to: postgresql
+    note: batch5 edge density
+  - from: nats-server
+    type: integrates_with
+    to: kubernetes
+    note: batch5 edge density
+  - from: superset
+    type: integrates_with
+    to: postgresql
+    note: batch5 edge density
+  - from: beancount
+    type: integrates_with
+    to: ledger-cli
+    note: batch5 edge density

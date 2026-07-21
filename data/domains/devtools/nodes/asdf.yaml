@@ -1,0 +1,16 @@
+id: asdf
+type: project
+name: asdf
+repo: https://github.com/asdf-vm/asdf
+summary: 多语言版本管理器，插件生态广。
+tags: [cli]
+language: Shell
+status: active
+use_when: 要一个工具管多运行时版本且插件已够用
+avoid_when: 要更快的 Rust 实现与聚合适配（mise）
+niche: version manager
+related_ecosystem: asdf
+license: MIT
+source_updated_at: 2026-07-21T20:48:50Z
+verified_at: 2026-07-21T20:48:50Z
+verification_status: verified
