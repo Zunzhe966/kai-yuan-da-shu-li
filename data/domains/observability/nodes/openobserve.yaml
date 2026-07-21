@@ -1,0 +1,16 @@
+id: openobserve
+type: project
+name: OpenObserve
+repo: https://github.com/openobserve/openobserve
+summary: 高性价比可观测平台，日志/指标/追踪一体（AGPL）。
+tags: [observability]
+language: Rust
+status: active
+use_when: 要自托管一体化可观测且接受 AGPL
+avoid_when: 许可证要 Apache/MIT 或只要单一信号管道
+niche: observability platform
+related_ecosystem: openobserve
+license: AGPL-3.0
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

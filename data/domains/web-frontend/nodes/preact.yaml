@@ -1,0 +1,16 @@
+id: preact
+type: project
+name: Preact
+repo: https://github.com/preactjs/preact
+summary: 与 React API 接近的轻量 UI 库，体积更小。
+tags: [ui]
+language: JavaScript
+status: active
+use_when: 要 React 心智但包体/性能更敏感
+avoid_when: 深度依赖 React 专有生态且不愿兼容层
+niche: react-compatible
+related_ecosystem: preact
+license: MIT
+source_updated_at: 2026-07-21T20:37:31Z
+verified_at: 2026-07-21T20:37:31Z
+verification_status: verified

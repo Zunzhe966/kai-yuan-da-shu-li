@@ -19,12 +19,12 @@ categories:
     node_ids: [cosign, fulcio]
   - id: policy
     title: 策略引擎
-    node_ids: [opa, kyverno]
+    node_ids: [opa, kyverno, casbin]
   - id: iam
     title: 身份认证
-    node_ids: [keycloak, authentik]
+    node_ids: [keycloak, authentik, oauth2-proxy]
   - id: hardening
     title: 主机与网络加固
-    node_ids: [fail2ban, wireguard]
+    node_ids: [fail2ban, wireguard, falco, crowdsec]
 
 nodes_dir: nodes

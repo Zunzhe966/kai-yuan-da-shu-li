@@ -2140,3 +2140,98 @@ edges:
     type: alternative_to
     to: chromadb
     note: batch1 gap fill
+
+# batch2 gap fill 2026-07-22
+  - from: angular
+    type: alternative_to
+    to: react
+    note: batch2 gap fill
+  - from: angular
+    type: alternative_to
+    to: vue
+    note: batch2 gap fill
+  - from: preact
+    type: alternative_to
+    to: react
+    note: batch2 gap fill
+  - from: biome
+    type: alternative_to
+    to: eslint
+    note: batch2 gap fill
+  - from: biome
+    type: integrates_with
+    to: vite
+    note: batch2 gap fill
+  - from: eslint
+    type: alternative_to
+    to: biome
+    note: batch2 gap fill
+  - from: falco
+    type: integrates_with
+    to: kubernetes
+    note: batch2 gap fill
+  - from: falco
+    type: alternative_to
+    to: trivy
+    note: batch2 gap fill
+  - from: crowdsec
+    type: alternative_to
+    to: fail2ban
+    note: batch2 gap fill
+  - from: oauth2-proxy
+    type: integrates_with
+    to: keycloak
+    note: batch2 gap fill
+  - from: oauth2-proxy
+    type: integrates_with
+    to: authentik
+    note: batch2 gap fill
+  - from: oauth2-proxy
+    type: integrates_with
+    to: nginx
+    note: batch2 gap fill
+  - from: casbin
+    type: alternative_to
+    to: opa
+    note: batch2 gap fill
+  - from: netdata
+    type: alternative_to
+    to: victoriametrics
+    note: batch2 gap fill
+  - from: netdata
+    type: alternative_to
+    to: uptime-kuma
+    note: batch2 gap fill
+  - from: skywalking
+    type: alternative_to
+    to: jaeger
+    note: batch2 gap fill
+  - from: skywalking
+    type: alternative_to
+    to: signoz
+    note: batch2 gap fill
+  - from: skywalking
+    type: alternative_to
+    to: sentry
+    note: batch2 gap fill
+  - from: openobserve
+    type: alternative_to
+    to: signoz
+    note: batch2 gap fill
+  - from: openobserve
+    type: alternative_to
+    to: loki
+    note: batch2 gap fill
+  - from: openobserve
+    type: alternative_to
+    to: sentry
+    note: batch2 gap fill
+
+  - from: prettier
+    type: alternative_to
+    to: biome
+    note: batch2 gap fill
+  - from: eslint
+    type: integrates_with
+    to: prettier
+    note: batch2 gap fill
