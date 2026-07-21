@@ -2289,3 +2289,45 @@ edges:
     type: integrates_with
     to: bat
     note: batch3 gap fill
+
+# batch4 gap fill 2026-07-22
+  - from: redash
+    type: alternative_to
+    to: superset
+    note: batch4 gap fill
+  - from: redash
+    type: integrates_with
+    to: postgresql
+    note: batch4 gap fill
+  - from: metabase
+    type: alternative_to
+    to: redash
+    note: batch4 gap fill
+  - from: metabase
+    type: alternative_to
+    to: superset
+    note: batch4 gap fill
+  - from: superset
+    type: alternative_to
+    to: metabase
+    note: batch4 gap fill
+  - from: superset
+    type: alternative_to
+    to: redash
+    note: batch4 gap fill
+  - from: nats-server
+    type: alternative_to
+    to: rabbitmq-server
+    note: batch4 gap fill
+  - from: nats-server
+    type: alternative_to
+    to: apache-kafka
+    note: batch4 gap fill
+  - from: beancount
+    type: alternative_to
+    to: ledger-cli
+    note: batch4 gap fill
+  - from: beancount
+    type: alternative_to
+    to: firefly-iii
+    note: batch4 gap fill

@@ -1,0 +1,16 @@
+id: metabase
+type: project
+name: Metabase
+repo: https://github.com/metabase/metabase
+summary: 易用的开源 BI 与嵌入式分析（AGPL/商业双轨）。
+tags: [analytics]
+language: Clojure
+status: active
+use_when: 要快速自助 BI 且接受 AGPL 或商业许可
+avoid_when: 只要纯 Apache 许可 BI
+niche: bi
+related_ecosystem: metabase
+license: AGPL-3.0 OR LicenseRef-Metabase-Commercial
+source_updated_at: 2026-07-21T20:44:48Z
+verified_at: 2026-07-21T20:44:48Z
+verification_status: verified

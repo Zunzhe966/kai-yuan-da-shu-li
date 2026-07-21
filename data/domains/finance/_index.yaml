@@ -13,7 +13,7 @@ categories:
     node_ids: [ta-lib, pandas-ta, yfinance, akshare, openbb]
   - id: personal
     title: 个人财务
-    node_ids: [firefly-iii, actual-budget, gnucash, ledger-cli, hledger]
+    node_ids: [firefly-iii, actual-budget, gnucash, ledger-cli, hledger, beancount]
   - id: billing
     title: 计费支付
     node_ids: [killbill, stripe-mock]

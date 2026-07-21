@@ -22,7 +22,7 @@ categories:
     node_ids: [apache-spark]
   - id: analytics-eng
     title: 分析工程
-    node_ids: [dbt-core]
+    node_ids: [dbt-core, redash, metabase, superset]
   - id: orchestration
     title: 编排
     node_ids: [airflow, prefect]

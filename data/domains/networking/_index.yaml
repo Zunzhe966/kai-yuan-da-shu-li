@@ -11,7 +11,7 @@ categories:
     node_ids: [envoy, haproxy]
   - id: api-gateway
     title: API 网关
-    node_ids: [apisix, kong]
+    node_ids: [apisix, kong, nats-server]
   - id: mesh-cni
     title: 网格与 CNI
     node_ids: [linkerd2, cilium]

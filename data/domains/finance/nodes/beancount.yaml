@@ -1,0 +1,16 @@
+id: beancount
+type: project
+name: Beancount
+repo: https://github.com/beancount/beancount
+summary: 纯文本复式记账系统，偏可编程账本。
+tags: [finance]
+language: Python
+status: active
+use_when: 要用文本/Git 管理个人或小团队复式账
+avoid_when: 只要图形化记账 App
+niche: plaintext accounting
+related_ecosystem: beancount
+license: GPL-2.0
+source_updated_at: 2026-07-21T20:44:48Z
+verified_at: 2026-07-21T20:44:48Z
+verification_status: verified

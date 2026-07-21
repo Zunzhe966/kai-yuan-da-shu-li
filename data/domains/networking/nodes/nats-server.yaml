@@ -1,0 +1,16 @@
+id: nats-server
+type: project
+name: NATS Server
+repo: https://github.com/nats-io/nats-server
+summary: 高性能云原生消息系统，适配边车与边缘场景。
+tags: [networking]
+language: Go
+status: active
+use_when: 要轻量 pub/sub 与请求-响应消息总线
+avoid_when: 只要重型企业消息中间件（Kafka/Rabbit）
+niche: messaging
+related_ecosystem: nats
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:44:48Z
+verified_at: 2026-07-21T20:44:48Z
+verification_status: verified

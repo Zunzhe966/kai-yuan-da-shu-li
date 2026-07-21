@@ -1,0 +1,16 @@
+id: superset
+type: project
+name: Apache Superset
+repo: https://github.com/apache/superset
+summary: 现代数据探索与可视化平台，偏分析师工作台。
+tags: [analytics]
+language: Python
+status: active
+use_when: 要开源、可扩展的可视化探索与仪表盘
+avoid_when: 只要极简查询分享
+niche: bi exploration
+related_ecosystem: apache
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:44:48Z
+verified_at: 2026-07-21T20:44:48Z
+verification_status: verified
