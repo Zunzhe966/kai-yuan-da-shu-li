@@ -23,24 +23,32 @@ shasum -a 256 build/releases/*.tar.gz
 
 这些命令用于开发时复现或排障，不是生产发布的必经步骤。正式验证以 GitHub Actions 的本次提交记录为准。
 
-## 云端发布链路
+## 云端发布链路（推荐默认）
 
 ```text
 Pull request
-→ GitHub Actions 云端验证
+→ GitHub Actions 云端验证（verify）
 → 验证通过后合并到受保护的 main
-→ Cloudflare Pages 拉取该 main 提交并独立构建 build/site
-→ 自动发布 pages.dev
+→ GitHub Actions 自动触发 pages-deploy（main push / workflow_dispatch）
+→ pages-deploy 构建 build/site 并执行 wrangler pages deploy
+→ 自动发布到 https://kai-yuan-da-shu-li.pages.dev
 → 线上 api/v1/meta.json 作为发布后事实核验
 ```
 
-Cloudflare 不上传或复用 GitHub Actions 的 artifact；它从 GitHub 当前提交独立构建，因此源代码、构建命令和输出目录必须固定在仓库设置中。
+该路径不依赖 Cloudflare 控制台每次人工点选发布，不复用本地目录，发布证据在 GitHub Actions 运行记录中可追溯。
 
 ## Cloudflare Pages 发布
 
-当前生产项目仍是手动直传，GitHub `main` 更新不会自动上线。过渡期只能由已登录 Cloudflare 账户手动发布；连接 GitHub 后必须停止把手动上传当作常规流程。
+当前生产项目默认路径为 **GitHub Actions + Cloudflare API Token + `wrangler pages deploy`**（零反复人工）。手动直传仅用于自动化被平台限制阻塞时的临时兜底。
 
-未来连接 GitHub 后，生产分支更新可以自动重新构建。连接时构建参数固定为：
+一次性配置以下 GitHub Secrets（仓库级）：
+
+- `CLOUDFLARE_API_TOKEN`：最小权限建议为 Pages 编辑（可部署项目）。
+- `CLOUDFLARE_ACCOUNT_ID`：Cloudflare 账号 ID。
+
+`pages-deploy` 工作流会先检查 secrets；缺失时会在日志中给出明确错误并指向本文档。
+
+如果还需要启用 Cloudflare 控制台的 **Connect to Git**（让 Cloudflare 自己拉仓库构建），可按下列参数配置；这是可选路线，不是默认发布通道：
 
 ```text
 生产分支：main
@@ -50,7 +58,7 @@ Cloudflare 不上传或复用 GitHub Actions 的 artifact；它从 GitHub 当前
 根目录：/
 ```
 
-第一次连接必须只授权 `Zunzhe966/kai-yuan-da-shu-li`。在正式连接完成前，仍按手动直传流程发布。连接后，为 `main` 启用 GitHub 受保护分支，要求 `verify / test-and-build` 通过才允许合并；否则 Cloudflare 可能收到尚未通过验证的提交。当前使用固定的 `https://kai-yuan-da-shu-li.pages.dev`；自有域名确认并绑定后，必须以正式域名重新构建，避免 sitemap、robots 和 `llms.txt` 继续指向旧地址。
+第一次连接必须只授权 `Zunzhe966/kai-yuan-da-shu-li`。若平台界面仍要求人工点选仓库，此步骤应一次完成并长期复用，后续发布转为自动触发。连接后，为 `main` 启用 GitHub 受保护分支，要求 `verify / test-and-build` 通过才允许合并；否则 Cloudflare 可能收到尚未通过验证的提交。当前使用固定的 `https://kai-yuan-da-shu-li.pages.dev`；自有域名确认并绑定后，必须以正式域名重新构建，避免 sitemap、robots 和 `llms.txt` 继续指向旧地址。
 
 ## 回滚
 
@@ -59,7 +67,7 @@ Cloudflare 不上传或复用 GitHub Actions 的 artifact；它从 GitHub 当前
 1. 找到最近一个通过测试的提交；
 2. 在独立分支恢复该提交或反向提交有问题的变更；
 3. 重新运行完整验证；
-4. 合并到生产分支后，按当前发布方式手动直传，或在 Git 连接完成后由 Cloudflare Pages 自动发布；
+4. 合并到生产分支后，由 Cloudflare Pages 自动发布，或由 CI 使用 API Token 执行 `wrangler pages deploy`；
 5. 在 Cloudflare 部署记录中确认新版本成功，再删除失败的预览部署。
 
 回滚不需要登录搬瓦工，也不修改中转站、代理或数据库。

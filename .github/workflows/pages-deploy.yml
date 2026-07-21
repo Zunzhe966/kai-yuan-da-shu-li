@@ -1,0 +1,94 @@
+name: pages-deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate required secrets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=()
+          [[ -z "${CLOUDFLARE_API_TOKEN}" ]] && missing+=("CLOUDFLARE_API_TOKEN")
+          [[ -z "${CLOUDFLARE_ACCOUNT_ID}" ]] && missing+=("CLOUDFLARE_ACCOUNT_ID")
+          if (( ${#missing[@]} > 0 )); then
+            echo "::error title=Missing Cloudflare secrets::Please configure ${missing[*]} in GitHub repository secrets. See docs/operations/static-release.md for setup steps."
+            exit 1
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build static site
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+          .venv/bin/python scripts/export_catalog_v1.py --output build/catalog-v1
+          .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
+
+      - name: Deploy to Cloudflare Pages
+        id: deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy build/site --project-name kai-yuan-da-shu-li
+
+      - name: Probe live meta after deploy
+        env:
+          META_URL: https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json
+        run: |
+          set -euo pipefail
+          code=""
+          for _ in 1 2 3 4 5 6 7 8; do
+            code=$(curl -sS -o /tmp/live-meta.json -w "%{http_code}" "$META_URL" || true)
+            if [[ "$code" == "200" ]]; then
+              break
+            fi
+            sleep 5
+          done
+          if [[ "$code" != "200" ]]; then
+            echo "::error title=Live probe failed::${META_URL} returned HTTP ${code:-none}"
+            exit 1
+          fi
+          .venv/bin/python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          live = json.loads(Path("/tmp/live-meta.json").read_text(encoding="utf-8"))
+          built = json.loads(Path("build/site/api/v1/meta.json").read_text(encoding="utf-8"))
+          print(f"probe_http=200")
+          print(f"probe_commit={os.environ.get('GITHUB_SHA', '')}")
+          print(f"probe_run_id={os.environ.get('GITHUB_RUN_ID', '')}")
+          print(f"probe_run_url=https://github.com/{os.environ.get('GITHUB_REPOSITORY', '')}/actions/runs/{os.environ.get('GITHUB_RUN_ID', '')}")
+          print(f"probe_domains={len(live.get('domains', []))}")
+          print(f"probe_node_count={live.get('node_count')}")
+          print(f"probe_edge_count={live.get('edge_count')}")
+          print(f"probe_generated_at={live.get('generated_at')}")
+          print(f"built_node_count={built.get('node_count')}")
+          print(f"built_edge_count={built.get('edge_count')}")
+          if live.get("node_count") != built.get("node_count") or live.get("edge_count") != built.get("edge_count"):
+              raise SystemExit(
+                  "live meta scale mismatch vs this build: "
+                  f"live={live.get('node_count')}/{live.get('edge_count')} "
+                  f"built={built.get('node_count')}/{built.get('edge_count')}"
+              )
+          print("post_deploy_probe=OK")
+          PY

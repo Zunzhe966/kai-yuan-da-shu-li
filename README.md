@@ -26,7 +26,9 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 7. 本地兼容能力：`mcp/server.py` 与 [`docs/remote-api.md`](./docs/remote-api.md)
 8. 公开网站：https://kai-yuan-da-shu-li.pages.dev/ （Cloudflare Pages 静态发布）
 
-智能体只在自己的任务确实需要时打开上游 GitHub。上游与目录一致时不提交任何内容；发现重大不一致时，可使用 `agent-change-report` GitHub issue 表单。被动报告不会自动修改正式记录或排序。第一阶段没有真人广告、智能体赞助或付费排名。
+默认发布通道为 GitHub Actions 自动部署（`pages-deploy` 工作流，使用 `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` secrets 执行 `wrangler pages deploy`）；详见 [`docs/operations/static-release.md`](./docs/operations/static-release.md) 与 [`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md)。
+
+智能体只在自己的任务确实需要时打开上游 GitHub。上游与目录一致时不提交任何内容；发现重大不一致时，可使用 `agent-change-report` GitHub issue 表单。报告进入智能体审核流程：智能体独立核验并记录可追溯证据后才可更新正式记录；仅在自动化被平台或权限阻塞时才由人工介入。第一阶段没有真人广告、智能体赞助或付费排名。
 
 ## 当前领域（domains）
 
@@ -52,7 +54,7 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 | `finance` | 金融与记账 | [browse](./docs/browse/finance.md) |
 | `blockchain` | 区块链与 Web3 | [browse](./docs/browse/blockchain.md) |
 
-总览：[`docs/browse/`](./docs/browse/) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md) · 广告隔离规则：[`docs/advertising.md`](./docs/advertising.md)
+总览：[`docs/browse/`](./docs/browse/) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md) · 运营状态台账：[`docs/operations/operations-status.md`](./docs/operations/operations-status.md) · 广告隔离规则：[`docs/advertising.md`](./docs/advertising.md)
 
 ## 给人类
 
