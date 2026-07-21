@@ -1,0 +1,16 @@
+id: quarto
+type: project
+name: Quarto
+repo: https://github.com/quarto-dev/quarto-cli
+summary: 基于 Pandoc 的科学/技术出版系统，支持多格式输出。
+tags: [docs, publishing, data, markdown]
+language: mixed
+status: active
+use_when: 要写可复现报告/论文并输出 HTML/PDF/多格式
+avoid_when: 只要产品文档站主题或无头 CMS
+niche: scientific publishing
+related_ecosystem: quarto
+license: MIT
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

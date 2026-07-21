@@ -1,0 +1,16 @@
+id: akaunting
+type: project
+name: Akaunting
+repo: https://github.com/akaunting/akaunting
+summary: 面向中小企业的在线会计软件（源码可得，BUSL）。
+tags: [finance, accounting, self-hosted]
+language: PHP
+status: active
+use_when: 要自托管中小企业会计/发票且能接受 BUSL 使用限制
+avoid_when: 要宽松开源许可的个人复式记账（GnuCash/Beancount）或 SaaS 会计
+niche: smb accounting
+related_ecosystem: akaunting
+license: BUSL-1.1
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

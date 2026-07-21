@@ -1,0 +1,16 @@
+id: mdbook
+type: project
+name: mdBook
+repo: https://github.com/rust-lang/mdBook
+summary: Rust 实现的 Markdown 书籍生成器，偏技术文档书。
+tags: [docs, markdown, static-site, rust]
+language: Rust
+status: active
+use_when: 要用 Markdown 生成多章技术书且工具链轻量
+avoid_when: 要完整 CMS、实时协作 Wiki 或重度主题市场
+niche: doc book
+related_ecosystem: rust
+license: MPL-2.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

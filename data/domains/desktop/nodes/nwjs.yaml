@@ -1,0 +1,16 @@
+id: nwjs
+type: project
+name: NW.js
+repo: https://github.com/nwjs/nw.js
+summary: Chromium + Node 一体的桌面应用运行时，可在 DOM 直接调 Node 模块。
+tags: [desktop, javascript, cross-platform]
+language: JavaScript
+status: active
+use_when: 要 Web 技术做桌面且需要从页面直接访问 Node API
+avoid_when: 要更小体积与更强进程隔离（优先 Tauri/Wails）
+niche: chromium desktop
+related_ecosystem: nwjs
+license: MIT
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

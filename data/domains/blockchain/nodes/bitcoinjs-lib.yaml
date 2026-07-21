@@ -1,0 +1,16 @@
+id: bitcoinjs-lib
+type: project
+name: bitcoinjs-lib
+repo: https://github.com/bitcoinjs/bitcoinjs-lib
+summary: Node/浏览器可用的比特币交易与地址处理库。
+tags: [blockchain, bitcoin, library, javascript]
+language: JavaScript
+status: active
+use_when: 要在 JS/TS 里构造比特币交易与地址逻辑
+avoid_when: 只要运行全节点或 Lightning 节点
+niche: bitcoin js
+related_ecosystem: bitcoin
+license: MIT
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

@@ -1,0 +1,16 @@
+id: cometbft
+type: project
+name: CometBFT
+repo: https://github.com/cometbft/cometbft
+summary: BFT 共识引擎（Tendermint Core 继承者），常作 Cosmos 应用层底座。
+tags: [blockchain, consensus, cosmos]
+language: Go
+status: active
+use_when: 要为应用链提供确定性 BFT 共识与 P2P
+avoid_when: 只要 EVM 合约开发或不想运维共识层
+niche: bft consensus
+related_ecosystem: cosmos
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

@@ -1,0 +1,16 @@
+id: reth
+type: project
+name: Reth
+repo: https://github.com/paradigmxyz/reth
+summary: 用 Rust 实现的模块化以太坊执行客户端。
+tags: [blockchain, ethereum, client, rust]
+language: Rust
+status: active
+use_when: 要高性能、可裁剪的以太坊执行层节点（Rust）
+avoid_when: 只要 JS 钱包库或合约开发工具链
+niche: eth execution client
+related_ecosystem: ethereum
+license: Apache-2.0 OR MIT
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

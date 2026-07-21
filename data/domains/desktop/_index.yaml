@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: webview-shell
     title: WebView / 浏览器壳
-    node_ids: [electron, tauri, wails, neutralino]
+    node_ids: [electron, tauri, wails, neutralino, nwjs]
   - id: native-ui
     title: 原生 UI
-    node_ids: [qt, gtk, wxwidgets, slint, iced]
+    node_ids: [qt, gtk, wxwidgets, slint, iced, fyne, dioxus]
   - id: immediate
     title: 即时模式
     node_ids: [imgui, egui, dearpygui]

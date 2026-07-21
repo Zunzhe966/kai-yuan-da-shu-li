@@ -1,0 +1,16 @@
+id: dioxus
+type: project
+name: Dioxus
+repo: https://github.com/DioxusLabs/dioxus
+summary: Rust 全栈 UI 框架，可同时覆盖 Web、桌面与移动端。
+tags: [desktop, rust, cross-platform, ui]
+language: Rust
+status: active
+use_when: 要用 Rust 做跨端 UI，且希望 Web/桌面共享组件模型
+avoid_when: 只要即时模式 GUI（egui）或不愿引入 Rust 工具链
+niche: rust ui
+related_ecosystem: dioxus
+license: Apache-2.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified

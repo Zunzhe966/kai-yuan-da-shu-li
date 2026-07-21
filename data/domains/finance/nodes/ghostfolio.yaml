@@ -1,0 +1,16 @@
+id: ghostfolio
+type: project
+name: Ghostfolio
+repo: https://github.com/ghostfolio/ghostfolio
+summary: 开源自托管财富管理与投资组合追踪。
+tags: [finance, personal-finance, self-hosted, portfolio]
+language: TypeScript
+status: active
+use_when: 要自托管跟踪多资产投资组合与净值
+avoid_when: 只要日常流水记账（Firefly/Actual）或交易策略回测
+niche: wealth management
+related_ecosystem: ghostfolio
+license: AGPL-3.0
+source_updated_at: 2026-07-21T21:04:37Z
+verified_at: 2026-07-21T21:04:37Z
+verification_status: verified
