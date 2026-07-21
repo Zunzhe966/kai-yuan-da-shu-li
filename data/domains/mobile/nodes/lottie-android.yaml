@@ -1,0 +1,16 @@
+id: lottie-android
+type: project
+name: Lottie Android
+repo: https://github.com/airbnb/lottie-android
+summary: 在 Android 渲染 After Effects 动画的库。
+tags: [mobile, ui]
+language: Java
+status: active
+use_when: App 要高质量矢量动画且设计交付 AE
+avoid_when: 只要静态图或简单属性动画
+niche: animation
+related_ecosystem: lottie
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

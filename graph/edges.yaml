@@ -2235,3 +2235,57 @@ edges:
     type: integrates_with
     to: prettier
     note: batch2 gap fill
+
+# batch3 gap fill 2026-07-22
+  - from: chi
+    type: alternative_to
+    to: gin
+    note: batch3 gap fill
+  - from: chi
+    type: alternative_to
+    to: fiber
+    note: batch3 gap fill
+  - from: sqlx
+    type: alternative_to
+    to: prisma
+    note: batch3 gap fill
+  - from: sqlx
+    type: integrates_with
+    to: postgresql
+    note: batch3 gap fill
+  - from: temporal
+    type: alternative_to
+    to: celery
+    note: batch3 gap fill
+  - from: temporal
+    type: alternative_to
+    to: bullmq
+    note: batch3 gap fill
+  - from: tokio
+    type: integrates_with
+    to: axum
+    note: batch3 gap fill
+  - from: lottie-android
+    type: integrates_with
+    to: jetpack-compose
+    note: batch3 gap fill
+  - from: coil
+    type: integrates_with
+    to: jetpack-compose
+    note: batch3 gap fill
+  - from: coil
+    type: integrates_with
+    to: okhttp
+    note: batch3 gap fill
+  - from: starship
+    type: integrates_with
+    to: mise
+    note: batch3 gap fill
+  - from: zoxide
+    type: integrates_with
+    to: fzf
+    note: batch3 gap fill
+  - from: eza
+    type: integrates_with
+    to: bat
+    note: batch3 gap fill

@@ -1,0 +1,16 @@
+id: coil
+type: project
+name: Coil
+repo: https://github.com/coil-kt/coil
+summary: Kotlin 优先的 Android 图片加载库。
+tags: [mobile]
+language: Kotlin
+status: active
+use_when: 现代 Kotlin/Compose 应用要图片加载
+avoid_when: 跨端统一用其它图片栈
+niche: image loading
+related_ecosystem: android
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

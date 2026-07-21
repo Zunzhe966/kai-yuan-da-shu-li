@@ -1,0 +1,16 @@
+id: sqlx
+type: project
+name: SQLx
+repo: https://github.com/transact-rs/sqlx
+summary: Rust 异步 SQL 工具包，支持编译期检查查询。
+tags: [backend]
+language: Rust
+status: active
+use_when: Rust 服务要类型安全 SQL 而非重 ORM
+avoid_when: 只要动态脚本级查询
+niche: rust sql
+related_ecosystem: rust
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified

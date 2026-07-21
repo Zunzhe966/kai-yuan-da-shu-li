@@ -13,10 +13,10 @@ categories:
     node_ids: [express, nestjs, hono, prisma]
   - id: go
     title: Go
-    node_ids: [gin, fiber]
+    node_ids: [gin, fiber, chi]
   - id: rust
     title: Rust
-    node_ids: [axum, actix-web]
+    node_ids: [axum, actix-web, sqlx, tokio]
   - id: jvm
     title: JVM
     node_ids: [spring-boot]
@@ -31,6 +31,6 @@ categories:
     node_ids: [grpc-go, connect-go]
   - id: queue
     title: 队列与流
-    node_ids: [celery, bullmq, apache-kafka, rabbitmq-server]
+    node_ids: [celery, bullmq, apache-kafka, rabbitmq-server, temporal]
 
 nodes_dir: nodes

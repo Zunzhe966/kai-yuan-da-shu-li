@@ -1,0 +1,16 @@
+id: temporal
+type: project
+name: Temporal
+repo: https://github.com/temporalio/temporal
+summary: 可靠工作流编排引擎，适合长事务与重试。
+tags: [backend, orchestration]
+language: Go
+status: active
+use_when: 要跨服务长流程编排且要强可靠重试
+avoid_when: 只要简单队列任务（Celery/BullMQ）
+niche: workflow engine
+related_ecosystem: temporal
+license: MIT
+source_updated_at: 2026-07-21T20:40:45Z
+verified_at: 2026-07-21T20:40:45Z
+verification_status: verified
