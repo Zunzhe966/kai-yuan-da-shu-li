@@ -1,0 +1,16 @@
+id: micropython
+type: project
+name: MicroPython
+repo: https://github.com/micropython/micropython
+summary: 面向微控制器的精简 Python 实现。
+tags: [iot]
+language: C
+status: active
+use_when: MCU 上要用 Python 快速做嵌入式原型
+avoid_when: 只要最高性能 C/RTOS 固件或电路级 Adafruit 发行（CircuitPython）
+niche: mcu python
+related_ecosystem: micropython
+license: MIT
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

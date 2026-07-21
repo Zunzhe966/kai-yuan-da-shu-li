@@ -2543,3 +2543,165 @@ edges:
     type: depends_on
     to: celery
     note: batch6 long-tail
+
+# batch7 2026-07-22
+  - from: cesium
+    type: alternative_to
+    to: maplibre-gl
+    note: batch7 density
+  - from: cesium
+    type: alternative_to
+    to: leaflet
+    note: batch7 density
+  - from: cesium
+    type: alternative_to
+    to: deckgl
+    note: batch7 density
+  - from: h3
+    type: integrates_with
+    to: geopandas
+    note: batch7 density
+  - from: h3
+    type: integrates_with
+    to: postgis
+    note: batch7 density
+  - from: martin
+    type: depends_on
+    to: postgis
+    note: batch7 density
+  - from: martin
+    type: integrates_with
+    to: maplibre-gl
+    note: batch7 density
+  - from: martin
+    type: alternative_to
+    to: geoserver
+    note: batch7 density
+  - from: micropython
+    type: alternative_to
+    to: circuitpython
+    note: batch7 density
+  - from: micropython
+    type: integrates_with
+    to: zephyr
+    note: batch7 density
+  - from: micropython
+    type: integrates_with
+    to: freertos
+    note: batch7 density
+  - from: circuitpython
+    type: alternative_to
+    to: micropython
+    note: batch7 density
+  - from: openwrt
+    type: integrates_with
+    to: mosquitto
+    note: batch7 density
+  - from: openwrt
+    type: alternative_to
+    to: tasmota
+    note: batch7 density
+  - from: homebridge
+    type: alternative_to
+    to: home-assistant
+    note: batch7 density
+  - from: homebridge
+    type: integrates_with
+    to: home-assistant
+    note: batch7 density
+  - from: tinygo
+    type: alternative_to
+    to: micropython
+    note: batch7 density
+  - from: tinygo
+    type: integrates_with
+    to: zephyr
+    note: batch7 density
+  - from: peertube
+    type: alternative_to
+    to: jellyfin
+    note: batch7 density
+  - from: peertube
+    type: integrates_with
+    to: ffmpeg
+    note: batch7 density
+  - from: kodi
+    type: alternative_to
+    to: jellyfin
+    note: batch7 density
+  - from: kodi
+    type: alternative_to
+    to: mpv
+    note: batch7 density
+  - from: kodi
+    type: alternative_to
+    to: vlc
+    note: batch7 density
+  - from: natron
+    type: alternative_to
+    to: kdenlive
+    note: batch7 density
+  - from: natron
+    type: alternative_to
+    to: blender
+    note: batch7 density
+  - from: natron
+    type: integrates_with
+    to: ffmpeg
+    note: batch7 density
+  - from: libgdx
+    type: alternative_to
+    to: godot
+    note: batch7 density
+  - from: libgdx
+    type: alternative_to
+    to: monogame
+    note: batch7 density
+  - from: libgdx
+    type: alternative_to
+    to: phaser
+    note: batch7 density
+  - from: love2d
+    type: alternative_to
+    to: godot
+    note: batch7 density
+  - from: love2d
+    type: alternative_to
+    to: phaser
+    note: batch7 density
+  - from: love2d
+    type: integrates_with
+    to: sdl
+    note: batch7 density
+  - from: ogre
+    type: alternative_to
+    to: godot
+    note: batch7 density
+  - from: ogre
+    type: alternative_to
+    to: threejs
+    note: batch7 density
+  - from: ogre
+    type: integrates_with
+    to: sdl
+    note: batch7 density
+  - from: maplibre-gl
+    type: integrates_with
+    to: postgis
+    note: batch7 density
+  - from: qgis
+    type: depends_on
+    to: gdal
+    note: batch7 density
+  - from: godot
+    type: integrates_with
+    to: sdl
+    note: batch7 density
+  - from: threejs
+    type: alternative_to
+    to: babylonjs
+    note: batch7 density
+  - from: phaser
+    type: integrates_with
+    to: threejs
+    note: batch7 density

@@ -1,0 +1,16 @@
+id: tinygo
+type: project
+name: TinyGo
+repo: https://github.com/tinygo-org/tinygo
+summary: 面向微控制器与 WebAssembly 的 Go 编译器。
+tags: [iot]
+language: Go
+status: active
+use_when: 要用 Go 写 MCU/小体积 WASM 固件
+avoid_when: 只要 Python MCU 路线或完整 Go 运行时
+niche: go on mcu
+related_ecosystem: tinygo
+license: BSD-3-Clause
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

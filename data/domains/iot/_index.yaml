@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: home
     title: 家庭自动化
-    node_ids: [home-assistant, openhab, nodered]
+    node_ids: [home-assistant, openhab, nodered, homebridge]
   - id: firmware
     title: 固件与 MCU
-    node_ids: [esphome, esp-idf, tasmota, arduino-core, platformio]
+    node_ids: [esphome, esp-idf, tasmota, arduino-core, platformio, micropython, circuitpython, openwrt, tinygo]
   - id: rtos
     title: RTOS
     node_ids: [zephyr, freertos]

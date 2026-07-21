@@ -1,0 +1,16 @@
+id: h3
+type: project
+name: H3
+repo: https://github.com/uber/h3
+summary: 六边形分层空间索引系统，常用于分析与聚合。
+tags: [gis]
+language: C
+status: active
+use_when: 要均匀网格做空间聚合/邻近分析
+avoid_when: 只要传统经纬度矩形瓦片
+niche: spatial index
+related_ecosystem: uber
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

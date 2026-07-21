@@ -1,0 +1,16 @@
+id: circuitpython
+type: project
+name: CircuitPython
+repo: https://github.com/adafruit/circuitpython
+summary: Adafruit 维护的教育/硬件友好 MicroPython 分支。
+tags: [iot]
+language: C
+status: active
+use_when: 教育/创客板要即插即用 Python 外设库
+avoid_when: 要更上游 MicroPython 或量产硬实时
+niche: edu mcu python
+related_ecosystem: adafruit
+license: MIT
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

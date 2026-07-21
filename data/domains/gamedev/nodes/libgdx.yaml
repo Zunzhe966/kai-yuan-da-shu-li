@@ -1,0 +1,16 @@
+id: libgdx
+type: project
+name: libGDX
+repo: https://github.com/libgdx/libgdx
+summary: 跨平台 Java 游戏开发框架。
+tags: [gamedev]
+language: Java
+status: active
+use_when: Java/Kotlin 团队要跨桌面与移动的 2D/简易 3D 游戏框架
+avoid_when: 要完整编辑器引擎（Godot）或 Web 优先（Phaser）
+niche: java game framework
+related_ecosystem: libgdx
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

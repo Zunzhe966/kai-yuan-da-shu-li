@@ -1,0 +1,16 @@
+id: kodi
+type: project
+name: Kodi
+repo: https://github.com/xbmc/xbmc
+summary: 跨平台媒体中心，偏客厅 HTPC 体验。
+tags: [media]
+language: C++
+status: active
+use_when: 客厅要可插件扩展的媒体中心前端
+avoid_when: 只要服务器端媒体库 API（Jellyfin）或极简播放器（mpv）
+niche: media center
+related_ecosystem: kodi
+license: GPL-2.0-or-later
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

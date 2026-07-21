@@ -1,0 +1,16 @@
+id: peertube
+type: project
+name: PeerTube
+repo: https://github.com/Chocobozzz/PeerTube
+summary: 联邦式视频托管平台，ActivityPub 友好（AGPL）。
+tags: [media]
+language: TypeScript
+status: active
+use_when: 要自托管去中心视频站且接受联邦与 AGPL
+avoid_when: 只要本地媒体库（Jellyfin）或播放器
+niche: fediverse video
+related_ecosystem: peertube
+license: AGPL-3.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

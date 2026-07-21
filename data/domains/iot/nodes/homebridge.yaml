@@ -1,0 +1,16 @@
+id: homebridge
+type: project
+name: Homebridge
+repo: https://github.com/homebridge/homebridge
+summary: 把非 HomeKit 设备桥接到 Apple HomeKit 的 Node 网关。
+tags: [iot]
+language: TypeScript
+status: active
+use_when: 苹果 HomeKit 生态要接入杂牌设备
+avoid_when: 跨平台全屋自动化（Home Assistant）是主路径
+niche: homekit bridge
+related_ecosystem: homebridge
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

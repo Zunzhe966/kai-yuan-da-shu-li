@@ -10,13 +10,13 @@ categories:
     node_ids: [qgis, grass-gis, gdal, proj, pdal]
   - id: db
     title: 空间数据
-    node_ids: [postgis, geopandas, rasterio]
+    node_ids: [postgis, geopandas, rasterio, h3]
   - id: web
     title: Web 地图
-    node_ids: [leaflet, openlayers, maplibre-gl, deckgl, turfjs, keplergl]
+    node_ids: [leaflet, openlayers, maplibre-gl, deckgl, turfjs, keplergl, cesium]
   - id: server
     title: 服务与瓦片
-    node_ids: [geoserver, mapserver, tippecanoe]
+    node_ids: [geoserver, mapserver, tippecanoe, martin]
   - id: osm
     title: OSM 分析
     node_ids: [osmnx]

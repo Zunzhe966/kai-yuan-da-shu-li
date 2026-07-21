@@ -1,0 +1,16 @@
+id: natron
+type: project
+name: Natron
+repo: https://github.com/NatronGitHub/Natron
+summary: 开源节点式合成软件，对标 Nuke 工作流。
+tags: [media]
+language: C++
+status: active
+use_when: 要节点合成/VFX 流水且开源可自托管渲染
+avoid_when: 只要时间线剪辑（Kdenlive/Shotcut）
+niche: compositor
+related_ecosystem: natron
+license: GPL-2.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

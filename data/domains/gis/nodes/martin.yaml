@@ -1,0 +1,16 @@
+id: martin
+type: project
+name: Martin
+repo: https://github.com/maplibre/martin
+summary: 面向 PostGIS/PMTiles 的矢量瓦片服务器（Rust）。
+tags: [gis]
+language: Rust
+status: active
+use_when: 要从 PostGIS 快速提供矢量瓦片给 MapLibre 等
+avoid_when: 只要重量级 GeoServer 全功能栈
+niche: vector tiles
+related_ecosystem: maplibre
+license: Apache-2.0
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

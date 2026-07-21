@@ -1,0 +1,16 @@
+id: love2d
+type: project
+name: LÖVE
+repo: https://github.com/love2d/love
+summary: Lua 2D 游戏框架，脚本驱动、上手快。
+tags: [gamedev]
+language: C++
+status: active
+use_when: 要用 Lua 快速做 2D 游戏原型
+avoid_when: 要可视化编辑器或 3D 引擎
+niche: lua 2d
+related_ecosystem: love2d
+license: Zlib
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

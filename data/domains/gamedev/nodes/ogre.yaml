@@ -1,0 +1,16 @@
+id: ogre
+type: project
+name: OGRE
+repo: https://github.com/OGRECave/ogre
+summary: 成熟的面向对象 3D 渲染引擎。
+tags: [gamedev]
+language: C++
+status: active
+use_when: 要可嵌入的 3D 渲染引擎而非完整游戏引擎编辑器
+avoid_when: 只要开箱场景编辑器（Godot）或 WebGL 库
+niche: 3d rendering engine
+related_ecosystem: ogre
+license: MIT
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

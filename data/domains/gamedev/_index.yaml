@@ -7,10 +7,10 @@ notes: |
 categories:
   - id: engines
     title: 引擎与框架
-    node_ids: [godot, bevy, monogame, phaser]
+    node_ids: [godot, bevy, monogame, phaser, libgdx, love2d]
   - id: libs
     title: 底层库
-    node_ids: [raylib, sdl, sfml, wgpu]
+    node_ids: [raylib, sdl, sfml, wgpu, ogre]
   - id: web3d
     title: Web 3D
     node_ids: [threejs, babylonjs]

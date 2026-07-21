@@ -1,0 +1,16 @@
+id: openwrt
+type: project
+name: OpenWrt
+repo: https://github.com/openwrt/openwrt
+summary: 面向路由器与嵌入式设备的 Linux 发行版。
+tags: [iot]
+language: C
+status: active
+use_when: 路由器/网关要可定制开源固件
+avoid_when: 只要 MCU RTOS 或家用 HA 应用层
+niche: router os
+related_ecosystem: openwrt
+license: GPL-2.0-only
+source_updated_at: 2026-07-21T20:57:00Z
+verified_at: 2026-07-21T20:57:00Z
+verification_status: verified

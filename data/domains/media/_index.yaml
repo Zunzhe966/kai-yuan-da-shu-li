@@ -10,16 +10,16 @@ categories:
     node_ids: [ffmpeg, gstreamer, handbrake, imagemagick]
   - id: players
     title: 播放器
-    node_ids: [mpv, vlc]
+    node_ids: [mpv, vlc, kodi]
   - id: capture
     title: 录播与下载
     node_ids: [obs-studio, yt-dlp]
   - id: servers
     title: 媒体服务
-    node_ids: [jellyfin, navidrome]
+    node_ids: [jellyfin, navidrome, peertube]
   - id: editors
     title: 编辑与创作
-    node_ids: [shotcut, kdenlive, audacity, ardour, blender]
+    node_ids: [shotcut, kdenlive, audacity, ardour, blender, natron]
   - id: vision-speech
     title: 视觉与语音
     node_ids: [opencv, whisper-cpp, piper]
