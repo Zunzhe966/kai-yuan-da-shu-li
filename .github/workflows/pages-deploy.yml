@@ -63,7 +63,11 @@ jobs:
           python -m venv .venv
           .venv/bin/pip install -r requirements.txt
           .venv/bin/python scripts/export_catalog_v1.py --output build/catalog-v1
-          .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
+          SOURCE_REVISION="$(git rev-parse HEAD)"
+          .venv/bin/python scripts/build_static_site.py \
+            --output build/site \
+            --base-url https://kai-yuan-da-shu-li.pages.dev \
+            --source-revision "$SOURCE_REVISION"
 
       - name: Deploy to Cloudflare Pages
         if: steps.commit.outputs.deploy_current == 'true'
@@ -91,7 +95,8 @@ jobs:
 
           meta_url = os.environ["META_URL"]
           built = json.loads(Path("build/site/api/v1/meta.json").read_text(encoding="utf-8"))
-          want_n, want_e = built.get("node_count"), built.get("edge_count")
+          identity_keys = ("node_count", "edge_count", "catalog_hash", "source_revision")
+          wanted = {key: built.get(key) for key in identity_keys}
           live = None
           code = "none"
           # ~3 minutes: 24 * 8s
@@ -113,19 +118,24 @@ jobs:
               except Exception as exc:
                   code = f"err:{exc}"
                   live = None
-              if live is not None and live.get("node_count") == want_n and live.get("edge_count") == want_e:
+              if live is not None and all(live.get(key) == wanted[key] for key in identity_keys):
                   break
               if live is None:
                   live_s = "none"
               else:
-                  live_s = f"{live.get('node_count')}/{live.get('edge_count')}"
-              print(f"probe_wait attempt={attempt} http={code} live={live_s} want={want_n}/{want_e}")
+                  live_s = "/".join(str(live.get(key)) for key in identity_keys)
+              wanted_s = "/".join(str(wanted[key]) for key in identity_keys)
+              print(f"probe_wait attempt={attempt} http={code} live={live_s} want={wanted_s}")
               time.sleep(8)
           else:
-              live_s = "none" if live is None else f"{live.get('node_count')}/{live.get('edge_count')}"
+              live_s = (
+                  "none"
+                  if live is None
+                  else "/".join(str(live.get(key)) for key in identity_keys)
+              )
               raise SystemExit(
-                  "live meta scale mismatch vs this build after retries: "
-                  f"live={live_s} built={want_n}/{want_e} last_http={code}"
+                  "live deployment identity mismatch vs this build after retries: "
+                  f"live={live_s} built={wanted_s} last_http={code}"
               )
 
           print(f"probe_http={code}")
@@ -138,8 +148,12 @@ jobs:
           print(f"probe_domains={len(live.get('domains', []))}")
           print(f"probe_node_count={live.get('node_count')}")
           print(f"probe_edge_count={live.get('edge_count')}")
+          print(f"probe_catalog_hash={live.get('catalog_hash')}")
+          print(f"probe_source_revision={live.get('source_revision')}")
           print(f"probe_generated_at={live.get('generated_at')}")
-          print(f"built_node_count={want_n}")
-          print(f"built_edge_count={want_e}")
+          print(f"built_node_count={wanted['node_count']}")
+          print(f"built_edge_count={wanted['edge_count']}")
+          print(f"built_catalog_hash={wanted['catalog_hash']}")
+          print(f"built_source_revision={wanted['source_revision']}")
           print("post_deploy_probe=OK")
           PY

@@ -2,7 +2,7 @@
   "name": "kaiyuan-dashuli",
   "title": "开源大梳理",
   "version": "0.2.0",
-  "generated_at": "2026-07-21T05:40:32.093473+00:00",
+  "generated_at": "2026-07-22T16:07:56Z",
   "repo": "https://github.com/Zunzhe966/kai-yuan-da-shu-li",
   "raw_index_url": "https://raw.githubusercontent.com/Zunzhe966/kai-yuan-da-shu-li/main/dist/atlas-index.json",
   "domains": [
@@ -26,8 +26,8 @@
     "security",
     "web-frontend"
   ],
-  "node_count": 389,
-  "edge_count": 406,
+  "node_count": 495,
+  "edge_count": 660,
   "nodes": [
     {
       "id": "act",
@@ -115,8 +115,8 @@
       "repo": "https://github.com/apache/airflow",
       "summary": "工作流编排平台。",
       "tags": [
-        "orchestration",
-        "etl"
+        "etl",
+        "orchestration"
       ],
       "language": "Python",
       "status": "active",
@@ -125,15 +125,32 @@
       "niche": "workflow orchestration"
     },
     {
+      "id": "akaunting",
+      "domain": "finance",
+      "name": "Akaunting",
+      "repo": "https://github.com/akaunting/akaunting",
+      "summary": "面向中小企业的在线会计软件（源码可得，BUSL）。",
+      "tags": [
+        "accounting",
+        "finance",
+        "self-hosted"
+      ],
+      "language": "PHP",
+      "status": "active",
+      "use_when": "要自托管中小企业会计/发票且能接受 BUSL 使用限制",
+      "avoid_when": "要宽松开源许可的个人复式记账（GnuCash/Beancount）或 SaaS 会计",
+      "niche": "smb accounting"
+    },
+    {
       "id": "akshare",
       "domain": "finance",
       "name": "AKShare",
       "repo": "https://github.com/akfamily/akshare",
       "summary": "中国财经数据接口库。",
       "tags": [
+        "china",
         "finance",
-        "market-data",
-        "china"
+        "market-data"
       ],
       "language": "Python",
       "status": "active",
@@ -148,8 +165,8 @@
       "repo": "https://github.com/Alamofire/Alamofire",
       "summary": "Swift HTTP 网络库。",
       "tags": [
-        "mobile",
         "ios",
+        "mobile",
         "networking"
       ],
       "language": "Swift",
@@ -176,14 +193,29 @@
       "niche": "solana tooling"
     },
     {
+      "id": "angular",
+      "domain": "web-frontend",
+      "name": "Angular",
+      "repo": "https://github.com/angular/angular",
+      "summary": "Google 主导的 TypeScript 前端框架，偏完整应用脚手架与强约定。",
+      "tags": [
+        "ui"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要企业级约定齐全的前端框架与工具链",
+      "avoid_when": "只要轻量库或极简打包",
+      "niche": "spa framework"
+    },
+    {
       "id": "ansible",
       "domain": "devops",
       "name": "Ansible",
       "repo": "https://github.com/ansible/ansible",
       "summary": "无 Agent 的配置管理与自动化。",
       "tags": [
-        "iac",
-        "devops"
+        "devops",
+        "iac"
       ],
       "language": "Python",
       "status": "active",
@@ -195,8 +227,8 @@
       "id": "antora",
       "domain": "cms-docs",
       "name": "Antora",
-      "repo": "https://github.com/antora/antora",
-      "summary": "多仓 AsciiDoc 文档站点生成器。",
+      "repo": "https://gitlab.com/antora/antora",
+      "summary": "多仓 AsciiDoc 文档站点生成器（源码在 GitLab）。",
       "tags": [
         "docs",
         "static-site"
@@ -206,6 +238,23 @@
       "use_when": "多仓库文档要统一版本化发布",
       "avoid_when": "单仓简单 Markdown 手册",
       "niche": "docs site"
+    },
+    {
+      "id": "anythingllm",
+      "domain": "ai-agents",
+      "name": "AnythingLLM",
+      "repo": "https://github.com/Mintplex-Labs/anything-llm",
+      "summary": "可自托管的多用户文档问答/Agent 工作区，偏产品化桌面与服务端。",
+      "tags": [
+        "agent-framework",
+        "rag",
+        "ui"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要开箱文档库+聊天工作区且可自托管",
+      "avoid_when": "只要模型 UI（Open WebUI）或只要编排框架无产品壳",
+      "niche": "doc chat workspace"
     },
     {
       "id": "apache-kafka",
@@ -246,8 +295,8 @@
       "repo": "https://github.com/apache/apisix",
       "summary": "动态云原生 API 网关。",
       "tags": [
-        "networking",
-        "api-gateway"
+        "api-gateway",
+        "networking"
       ],
       "language": "Lua",
       "status": "active",
@@ -278,9 +327,9 @@
       "repo": "https://github.com/Ardour/ardour",
       "summary": "专业开源数字音频工作站。",
       "tags": [
-        "media",
         "audio",
-        "daw"
+        "daw",
+        "media"
       ],
       "language": "C++",
       "status": "active",
@@ -295,8 +344,8 @@
       "repo": "https://github.com/arduino/ArduinoCore-avr",
       "summary": "Arduino AVR 核心（入门嵌入式生态代表）。",
       "tags": [
-        "iot",
         "embedded",
+        "iot",
         "maker"
       ],
       "language": "C++",
@@ -313,8 +362,8 @@
       "summary": "Kubernetes GitOps 持续交付。",
       "tags": [
         "ci",
-        "orchestration",
-        "devops"
+        "devops",
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
@@ -329,14 +378,29 @@
       "repo": "https://github.com/Arize-ai/phoenix",
       "summary": "开源 AI 可观测与评估，偏 tracing/评估工作台。",
       "tags": [
-        "observability",
-        "eval"
+        "eval",
+        "observability"
       ],
       "language": "Python",
       "status": "active",
       "use_when": "要开源 tracing + 评估一体化工作台",
       "avoid_when": "只要极简日志打印",
       "niche": "AI observability workbench"
+    },
+    {
+      "id": "asdf",
+      "domain": "devtools",
+      "name": "asdf",
+      "repo": "https://github.com/asdf-vm/asdf",
+      "summary": "多语言版本管理器，插件生态广。",
+      "tags": [
+        "cli"
+      ],
+      "language": "Shell",
+      "status": "active",
+      "use_when": "要一个工具管多运行时版本且插件已够用",
+      "avoid_when": "要更快的 Rust 实现与聚合适配（mise）",
+      "niche": "version manager"
     },
     {
       "id": "aseprite",
@@ -346,8 +410,8 @@
       "summary": "像素画与像素动画工具（源码可用，二进制授权另议）。",
       "tags": [
         "gamedev",
-        "tools",
-        "pixel-art"
+        "pixel-art",
+        "tools"
       ],
       "language": "C++",
       "status": "active",
@@ -378,9 +442,9 @@
       "repo": "https://github.com/audacity/audacity",
       "summary": "开源音频编辑器。",
       "tags": [
-        "media",
         "audio",
-        "editor"
+        "editor",
+        "media"
       ],
       "language": "C++",
       "status": "active",
@@ -395,8 +459,8 @@
       "repo": "https://github.com/goauthentik/authentik",
       "summary": "现代开源身份提供者。",
       "tags": [
-        "iam",
-        "auth"
+        "auth",
+        "iam"
       ],
       "language": "Python",
       "status": "active",
@@ -428,8 +492,8 @@
       "repo": "https://github.com/AvaloniaUI/Avalonia",
       "summary": "跨平台 .NET UI 框架。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "dotnet"
       ],
       "language": "C#",
@@ -476,9 +540,9 @@
       "repo": "https://github.com/BabylonJS/Babylon.js",
       "summary": "强大的 Web 3D 引擎。",
       "tags": [
+        "3d",
         "gamedev",
-        "web",
-        "3d"
+        "web"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -493,8 +557,8 @@
       "repo": "https://github.com/mementum/backtrader",
       "summary": "Python 回测与交易框架。",
       "tags": [
-        "finance",
         "backtest",
+        "finance",
         "python"
       ],
       "language": "Python",
@@ -510,8 +574,8 @@
       "repo": "https://github.com/PyCQA/bandit",
       "summary": "Python 安全问题静态检查。",
       "tags": [
-        "sast",
-        "python"
+        "python",
+        "sast"
       ],
       "language": "Python",
       "status": "active",
@@ -536,14 +600,29 @@
       "niche": "file viewer"
     },
     {
+      "id": "beancount",
+      "domain": "finance",
+      "name": "Beancount",
+      "repo": "https://github.com/beancount/beancount",
+      "summary": "纯文本复式记账系统，偏可编程账本。",
+      "tags": [
+        "finance"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要用文本/Git 管理个人或小团队复式账",
+      "avoid_when": "只要图形化记账 App",
+      "niche": "plaintext accounting"
+    },
+    {
       "id": "bevy",
       "domain": "gamedev",
       "name": "Bevy",
       "repo": "https://github.com/bevyengine/bevy",
       "summary": "数据驱动的 Rust 游戏引擎。",
       "tags": [
-        "gamedev",
         "engine",
+        "gamedev",
         "rust"
       ],
       "language": "Rust",
@@ -559,9 +638,9 @@
       "repo": "https://github.com/biomejs/biome",
       "summary": "快速 JS/TS linter+formatter（Rust）。",
       "tags": [
+        "formatter",
         "javascript",
-        "linter",
-        "formatter"
+        "linter"
       ],
       "language": "Rust",
       "status": "active",
@@ -570,14 +649,31 @@
       "niche": "js tooling"
     },
     {
+      "id": "bird",
+      "domain": "networking",
+      "name": "BIRD",
+      "repo": "https://github.com/CZ-NIC/bird",
+      "summary": "轻量 Internet 路由守护进程，常用于 IXP 与边缘 BGP。",
+      "tags": [
+        "bgp",
+        "networking",
+        "routing"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要轻量可控的 BGP/路由守护，尤其互联网交换场景",
+      "avoid_when": "要完整厂商级多协议路由套件或 SDN 控制器",
+      "niche": "bgp daemon"
+    },
+    {
       "id": "bitcoin-core",
       "domain": "blockchain",
       "name": "Bitcoin Core",
       "repo": "https://github.com/bitcoin/bitcoin",
       "summary": "比特币参考客户端。",
       "tags": [
-        "blockchain",
         "bitcoin",
+        "blockchain",
         "client"
       ],
       "language": "C++",
@@ -587,14 +683,32 @@
       "niche": "btc client"
     },
     {
+      "id": "bitcoinjs-lib",
+      "domain": "blockchain",
+      "name": "bitcoinjs-lib",
+      "repo": "https://github.com/bitcoinjs/bitcoinjs-lib",
+      "summary": "Node/浏览器可用的比特币交易与地址处理库。",
+      "tags": [
+        "bitcoin",
+        "blockchain",
+        "javascript",
+        "library"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要在 JS/TS 里构造比特币交易与地址逻辑",
+      "avoid_when": "只要运行全节点或 Lightning 节点",
+      "niche": "bitcoin js"
+    },
+    {
       "id": "blender",
       "domain": "media",
       "name": "Blender",
       "repo": "https://github.com/blender/blender",
       "summary": "3D 创作套件，含建模/动画/视频剪辑。",
       "tags": [
-        "media",
         "3d",
+        "media",
         "vfx"
       ],
       "language": "C++",
@@ -604,15 +718,33 @@
       "niche": "3d suite"
     },
     {
+      "id": "bookstack",
+      "domain": "cms-docs",
+      "name": "BookStack",
+      "repo": "https://codeberg.org/bookstack/bookstack",
+      "summary": "面向团队的结构化知识库/文档 Wiki（Book→Chapter→Page）。",
+      "tags": [
+        "cms",
+        "docs",
+        "self-hosted",
+        "wiki"
+      ],
+      "language": "PHP",
+      "status": "active",
+      "use_when": "要自托管层级化知识库而非无头 CMS",
+      "avoid_when": "只要 Git 驱动静态文档站或无头内容 API",
+      "niche": "structured wiki"
+    },
+    {
       "id": "box2d",
       "domain": "gamedev",
       "name": "Box2D",
       "repo": "https://github.com/erincatto/box2d",
       "summary": "2D 物理引擎。",
       "tags": [
+        "2d",
         "gamedev",
-        "physics",
-        "2d"
+        "physics"
       ],
       "language": "C++",
       "status": "active",
@@ -642,9 +774,9 @@
       "repo": "https://github.com/bulletphysics/bullet3",
       "summary": "3D 物理引擎。",
       "tags": [
+        "3d",
         "gamedev",
-        "physics",
-        "3d"
+        "physics"
       ],
       "language": "C++",
       "status": "active",
@@ -659,8 +791,8 @@
       "repo": "https://github.com/taskforcesh/bullmq",
       "summary": "基于 Redis 的 Node 任务队列。",
       "tags": [
-        "queue",
-        "nodejs"
+        "nodejs",
+        "queue"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -669,14 +801,31 @@
       "niche": "node job queue"
     },
     {
+      "id": "bun",
+      "domain": "devtools",
+      "name": "Bun",
+      "repo": "https://github.com/oven-sh/bun",
+      "summary": "一体式 JS 运行时：打包、测试、包管理与 Node 兼容层。",
+      "tags": [
+        "devtools",
+        "javascript",
+        "runtime"
+      ],
+      "language": "Zig",
+      "status": "active",
+      "use_when": "要更快的 JS 工具链与运行时，可替换部分 Node/npm 工作流",
+      "avoid_when": "需要严格 Node 兼容或生产已锁定 Deno/Node",
+      "niche": "js runtime"
+    },
+    {
       "id": "caddy",
       "domain": "devops",
       "name": "Caddy",
       "repo": "https://github.com/caddyserver/caddy",
       "summary": "自动 HTTPS 的 Web 服务器/反向代理。",
       "tags": [
-        "networking",
-        "devops"
+        "devops",
+        "networking"
       ],
       "language": "Go",
       "status": "active",
@@ -691,8 +840,8 @@
       "repo": "https://github.com/ionic-team/capacitor",
       "summary": "把 Web 应用打包到原生容器。",
       "tags": [
-        "mobile",
         "cross-platform",
+        "mobile",
         "web"
       ],
       "language": "TypeScript",
@@ -700,6 +849,21 @@
       "use_when": "已有 Web 应用要上架移动端",
       "avoid_when": "从零做高交互原生 App",
       "niche": "web-to-native"
+    },
+    {
+      "id": "casbin",
+      "domain": "security",
+      "name": "Casbin",
+      "repo": "https://github.com/casbin/casbin",
+      "summary": "多语言访问控制库，支持 ACL/RBAC/ABAC 等模型。",
+      "tags": [
+        "security"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要在应用内嵌入灵活授权模型",
+      "avoid_when": "只要网关/网格策略（OPA/Kyverno）",
+      "niche": "authorization library"
     },
     {
       "id": "cassandra",
@@ -724,8 +888,8 @@
       "repo": "https://github.com/ccxt/ccxt",
       "summary": "加密货币交易所统一 API 库。",
       "tags": [
-        "finance",
         "crypto",
+        "finance",
         "trading"
       ],
       "language": "JavaScript",
@@ -741,8 +905,8 @@
       "repo": "https://github.com/celery/celery",
       "summary": "Python 分布式任务队列。",
       "tags": [
-        "queue",
-        "python"
+        "python",
+        "queue"
       ],
       "language": "Python",
       "status": "active",
@@ -751,14 +915,78 @@
       "niche": "task queue"
     },
     {
+      "id": "cert-manager",
+      "domain": "devops",
+      "name": "cert-manager",
+      "repo": "https://github.com/cert-manager/cert-manager",
+      "summary": "Kubernetes 证书签发与轮换控制器，常对接 Let’s Encrypt。",
+      "tags": [
+        "networking",
+        "orchestration"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "集群内 Ingress/工作负载要自动 TLS 证书生命周期",
+      "avoid_when": "单机或无 K8s 的证书场景",
+      "niche": "k8s certificates"
+    },
+    {
+      "id": "cesium",
+      "domain": "gis",
+      "name": "Cesium",
+      "repo": "https://github.com/CesiumGS/cesium",
+      "summary": "开源 3D 地球与地图可视化库，偏 Web 三维地理场景。",
+      "tags": [
+        "gis"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要浏览器端全球尺度 3D 地形/倾斜摄影可视化",
+      "avoid_when": "只要 2D Web 地图（Leaflet/MapLibre）",
+      "niche": "3d globe"
+    },
+    {
+      "id": "checkov",
+      "domain": "security",
+      "name": "Checkov",
+      "repo": "https://github.com/bridgecrewio/checkov",
+      "summary": "基础设施即代码（IaC）静态安全与合规扫描。",
+      "tags": [
+        "iac",
+        "sast",
+        "scanning",
+        "security"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要在 CI 扫描 Terraform/K8s/Helm 等 IaC 配置风险",
+      "avoid_when": "只要运行时容器威胁检测或密钥泄露扫描",
+      "niche": "iac scanning"
+    },
+    {
+      "id": "chi",
+      "domain": "backend",
+      "name": "chi",
+      "repo": "https://github.com/go-chi/chi",
+      "summary": "轻量可组合的 Go HTTP 路由器，兼容 net/http。",
+      "tags": [
+        "backend"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "Go 服务要简洁路由且不绑大框架",
+      "avoid_when": "要全能电池框架（可看 Gin/Fiber）",
+      "niche": "go router"
+    },
+    {
       "id": "chromadb",
       "domain": "ai-agents",
       "name": "Chroma",
       "repo": "https://github.com/chroma-core/chroma",
       "summary": "开发者友好的嵌入数据库，RAG 入门常见。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "Python",
       "status": "active",
@@ -773,10 +1001,10 @@
       "repo": "https://github.com/cilium/cilium",
       "summary": "基于 eBPF 的云原生网络与安全。",
       "tags": [
-        "networking",
         "cni",
         "ebpf",
-        "kubernetes"
+        "kubernetes",
+        "networking"
       ],
       "language": "Go",
       "status": "active",
@@ -785,14 +1013,29 @@
       "niche": "cni"
     },
     {
+      "id": "circuitpython",
+      "domain": "iot",
+      "name": "CircuitPython",
+      "repo": "https://github.com/adafruit/circuitpython",
+      "summary": "Adafruit 维护的教育/硬件友好 MicroPython 分支。",
+      "tags": [
+        "iot"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "教育/创客板要即插即用 Python 外设库",
+      "avoid_when": "要更上游 MicroPython 或量产硬实时",
+      "niche": "edu mcu python"
+    },
+    {
       "id": "clickhouse",
       "domain": "databases",
       "name": "ClickHouse",
       "repo": "https://github.com/ClickHouse/ClickHouse",
       "summary": "列式分析型数据库 OLAP。",
       "tags": [
-        "olap",
-        "analytics"
+        "analytics",
+        "olap"
       ],
       "language": "C++",
       "status": "active",
@@ -823,8 +1066,8 @@
       "repo": "https://github.com/cockroachdb/cockroach",
       "summary": "分布式 SQL，兼容 Postgres 协议。",
       "tags": [
-        "sql",
-        "distributed"
+        "distributed",
+        "sql"
       ],
       "language": "Go",
       "status": "active",
@@ -833,14 +1076,46 @@
       "niche": "distributed sql"
     },
     {
+      "id": "coil",
+      "domain": "mobile",
+      "name": "Coil",
+      "repo": "https://github.com/coil-kt/coil",
+      "summary": "Kotlin 优先的 Android 图片加载库。",
+      "tags": [
+        "mobile"
+      ],
+      "language": "Kotlin",
+      "status": "active",
+      "use_when": "现代 Kotlin/Compose 应用要图片加载",
+      "avoid_when": "跨端统一用其它图片栈",
+      "niche": "image loading"
+    },
+    {
+      "id": "cometbft",
+      "domain": "blockchain",
+      "name": "CometBFT",
+      "repo": "https://github.com/cometbft/cometbft",
+      "summary": "BFT 共识引擎（Tendermint Core 继承者），常作 Cosmos 应用层底座。",
+      "tags": [
+        "blockchain",
+        "consensus",
+        "cosmos"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要为应用链提供确定性 BFT 共识与 P2P",
+      "avoid_when": "只要 EVM 合约开发或不想运维共识层",
+      "niche": "bft consensus"
+    },
+    {
       "id": "comfyui",
       "domain": "ai-agents",
       "name": "ComfyUI",
       "repo": "https://github.com/comfyanonymous/ComfyUI",
       "summary": "节点式生成式工作流 UI（图像等）。",
       "tags": [
-        "ui",
-        "orchestration"
+        "orchestration",
+        "ui"
       ],
       "language": "Python",
       "status": "active",
@@ -855,8 +1130,8 @@
       "repo": "https://github.com/JetBrains/compose-multiplatform",
       "summary": "Jetpack Compose 多平台，含桌面目标。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "kotlin"
       ],
       "language": "Kotlin",
@@ -872,8 +1147,8 @@
       "repo": "https://github.com/connectrpc/connect-go",
       "summary": "简易 Protobuf RPC，兼容 gRPC。",
       "tags": [
-        "rpc",
-        "go"
+        "go",
+        "rpc"
       ],
       "language": "Go",
       "status": "active",
@@ -888,8 +1163,8 @@
       "repo": "https://github.com/hashicorp/consul",
       "summary": "服务发现、配置与网格能力。",
       "tags": [
-        "networking",
-        "devops"
+        "devops",
+        "networking"
       ],
       "language": "Go",
       "status": "active",
@@ -920,8 +1195,8 @@
       "repo": "https://github.com/continuedev/continue",
       "summary": "开源 IDE 编码助手扩展，可接多模型。",
       "tags": [
-        "ui",
-        "agent-framework"
+        "agent-framework",
+        "ui"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -936,8 +1211,8 @@
       "repo": "https://github.com/coredns/coredns",
       "summary": "可插件化的 DNS 服务器，K8s 默认 DNS。",
       "tags": [
-        "networking",
-        "dns"
+        "dns",
+        "networking"
       ],
       "language": "Go",
       "status": "active",
@@ -952,8 +1227,8 @@
       "repo": "https://github.com/sigstore/cosign",
       "summary": "容器/制品签名与验证（Sigstore）。",
       "tags": [
-        "supply-chain",
-        "signing"
+        "signing",
+        "supply-chain"
       ],
       "language": "Go",
       "status": "active",
@@ -969,8 +1244,8 @@
       "summary": "构建应用特定区块链的框架。",
       "tags": [
         "blockchain",
-        "framework",
-        "cosmos"
+        "cosmos",
+        "framework"
       ],
       "language": "Go",
       "status": "active",
@@ -985,8 +1260,8 @@
       "repo": "https://github.com/unclecode/crawl4ai",
       "summary": "面向 LLM 的网页爬取与清洗。",
       "tags": [
-        "rag",
-        "agent-framework"
+        "agent-framework",
+        "rag"
       ],
       "language": "Python",
       "status": "active",
@@ -1017,15 +1292,30 @@
       "repo": "https://github.com/crossplane/crossplane",
       "summary": "用 K8s 控制面管理云资源。",
       "tags": [
+        "devops",
         "iac",
-        "orchestration",
-        "devops"
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "要把云资源也当成 K8s 声明式对象",
       "avoid_when": "不用 Kubernetes 控制面",
       "niche": "k8s-native IaC"
+    },
+    {
+      "id": "crowdsec",
+      "domain": "security",
+      "name": "CrowdSec",
+      "repo": "https://github.com/crowdsecurity/crowdsec",
+      "summary": "协作式行为检测与封禁，常作 fail2ban 类场景的现代替代。",
+      "tags": [
+        "security"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要日志驱动的入侵检测与共享信号封禁",
+      "avoid_when": "只要极简单机 fail2ban",
+      "niche": "ids ips"
     },
     {
       "id": "cypress",
@@ -1083,8 +1373,8 @@
       "summary": "Python 即时模式 GPU 加速 GUI。",
       "tags": [
         "desktop",
-        "python",
-        "immediate-mode"
+        "immediate-mode",
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -1100,8 +1390,8 @@
       "summary": "大规模 WebGL 地理可视化框架。",
       "tags": [
         "gis",
-        "web",
-        "visualization"
+        "visualization",
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -1125,6 +1415,23 @@
       "niche": "LLM unit testing"
     },
     {
+      "id": "defectdojo",
+      "domain": "security",
+      "name": "DefectDojo",
+      "repo": "https://github.com/DefectDojo/django-DefectDojo",
+      "summary": "开源漏洞管理平台，汇总多工具扫描结果与工单。",
+      "tags": [
+        "devops-tools",
+        "scanning",
+        "security"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要把多源漏洞扫描结果集中管理与跟踪修复",
+      "avoid_when": "只要单次 CI 扫描器本身（Trivy/Semgrep）",
+      "niche": "vuln management"
+    },
+    {
       "id": "delta",
       "domain": "devtools",
       "name": "delta",
@@ -1132,14 +1439,31 @@
       "summary": "语法高亮的 git/diff 阅读器。",
       "tags": [
         "cli",
-        "git",
-        "diff"
+        "diff",
+        "git"
       ],
       "language": "Rust",
       "status": "active",
       "use_when": "想把 git diff/show 读得更清楚",
       "avoid_when": "纯脚本解析 patch 不需要人类可读",
       "niche": "diff viewer"
+    },
+    {
+      "id": "deno",
+      "domain": "devtools",
+      "name": "Deno",
+      "repo": "https://github.com/denoland/deno",
+      "summary": "安全优先的 TS/JS 运行时，内置工具链。",
+      "tags": [
+        "devtools",
+        "runtime",
+        "typescript"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要默认安全权限模型与内置 TS 运行时",
+      "avoid_when": "要最大 Node 生态兼容或 Bun 式一体打包优先",
+      "niche": "js runtime"
     },
     {
       "id": "detox",
@@ -1149,14 +1473,50 @@
       "summary": "React Native 灰盒 E2E 测试。",
       "tags": [
         "mobile",
-        "testing",
-        "react"
+        "react",
+        "testing"
       ],
       "language": "JavaScript",
       "status": "active",
       "use_when": "RN 应用要端到端测试",
       "avoid_when": "非 RN 项目",
       "niche": "rn e2e"
+    },
+    {
+      "id": "dify",
+      "domain": "ai-agents",
+      "name": "Dify",
+      "repo": "https://github.com/langgenius/dify",
+      "summary": "开源 LLM 应用开发平台，支持工作流、RAG 与模型接入的可视化编排。",
+      "tags": [
+        "agent-framework",
+        "orchestration",
+        "rag",
+        "ui"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要快速搭可运营的 Agent/RAG 工作台且可自托管",
+      "avoid_when": "只要代码库级框架、不要产品化控制台",
+      "niche": "llm app platform"
+    },
+    {
+      "id": "dioxus",
+      "domain": "desktop",
+      "name": "Dioxus",
+      "repo": "https://github.com/DioxusLabs/dioxus",
+      "summary": "Rust 全栈 UI 框架，可同时覆盖 Web、桌面与移动端。",
+      "tags": [
+        "cross-platform",
+        "desktop",
+        "rust",
+        "ui"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要用 Rust 做跨端 UI，且希望 Web/桌面共享组件模型",
+      "avoid_when": "只要即时模式 GUI（egui）或不愿引入 Rust 工具链",
+      "niche": "rust ui"
     },
     {
       "id": "directus",
@@ -1183,14 +1543,31 @@
       "summary": "电池齐全的 Python Web 框架。",
       "tags": [
         "api",
-        "python",
-        "fullstack"
+        "fullstack",
+        "python"
       ],
       "language": "Python",
       "status": "active",
       "use_when": "要 ORM/Admin/认证一体的 Python Web",
       "avoid_when": "只要极薄 API 层",
       "niche": "python full framework"
+    },
+    {
+      "id": "dnsmasq",
+      "domain": "networking",
+      "name": "dnsmasq",
+      "repo": "https://github.com/imp/dnsmasq",
+      "summary": "轻量 DNS/DHCP/TFTP 服务，常用于家用路由与实验室网络。",
+      "tags": [
+        "dhcp",
+        "dns",
+        "networking"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要嵌入式或小型网络的 DNS+DHCP 一体服务",
+      "avoid_when": "要权威 DNS 大规模服务（Unbound/Bind/CoreDNS 更合适）",
+      "niche": "lightweight dns dhcp"
     },
     {
       "id": "docfx",
@@ -1232,8 +1609,8 @@
       "summary": "无需构建的文档站点生成器。",
       "tags": [
         "docs",
-        "static-site",
-        "javascript"
+        "javascript",
+        "static-site"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -1249,8 +1626,8 @@
       "summary": "React 文档网站生成器。",
       "tags": [
         "docs",
-        "static-site",
-        "react"
+        "react",
+        "static-site"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -1265,8 +1642,8 @@
       "repo": "https://github.com/stanfordnlp/dspy",
       "summary": "斯坦福声明式提示与程序优化框架，把 prompt 当可优化参数。",
       "tags": [
-        "prompt",
-        "orchestration"
+        "orchestration",
+        "prompt"
       ],
       "language": "Python",
       "status": "active",
@@ -1281,15 +1658,32 @@
       "repo": "https://github.com/duckdb/duckdb",
       "summary": "嵌入式分析型数据库。",
       "tags": [
-        "olap",
+        "analytics",
         "embedded",
-        "analytics"
+        "olap"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "本地/进程内分析 SQL",
       "avoid_when": "需要分布式集群 OLAP",
       "niche": "embedded analytics"
+    },
+    {
+      "id": "echo",
+      "domain": "backend",
+      "name": "Echo",
+      "repo": "https://github.com/labstack/echo",
+      "summary": "高性能 Go HTTP 框架，中间件与路由简洁。",
+      "tags": [
+        "backend",
+        "framework",
+        "go"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要轻量 Go Web/API 框架且 API 比净 chi 更完整",
+      "avoid_when": "只要极简路由库或已选定 Gin/Fiber",
+      "niche": "go web"
     },
     {
       "id": "edge-impulse-cli",
@@ -1332,8 +1726,8 @@
       "repo": "https://github.com/elastic/elasticsearch",
       "summary": "分布式搜索与分析引擎。",
       "tags": [
-        "search",
-        "analytics"
+        "analytics",
+        "search"
       ],
       "language": "Java",
       "status": "active",
@@ -1348,8 +1742,8 @@
       "repo": "https://github.com/electron/electron",
       "summary": "用 Chromium+Node 构建跨平台桌面应用。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "javascript"
       ],
       "language": "C++",
@@ -1366,8 +1760,8 @@
       "summary": "大规模可扩展 MQTT 平台。",
       "tags": [
         "iot",
-        "mqtt",
-        "messaging"
+        "messaging",
+        "mqtt"
       ],
       "language": "Erlang",
       "status": "active",
@@ -1393,15 +1787,30 @@
       "niche": "proxy"
     },
     {
+      "id": "eslint",
+      "domain": "web-frontend",
+      "name": "ESLint",
+      "repo": "https://github.com/eslint/eslint",
+      "summary": "JavaScript/TypeScript 可插拔静态检查工具。",
+      "tags": [
+        "ui"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要成熟规则生态约束前端代码质量",
+      "avoid_when": "只要开箱极速 format/lint 可先看 Biome",
+      "niche": "linter"
+    },
+    {
       "id": "esp-idf",
       "domain": "iot",
       "name": "ESP-IDF",
       "repo": "https://github.com/espressif/esp-idf",
       "summary": "乐鑫官方 IoT 开发框架。",
       "tags": [
-        "iot",
+        "esp",
         "firmware",
-        "esp"
+        "iot"
       ],
       "language": "C",
       "status": "active",
@@ -1416,9 +1825,9 @@
       "repo": "https://github.com/esphome/esphome",
       "summary": "用 YAML 配置 ESP 设备固件。",
       "tags": [
-        "iot",
+        "esp",
         "firmware",
-        "esp"
+        "iot"
       ],
       "language": "Python",
       "status": "active",
@@ -1450,8 +1859,8 @@
       "repo": "https://github.com/expo/expo",
       "summary": "React Native 工具链与运行时，加速交付。",
       "tags": [
-        "mobile",
         "cross-platform",
+        "mobile",
         "react"
       ],
       "language": "TypeScript",
@@ -1477,6 +1886,21 @@
       "niche": "node http"
     },
     {
+      "id": "eza",
+      "domain": "devtools",
+      "name": "eza",
+      "repo": "https://github.com/eza-community/eza",
+      "summary": "现代 ls 替代，彩色与 git 集成。",
+      "tags": [
+        "cli"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要更友好的目录列表",
+      "avoid_when": "只要 POSIX ls 脚本兼容",
+      "niche": "ls alternative"
+    },
+    {
       "id": "fail2ban",
       "domain": "security",
       "name": "Fail2Ban",
@@ -1499,14 +1923,29 @@
       "repo": "https://github.com/facebookresearch/faiss",
       "summary": "Meta 的相似向量检索库，算法层基础件。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "要嵌入到自有服务里的检索内核",
       "avoid_when": "想要开箱即用的带 API 的向量数据库产品",
       "niche": "vector similarity library"
+    },
+    {
+      "id": "falco",
+      "domain": "security",
+      "name": "Falco",
+      "repo": "https://github.com/falcosecurity/falco",
+      "summary": "云原生运行时安全检测，基于内核事件规则告警。",
+      "tags": [
+        "security"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "K8s/主机要运行时异常行为检测",
+      "avoid_when": "只要镜像静态扫描（Trivy/Grype）",
+      "niche": "runtime security"
     },
     {
       "id": "fastapi",
@@ -1546,8 +1985,8 @@
       "repo": "https://github.com/fastlane/fastlane",
       "summary": "iOS/Android 构建发布自动化。",
       "tags": [
-        "mobile",
         "ci",
+        "mobile",
         "release"
       ],
       "language": "Ruby",
@@ -1564,8 +2003,8 @@
       "summary": "用户友好的 find 替代，默认忽略隐藏与 gitignore。",
       "tags": [
         "cli",
-        "search",
-        "filesystem"
+        "filesystem",
+        "search"
       ],
       "language": "Rust",
       "status": "active",
@@ -1578,10 +2017,10 @@
       "domain": "data-ml",
       "name": "Feast",
       "repo": "https://github.com/feast-dev/feast",
-      "summary": "特征存储。",
+      "summary": "面向 ML 的在线/离线特征存储与特征服务。",
       "tags": [
-        "mlops",
-        "ml"
+        "ml",
+        "mlops"
       ],
       "language": "Python",
       "status": "active",
@@ -1596,10 +2035,10 @@
       "repo": "https://github.com/FFmpeg/FFmpeg",
       "summary": "音视频录制、转换与流处理的事实标准工具集。",
       "tags": [
-        "media",
-        "video",
         "audio",
-        "cli"
+        "cli",
+        "media",
+        "video"
       ],
       "language": "C",
       "status": "active",
@@ -1657,15 +2096,30 @@
       "niche": "python microframework"
     },
     {
+      "id": "flower",
+      "domain": "backend",
+      "name": "Flower",
+      "repo": "https://github.com/mher/flower",
+      "summary": "Celery 实时监控与管理 Web UI。",
+      "tags": [
+        "backend"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "Celery 集群要可视化监控与任务管理",
+      "avoid_when": "不用 Celery",
+      "niche": "celery monitor"
+    },
+    {
       "id": "flowise",
       "domain": "ai-agents",
       "name": "Flowise",
       "repo": "https://github.com/FlowiseAI/Flowise",
       "summary": "可视化 LLM 编排 UI，偏 LangChain 生态。",
       "tags": [
+        "agent-framework",
         "orchestration",
-        "ui",
-        "agent-framework"
+        "ui"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -1680,9 +2134,9 @@
       "repo": "https://github.com/fluent/fluent-bit",
       "summary": "轻量日志/指标转发代理。",
       "tags": [
-        "observability",
+        "collector",
         "logging",
-        "collector"
+        "observability"
       ],
       "language": "C",
       "status": "active",
@@ -1697,9 +2151,9 @@
       "repo": "https://github.com/fluent/fluentd",
       "summary": "统一日志层，插件丰富。",
       "tags": [
-        "observability",
+        "collector",
         "logging",
-        "collector"
+        "observability"
       ],
       "language": "Ruby",
       "status": "active",
@@ -1714,8 +2168,8 @@
       "repo": "https://github.com/flutter/flutter",
       "summary": "跨平台 UI 工具包，一套代码多端。",
       "tags": [
-        "mobile",
-        "cross-platform"
+        "cross-platform",
+        "mobile"
       ],
       "language": "Dart",
       "status": "active",
@@ -1730,8 +2184,8 @@
       "repo": "https://github.com/flutter/flutter",
       "summary": "Flutter 的桌面目标（Windows/macOS/Linux）。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "flutter"
       ],
       "language": "Dart",
@@ -1748,14 +2202,31 @@
       "summary": "GitOps 工具集（CNCF）。",
       "tags": [
         "ci",
-        "orchestration",
-        "devops"
+        "devops",
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "K8s GitOps 且偏 Flux 生态",
       "avoid_when": "已选定 Argo CD 且无双栈需求",
       "niche": "gitops toolkit"
+    },
+    {
+      "id": "fnm",
+      "domain": "devtools",
+      "name": "fnm",
+      "repo": "https://github.com/Schniz/fnm",
+      "summary": "快速 Node.js 版本管理器（Rust）。",
+      "tags": [
+        "devtools",
+        "nodejs",
+        "version-manager"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "只要 Node 版本切换且追求启动速度",
+      "avoid_when": "要统一多语言版本管理（mise/asdf）",
+      "niche": "node version manager"
     },
     {
       "id": "foundry",
@@ -1781,9 +2252,9 @@
       "repo": "https://github.com/FreeRTOS/FreeRTOS",
       "summary": "广泛使用的实时操作系统内核。",
       "tags": [
+        "embedded",
         "iot",
-        "rtos",
-        "embedded"
+        "rtos"
       ],
       "language": "C",
       "status": "active",
@@ -1798,8 +2269,8 @@
       "repo": "https://github.com/freqtrade/freqtrade",
       "summary": "开源加密货币交易机器人。",
       "tags": [
-        "finance",
         "crypto",
+        "finance",
         "trading-bot"
       ],
       "language": "Python",
@@ -1815,9 +2286,9 @@
       "repo": "https://github.com/fatedier/frp",
       "summary": "内网穿透，暴露本地服务到公网。",
       "tags": [
+        "nat",
         "networking",
-        "tunnel",
-        "nat"
+        "tunnel"
       ],
       "language": "Go",
       "status": "active",
@@ -1826,20 +2297,72 @@
       "niche": "nat traversal"
     },
     {
+      "id": "frr",
+      "domain": "networking",
+      "name": "FRRouting",
+      "repo": "https://github.com/FRRouting/frr",
+      "summary": "Linux/Unix 上的开源 IP 路由协议套件（BGP/OSPF/IS-IS 等）。",
+      "tags": [
+        "bgp",
+        "networking",
+        "routing"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要在通用 Linux 上跑完整动态路由协议栈",
+      "avoid_when": "只要容器网络策略或简单反向代理",
+      "niche": "ip routing"
+    },
+    {
       "id": "fulcio",
       "domain": "security",
       "name": "Fulcio",
       "repo": "https://github.com/sigstore/fulcio",
       "summary": "Sigstore 证书颁发组件。",
       "tags": [
-        "supply-chain",
-        "signing"
+        "signing",
+        "supply-chain"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "自建/理解 Sigstore 证书链",
       "avoid_when": "只用托管 Sigstore 流程",
       "niche": "sigstore ca"
+    },
+    {
+      "id": "fvm",
+      "domain": "devtools",
+      "name": "FVM",
+      "repo": "https://github.com/fluttertools/fvm",
+      "summary": "Flutter SDK 版本管理，按项目锁定 Flutter 通道。",
+      "tags": [
+        "devtools",
+        "flutter",
+        "version-manager"
+      ],
+      "language": "Dart",
+      "status": "active",
+      "use_when": "多 Flutter 项目需要隔离 SDK 版本",
+      "avoid_when": "单项目且全局 Flutter 安装已足够",
+      "niche": "flutter version manager"
+    },
+    {
+      "id": "fyne",
+      "domain": "desktop",
+      "name": "Fyne",
+      "repo": "https://github.com/fyne-io/fyne",
+      "summary": "用 Go 编写的跨平台 GUI 工具包，Material 风格。",
+      "tags": [
+        "cross-platform",
+        "desktop",
+        "go",
+        "ui"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要用纯 Go 做桌面/移动端原生感界面且不依赖 WebView",
+      "avoid_when": "需要完整 Web 生态或重度 Electron 插件",
+      "niche": "go gui"
     },
     {
       "id": "fzf",
@@ -1849,8 +2372,8 @@
       "summary": "通用模糊查找器，可嵌入 shell 工作流。",
       "tags": [
         "cli",
-        "search",
-        "interactive"
+        "interactive",
+        "search"
       ],
       "language": "Go",
       "status": "active",
@@ -1865,9 +2388,9 @@
       "repo": "https://github.com/OSGeo/gdal",
       "summary": "栅格/矢量地理数据转换库。",
       "tags": [
+        "data",
         "gis",
-        "library",
-        "data"
+        "library"
       ],
       "language": "C++",
       "status": "active",
@@ -1882,9 +2405,9 @@
       "repo": "https://github.com/geopandas/geopandas",
       "summary": "pandas 风格的矢量空间数据分析。",
       "tags": [
+        "dataframe",
         "gis",
-        "python",
-        "dataframe"
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -1900,8 +2423,8 @@
       "summary": "开源地理数据服务器（OGC 服务）。",
       "tags": [
         "gis",
-        "server",
-        "ogc"
+        "ogc",
+        "server"
       ],
       "language": "Java",
       "status": "active",
@@ -1916,15 +2439,33 @@
       "repo": "https://github.com/TryGhost/Ghost",
       "summary": "面向出版的现代 Node CMS。",
       "tags": [
+        "blogging",
         "cms",
-        "node",
-        "blogging"
+        "node"
       ],
       "language": "JavaScript",
       "status": "active",
       "use_when": "要会员制出版/新闻站且偏 Node",
       "avoid_when": "只要纯静态文档且无会员",
       "niche": "publishing cms"
+    },
+    {
+      "id": "ghostfolio",
+      "domain": "finance",
+      "name": "Ghostfolio",
+      "repo": "https://github.com/ghostfolio/ghostfolio",
+      "summary": "开源自托管财富管理与投资组合追踪。",
+      "tags": [
+        "finance",
+        "personal-finance",
+        "portfolio",
+        "self-hosted"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要自托管跟踪多资产投资组合与净值",
+      "avoid_when": "只要日常流水记账（Firefly/Actual）或交易策略回测",
+      "niche": "wealth management"
     },
     {
       "id": "gin",
@@ -1981,8 +2522,8 @@
       "repo": "https://github.com/gitleaks/gitleaks",
       "summary": "检测仓库中的密钥泄漏。",
       "tags": [
-        "secrets",
-        "scanning"
+        "scanning",
+        "secrets"
       ],
       "language": "Go",
       "status": "active",
@@ -1991,15 +2532,32 @@
       "niche": "secret detection"
     },
     {
+      "id": "glide",
+      "domain": "mobile",
+      "name": "Glide",
+      "repo": "https://github.com/bumptech/glide",
+      "summary": "Android 图片加载与缓存库。",
+      "tags": [
+        "android",
+        "library",
+        "mobile"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要 Android 图片加载且生态资料丰富",
+      "avoid_when": "只要 Kotlin 优先的 Coil 或跨端方案",
+      "niche": "android image"
+    },
+    {
       "id": "gnucash",
       "domain": "finance",
       "name": "GnuCash",
       "repo": "https://github.com/Gnucash/gnucash",
       "summary": "开源复式记账财务软件。",
       "tags": [
-        "finance",
         "accounting",
-        "desktop"
+        "desktop",
+        "finance"
       ],
       "language": "C++",
       "status": "active",
@@ -2015,8 +2573,8 @@
       "summary": "Go 实现的以太坊执行客户端。",
       "tags": [
         "blockchain",
-        "ethereum",
-        "client"
+        "client",
+        "ethereum"
       ],
       "language": "Go",
       "status": "active",
@@ -2031,8 +2589,8 @@
       "repo": "https://github.com/godotengine/godot",
       "summary": "功能完整的开源游戏引擎。",
       "tags": [
-        "gamedev",
-        "engine"
+        "engine",
+        "gamedev"
       ],
       "language": "C++",
       "status": "active",
@@ -2048,8 +2606,8 @@
       "summary": "GO 语言的安全隧道与代理工具集。",
       "tags": [
         "networking",
-        "tunnel",
-        "proxy"
+        "proxy",
+        "tunnel"
       ],
       "language": "Go",
       "status": "active",
@@ -2080,8 +2638,8 @@
       "repo": "https://github.com/grafana/grafana",
       "summary": "可观测可视化与仪表盘。",
       "tags": [
-        "observability",
-        "devops"
+        "devops",
+        "observability"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -2096,9 +2654,9 @@
       "repo": "https://github.com/grafana/alloy",
       "summary": "Grafana 开源遥测采集器（Agent 后继）。",
       "tags": [
-        "observability",
         "collector",
-        "grafana"
+        "grafana",
+        "observability"
       ],
       "language": "Go",
       "status": "active",
@@ -2113,9 +2671,9 @@
       "repo": "https://github.com/OSGeo/grass",
       "summary": "强大的地理信息系统处理套件。",
       "tags": [
-        "gis",
         "analysis",
-        "desktop"
+        "desktop",
+        "gis"
       ],
       "language": "C",
       "status": "active",
@@ -2130,8 +2688,8 @@
       "repo": "https://github.com/Graylog2/graylog2-server",
       "summary": "集中式日志管理平台。",
       "tags": [
-        "observability",
-        "logging"
+        "logging",
+        "observability"
       ],
       "language": "Java",
       "status": "active",
@@ -2146,8 +2704,8 @@
       "repo": "https://github.com/grpc/grpc-go",
       "summary": "Go 的 gRPC 实现。",
       "tags": [
-        "rpc",
-        "go"
+        "go",
+        "rpc"
       ],
       "language": "Go",
       "status": "active",
@@ -2162,8 +2720,8 @@
       "repo": "https://github.com/anchore/grype",
       "summary": "基于 SBOM 的漏洞扫描器。",
       "tags": [
-        "scanning",
-        "sbom"
+        "sbom",
+        "scanning"
       ],
       "language": "Go",
       "status": "active",
@@ -2178,10 +2736,10 @@
       "repo": "https://github.com/GStreamer/gstreamer",
       "summary": "管道式多媒体框架。",
       "tags": [
-        "media",
-        "video",
         "audio",
-        "framework"
+        "framework",
+        "media",
+        "video"
       ],
       "language": "C",
       "status": "active",
@@ -2197,8 +2755,8 @@
       "summary": "GNOME 系跨平台 GUI 工具包。",
       "tags": [
         "desktop",
-        "native-ui",
-        "linux"
+        "linux",
+        "native-ui"
       ],
       "language": "C",
       "status": "active",
@@ -2222,6 +2780,21 @@
       "niche": "output guardrails"
     },
     {
+      "id": "h3",
+      "domain": "gis",
+      "name": "H3",
+      "repo": "https://github.com/uber/h3",
+      "summary": "六边形分层空间索引系统，常用于分析与聚合。",
+      "tags": [
+        "gis"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要均匀网格做空间聚合/邻近分析",
+      "avoid_when": "只要传统经纬度矩形瓦片",
+      "niche": "spatial index"
+    },
+    {
       "id": "handbrake",
       "domain": "media",
       "name": "HandBrake",
@@ -2229,8 +2802,8 @@
       "summary": "开源视频转码器（含 GUI）。",
       "tags": [
         "media",
-        "video",
-        "transcoder"
+        "transcoder",
+        "video"
       ],
       "language": "C",
       "status": "active",
@@ -2245,8 +2818,8 @@
       "repo": "https://github.com/haproxy/haproxy",
       "summary": "高可用负载均衡与代理。",
       "tags": [
-        "networking",
         "load-balancer",
+        "networking",
         "proxy"
       ],
       "language": "C",
@@ -2254,6 +2827,22 @@
       "use_when": "要成熟四/七层负载均衡与高可用",
       "avoid_when": "只要开发机临时端口转发",
       "niche": "load balancer"
+    },
+    {
+      "id": "harbor",
+      "domain": "devops",
+      "name": "Harbor",
+      "repo": "https://github.com/goharbor/harbor",
+      "summary": "云原生制品仓库，支持镜像签名、扫描与复制。",
+      "tags": [
+        "containers",
+        "security"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要自托管可信镜像/制品仓库并带安全扫描",
+      "avoid_when": "只要公有云托管 registry",
+      "niche": "container registry"
     },
     {
       "id": "hardhat",
@@ -2279,8 +2868,8 @@
       "repo": "https://github.com/deepset-ai/haystack",
       "summary": "deepset 的 NLP/RAG 流水线框架，管道组合清晰。",
       "tags": [
-        "rag",
-        "agent-framework"
+        "agent-framework",
+        "rag"
       ],
       "language": "Python",
       "status": "active",
@@ -2296,8 +2885,8 @@
       "summary": "Tailscale 控制服务器的开源自托管实现。",
       "tags": [
         "networking",
-        "vpn",
-        "self-hosted"
+        "self-hosted",
+        "vpn"
       ],
       "language": "Go",
       "status": "active",
@@ -2312,8 +2901,8 @@
       "repo": "https://github.com/Ralith/hecs",
       "summary": "轻量 Rust ECS 库。",
       "tags": [
-        "gamedev",
         "ecs",
+        "gamedev",
         "rust"
       ],
       "language": "Rust",
@@ -2346,8 +2935,8 @@
       "repo": "https://github.com/helm/helm",
       "summary": "Kubernetes 应用包管理器（Chart）。",
       "tags": [
-        "orchestration",
-        "devops"
+        "devops",
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
@@ -2362,9 +2951,9 @@
       "repo": "https://github.com/simonmichael/hledger",
       "summary": "易用的纯文本会计工具（Haskell）。",
       "tags": [
-        "finance",
         "accounting",
-        "cli"
+        "cli",
+        "finance"
       ],
       "language": "Haskell",
       "status": "active",
@@ -2379,14 +2968,29 @@
       "repo": "https://github.com/home-assistant/core",
       "summary": "开源家庭自动化平台。",
       "tags": [
-        "iot",
-        "home-automation"
+        "home-automation",
+        "iot"
       ],
       "language": "Python",
       "status": "active",
       "use_when": "要自托管智能家居中枢与海量集成",
       "avoid_when": "只要单设备脚本无家庭场景",
       "niche": "home automation"
+    },
+    {
+      "id": "homebridge",
+      "domain": "iot",
+      "name": "Homebridge",
+      "repo": "https://github.com/homebridge/homebridge",
+      "summary": "把非 HomeKit 设备桥接到 Apple HomeKit 的 Node 网关。",
+      "tags": [
+        "iot"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "苹果 HomeKit 生态要接入杂牌设备",
+      "avoid_when": "跨平台全屋自动化（Home Assistant）是主路径",
+      "niche": "homekit bridge"
     },
     {
       "id": "hono",
@@ -2411,9 +3015,9 @@
       "repo": "https://github.com/gohugoio/hugo",
       "summary": "极速 Go 静态站点生成器。",
       "tags": [
-        "static-site",
         "blog",
-        "docs"
+        "docs",
+        "static-site"
       ],
       "language": "Go",
       "status": "active",
@@ -2422,14 +3026,32 @@
       "niche": "ssg"
     },
     {
+      "id": "hummingbot",
+      "domain": "finance",
+      "name": "Hummingbot",
+      "repo": "https://github.com/hummingbot/hummingbot",
+      "summary": "开源加密货币高频/做市交易机器人框架。",
+      "tags": [
+        "crypto",
+        "finance",
+        "trading",
+        "trading-bot"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要自建加密货币做市或策略机器人并可对接多交易所",
+      "avoid_when": "要传统股票回测框架或个人记账",
+      "niche": "crypto trading bot"
+    },
+    {
       "id": "hyperfine",
       "domain": "devtools",
       "name": "hyperfine",
       "repo": "https://github.com/sharkdp/hyperfine",
       "summary": "命令行基准测试工具。",
       "tags": [
-        "cli",
-        "benchmarking"
+        "benchmarking",
+        "cli"
       ],
       "language": "Rust",
       "status": "active",
@@ -2461,9 +3083,9 @@
       "repo": "https://github.com/ImageMagick/ImageMagick",
       "summary": "命令行图像处理套件。",
       "tags": [
-        "media",
+        "cli",
         "image",
-        "cli"
+        "media"
       ],
       "language": "C",
       "status": "active",
@@ -2510,8 +3132,8 @@
       "repo": "https://github.com/ionic-team/ionic-framework",
       "summary": "Web 技术做移动/桌面的 UI 框架。",
       "tags": [
-        "mobile",
         "cross-platform",
+        "mobile",
         "web"
       ],
       "language": "TypeScript",
@@ -2527,8 +3149,8 @@
       "repo": "https://github.com/esnet/iperf",
       "summary": "网络带宽性能测试工具。",
       "tags": [
-        "networking",
-        "benchmarking"
+        "benchmarking",
+        "networking"
       ],
       "language": "C",
       "status": "active",
@@ -2544,8 +3166,8 @@
       "summary": "分布式内容寻址存储协议实现。",
       "tags": [
         "blockchain",
-        "storage",
-        "p2p"
+        "p2p",
+        "storage"
       ],
       "language": "Go",
       "status": "active",
@@ -2560,9 +3182,9 @@
       "repo": "https://github.com/istio/istio",
       "summary": "功能完整的服务网格。",
       "tags": [
+        "devops",
         "networking",
-        "orchestration",
-        "devops"
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
@@ -2610,9 +3232,9 @@
       "repo": "https://github.com/jekyll/jekyll",
       "summary": "GitHub Pages 默认静态站引擎。",
       "tags": [
-        "static-site",
         "blog",
-        "ruby"
+        "ruby",
+        "static-site"
       ],
       "language": "Ruby",
       "status": "active",
@@ -2637,14 +3259,44 @@
       "niche": "media server"
     },
     {
+      "id": "jenkins",
+      "domain": "devops",
+      "name": "Jenkins",
+      "repo": "https://github.com/jenkinsci/jenkins",
+      "summary": "可扩展的自动化服务器，经典 CI/CD 编排与插件生态。",
+      "tags": [
+        "ci"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要高度可定制的自托管流水线与庞大插件生态",
+      "avoid_when": "只要轻量 GitHub Actions 级托管 CI",
+      "niche": "ci server"
+    },
+    {
+      "id": "jest",
+      "domain": "web-frontend",
+      "name": "Jest",
+      "repo": "https://github.com/jestjs/jest",
+      "summary": "JavaScript 测试框架，快照与大生态，前端事实标准之一。",
+      "tags": [
+        "ui"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要成熟 Jest 生态与快照测试",
+      "avoid_when": "Vite 项目只要更快的 Vitest 同源体验",
+      "niche": "js test runner"
+    },
+    {
       "id": "jetpack-compose",
       "domain": "mobile",
       "name": "Jetpack Compose",
       "repo": "https://github.com/androidx/androidx",
       "summary": "Android 现代声明式 UI（AndroidX 单仓入口）。",
       "tags": [
-        "mobile",
         "android",
+        "mobile",
         "ui"
       ],
       "language": "Kotlin",
@@ -2661,8 +3313,8 @@
       "summary": "命令行 JSON 处理器。",
       "tags": [
         "cli",
-        "json",
-        "data"
+        "data",
+        "json"
       ],
       "language": "C",
       "status": "active",
@@ -2685,6 +3337,22 @@
       "use_when": "想用简洁语法组织项目常用命令",
       "avoid_when": "需要完整 Make 依赖图与隐式规则",
       "niche": "task runner"
+    },
+    {
+      "id": "k3s",
+      "domain": "devops",
+      "name": "K3s",
+      "repo": "https://github.com/k3s-io/k3s",
+      "summary": "轻量级 Kubernetes 发行版，适合边缘与小集群。",
+      "tags": [
+        "containers",
+        "orchestration"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "边缘/小团队要完整 K8s API 但安装要轻",
+      "avoid_when": "超大规模多租户管控面（看上游 Kubernetes/发行版）",
+      "niche": "lightweight kubernetes"
     },
     {
       "id": "kaiyuan-dashuli",
@@ -2710,15 +3378,32 @@
       "repo": "https://github.com/KDE/kdenlive",
       "summary": "KDE 开源视频编辑器。",
       "tags": [
+        "editor",
         "media",
-        "video",
-        "editor"
+        "video"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "要功能较全的开源非编",
       "avoid_when": "只要命令行转码",
       "niche": "video editor"
+    },
+    {
+      "id": "keepassxc",
+      "domain": "security",
+      "name": "KeePassXC",
+      "repo": "https://github.com/keepassxreboot/keepassxc",
+      "summary": "跨平台本地密码管理器（KeePass 兼容）。",
+      "tags": [
+        "desktop",
+        "secrets",
+        "security"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要离线/本地文件密码库且跨平台桌面客户端",
+      "avoid_when": "要团队云同步优先的自托管口令服务",
+      "niche": "local password manager"
     },
     {
       "id": "keplergl",
@@ -2744,8 +3429,8 @@
       "repo": "https://github.com/keycloak/keycloak",
       "summary": "开源身份认证与访问管理。",
       "tags": [
-        "iam",
-        "auth"
+        "auth",
+        "iam"
       ],
       "language": "Java",
       "status": "active",
@@ -2760,11 +3445,11 @@
       "repo": "https://github.com/Snapchat/KeyDB",
       "summary": "多线程 Redis 兼容存储。",
       "tags": [
-        "kv",
-        "cache"
+        "cache",
+        "kv"
       ],
       "language": "C++",
-      "status": "active",
+      "status": "maintenance",
       "use_when": "要 Redis 兼容且更高多核吞吐",
       "avoid_when": "标准 Redis 已足够",
       "niche": "multithreaded redis-compatible"
@@ -2777,8 +3462,8 @@
       "summary": "基于 GraphQL 的 Node CMS 框架。",
       "tags": [
         "cms",
-        "headless",
-        "graphql"
+        "graphql",
+        "headless"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -2793,8 +3478,8 @@
       "repo": "https://github.com/killbill/killbill",
       "summary": "开源订阅计费与支付编排平台。",
       "tags": [
-        "finance",
         "billing",
+        "finance",
         "payments"
       ],
       "language": "Java",
@@ -2804,6 +3489,21 @@
       "niche": "billing"
     },
     {
+      "id": "kingfisher",
+      "domain": "mobile",
+      "name": "Kingfisher",
+      "repo": "https://github.com/onevcat/Kingfisher",
+      "summary": "Swift 图片下载与缓存库，iOS/macOS 常用。",
+      "tags": [
+        "mobile"
+      ],
+      "language": "Swift",
+      "status": "active",
+      "use_when": "原生 Swift UI 要成熟图片加载缓存",
+      "avoid_when": "跨端统一用其它图片栈或只要系统 API",
+      "niche": "ios image loading"
+    },
+    {
       "id": "kismet",
       "domain": "iot",
       "name": "Kismet",
@@ -2811,8 +3511,8 @@
       "summary": "无线网络侦测与监测。",
       "tags": [
         "iot",
-        "wireless",
-        "security"
+        "security",
+        "wireless"
       ],
       "language": "C++",
       "status": "active",
@@ -2827,9 +3527,9 @@
       "repo": "https://github.com/JetBrains/kotlin",
       "summary": "Kotlin 多平台共享业务逻辑（含移动）。",
       "tags": [
-        "mobile",
         "cross-platform",
-        "kotlin"
+        "kotlin",
+        "mobile"
       ],
       "language": "Kotlin",
       "status": "active",
@@ -2838,14 +3538,29 @@
       "niche": "shared logic"
     },
     {
+      "id": "kodi",
+      "domain": "media",
+      "name": "Kodi",
+      "repo": "https://github.com/xbmc/xbmc",
+      "summary": "跨平台媒体中心，偏客厅 HTPC 体验。",
+      "tags": [
+        "media"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "客厅要可插件扩展的媒体中心前端",
+      "avoid_when": "只要服务器端媒体库 API（Jellyfin）或极简播放器（mpv）",
+      "niche": "media center"
+    },
+    {
       "id": "kong",
       "domain": "networking",
       "name": "Kong",
       "repo": "https://github.com/Kong/kong",
       "summary": "基于 OpenResty 的 API 网关。",
       "tags": [
-        "networking",
-        "api-gateway"
+        "api-gateway",
+        "networking"
       ],
       "language": "Lua",
       "status": "active",
@@ -2860,11 +3575,11 @@
       "repo": "https://github.com/android/kotlin-guides",
       "summary": "Android Kotlin 官方示例与指南入口。",
       "tags": [
-        "mobile",
-        "android"
+        "android",
+        "mobile"
       ],
       "language": "Kotlin",
-      "status": "active",
+      "status": "archived",
       "use_when": "做原生 Android（Kotlin）",
       "avoid_when": "只要跨平台框架",
       "niche": "android native"
@@ -2876,8 +3591,8 @@
       "repo": "https://github.com/ktorio/ktor",
       "summary": "Kotlin 异步客户端/服务端框架，常用于移动网络。",
       "tags": [
-        "mobile",
         "android",
+        "mobile",
         "networking"
       ],
       "language": "Kotlin",
@@ -2893,9 +3608,9 @@
       "repo": "https://github.com/kubernetes/kubernetes",
       "summary": "容器编排标准，调度多机工作负载。",
       "tags": [
-        "orchestration",
         "containers",
-        "devops"
+        "devops",
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
@@ -2910,8 +3625,8 @@
       "repo": "https://github.com/kyverno/kyverno",
       "summary": "Kubernetes 原生策略引擎。",
       "tags": [
-        "policy",
-        "kubernetes"
+        "kubernetes",
+        "policy"
       ],
       "language": "Go",
       "status": "active",
@@ -2926,8 +3641,8 @@
       "repo": "https://github.com/lancedb/lancedb",
       "summary": "基于 Lance 格式的嵌入式向量库，分析友好。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "Rust",
       "status": "active",
@@ -2992,8 +3707,8 @@
       "summary": "优雅的 PHP Web 框架。",
       "tags": [
         "api",
-        "php",
-        "fullstack"
+        "fullstack",
+        "php"
       ],
       "language": "PHP",
       "status": "active",
@@ -3043,8 +3758,8 @@
       "summary": "轻量移动友好的网页地图库。",
       "tags": [
         "gis",
-        "web",
-        "mapping"
+        "mapping",
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -3059,9 +3774,9 @@
       "repo": "https://github.com/QuantConnect/Lean",
       "summary": "开源算法交易引擎。",
       "tags": [
+        "engine",
         "finance",
-        "trading",
-        "engine"
+        "trading"
       ],
       "language": "C#",
       "status": "active",
@@ -3076,15 +3791,30 @@
       "repo": "https://github.com/ledger/ledger",
       "summary": "命令行复式记账系统。",
       "tags": [
-        "finance",
         "accounting",
-        "cli"
+        "cli",
+        "finance"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "要用纯文本账本做复式记账",
       "avoid_when": "要图形界面会计软件",
       "niche": "plaintext accounting"
+    },
+    {
+      "id": "libgdx",
+      "domain": "gamedev",
+      "name": "libGDX",
+      "repo": "https://github.com/libgdx/libgdx",
+      "summary": "跨平台 Java 游戏开发框架。",
+      "tags": [
+        "gamedev"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "Java/Kotlin 团队要跨桌面与移动的 2D/简易 3D 游戏框架",
+      "avoid_when": "要完整编辑器引擎（Godot）或 Web 优先（Phaser）",
+      "niche": "java game framework"
     },
     {
       "id": "libp2p",
@@ -3094,14 +3824,31 @@
       "summary": "模块化点对点网络栈。",
       "tags": [
         "blockchain",
-        "p2p",
-        "networking"
+        "networking",
+        "p2p"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "要自建 P2P 网络能力",
       "avoid_when": "只要 HTTPS API 客户端",
       "niche": "p2p"
+    },
+    {
+      "id": "librenms",
+      "domain": "observability",
+      "name": "LibreNMS",
+      "repo": "https://github.com/librenms/librenms",
+      "summary": "自动发现的网络监控系统（NMS），偏 SNMP 设备监控。",
+      "tags": [
+        "metrics",
+        "network",
+        "observability"
+      ],
+      "language": "PHP",
+      "status": "active",
+      "use_when": "要监控交换机/路由器等网络设备并自动发现",
+      "avoid_when": "只要云原生指标/日志（Prometheus/Loki）或主机轻量面板",
+      "niche": "nms"
     },
     {
       "id": "lightgbm",
@@ -3120,15 +3867,31 @@
       "niche": "gbdt"
     },
     {
+      "id": "linkerd",
+      "domain": "devops",
+      "name": "Linkerd",
+      "repo": "https://github.com/linkerd/linkerd2",
+      "summary": "轻量级 Kubernetes service mesh，偏运维简单与超低延迟代理。",
+      "tags": [
+        "networking",
+        "orchestration"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 K8s 网格能力但希望比 Istio 更轻、运维面更小",
+      "avoid_when": "要最全流量治理与庞大插件生态（看 Istio）",
+      "niche": "service mesh"
+    },
+    {
       "id": "linkerd2",
       "domain": "networking",
       "name": "Linkerd",
       "repo": "https://github.com/linkerd/linkerd2",
       "summary": "超轻量 Kubernetes 服务网格。",
       "tags": [
+        "kubernetes",
         "networking",
-        "service-mesh",
-        "kubernetes"
+        "service-mesh"
       ],
       "language": "Go",
       "status": "active",
@@ -3175,8 +3938,8 @@
       "summary": "偏 RAG / 数据接入的 LLM 框架，文档与索引工作流强。",
       "tags": [
         "agent-framework",
-        "rag",
-        "orchestration"
+        "orchestration",
+        "rag"
       ],
       "language": "Python",
       "status": "active",
@@ -3221,8 +3984,8 @@
       "repo": "https://github.com/lightningnetwork/lnd",
       "summary": "Lightning Network Daemon。",
       "tags": [
-        "blockchain",
         "bitcoin",
+        "blockchain",
         "lightning"
       ],
       "language": "Go",
@@ -3232,15 +3995,31 @@
       "niche": "lightning"
     },
     {
+      "id": "localai",
+      "domain": "ai-agents",
+      "name": "LocalAI",
+      "repo": "https://github.com/mudler/LocalAI",
+      "summary": "自托管 OpenAI 兼容推理引擎，可在消费级硬件跑多模态模型。",
+      "tags": [
+        "llm-api",
+        "local-llm"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 OpenAI 兼容本地 API、硬件杂、模型种类多",
+      "avoid_when": "只要极简一键聊天（可先看 Ollama）",
+      "niche": "openai-compatible local engine"
+    },
+    {
       "id": "loki",
       "domain": "observability",
       "name": "Grafana Loki",
       "repo": "https://github.com/grafana/loki",
       "summary": "像 Prometheus 一样的日志聚合系统。",
       "tags": [
-        "observability",
+        "grafana",
         "logging",
-        "grafana"
+        "observability"
       ],
       "language": "Go",
       "status": "active",
@@ -3249,15 +4028,46 @@
       "niche": "logging"
     },
     {
+      "id": "lottie-android",
+      "domain": "mobile",
+      "name": "Lottie Android",
+      "repo": "https://github.com/airbnb/lottie-android",
+      "summary": "在 Android 渲染 After Effects 动画的库。",
+      "tags": [
+        "mobile",
+        "ui"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "App 要高质量矢量动画且设计交付 AE",
+      "avoid_when": "只要静态图或简单属性动画",
+      "niche": "animation"
+    },
+    {
+      "id": "love2d",
+      "domain": "gamedev",
+      "name": "LÖVE",
+      "repo": "https://github.com/love2d/love",
+      "summary": "Lua 2D 游戏框架，脚本驱动、上手快。",
+      "tags": [
+        "gamedev"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要用 Lua 快速做 2D 游戏原型",
+      "avoid_when": "要可视化编辑器或 3D 引擎",
+      "niche": "lua 2d"
+    },
+    {
       "id": "maestro",
       "domain": "mobile",
       "name": "Maestro",
       "repo": "https://github.com/mobile-dev-inc/maestro",
       "summary": "声明式移动端 UI 自动化测试。",
       "tags": [
+        "e2e",
         "mobile",
-        "testing",
-        "e2e"
+        "testing"
       ],
       "language": "Kotlin",
       "status": "active",
@@ -3273,8 +4083,8 @@
       "summary": "开源矢量瓦片地图渲染（Mapbox GL 开源分支）。",
       "tags": [
         "gis",
-        "web",
-        "vector-tiles"
+        "vector-tiles",
+        "web"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -3290,8 +4100,8 @@
       "summary": "开源地图服务器。",
       "tags": [
         "gis",
-        "server",
-        "ogc"
+        "ogc",
+        "server"
       ],
       "language": "C",
       "status": "active",
@@ -3306,8 +4116,8 @@
       "repo": "https://github.com/MariaDB/server",
       "summary": "MySQL 兼容的社区分支。",
       "tags": [
-        "sql",
-        "rdbms"
+        "rdbms",
+        "sql"
       ],
       "language": "C++",
       "status": "active",
@@ -3316,14 +4126,29 @@
       "niche": "mysql-compatible"
     },
     {
+      "id": "martin",
+      "domain": "gis",
+      "name": "Martin",
+      "repo": "https://github.com/maplibre/martin",
+      "summary": "面向 PostGIS/PMTiles 的矢量瓦片服务器（Rust）。",
+      "tags": [
+        "gis"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要从 PostGIS 快速提供矢量瓦片给 MapLibre 等",
+      "avoid_when": "只要重量级 GeoServer 全功能栈",
+      "niche": "vector tiles"
+    },
+    {
       "id": "matplotlib",
       "domain": "data-ml",
       "name": "Matplotlib",
       "repo": "https://github.com/matplotlib/matplotlib",
       "summary": "Python 绑图基础库。",
       "tags": [
-        "viz",
-        "python"
+        "python",
+        "viz"
       ],
       "language": "Python",
       "status": "active",
@@ -3355,8 +4180,8 @@
       "repo": "https://github.com/dotnet/maui",
       "summary": ".NET 跨平台应用 UI 框架。",
       "tags": [
-        "mobile",
-        "cross-platform"
+        "cross-platform",
+        "mobile"
       ],
       "language": "C#",
       "status": "active",
@@ -3378,6 +4203,24 @@
       "use_when": "要用 Python 实现 MCP client/server",
       "avoid_when": "不采用 MCP，只用私有 function calling",
       "niche": "MCP python SDK"
+    },
+    {
+      "id": "mdbook",
+      "domain": "cms-docs",
+      "name": "mdBook",
+      "repo": "https://github.com/rust-lang/mdBook",
+      "summary": "Rust 实现的 Markdown 书籍生成器，偏技术文档书。",
+      "tags": [
+        "docs",
+        "markdown",
+        "rust",
+        "static-site"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要用 Markdown 生成多章技术书且工具链轻量",
+      "avoid_when": "要完整 CMS、实时协作 Wiki 或重度主题市场",
+      "niche": "doc book"
     },
     {
       "id": "meilisearch",
@@ -3411,14 +4254,29 @@
       "niche": "agent memory layer"
     },
     {
+      "id": "metabase",
+      "domain": "data-ml",
+      "name": "Metabase",
+      "repo": "https://github.com/metabase/metabase",
+      "summary": "易用的开源 BI 与嵌入式分析（AGPL/商业双轨）。",
+      "tags": [
+        "analytics"
+      ],
+      "language": "Clojure",
+      "status": "active",
+      "use_when": "要快速自助 BI 且接受 AGPL 或商业许可",
+      "avoid_when": "只要纯 Apache 许可 BI",
+      "niche": "bi"
+    },
+    {
       "id": "metagpt",
       "domain": "ai-agents",
       "name": "MetaGPT",
       "repo": "https://github.com/FoundationAgents/MetaGPT",
       "summary": "多角色软件公司模拟的多 Agent 框架。",
       "tags": [
-        "multi-agent",
-        "agent-framework"
+        "agent-framework",
+        "multi-agent"
       ],
       "language": "Python",
       "status": "active",
@@ -3427,14 +4285,63 @@
       "niche": "software-company multi-agent"
     },
     {
+      "id": "metallb",
+      "domain": "networking",
+      "name": "MetalLB",
+      "repo": "https://github.com/metallb/metallb",
+      "summary": "为裸机 Kubernetes 集群提供 LoadBalancer 类型服务的实现。",
+      "tags": [
+        "kubernetes",
+        "load-balancer",
+        "networking"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "裸机 K8s 需要 Service LoadBalancer IP",
+      "avoid_when": "已在云厂商 LB 上或不跑 Kubernetes",
+      "niche": "k8s lb"
+    },
+    {
+      "id": "micronaut",
+      "domain": "backend",
+      "name": "Micronaut",
+      "repo": "https://github.com/micronaut-projects/micronaut-core",
+      "summary": "面向云原生的 JVM 框架，编译期 DI、低内存启动快。",
+      "tags": [
+        "backend",
+        "framework",
+        "java"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要 JVM 微服务且强调启动时间与内存，对比 Spring 更轻",
+      "avoid_when": "团队已深绑 Spring 生态且无迁移意愿",
+      "niche": "jvm framework"
+    },
+    {
+      "id": "micropython",
+      "domain": "iot",
+      "name": "MicroPython",
+      "repo": "https://github.com/micropython/micropython",
+      "summary": "面向微控制器的精简 Python 实现。",
+      "tags": [
+        "iot"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "MCU 上要用 Python 快速做嵌入式原型",
+      "avoid_when": "只要最高性能 C/RTOS 固件或电路级 Adafruit 发行（CircuitPython）",
+      "niche": "mcu python"
+    },
+    {
       "id": "milvus",
       "domain": "ai-agents",
       "name": "Milvus",
       "repo": "https://github.com/milvus-io/milvus",
       "summary": "云原生大规模向量数据库。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "Go",
       "status": "active",
@@ -3449,15 +4356,30 @@
       "repo": "https://github.com/grafana/mimir",
       "summary": "长期可扩展的 Prometheus 兼容指标后端。",
       "tags": [
-        "observability",
+        "grafana",
         "metrics",
-        "grafana"
+        "observability"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "要水平扩展的 Prometheus 长期存储",
       "avoid_when": "单机 Prometheus 已足够",
       "niche": "metrics"
+    },
+    {
+      "id": "minio",
+      "domain": "devops",
+      "name": "MinIO",
+      "repo": "https://github.com/minio/minio",
+      "summary": "高性能 S3 兼容对象存储，常作私有云存储层（AGPL）。",
+      "tags": [
+        "containers"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要自托管 S3 API 对象存储且接受 AGPL",
+      "avoid_when": "只要公有云对象存储或 Apache 许可替代（SeaweedFS）",
+      "niche": "object storage"
     },
     {
       "id": "mise",
@@ -3482,8 +4404,8 @@
       "repo": "https://github.com/mitmproxy/mitmproxy",
       "summary": "交互式 HTTPS 中间人代理与流量检查。",
       "tags": [
-        "networking",
         "debugging",
+        "networking",
         "proxy"
       ],
       "language": "Python",
@@ -3500,8 +4422,8 @@
       "summary": "Python Markdown 文档静态站点。",
       "tags": [
         "docs",
-        "static-site",
-        "python"
+        "python",
+        "static-site"
       ],
       "language": "Python",
       "status": "active",
@@ -3517,8 +4439,8 @@
       "summary": "MkDocs 最流行的 Material 主题。",
       "tags": [
         "docs",
-        "static-site",
-        "python"
+        "python",
+        "static-site"
       ],
       "language": "Python",
       "status": "active",
@@ -3533,8 +4455,8 @@
       "repo": "https://github.com/mlflow/mlflow",
       "summary": "实验跟踪与模型管理。",
       "tags": [
-        "mlops",
-        "ml"
+        "ml",
+        "mlops"
       ],
       "language": "Python",
       "status": "active",
@@ -3549,8 +4471,8 @@
       "repo": "https://github.com/modelcontextprotocol/servers",
       "summary": "官方/参考 MCP server 集合，给 Agent 接工具与数据源。",
       "tags": [
-        "mcp",
-        "agent-framework"
+        "agent-framework",
+        "mcp"
       ],
       "language": "mixed",
       "status": "active",
@@ -3565,8 +4487,8 @@
       "repo": "https://github.com/mongodb/mongo",
       "summary": "文档型 NoSQL 数据库。",
       "tags": [
-        "nosql",
-        "document"
+        "document",
+        "nosql"
       ],
       "language": "C++",
       "status": "active",
@@ -3581,9 +4503,9 @@
       "repo": "https://github.com/MonoGame/MonoGame",
       "summary": "跨平台游戏框架（XNA 精神后继）。",
       "tags": [
-        "gamedev",
+        "csharp",
         "framework",
-        "csharp"
+        "gamedev"
       ],
       "language": "C#",
       "status": "active",
@@ -3599,14 +4521,32 @@
       "summary": "轻量 MQTT broker。",
       "tags": [
         "iot",
-        "mqtt",
-        "messaging"
+        "messaging",
+        "mqtt"
       ],
       "language": "C",
       "status": "active",
       "use_when": "要自托管 MQTT 消息总线",
       "avoid_when": "只要云厂商托管 MQTT",
       "niche": "mqtt broker"
+    },
+    {
+      "id": "moya",
+      "domain": "mobile",
+      "name": "Moya",
+      "repo": "https://github.com/Moya/Moya",
+      "summary": "基于 Alamofire 的网络抽象层，偏协议化 API 定义。",
+      "tags": [
+        "ios",
+        "library",
+        "mobile",
+        "networking"
+      ],
+      "language": "Swift",
+      "status": "active",
+      "use_when": "要在 Alamofire 上再做类型化 API Provider 抽象",
+      "avoid_when": "只要直接 Alamofire/URLSession 且不想多一层",
+      "niche": "ios networking"
     },
     {
       "id": "mpv",
@@ -3616,8 +4556,8 @@
       "summary": "基于 mplayer/mplayer2 的自由媒体播放器。",
       "tags": [
         "media",
-        "video",
-        "player"
+        "player",
+        "video"
       ],
       "language": "C",
       "status": "active",
@@ -3632,8 +4572,8 @@
       "repo": "https://github.com/mysql/mysql-server",
       "summary": "广泛使用的开源关系型数据库。",
       "tags": [
-        "sql",
-        "rdbms"
+        "rdbms",
+        "sql"
       ],
       "language": "C++",
       "status": "active",
@@ -3648,8 +4588,8 @@
       "repo": "https://github.com/n8n-io/n8n",
       "summary": "可自托管的工作流自动化，含 AI 节点。",
       "tags": [
-        "orchestration",
-        "agent-framework"
+        "agent-framework",
+        "orchestration"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -3658,14 +4598,44 @@
       "niche": "workflow automation"
     },
     {
+      "id": "natron",
+      "domain": "media",
+      "name": "Natron",
+      "repo": "https://github.com/NatronGitHub/Natron",
+      "summary": "开源节点式合成软件，对标 Nuke 工作流。",
+      "tags": [
+        "media"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要节点合成/VFX 流水且开源可自托管渲染",
+      "avoid_when": "只要时间线剪辑（Kdenlive/Shotcut）",
+      "niche": "compositor"
+    },
+    {
+      "id": "nats-server",
+      "domain": "networking",
+      "name": "NATS Server",
+      "repo": "https://github.com/nats-io/nats-server",
+      "summary": "高性能云原生消息系统，适配边车与边缘场景。",
+      "tags": [
+        "networking"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要轻量 pub/sub 与请求-响应消息总线",
+      "avoid_when": "只要重型企业消息中间件（Kafka/Rabbit）",
+      "niche": "messaging"
+    },
+    {
       "id": "navidrome",
       "domain": "media",
       "name": "Navidrome",
       "repo": "https://github.com/navidrome/navidrome",
       "summary": "兼容 Subsonic 的音乐流媒体服务器。",
       "tags": [
-        "media",
         "audio",
+        "media",
         "media-server"
       ],
       "language": "Go",
@@ -3679,7 +4649,7 @@
       "domain": "databases",
       "name": "Neo4j",
       "repo": "https://github.com/neo4j/neo4j",
-      "summary": "原生图数据库。",
+      "summary": "原生属性图数据库，擅长复杂关系遍历查询。",
       "tags": [
         "graph"
       ],
@@ -3729,9 +4699,9 @@
       "repo": "https://github.com/netbirdio/netbird",
       "summary": "基于 WireGuard 的开源零信任组网。",
       "tags": [
+        "mesh",
         "networking",
-        "vpn",
-        "mesh"
+        "vpn"
       ],
       "language": "Go",
       "status": "active",
@@ -3740,14 +4710,29 @@
       "niche": "mesh vpn"
     },
     {
+      "id": "netdata",
+      "domain": "observability",
+      "name": "Netdata",
+      "repo": "https://github.com/netdata/netdata",
+      "summary": "实时主机与容器指标可视化与告警，偏运维即时排障。",
+      "tags": [
+        "observability"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要开箱即用的实时主机监控面板",
+      "avoid_when": "只要长期指标存储与大规模联邦（Prometheus 生态）",
+      "niche": "realtime monitoring"
+    },
+    {
       "id": "neutralino",
       "domain": "desktop",
       "name": "Neutralinojs",
       "repo": "https://github.com/neutralinojs/neutralinojs",
       "summary": "轻量跨平台应用框架，避免捆绑完整浏览器。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "javascript"
       ],
       "language": "C++",
@@ -3764,8 +4749,8 @@
       "summary": "React 全栈框架，SSR/App Router。",
       "tags": [
         "meta-framework",
-        "web",
-        "react"
+        "react",
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -3797,14 +4782,31 @@
       "repo": "https://github.com/nginx/nginx",
       "summary": "高性能反向代理与 Web 服务器。",
       "tags": [
-        "networking",
-        "devops"
+        "devops",
+        "networking"
       ],
       "language": "C",
       "status": "active",
       "use_when": "反向代理、静态站、TLS 终止",
       "avoid_when": "需要应用层服务网格的高级流量治理为主",
       "niche": "reverse proxy"
+    },
+    {
+      "id": "nix",
+      "domain": "devtools",
+      "name": "Nix",
+      "repo": "https://github.com/NixOS/nix",
+      "summary": "纯函数式包管理与可复现构建系统。",
+      "tags": [
+        "devops-tools",
+        "devtools",
+        "package-manager"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要可复现开发环境与声明式依赖锁定",
+      "avoid_when": "只要多语言版本切换（mise/asdf）且不愿学 Nix 语言",
+      "niche": "reproducible package manager"
     },
     {
       "id": "nmap",
@@ -3830,8 +4832,8 @@
       "repo": "https://github.com/node-red/node-red",
       "summary": "基于流的低代码自动化编排。",
       "tags": [
-        "iot",
         "automation",
+        "iot",
         "low-code"
       ],
       "language": "JavaScript",
@@ -3847,8 +4849,8 @@
       "repo": "https://github.com/hashicorp/nomad",
       "summary": "HashiCorp 通用工作负载调度器，比 K8s 更轻。",
       "tags": [
-        "orchestration",
-        "devops"
+        "devops",
+        "orchestration"
       ],
       "language": "Go",
       "status": "active",
@@ -3880,14 +4882,46 @@
       "summary": "Vue 元框架，SSR/文件系统路由。",
       "tags": [
         "meta-framework",
-        "web",
-        "vue"
+        "vue",
+        "web"
       ],
       "language": "TypeScript",
       "status": "active",
       "use_when": "Vue 项目需要约定式全栈/SSR",
       "avoid_when": "不用 Vue",
       "niche": "vue meta-framework"
+    },
+    {
+      "id": "nwjs",
+      "domain": "desktop",
+      "name": "NW.js",
+      "repo": "https://github.com/nwjs/nw.js",
+      "summary": "Chromium + Node 一体的桌面应用运行时，可在 DOM 直接调 Node 模块。",
+      "tags": [
+        "cross-platform",
+        "desktop",
+        "javascript"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要 Web 技术做桌面且需要从页面直接访问 Node API",
+      "avoid_when": "要更小体积与更强进程隔离（优先 Tauri/Wails）",
+      "niche": "chromium desktop"
+    },
+    {
+      "id": "oauth2-proxy",
+      "domain": "security",
+      "name": "OAuth2 Proxy",
+      "repo": "https://github.com/oauth2-proxy/oauth2-proxy",
+      "summary": "为 HTTP 服务提供 OAuth2/OIDC 反向代理鉴权。",
+      "tags": [
+        "security"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要把现有服务快速挂上 IdP 登录墙",
+      "avoid_when": "要完整 IAM 产品（Keycloak/Authentik）",
+      "niche": "auth proxy"
     },
     {
       "id": "obs-studio",
@@ -3897,8 +4931,8 @@
       "summary": "免费开源的直播与录屏软件。",
       "tags": [
         "media",
-        "streaming",
-        "recording"
+        "recording",
+        "streaming"
       ],
       "language": "C++",
       "status": "active",
@@ -3907,14 +4941,29 @@
       "niche": "streaming"
     },
     {
+      "id": "ogre",
+      "domain": "gamedev",
+      "name": "OGRE",
+      "repo": "https://github.com/OGRECave/ogre",
+      "summary": "成熟的面向对象 3D 渲染引擎。",
+      "tags": [
+        "gamedev"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要可嵌入的 3D 渲染引擎而非完整游戏引擎编辑器",
+      "avoid_when": "只要开箱场景编辑器（Godot）或 WebGL 库",
+      "niche": "3d rendering engine"
+    },
+    {
       "id": "okhttp",
       "domain": "mobile",
       "name": "OkHttp",
       "repo": "https://github.com/square/okhttp",
       "summary": "Android/Java HTTP 客户端。",
       "tags": [
-        "mobile",
         "android",
+        "mobile",
         "networking"
       ],
       "language": "Kotlin",
@@ -3930,8 +4979,8 @@
       "repo": "https://github.com/ollama/ollama",
       "summary": "本地一键跑开源大模型的运行时与模型分发。",
       "tags": [
-        "local-llm",
-        "llm-api"
+        "llm-api",
+        "local-llm"
       ],
       "language": "Go",
       "status": "active",
@@ -3946,8 +4995,8 @@
       "repo": "https://github.com/open-policy-agent/opa",
       "summary": "通用策略引擎（Rego）。",
       "tags": [
-        "policy",
-        "iam"
+        "iam",
+        "policy"
       ],
       "language": "Go",
       "status": "active",
@@ -3977,8 +5026,8 @@
       "repo": "https://github.com/open-webui/open-webui",
       "summary": "自托管的 ChatGPT 风格 Web UI，常配 Ollama。",
       "tags": [
-        "ui",
-        "local-llm"
+        "local-llm",
+        "ui"
       ],
       "language": "Python",
       "status": "active",
@@ -4024,11 +5073,11 @@
       "domain": "media",
       "name": "OpenCV",
       "repo": "https://github.com/opencv/opencv",
-      "summary": "计算机视觉库。",
+      "summary": "跨平台计算机视觉与图像视频处理库。",
       "tags": [
+        "library",
         "media",
-        "vision",
-        "library"
+        "vision"
       ],
       "language": "C++",
       "status": "active",
@@ -4043,8 +5092,8 @@
       "repo": "https://github.com/openhab/openhab-core",
       "summary": "开源家庭自动化运行时。",
       "tags": [
-        "iot",
-        "home-automation"
+        "home-automation",
+        "iot"
       ],
       "language": "Java",
       "status": "active",
@@ -4060,8 +5109,8 @@
       "summary": "功能全面的网页地图库。",
       "tags": [
         "gis",
-        "web",
-        "mapping"
+        "mapping",
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -4076,8 +5125,8 @@
       "repo": "https://github.com/OpenMW/openmw",
       "summary": "《上古卷轴 III》引擎重实现。",
       "tags": [
-        "gamedev",
         "engine",
+        "gamedev",
         "remake"
       ],
       "language": "C++",
@@ -4087,14 +5136,29 @@
       "niche": "engine remake"
     },
     {
+      "id": "openobserve",
+      "domain": "observability",
+      "name": "OpenObserve",
+      "repo": "https://github.com/openobserve/openobserve",
+      "summary": "高性价比可观测平台，日志/指标/追踪一体（AGPL）。",
+      "tags": [
+        "observability"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要自托管一体化可观测且接受 AGPL",
+      "avoid_when": "许可证要 Apache/MIT 或只要单一信号管道",
+      "niche": "observability platform"
+    },
+    {
       "id": "opensearch",
       "domain": "observability",
       "name": "OpenSearch",
       "repo": "https://github.com/opensearch-project/opensearch",
       "summary": "Elasticsearch 开源分支，搜索与分析。",
       "tags": [
-        "observability",
         "logging",
+        "observability",
         "search"
       ],
       "language": "Java",
@@ -4110,9 +5174,9 @@
       "repo": "https://github.com/open-telemetry/opentelemetry-collector",
       "summary": "厂商中立的遥测数据采集、处理与导出管道。",
       "tags": [
+        "collector",
         "observability",
-        "otel",
-        "collector"
+        "otel"
       ],
       "language": "Go",
       "status": "active",
@@ -4136,6 +5200,38 @@
       "niche": "otel sdk"
     },
     {
+      "id": "openvswitch",
+      "domain": "networking",
+      "name": "Open vSwitch",
+      "repo": "https://github.com/openvswitch/ovs",
+      "summary": "可编程多层虚拟交换机，广泛用于 SDN/云网络。",
+      "tags": [
+        "networking",
+        "sdn",
+        "virtualization"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要可编程虚拟交换机或 OpenFlow/OVN 数据面",
+      "avoid_when": "只要主机防火墙或简单容器 CNI",
+      "niche": "virtual switch"
+    },
+    {
+      "id": "openwrt",
+      "domain": "iot",
+      "name": "OpenWrt",
+      "repo": "https://github.com/openwrt/openwrt",
+      "summary": "面向路由器与嵌入式设备的 Linux 发行版。",
+      "tags": [
+        "iot"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "路由器/网关要可定制开源固件",
+      "avoid_when": "只要 MCU RTOS 或家用 HA 应用层",
+      "niche": "router os"
+    },
+    {
       "id": "openzeppelin-contracts",
       "domain": "blockchain",
       "name": "OpenZeppelin Contracts",
@@ -4143,8 +5239,8 @@
       "summary": "安全的智能合约库标准实现。",
       "tags": [
         "blockchain",
-        "ethereum",
-        "contracts"
+        "contracts",
+        "ethereum"
       ],
       "language": "Solidity",
       "status": "active",
@@ -4160,8 +5256,8 @@
       "summary": "从 OpenStreetMap 下载/分析街道网络。",
       "tags": [
         "gis",
-        "python",
-        "osm"
+        "osm",
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -4176,8 +5272,8 @@
       "repo": "https://github.com/google/osv-scanner",
       "summary": "基于 OSV 的依赖漏洞扫描。",
       "tags": [
-        "scanning",
-        "sca"
+        "sca",
+        "scanning"
       ],
       "language": "Go",
       "status": "active",
@@ -4192,14 +5288,29 @@
       "repo": "https://github.com/dottxt-ai/outlines",
       "summary": "结构化生成库，约束解码友好。",
       "tags": [
-        "prompt",
-        "local-llm"
+        "local-llm",
+        "prompt"
       ],
       "language": "Python",
       "status": "active",
       "use_when": "推理侧需要强约束文法/JSON 生成",
       "avoid_when": "只用托管 API 且供应商已提供 JSON mode",
       "niche": "constrained decoding"
+    },
+    {
+      "id": "packer",
+      "domain": "devops",
+      "name": "Packer",
+      "repo": "https://github.com/hashicorp/packer",
+      "summary": "多云/多平台机器镜像构建工具（许可含 BSL 条款，需阅读 LICENSE）。",
+      "tags": [
+        "iac"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要可重复构建 AMI/镜像黄金镜像",
+      "avoid_when": "只要容器镜像构建（Dockerfile/buildah）",
+      "niche": "image builder"
     },
     {
       "id": "pandas",
@@ -4209,8 +5320,8 @@
       "summary": "Python 表格数据分析库。",
       "tags": [
         "dataframe",
-        "python",
-        "etl"
+        "etl",
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -4222,7 +5333,7 @@
       "id": "pandas-ta",
       "domain": "finance",
       "name": "Pandas TA",
-      "repo": "https://github.com/twopirllc/pandas-ta",
+      "repo": "https://github.com/xgboosted/pandas-ta-classic",
       "summary": "基于 pandas 的技术分析扩展。",
       "tags": [
         "finance",
@@ -4260,14 +5371,29 @@
       "summary": "点云数据翻译与处理库。",
       "tags": [
         "gis",
-        "point-cloud",
-        "lidar"
+        "lidar",
+        "point-cloud"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "要处理 LiDAR/点云管道",
       "avoid_when": "只要 2D 矢量地图",
       "niche": "point cloud"
+    },
+    {
+      "id": "peertube",
+      "domain": "media",
+      "name": "PeerTube",
+      "repo": "https://github.com/Chocobozzz/PeerTube",
+      "summary": "联邦式视频托管平台，ActivityPub 友好（AGPL）。",
+      "tags": [
+        "media"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要自托管去中心视频站且接受联邦与 AGPL",
+      "avoid_when": "只要本地媒体库（Jellyfin）或播放器",
+      "niche": "fediverse video"
     },
     {
       "id": "peft",
@@ -4285,6 +5411,22 @@
       "niche": "parameter-efficient finetuning"
     },
     {
+      "id": "pgvector",
+      "domain": "databases",
+      "name": "pgvector",
+      "repo": "https://github.com/pgvector/pgvector",
+      "summary": "PostgreSQL 向量相似度检索扩展，适合把向量检索留在库内。",
+      "tags": [
+        "rag",
+        "vector-db"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "已有 Postgres、向量量级中等、想少引入独立向量库",
+      "avoid_when": "超大规模向量检索要专用引擎（Milvus/Qdrant 等）",
+      "niche": "postgres vector"
+    },
+    {
       "id": "phaser",
       "domain": "gamedev",
       "name": "Phaser",
@@ -4292,8 +5434,8 @@
       "summary": "快速的 HTML5 游戏框架。",
       "tags": [
         "gamedev",
-        "web",
-        "javascript"
+        "javascript",
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -4308,12 +5450,12 @@
       "repo": "https://github.com/rhasspy/piper",
       "summary": "快速本地神经网络文本转语音。",
       "tags": [
-        "media",
         "audio",
+        "media",
         "tts"
       ],
       "language": "C++",
-      "status": "active",
+      "status": "archived",
       "use_when": "要本地轻量 TTS",
       "avoid_when": "要超高质量多语种云端配音",
       "niche": "tts"
@@ -4325,8 +5467,8 @@
       "repo": "https://github.com/platformio/platformio-core",
       "summary": "嵌入式开发的专业 IDE/构建系统。",
       "tags": [
-        "iot",
         "embedded",
+        "iot",
         "tooling"
       ],
       "language": "Python",
@@ -4356,10 +5498,10 @@
       "domain": "data-ml",
       "name": "Plotly",
       "repo": "https://github.com/plotly/plotly.py",
-      "summary": "交互可视化库。",
+      "summary": "基于 Web 的 Python 交互式可视化与图表库。",
       "tags": [
-        "viz",
-        "python"
+        "python",
+        "viz"
       ],
       "language": "Python",
       "status": "active",
@@ -4423,8 +5565,8 @@
       "repo": "https://github.com/postgis/postgis",
       "summary": "PostgreSQL 的空间数据库扩展。",
       "tags": [
-        "gis",
         "database",
+        "gis",
         "sql"
       ],
       "language": "C",
@@ -4440,8 +5582,8 @@
       "repo": "https://github.com/postgres/postgres",
       "summary": "功能丰富的开源关系型数据库。",
       "tags": [
-        "sql",
-        "rdbms"
+        "rdbms",
+        "sql"
       ],
       "language": "C",
       "status": "active",
@@ -4450,14 +5592,29 @@
       "niche": "relational db"
     },
     {
+      "id": "preact",
+      "domain": "web-frontend",
+      "name": "Preact",
+      "repo": "https://github.com/preactjs/preact",
+      "summary": "与 React API 接近的轻量 UI 库，体积更小。",
+      "tags": [
+        "ui"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要 React 心智但包体/性能更敏感",
+      "avoid_when": "深度依赖 React 专有生态且不愿兼容层",
+      "niche": "react-compatible"
+    },
+    {
       "id": "prefect",
       "domain": "data-ml",
       "name": "Prefect",
       "repo": "https://github.com/PrefectHQ/prefect",
       "summary": "现代 Python 工作流编排。",
       "tags": [
-        "orchestration",
-        "etl"
+        "etl",
+        "orchestration"
       ],
       "language": "Python",
       "status": "active",
@@ -4466,14 +5623,29 @@
       "niche": "python orchestration"
     },
     {
+      "id": "prettier",
+      "domain": "web-frontend",
+      "name": "Prettier",
+      "repo": "https://github.com/prettier/prettier",
+      "summary": "固执己见的代码格式化工具，前端生态事实标准之一。",
+      "tags": [
+        "ui"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要统一多语言前端代码风格、减少格式争论",
+      "avoid_when": "只要更快的一体 format/lint（可看 Biome）",
+      "niche": "formatter"
+    },
+    {
       "id": "prisma",
       "domain": "backend",
       "name": "Prisma",
       "repo": "https://github.com/prisma/prisma",
       "summary": "TypeScript ORM / 数据访问层。",
       "tags": [
-        "orm",
-        "nodejs"
+        "nodejs",
+        "orm"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -4505,14 +5677,30 @@
       "repo": "https://github.com/prometheus/prometheus",
       "summary": "指标采集与告警的云原生监控核心。",
       "tags": [
-        "observability",
-        "devops"
+        "devops",
+        "observability"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "需要时间序列指标与告警规则",
       "avoid_when": "只要日志检索、不要指标系统",
       "niche": "metrics monitoring"
+    },
+    {
+      "id": "promptfoo",
+      "domain": "ai-agents",
+      "name": "promptfoo",
+      "repo": "https://github.com/promptfoo/promptfoo",
+      "summary": "提示词与 Agent/RAG 评测、红队与模型对比工具，可走 CLI/CI。",
+      "tags": [
+        "eval",
+        "prompt"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要把提示词/Agent 行为做成可回归的评测与对比",
+      "avoid_when": "只要一次性手工试聊",
+      "niche": "prompt eval"
     },
     {
       "id": "prysm",
@@ -4522,8 +5710,8 @@
       "summary": "以太坊共识客户端。",
       "tags": [
         "blockchain",
-        "ethereum",
-        "consensus"
+        "consensus",
+        "ethereum"
       ],
       "language": "Go",
       "status": "active",
@@ -4538,8 +5726,8 @@
       "repo": "https://github.com/pulumi/pulumi",
       "summary": "用通用语言写 IaC（TS/Python 等）。",
       "tags": [
-        "iac",
-        "devops"
+        "devops",
+        "iac"
       ],
       "language": "Go",
       "status": "active",
@@ -4567,12 +5755,12 @@
       "id": "pyqt",
       "domain": "desktop",
       "name": "PyQt",
-      "repo": "https://github.com/Python-PyQt/PyQt",
-      "summary": "Qt 的 Python 绑定（商业许可需注意）。",
+      "repo": "https://www.riverbankcomputing.com/software/pyqt/",
+      "summary": "Qt 的 Python 绑定（Riverbank；GPL 与商业双轨许可需注意）。",
       "tags": [
         "desktop",
-        "python",
-        "native-ui"
+        "native-ui",
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -4600,12 +5788,12 @@
       "id": "pyside",
       "domain": "desktop",
       "name": "PySide (Qt for Python)",
-      "repo": "https://github.com/qtproject/pyside-setup",
+      "repo": "https://github.com/pyside/pyside-setup",
       "summary": "Qt 官方 Python 绑定。",
       "tags": [
         "desktop",
-        "python",
-        "native-ui"
+        "native-ui",
+        "python"
       ],
       "language": "Python",
       "status": "active",
@@ -4636,8 +5824,8 @@
       "repo": "https://github.com/qdrant/qdrant",
       "summary": "Rust 向量数据库，过滤与生产部署友好。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "Rust",
       "status": "active",
@@ -4652,8 +5840,8 @@
       "repo": "https://github.com/qgis/QGIS",
       "summary": "开源桌面 GIS 应用。",
       "tags": [
-        "gis",
         "desktop",
+        "gis",
         "mapping"
       ],
       "language": "C++",
@@ -4669,15 +5857,63 @@
       "repo": "https://github.com/qt/qtbase",
       "summary": "成熟的跨平台原生 UI 框架。",
       "tags": [
+        "cpp",
         "desktop",
-        "native-ui",
-        "cpp"
+        "native-ui"
       ],
       "language": "C++",
       "status": "active",
       "use_when": "要工业级原生桌面 UI 与长期支持",
       "avoid_when": "只要 Web 技术快速出原型",
       "niche": "native ui"
+    },
+    {
+      "id": "quarkus",
+      "domain": "backend",
+      "name": "Quarkus",
+      "repo": "https://github.com/quarkusio/quarkus",
+      "summary": "面向云原生的 Java 框架，启动快、原生镜像友好。",
+      "tags": [
+        "backend"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "Java 服务要容器友好与快速启动，而非传统 Spring 全家桶",
+      "avoid_when": "团队标准是 Spring Boot 且无迁移动力",
+      "niche": "cloud native java"
+    },
+    {
+      "id": "quarto",
+      "domain": "cms-docs",
+      "name": "Quarto",
+      "repo": "https://github.com/quarto-dev/quarto-cli",
+      "summary": "基于 Pandoc 的科学/技术出版系统，支持多格式输出。",
+      "tags": [
+        "data",
+        "docs",
+        "markdown",
+        "publishing"
+      ],
+      "language": "mixed",
+      "status": "active",
+      "use_when": "要写可复现报告/论文并输出 HTML/PDF/多格式",
+      "avoid_when": "只要产品文档站主题或无头 CMS",
+      "niche": "scientific publishing"
+    },
+    {
+      "id": "qwik",
+      "domain": "web-frontend",
+      "name": "Qwik",
+      "repo": "https://github.com/QwikDev/qwik",
+      "summary": "可恢复性优先的前端框架，偏极致首屏与懒执行。",
+      "tags": [
+        "ui"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要极致 TTFB/可恢复性的站点或应用壳",
+      "avoid_when": "团队只要 Next/Nuxt 常规元框架路径",
+      "niche": "resumable meta"
     },
     {
       "id": "rabbitmq-server",
@@ -4701,8 +5937,8 @@
       "repo": "https://github.com/radix-ui/primitives",
       "summary": "无样式无障碍头组件原语（React）。",
       "tags": [
-        "ui-library",
         "a11y",
+        "ui-library",
         "web"
       ],
       "language": "TypeScript",
@@ -4735,8 +5971,8 @@
       "summary": "约定优于配置的 Ruby 全栈框架。",
       "tags": [
         "api",
-        "ruby",
-        "fullstack"
+        "fullstack",
+        "ruby"
       ],
       "language": "Ruby",
       "status": "active",
@@ -4800,8 +6036,8 @@
       "repo": "https://github.com/facebook/react-native",
       "summary": "用 React 写原生移动应用。",
       "tags": [
-        "mobile",
         "cross-platform",
+        "mobile",
         "react"
       ],
       "language": "JavaScript",
@@ -4811,14 +6047,29 @@
       "niche": "react mobile"
     },
     {
+      "id": "redash",
+      "domain": "data-ml",
+      "name": "Redash",
+      "repo": "https://github.com/getredash/redash",
+      "summary": "开源数据可视化与查询分享平台，连接多种数据源。",
+      "tags": [
+        "analytics"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要团队共享 SQL 查询与简单仪表盘",
+      "avoid_when": "要重度语义层/治理型 BI",
+      "niche": "bi queries"
+    },
+    {
       "id": "redis",
       "domain": "databases",
       "name": "Redis",
       "repo": "https://github.com/redis/redis",
       "summary": "内存数据结构存储，常用缓存/队列。",
       "tags": [
-        "kv",
-        "cache"
+        "cache",
+        "kv"
       ],
       "language": "C",
       "status": "active",
@@ -4833,8 +6084,8 @@
       "repo": "https://github.com/reduxjs/redux-toolkit",
       "summary": "官方推荐的 Redux 写法与工具集。",
       "tags": [
-        "state",
         "react",
+        "state",
         "web"
       ],
       "language": "TypeScript",
@@ -4851,8 +6102,8 @@
       "summary": "以 Web 标准为中心的 React 框架。",
       "tags": [
         "meta-framework",
-        "web",
-        "react"
+        "react",
+        "web"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -4861,14 +6112,32 @@
       "niche": "web-standards react framework"
     },
     {
+      "id": "reth",
+      "domain": "blockchain",
+      "name": "Reth",
+      "repo": "https://github.com/paradigmxyz/reth",
+      "summary": "用 Rust 实现的模块化以太坊执行客户端。",
+      "tags": [
+        "blockchain",
+        "client",
+        "ethereum",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要高性能、可裁剪的以太坊执行层节点（Rust）",
+      "avoid_when": "只要 JS 钱包库或合约开发工具链",
+      "niche": "eth execution client"
+    },
+    {
       "id": "retrofit",
       "domain": "mobile",
       "name": "Retrofit",
       "repo": "https://github.com/square/retrofit",
       "summary": "Android 类型安全 HTTP API 客户端。",
       "tags": [
-        "mobile",
         "android",
+        "mobile",
         "networking"
       ],
       "language": "Java",
@@ -4885,8 +6154,8 @@
       "summary": "极速递归正则搜索，默认尊重 .gitignore。",
       "tags": [
         "cli",
-        "search",
-        "devops-tools"
+        "devops-tools",
+        "search"
       ],
       "language": "Rust",
       "status": "active",
@@ -4895,15 +6164,32 @@
       "niche": "code search"
     },
     {
+      "id": "rocket",
+      "domain": "backend",
+      "name": "Rocket",
+      "repo": "https://github.com/rwf2/Rocket",
+      "summary": "偏类型安全的 Rust Web 框架，宏驱动路由。",
+      "tags": [
+        "backend",
+        "framework",
+        "rust"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要 Rust Web 且偏好编译期请求守卫与宏 API",
+      "avoid_when": "要更贴 Tokio 生态的 Axum 风格或异步生态更广的 Actix",
+      "niche": "rust web"
+    },
+    {
       "id": "ruff",
       "domain": "devtools",
       "name": "ruff",
       "repo": "https://github.com/astral-sh/ruff",
       "summary": "极速 Python linter/formatter。",
       "tags": [
-        "python",
+        "formatter",
         "linter",
-        "formatter"
+        "python"
       ],
       "language": "Rust",
       "status": "active",
@@ -4977,6 +6263,38 @@
       "niche": "platform layer"
     },
     {
+      "id": "sdwebimage",
+      "domain": "mobile",
+      "name": "SDWebImage",
+      "repo": "https://github.com/SDWebImage/SDWebImage",
+      "summary": "iOS/macOS 异步图片加载与缓存库。",
+      "tags": [
+        "ios",
+        "library",
+        "mobile"
+      ],
+      "language": "Objective-C",
+      "status": "active",
+      "use_when": "要成熟的 UIKit 图片加载缓存方案",
+      "avoid_when": "只要 SwiftUI 原生栈或跨端 Flutter 图片方案",
+      "niche": "ios image"
+    },
+    {
+      "id": "seaweedfs",
+      "domain": "devops",
+      "name": "SeaweedFS",
+      "repo": "https://github.com/seaweedfs/seaweedfs",
+      "summary": "分布式文件/对象存储，偏简单运维与海量小文件。",
+      "tags": [
+        "containers"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要 Apache 许可的自托管对象/文件存储",
+      "avoid_when": "深度绑定 MinIO 生态与工具链",
+      "niche": "object storage"
+    },
+    {
       "id": "semantic-kernel",
       "domain": "ai-agents",
       "name": "Semantic Kernel",
@@ -5015,9 +6333,9 @@
       "repo": "https://github.com/getsentry/sentry",
       "summary": "应用错误监控与性能追踪平台。",
       "tags": [
-        "observability",
         "apm",
-        "errors"
+        "errors",
+        "observability"
       ],
       "language": "Python",
       "status": "active",
@@ -5048,8 +6366,8 @@
       "repo": "https://github.com/sgl-project/sglang",
       "summary": "结构化生成与高吞吐推理运行时。",
       "tags": [
-        "local-llm",
-        "llm-api"
+        "llm-api",
+        "local-llm"
       ],
       "language": "Python",
       "status": "active",
@@ -5064,9 +6382,9 @@
       "repo": "https://github.com/shorebirdtech/shorebird",
       "summary": "Flutter 代码推送更新（Code Push）。",
       "tags": [
-        "mobile",
+        "code-push",
         "flutter",
-        "code-push"
+        "mobile"
       ],
       "language": "Dart",
       "status": "active",
@@ -5081,9 +6399,9 @@
       "repo": "https://github.com/mltframework/shotcut",
       "summary": "跨平台开源视频编辑器。",
       "tags": [
+        "editor",
         "media",
-        "video",
-        "editor"
+        "video"
       ],
       "language": "C++",
       "status": "active",
@@ -5098,14 +6416,29 @@
       "repo": "https://github.com/SigNoz/signoz",
       "summary": "开源 APM，基于 OpenTelemetry。",
       "tags": [
-        "observability",
         "apm",
+        "observability",
         "otel"
       ],
       "language": "TypeScript",
       "status": "active",
       "use_when": "要一体式开源 APM 替代商业方案",
       "avoid_when": "已有拆开的 Prometheus+Jaeger+Grafana 且满意",
+      "niche": "apm"
+    },
+    {
+      "id": "skywalking",
+      "domain": "observability",
+      "name": "Apache SkyWalking",
+      "repo": "https://github.com/apache/skywalking",
+      "summary": "应用性能监控与分布式追踪平台，偏 APM 一体化。",
+      "tags": [
+        "observability"
+      ],
+      "language": "Java",
+      "status": "active",
+      "use_when": "要开源 APM（拓扑、追踪、指标）一体化",
+      "avoid_when": "只要轻量 tracing 后端（Jaeger/Tempo）",
       "niche": "apm"
     },
     {
@@ -5148,11 +6481,11 @@
       "summary": "高性能 L1 区块链（实验室参考实现演进中）。",
       "tags": [
         "blockchain",
-        "solana",
-        "l1"
+        "l1",
+        "solana"
       ],
       "language": "Rust",
-      "status": "active",
+      "status": "archived",
       "use_when": "要了解/运行 Solana 验证相关组件",
       "avoid_when": "只要 EVM",
       "niche": "l1"
@@ -5175,14 +6508,29 @@
       "niche": "language"
     },
     {
+      "id": "solidjs",
+      "domain": "web-frontend",
+      "name": "SolidJS",
+      "repo": "https://github.com/solidjs/solid",
+      "summary": "细粒度响应式 UI 框架，无虚拟 DOM，性能取向明确。",
+      "tags": [
+        "ui"
+      ],
+      "language": "TypeScript",
+      "status": "active",
+      "use_when": "要 React 心智附近但更细粒度响应式与更小运行时",
+      "avoid_when": "要最大生态与招聘池（React/Vue）",
+      "niche": "reactive ui"
+    },
+    {
       "id": "soloud",
       "domain": "gamedev",
       "name": "SoLoud",
       "repo": "https://github.com/jarikomppa/soloud",
       "summary": "易用的跨平台游戏音频引擎。",
       "tags": [
-        "gamedev",
-        "audio"
+        "audio",
+        "gamedev"
       ],
       "language": "C++",
       "status": "active",
@@ -5197,8 +6545,8 @@
       "repo": "https://github.com/getsops/sops",
       "summary": "加密配置文件（YAML/JSON），可进 Git。",
       "tags": [
-        "secrets",
-        "gitops"
+        "gitops",
+        "secrets"
       ],
       "language": "Go",
       "status": "active",
@@ -5229,9 +6577,9 @@
       "repo": "https://github.com/EsotericSoftware/spine-runtimes",
       "summary": "2D 骨骼动画运行时（编辑器商业）。",
       "tags": [
-        "gamedev",
+        "2d",
         "animation",
-        "2d"
+        "gamedev"
       ],
       "language": "C",
       "status": "active",
@@ -5262,8 +6610,8 @@
       "repo": "https://github.com/sqlite/sqlite",
       "summary": "嵌入式单文件 SQL 引擎。",
       "tags": [
-        "sql",
-        "embedded"
+        "embedded",
+        "sql"
       ],
       "language": "C",
       "status": "active",
@@ -5272,21 +6620,51 @@
       "niche": "embedded sql"
     },
     {
+      "id": "sqlx",
+      "domain": "backend",
+      "name": "SQLx",
+      "repo": "https://github.com/transact-rs/sqlx",
+      "summary": "Rust 异步 SQL 工具包，支持编译期检查查询。",
+      "tags": [
+        "backend"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "Rust 服务要类型安全 SQL 而非重 ORM",
+      "avoid_when": "只要动态脚本级查询",
+      "niche": "rust sql"
+    },
+    {
       "id": "starlight",
       "domain": "cms-docs",
       "name": "Starlight",
       "repo": "https://github.com/withastro/starlight",
       "summary": "Astro 官方文档主题套件。",
       "tags": [
+        "astro",
         "docs",
-        "static-site",
-        "astro"
+        "static-site"
       ],
       "language": "TypeScript",
       "status": "active",
       "use_when": "用 Astro 做产品文档站",
       "avoid_when": "非 Astro 栈",
       "niche": "docs theme"
+    },
+    {
+      "id": "starship",
+      "domain": "devtools",
+      "name": "Starship",
+      "repo": "https://github.com/starship/starship",
+      "summary": "跨 shell 的快速可定制提示符。",
+      "tags": [
+        "cli"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要统一美观的多 shell 提示符",
+      "avoid_when": "只要系统默认提示",
+      "niche": "prompt"
     },
     {
       "id": "storybook",
@@ -5340,6 +6718,23 @@
       "niche": "payments test"
     },
     {
+      "id": "strongswan",
+      "domain": "networking",
+      "name": "strongSwan",
+      "repo": "https://github.com/strongswan/strongswan",
+      "summary": "开源 IPsec VPN 实现，支持 IKEv1/IKEv2。",
+      "tags": [
+        "ipsec",
+        "networking",
+        "vpn"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要标准 IPsec/IKE 站点或远程接入 VPN",
+      "avoid_when": "只要 WireGuard 风格简单点对点隧道",
+      "niche": "ipsec vpn"
+    },
+    {
       "id": "substrate",
       "domain": "blockchain",
       "name": "Substrate",
@@ -5363,14 +6758,60 @@
       "repo": "https://github.com/supabase/supabase",
       "summary": "开源 Firebase 替代，底层 Postgres。",
       "tags": [
-        "sql",
-        "baas"
+        "baas",
+        "sql"
       ],
       "language": "TypeScript",
       "status": "active",
       "use_when": "要 BaaS（Auth/Realtime/Storage）+ Postgres",
       "avoid_when": "只要纯数据库内核无 BaaS",
       "niche": "postgres baas"
+    },
+    {
+      "id": "superset",
+      "domain": "data-ml",
+      "name": "Apache Superset",
+      "repo": "https://github.com/apache/superset",
+      "summary": "现代数据探索与可视化平台，偏分析师工作台。",
+      "tags": [
+        "analytics"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要开源、可扩展的可视化探索与仪表盘",
+      "avoid_when": "只要极简查询分享",
+      "niche": "bi exploration"
+    },
+    {
+      "id": "suricata",
+      "domain": "security",
+      "name": "Suricata",
+      "repo": "https://github.com/OISF/suricata",
+      "summary": "高性能网络 IDS/IPS 与网络安全监控引擎。",
+      "tags": [
+        "security"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要基于流量的网络入侵检测/防护",
+      "avoid_when": "只要主机日志协作封禁（CrowdSec/fail2ban）",
+      "niche": "network ids"
+    },
+    {
+      "id": "surrealdb",
+      "domain": "databases",
+      "name": "SurrealDB",
+      "repo": "https://github.com/surrealdb/surrealdb",
+      "summary": "多模型数据库（文档/图/关联），云原生取向（BUSL）。",
+      "tags": [
+        "document",
+        "graph"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要单一引擎覆盖文档+图且接受 BUSL 条款",
+      "avoid_when": "只要成熟 PG/专用图库或许可证必须 OSI 宽松",
+      "niche": "multimodel db"
     },
     {
       "id": "svelte",
@@ -5395,8 +6836,8 @@
       "repo": "https://github.com/swiftlang/swift",
       "summary": "Apple 平台主语言。",
       "tags": [
-        "mobile",
-        "ios"
+        "ios",
+        "mobile"
       ],
       "language": "C++",
       "status": "active",
@@ -5407,12 +6848,12 @@
     {
       "id": "swiftui-notes",
       "domain": "mobile",
-      "name": "SwiftUI Lab examples mirror note",
-      "repo": "https://github.com/twostraws/SwiftUI",
-      "summary": "SwiftUI 学习与示例（社区高质量入口）。",
+      "name": "Hacking with Swift",
+      "repo": "https://github.com/twostraws/HackingWithSwift",
+      "summary": "Paul Hudson 的 Swift/SwiftUI 教学示例入口（原 SwiftUI 镜像仓已不可用）。",
       "tags": [
-        "mobile",
         "ios",
+        "mobile",
         "ui"
       ],
       "language": "Swift",
@@ -5460,9 +6901,9 @@
       "repo": "https://github.com/tailscale/tailscale",
       "summary": "基于 WireGuard 的零配置组网。",
       "tags": [
+        "mesh",
         "networking",
-        "vpn",
-        "mesh"
+        "vpn"
       ],
       "language": "Go",
       "status": "active",
@@ -5509,8 +6950,8 @@
       "repo": "https://github.com/arendst/Tasmota",
       "summary": "替代固件，常用于智能插座/继电器。",
       "tags": [
-        "iot",
         "firmware",
+        "iot",
         "mqtt"
       ],
       "language": "C++",
@@ -5526,8 +6967,8 @@
       "repo": "https://github.com/tauri-apps/tauri",
       "summary": "Rust 后端 + 系统 WebView 的轻量桌面框架。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "rust"
       ],
       "language": "Rust",
@@ -5537,21 +6978,67 @@
       "niche": "webview desktop"
     },
     {
+      "id": "tekton",
+      "domain": "devops",
+      "name": "Tekton",
+      "repo": "https://github.com/tektoncd/pipeline",
+      "summary": "Kubernetes 原生 CI/CD 流水线 API 与控制器。",
+      "tags": [
+        "ci"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "流水线要声明在集群内、以 CRD 方式编排",
+      "avoid_when": "只要经典 Jenkins 插件或托管 GitHub Actions",
+      "niche": "k8s native ci"
+    },
+    {
+      "id": "teleport",
+      "domain": "security",
+      "name": "Teleport",
+      "repo": "https://github.com/gravitational/teleport",
+      "summary": "基础设施访问平台（SSH/K8s/DB），身份与审计一体（AGPL）。",
+      "tags": [
+        "security"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要统一零信任访问主机/K8s/数据库并接受 AGPL",
+      "avoid_when": "只要简单 VPN（WireGuard）或 IdP 登录墙（oauth2-proxy）",
+      "niche": "infra access"
+    },
+    {
       "id": "tempo",
       "domain": "observability",
       "name": "Grafana Tempo",
       "repo": "https://github.com/grafana/tempo",
       "summary": "高基数友好的分布式追踪后端。",
       "tags": [
+        "grafana",
         "observability",
-        "tracing",
-        "grafana"
+        "tracing"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "Grafana 生态要成本可控的 trace 存储",
       "avoid_when": "非 Grafana 栈且只要一体式 APM",
       "niche": "tracing"
+    },
+    {
+      "id": "temporal",
+      "domain": "backend",
+      "name": "Temporal",
+      "repo": "https://github.com/temporalio/temporal",
+      "summary": "可靠工作流编排引擎，适合长事务与重试。",
+      "tags": [
+        "backend",
+        "orchestration"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要跨服务长流程编排且要强可靠重试",
+      "avoid_when": "只要简单队列任务（Celery/BullMQ）",
+      "niche": "workflow engine"
     },
     {
       "id": "tensorflow",
@@ -5576,8 +7063,8 @@
       "repo": "https://github.com/hashicorp/terraform",
       "summary": "声明式基础设施即代码，多云 Provider。",
       "tags": [
-        "iac",
-        "devops"
+        "devops",
+        "iac"
       ],
       "language": "Go",
       "status": "active",
@@ -5592,8 +7079,8 @@
       "repo": "https://github.com/thanos-io/thanos",
       "summary": "Prometheus 高可用与长期存储组件。",
       "tags": [
-        "observability",
-        "metrics"
+        "metrics",
+        "observability"
       ],
       "language": "Go",
       "status": "active",
@@ -5624,9 +7111,9 @@
       "repo": "https://github.com/mrdoob/three.js",
       "summary": "WebGL 3D 库。",
       "tags": [
+        "3d",
         "gamedev",
-        "web",
-        "3d"
+        "web"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -5641,8 +7128,8 @@
       "repo": "https://github.com/pingcap/tidb",
       "summary": "MySQL 兼容的分布式 HTAP 数据库。",
       "tags": [
-        "sql",
-        "distributed"
+        "distributed",
+        "sql"
       ],
       "language": "Go",
       "status": "active",
@@ -5657,9 +7144,9 @@
       "repo": "https://github.com/mapeditor/tiled",
       "summary": "灵活的 2D 关卡编辑器。",
       "tags": [
+        "2d",
         "gamedev",
-        "tools",
-        "2d"
+        "tools"
       ],
       "language": "C++",
       "status": "active",
@@ -5668,15 +7155,45 @@
       "niche": "level editor"
     },
     {
+      "id": "timescaledb",
+      "domain": "databases",
+      "name": "TimescaleDB",
+      "repo": "https://github.com/timescale/timescaledb",
+      "summary": "基于 PostgreSQL 的时序/实时分析扩展（部分组件许可证不同）。",
+      "tags": [
+        "analytics"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "已用 Postgres 且要以扩展做高写入时序分析",
+      "avoid_when": "只要纯 Apache 组件或专用时序库更简单",
+      "niche": "postgres timeseries"
+    },
+    {
+      "id": "tinygo",
+      "domain": "iot",
+      "name": "TinyGo",
+      "repo": "https://github.com/tinygo-org/tinygo",
+      "summary": "面向微控制器与 WebAssembly 的 Go 编译器。",
+      "tags": [
+        "iot"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "要用 Go 写 MCU/小体积 WASM 固件",
+      "avoid_when": "只要 Python MCU 路线或完整 Go 运行时",
+      "niche": "go on mcu"
+    },
+    {
       "id": "tinyml-tflite-micro",
       "domain": "iot",
       "name": "TensorFlow Lite for Microcontrollers",
       "repo": "https://github.com/tensorflow/tflite-micro",
       "summary": "微控制器上的轻量推理。",
       "tags": [
+        "embedded",
         "iot",
-        "tinyml",
-        "embedded"
+        "tinyml"
       ],
       "language": "C++",
       "status": "active",
@@ -5691,9 +7208,9 @@
       "repo": "https://github.com/felt/tippecanoe",
       "summary": "GeoJSON 到矢量瓦片的构建工具。",
       "tags": [
+        "cli",
         "gis",
-        "vector-tiles",
-        "cli"
+        "vector-tiles"
       ],
       "language": "C++",
       "status": "active",
@@ -5702,15 +7219,30 @@
       "niche": "tiling"
     },
     {
+      "id": "tokio",
+      "domain": "backend",
+      "name": "Tokio",
+      "repo": "https://github.com/tokio-rs/tokio",
+      "summary": "Rust 异步运行时，生态事实标准。",
+      "tags": [
+        "backend"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "Rust 网络/异步服务底座",
+      "avoid_when": "非 Rust 技术栈",
+      "niche": "async runtime"
+    },
+    {
       "id": "traefik",
       "domain": "devops",
       "name": "Traefik",
       "repo": "https://github.com/traefik/traefik",
       "summary": "云原生边缘路由，自动服务发现。",
       "tags": [
-        "networking",
         "containers",
-        "devops"
+        "devops",
+        "networking"
       ],
       "language": "Go",
       "status": "active",
@@ -5725,8 +7257,8 @@
       "repo": "https://github.com/huggingface/transformers",
       "summary": "预训练模型加载与推理的事实标准库。",
       "tags": [
-        "local-llm",
-        "fine-tuning"
+        "fine-tuning",
+        "local-llm"
       ],
       "language": "Python",
       "status": "active",
@@ -5741,8 +7273,8 @@
       "repo": "https://github.com/tree-sitter/tree-sitter",
       "summary": "增量解析库，驱动编辑器语法与结构化编辑。",
       "tags": [
-        "parser",
         "editor",
+        "parser",
         "tooling"
       ],
       "language": "Rust",
@@ -5758,14 +7290,30 @@
       "repo": "https://github.com/aquasecurity/trivy",
       "summary": "容器/文件系统/仓库漏洞与误配扫描。",
       "tags": [
-        "scanning",
-        "containers"
+        "containers",
+        "scanning"
       ],
       "language": "Go",
       "status": "active",
       "use_when": "CI 里扫镜像与依赖漏洞",
       "avoid_when": "只要代码 SAST 不涉及供应链制品",
       "niche": "vuln scanner"
+    },
+    {
+      "id": "trulens",
+      "domain": "ai-agents",
+      "name": "TruLens",
+      "repo": "https://github.com/truera/trulens",
+      "summary": "LLM/RAG 应用评估与可观测反馈库，偏反馈回路。",
+      "tags": [
+        "eval",
+        "observability"
+      ],
+      "language": "Python",
+      "status": "active",
+      "use_when": "要把 RAG/Agent 质量评估接到应用反馈闭环",
+      "avoid_when": "只要基准跑分（lm-eval）或提示词红队（promptfoo）",
+      "niche": "llm eval feedback"
     },
     {
       "id": "turborepo",
@@ -5790,9 +7338,9 @@
       "repo": "https://github.com/Turfjs/turf",
       "summary": "浏览器/Node 的空间分析库。",
       "tags": [
+        "analysis",
         "gis",
-        "javascript",
-        "analysis"
+        "javascript"
       ],
       "language": "JavaScript",
       "status": "active",
@@ -5822,8 +7370,8 @@
       "repo": "https://github.com/NLnetLabs/unbound",
       "summary": "验证型递归 DNS 解析器。",
       "tags": [
-        "networking",
-        "dns"
+        "dns",
+        "networking"
       ],
       "language": "C",
       "status": "active",
@@ -5838,8 +7386,8 @@
       "repo": "https://github.com/unoplatform/uno",
       "summary": "用 C#/XAML 做跨平台应用（含桌面）。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "dotnet"
       ],
       "language": "C#",
@@ -5855,8 +7403,8 @@
       "repo": "https://github.com/Unstructured-IO/unstructured",
       "summary": "文档解析与预处理，服务 RAG 摄取。",
       "tags": [
-        "rag",
-        "dataset"
+        "dataset",
+        "rag"
       ],
       "language": "Python",
       "status": "active",
@@ -5887,14 +7435,46 @@
       "repo": "https://github.com/astral-sh/uv",
       "summary": "极速 Python 包与项目管理器。",
       "tags": [
-        "python",
-        "package-manager"
+        "package-manager",
+        "python"
       ],
       "language": "Rust",
       "status": "active",
       "use_when": "要快的 venv/依赖解析/锁文件工作流",
       "avoid_when": "必须兼容遗留纯 pip/poetry 流程且无迁移窗口",
       "niche": "python package"
+    },
+    {
+      "id": "valkey",
+      "domain": "databases",
+      "name": "Valkey",
+      "repo": "https://github.com/valkey-io/valkey",
+      "summary": "Redis 兼容的开源内存数据存储，Linux 基金会托管。",
+      "tags": [
+        "kv"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要 Redis 协议兼容缓存/实时结构且偏好社区分叉治理",
+      "avoid_when": "深度绑定 Redis 专有模块且无法迁移",
+      "niche": "redis-compatible"
+    },
+    {
+      "id": "vapor",
+      "domain": "backend",
+      "name": "Vapor",
+      "repo": "https://github.com/vapor/vapor",
+      "summary": "Swift 服务端 Web 框架。",
+      "tags": [
+        "backend",
+        "framework",
+        "swift"
+      ],
+      "language": "Swift",
+      "status": "active",
+      "use_when": "要用 Swift 写服务端 API 并共享移动端语言技能",
+      "avoid_when": "团队无 Swift 服务端经验或只要 JVM/Go/Node",
+      "niche": "swift server"
     },
     {
       "id": "vault",
@@ -5919,8 +7499,8 @@
       "repo": "https://github.com/hashicorp/vault",
       "summary": "密钥与动态凭证管理（与 devops/vault 同项目；安全视角收录）。",
       "tags": [
-        "secrets",
-        "iam"
+        "iam",
+        "secrets"
       ],
       "language": "Go",
       "status": "active",
@@ -5929,15 +7509,32 @@
       "niche": "secrets management"
     },
     {
+      "id": "vaultwarden",
+      "domain": "security",
+      "name": "Vaultwarden",
+      "repo": "https://github.com/dani-garcia/vaultwarden",
+      "summary": "兼容 Bitwarden API 的轻量自托管密码管理服务端。",
+      "tags": [
+        "secrets",
+        "security",
+        "self-hosted"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "要自托管密码库且资源占用低于官方 Bitwarden 服务端",
+      "avoid_when": "要官方 Bitwarden 企业支持或桌面本地库（KeePass）",
+      "niche": "password manager server"
+    },
+    {
       "id": "vector-dev",
       "domain": "observability",
       "name": "Vector",
       "repo": "https://github.com/vectordotdev/vector",
       "summary": "高性能可观测数据管道（日志/指标）。",
       "tags": [
-        "observability",
+        "collector",
         "logging",
-        "collector"
+        "observability"
       ],
       "language": "Rust",
       "status": "active",
@@ -5952,8 +7549,8 @@
       "repo": "https://github.com/polakowo/vectorbt",
       "summary": "基于 NumPy/Pandas 的高速向量化回测。",
       "tags": [
-        "finance",
         "backtest",
+        "finance",
         "python"
       ],
       "language": "Python",
@@ -5979,14 +7576,30 @@
       "niche": "web streaming AI SDK"
     },
     {
+      "id": "victoria-logs",
+      "domain": "observability",
+      "name": "VictoriaLogs",
+      "repo": "https://github.com/VictoriaMetrics/VictoriaLogs",
+      "summary": "VictoriaMetrics 生态的日志存储与查询系统。",
+      "tags": [
+        "logging",
+        "observability"
+      ],
+      "language": "Go",
+      "status": "active",
+      "use_when": "已用 VictoriaMetrics 指标栈并要同生态日志库",
+      "avoid_when": "只要完整 APM/追踪或重度 Elasticsearch 生态",
+      "niche": "logs"
+    },
+    {
       "id": "victoriametrics",
       "domain": "observability",
       "name": "VictoriaMetrics",
       "repo": "https://github.com/VictoriaMetrics/VictoriaMetrics",
       "summary": "高性能、低成本的 Prometheus 兼容时序库。",
       "tags": [
-        "observability",
-        "metrics"
+        "metrics",
+        "observability"
       ],
       "language": "Go",
       "status": "active",
@@ -6068,8 +7681,8 @@
       "summary": "跨平台多媒体播放器与框架。",
       "tags": [
         "media",
-        "video",
-        "player"
+        "player",
+        "video"
       ],
       "language": "C",
       "status": "active",
@@ -6084,8 +7697,8 @@
       "repo": "https://github.com/vllm-project/vllm",
       "summary": "高吞吐 LLM 推理引擎，PagedAttention，适合自托管服务。",
       "tags": [
-        "local-llm",
-        "llm-api"
+        "llm-api",
+        "local-llm"
       ],
       "language": "Python",
       "status": "active",
@@ -6133,8 +7746,8 @@
       "repo": "https://github.com/wailsapp/wails",
       "summary": "Go + 系统 WebView 构建桌面应用。",
       "tags": [
-        "desktop",
         "cross-platform",
+        "desktop",
         "go"
       ],
       "language": "Go",
@@ -6144,14 +7757,32 @@
       "niche": "go desktop"
     },
     {
+      "id": "wazuh",
+      "domain": "security",
+      "name": "Wazuh",
+      "repo": "https://github.com/wazuh/wazuh",
+      "summary": "开源 XDR/SIEM 平台，主机入侵检测与安全事件分析。",
+      "tags": [
+        "ids",
+        "scanning",
+        "security",
+        "siem"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要自托管主机安全监测/合规与告警中枢",
+      "avoid_when": "只要容器运行时威胁检测（Falco）或单纯漏洞扫描",
+      "niche": "siem xdr"
+    },
+    {
       "id": "weaviate",
       "domain": "ai-agents",
       "name": "Weaviate",
       "repo": "https://github.com/weaviate/weaviate",
       "summary": "向量数据库，带模块化向量化与过滤。",
       "tags": [
-        "vector-db",
-        "rag"
+        "rag",
+        "vector-db"
       ],
       "language": "Go",
       "status": "active",
@@ -6199,8 +7830,8 @@
       "repo": "https://github.com/ggerganov/whisper.cpp",
       "summary": "OpenAI Whisper 的 C/C++ 移植，本地语音转写。",
       "tags": [
-        "media",
         "audio",
+        "media",
         "speech"
       ],
       "language": "C++",
@@ -6208,6 +7839,24 @@
       "use_when": "要本地离线语音转文字",
       "avoid_when": "只要云端 ASR API",
       "niche": "speech to text"
+    },
+    {
+      "id": "wikijs",
+      "domain": "cms-docs",
+      "name": "Wiki.js",
+      "repo": "https://github.com/requarks/wiki",
+      "summary": "基于 Node.js 的现代 Wiki，支持多存储后端与 Markdown。",
+      "tags": [
+        "docs",
+        "nodejs",
+        "self-hosted",
+        "wiki"
+      ],
+      "language": "JavaScript",
+      "status": "active",
+      "use_when": "要自托管现代 Wiki 并接 Git/DB 等存储",
+      "avoid_when": "只要静态站点生成或无头 CMS API",
+      "niche": "wiki"
     },
     {
       "id": "wireguard",
@@ -6232,8 +7881,8 @@
       "repo": "https://github.com/wireshark/wireshark",
       "summary": "网络协议分析器。",
       "tags": [
-        "networking",
         "debugging",
+        "networking",
         "packet-capture"
       ],
       "language": "C",
@@ -6249,9 +7898,9 @@
       "repo": "https://github.com/WordPress/WordPress",
       "summary": "全球最流行的 PHP 内容管理系统。",
       "tags": [
+        "blogging",
         "cms",
-        "php",
-        "blogging"
+        "php"
       ],
       "language": "PHP",
       "status": "active",
@@ -6266,9 +7915,9 @@
       "repo": "https://github.com/wxWidgets/wxWidgets",
       "summary": "原生控件外观的跨平台 C++ GUI 库。",
       "tags": [
+        "cpp",
         "desktop",
-        "native-ui",
-        "cpp"
+        "native-ui"
       ],
       "language": "C++",
       "status": "active",
@@ -6281,7 +7930,7 @@
       "domain": "data-ml",
       "name": "XGBoost",
       "repo": "https://github.com/dmlc/xgboost",
-      "summary": "梯度提升树库。",
+      "summary": "高性能梯度提升决策树库，常用于表格数据建模。",
       "tags": [
         "ml",
         "python"
@@ -6317,8 +7966,8 @@
       "summary": "类 jq 的 YAML/JSON/XML 处理器。",
       "tags": [
         "cli",
-        "yaml",
-        "data"
+        "data",
+        "yaml"
       ],
       "language": "Go",
       "status": "active",
@@ -6333,9 +7982,9 @@
       "repo": "https://github.com/yt-dlp/yt-dlp",
       "summary": "功能丰富的视频下载器（youtube-dl 后继）。",
       "tags": [
-        "media",
+        "cli",
         "downloader",
-        "cli"
+        "media"
       ],
       "language": "Python",
       "status": "active",
@@ -6344,15 +7993,45 @@
       "niche": "downloader"
     },
     {
+      "id": "yugabyte",
+      "domain": "databases",
+      "name": "YugabyteDB",
+      "repo": "https://github.com/yugabyte/yugabyte-db",
+      "summary": "分布式 SQL 数据库，PostgreSQL 兼容 API，偏云原生多区。",
+      "tags": [
+        "distributed"
+      ],
+      "language": "C++",
+      "status": "active",
+      "use_when": "要 Postgres 兼容且跨区分布式强一致 SQL",
+      "avoid_when": "单机/主从 Postgres 已够，或只要 TiDB/Cockroach 生态更熟",
+      "niche": "distributed sql"
+    },
+    {
+      "id": "zabbix",
+      "domain": "observability",
+      "name": "Zabbix",
+      "repo": "https://github.com/zabbix/zabbix",
+      "summary": "企业级监控平台，主机/网络/应用指标与告警（AGPL）。",
+      "tags": [
+        "observability"
+      ],
+      "language": "C",
+      "status": "active",
+      "use_when": "要传统一体化监控与告警且接受 AGPL",
+      "avoid_when": "只要云原生 Prometheus 生态或轻量实时面板（Netdata）",
+      "niche": "classic monitoring"
+    },
+    {
       "id": "zephyr",
       "domain": "iot",
       "name": "Zephyr",
       "repo": "https://github.com/zephyrproject-rtos/zephyr",
       "summary": "可扩展实时操作系统，面向受限设备。",
       "tags": [
+        "embedded",
         "iot",
-        "rtos",
-        "embedded"
+        "rtos"
       ],
       "language": "C",
       "status": "active",
@@ -6368,8 +8047,8 @@
       "summary": "把 Zigbee 设备桥到 MQTT。",
       "tags": [
         "iot",
-        "zigbee",
-        "mqtt"
+        "mqtt",
+        "zigbee"
       ],
       "language": "TypeScript",
       "status": "active",
@@ -6400,8 +8079,8 @@
       "repo": "https://github.com/stefan-jansen/zipline-reloaded",
       "summary": "算法交易回测库（Zipline 社区维护版）。",
       "tags": [
-        "finance",
         "backtest",
+        "finance",
         "python"
       ],
       "language": "Python",
@@ -6411,14 +8090,29 @@
       "niche": "backtest"
     },
     {
+      "id": "zoxide",
+      "domain": "devtools",
+      "name": "zoxide",
+      "repo": "https://github.com/ajeetdsouza/zoxide",
+      "summary": "更智能的 cd，按使用频率跳转目录。",
+      "tags": [
+        "cli"
+      ],
+      "language": "Rust",
+      "status": "active",
+      "use_when": "终端频繁跳目录要记忆式跳转",
+      "avoid_when": "只要原生 cd",
+      "niche": "directory jumper"
+    },
+    {
       "id": "zustand",
       "domain": "web-frontend",
       "name": "Zustand",
       "repo": "https://github.com/pmndrs/zustand",
       "summary": "轻量 React 状态库。",
       "tags": [
-        "state",
         "react",
+        "state",
         "web"
       ],
       "language": "TypeScript",
@@ -8880,6 +10574,1530 @@
       "type": "integrates_with",
       "to": "ccxt",
       "note": "已有则可能存在"
+    },
+    {
+      "from": "dify",
+      "type": "alternative_to",
+      "to": "flowise",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "dify",
+      "type": "alternative_to",
+      "to": "open-webui",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "dify",
+      "type": "integrates_with",
+      "to": "ollama",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "localai",
+      "type": "alternative_to",
+      "to": "ollama",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "localai",
+      "type": "alternative_to",
+      "to": "vllm",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "localai",
+      "type": "integrates_with",
+      "to": "open-webui",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "promptfoo",
+      "type": "alternative_to",
+      "to": "deepeval",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "promptfoo",
+      "type": "alternative_to",
+      "to": "ragas",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "promptfoo",
+      "type": "integrates_with",
+      "to": "litellm",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "k3s",
+      "type": "alternative_to",
+      "to": "kubernetes",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "k3s",
+      "type": "integrates_with",
+      "to": "helm",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "k3s",
+      "type": "integrates_with",
+      "to": "traefik",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "cert-manager",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "cert-manager",
+      "type": "integrates_with",
+      "to": "nginx",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "cert-manager",
+      "type": "integrates_with",
+      "to": "traefik",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "jenkins",
+      "type": "alternative_to",
+      "to": "github-actions-runner",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "jenkins",
+      "type": "alternative_to",
+      "to": "argo-cd",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "harbor",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "harbor",
+      "type": "integrates_with",
+      "to": "docker",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "harbor",
+      "type": "integrates_with",
+      "to": "helm",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "valkey",
+      "type": "alternative_to",
+      "to": "redis",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "valkey",
+      "type": "alternative_to",
+      "to": "keydb",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "timescaledb",
+      "type": "depends_on",
+      "to": "postgresql",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "timescaledb",
+      "type": "alternative_to",
+      "to": "clickhouse",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "pgvector",
+      "type": "depends_on",
+      "to": "postgresql",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "pgvector",
+      "type": "alternative_to",
+      "to": "qdrant",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "pgvector",
+      "type": "alternative_to",
+      "to": "chromadb",
+      "note": "batch1 gap fill"
+    },
+    {
+      "from": "angular",
+      "type": "alternative_to",
+      "to": "react",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "angular",
+      "type": "alternative_to",
+      "to": "vue",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "preact",
+      "type": "alternative_to",
+      "to": "react",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "biome",
+      "type": "alternative_to",
+      "to": "eslint",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "biome",
+      "type": "integrates_with",
+      "to": "vite",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "eslint",
+      "type": "alternative_to",
+      "to": "biome",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "falco",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "falco",
+      "type": "alternative_to",
+      "to": "trivy",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "crowdsec",
+      "type": "alternative_to",
+      "to": "fail2ban",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "oauth2-proxy",
+      "type": "integrates_with",
+      "to": "keycloak",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "oauth2-proxy",
+      "type": "integrates_with",
+      "to": "authentik",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "oauth2-proxy",
+      "type": "integrates_with",
+      "to": "nginx",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "casbin",
+      "type": "alternative_to",
+      "to": "opa",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "netdata",
+      "type": "alternative_to",
+      "to": "victoriametrics",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "netdata",
+      "type": "alternative_to",
+      "to": "uptime-kuma",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "skywalking",
+      "type": "alternative_to",
+      "to": "jaeger",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "skywalking",
+      "type": "alternative_to",
+      "to": "signoz",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "skywalking",
+      "type": "alternative_to",
+      "to": "sentry",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "openobserve",
+      "type": "alternative_to",
+      "to": "signoz",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "openobserve",
+      "type": "alternative_to",
+      "to": "loki",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "openobserve",
+      "type": "alternative_to",
+      "to": "sentry",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "prettier",
+      "type": "alternative_to",
+      "to": "biome",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "eslint",
+      "type": "integrates_with",
+      "to": "prettier",
+      "note": "batch2 gap fill"
+    },
+    {
+      "from": "chi",
+      "type": "alternative_to",
+      "to": "gin",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "chi",
+      "type": "alternative_to",
+      "to": "fiber",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "sqlx",
+      "type": "alternative_to",
+      "to": "prisma",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "sqlx",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "temporal",
+      "type": "alternative_to",
+      "to": "celery",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "temporal",
+      "type": "alternative_to",
+      "to": "bullmq",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "tokio",
+      "type": "integrates_with",
+      "to": "axum",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "lottie-android",
+      "type": "integrates_with",
+      "to": "jetpack-compose",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "coil",
+      "type": "integrates_with",
+      "to": "jetpack-compose",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "coil",
+      "type": "integrates_with",
+      "to": "okhttp",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "starship",
+      "type": "integrates_with",
+      "to": "mise",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "zoxide",
+      "type": "integrates_with",
+      "to": "fzf",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "eza",
+      "type": "integrates_with",
+      "to": "bat",
+      "note": "batch3 gap fill"
+    },
+    {
+      "from": "redash",
+      "type": "alternative_to",
+      "to": "superset",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "redash",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "metabase",
+      "type": "alternative_to",
+      "to": "redash",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "metabase",
+      "type": "alternative_to",
+      "to": "superset",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "superset",
+      "type": "alternative_to",
+      "to": "metabase",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "superset",
+      "type": "alternative_to",
+      "to": "redash",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "nats-server",
+      "type": "alternative_to",
+      "to": "rabbitmq-server",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "nats-server",
+      "type": "alternative_to",
+      "to": "apache-kafka",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "beancount",
+      "type": "alternative_to",
+      "to": "ledger-cli",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "beancount",
+      "type": "alternative_to",
+      "to": "firefly-iii",
+      "note": "batch4 gap fill"
+    },
+    {
+      "from": "linkerd",
+      "type": "alternative_to",
+      "to": "istio",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "linkerd",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "tekton",
+      "type": "alternative_to",
+      "to": "jenkins",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "tekton",
+      "type": "alternative_to",
+      "to": "argo-cd",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "tekton",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "packer",
+      "type": "integrates_with",
+      "to": "terraform",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "packer",
+      "type": "integrates_with",
+      "to": "ansible",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "yugabyte",
+      "type": "alternative_to",
+      "to": "cockroachdb",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "yugabyte",
+      "type": "alternative_to",
+      "to": "tidb",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "yugabyte",
+      "type": "alternative_to",
+      "to": "postgresql",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "trulens",
+      "type": "alternative_to",
+      "to": "deepeval",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "trulens",
+      "type": "alternative_to",
+      "to": "ragas",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "trulens",
+      "type": "alternative_to",
+      "to": "arize-phoenix",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "anythingllm",
+      "type": "alternative_to",
+      "to": "open-webui",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "anythingllm",
+      "type": "alternative_to",
+      "to": "dify",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "anythingllm",
+      "type": "integrates_with",
+      "to": "ollama",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "solidjs",
+      "type": "alternative_to",
+      "to": "react",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "solidjs",
+      "type": "alternative_to",
+      "to": "preact",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "solidjs",
+      "type": "alternative_to",
+      "to": "vue",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "qwik",
+      "type": "alternative_to",
+      "to": "nextjs",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "qwik",
+      "type": "alternative_to",
+      "to": "astro",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "jest",
+      "type": "alternative_to",
+      "to": "vitest",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "teleport",
+      "type": "alternative_to",
+      "to": "wireguard",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "teleport",
+      "type": "alternative_to",
+      "to": "oauth2-proxy",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "teleport",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "suricata",
+      "type": "alternative_to",
+      "to": "crowdsec",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "suricata",
+      "type": "alternative_to",
+      "to": "fail2ban",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "asdf",
+      "type": "alternative_to",
+      "to": "mise",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "quarkus",
+      "type": "alternative_to",
+      "to": "spring-boot",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "kingfisher",
+      "type": "integrates_with",
+      "to": "swift",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "kingfisher",
+      "type": "alternative_to",
+      "to": "coil",
+      "note": "batch5 deferred resolution"
+    },
+    {
+      "from": "dify",
+      "type": "integrates_with",
+      "to": "qdrant",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "k3s",
+      "type": "integrates_with",
+      "to": "cert-manager",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "harbor",
+      "type": "integrates_with",
+      "to": "trivy",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "valkey",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "pgvector",
+      "type": "integrates_with",
+      "to": "langchain",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "temporal",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "chi",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "nats-server",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "superset",
+      "type": "integrates_with",
+      "to": "postgresql",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "beancount",
+      "type": "integrates_with",
+      "to": "ledger-cli",
+      "note": "batch5 edge density"
+    },
+    {
+      "from": "surrealdb",
+      "type": "alternative_to",
+      "to": "mongodb",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "surrealdb",
+      "type": "alternative_to",
+      "to": "neo4j",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "zabbix",
+      "type": "alternative_to",
+      "to": "netdata",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "zabbix",
+      "type": "alternative_to",
+      "to": "victoriametrics",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "zabbix",
+      "type": "alternative_to",
+      "to": "prometheus",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "minio",
+      "type": "alternative_to",
+      "to": "seaweedfs",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "minio",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "seaweedfs",
+      "type": "alternative_to",
+      "to": "minio",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "seaweedfs",
+      "type": "integrates_with",
+      "to": "kubernetes",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "flower",
+      "type": "integrates_with",
+      "to": "celery",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "flower",
+      "type": "depends_on",
+      "to": "celery",
+      "note": "batch6 long-tail"
+    },
+    {
+      "from": "cesium",
+      "type": "alternative_to",
+      "to": "maplibre-gl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "cesium",
+      "type": "alternative_to",
+      "to": "leaflet",
+      "note": "batch7 density"
+    },
+    {
+      "from": "cesium",
+      "type": "alternative_to",
+      "to": "deckgl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "h3",
+      "type": "integrates_with",
+      "to": "geopandas",
+      "note": "batch7 density"
+    },
+    {
+      "from": "h3",
+      "type": "integrates_with",
+      "to": "postgis",
+      "note": "batch7 density"
+    },
+    {
+      "from": "martin",
+      "type": "depends_on",
+      "to": "postgis",
+      "note": "batch7 density"
+    },
+    {
+      "from": "martin",
+      "type": "integrates_with",
+      "to": "maplibre-gl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "martin",
+      "type": "alternative_to",
+      "to": "geoserver",
+      "note": "batch7 density"
+    },
+    {
+      "from": "micropython",
+      "type": "alternative_to",
+      "to": "circuitpython",
+      "note": "batch7 density"
+    },
+    {
+      "from": "micropython",
+      "type": "integrates_with",
+      "to": "zephyr",
+      "note": "batch7 density"
+    },
+    {
+      "from": "micropython",
+      "type": "integrates_with",
+      "to": "freertos",
+      "note": "batch7 density"
+    },
+    {
+      "from": "circuitpython",
+      "type": "alternative_to",
+      "to": "micropython",
+      "note": "batch7 density"
+    },
+    {
+      "from": "openwrt",
+      "type": "integrates_with",
+      "to": "mosquitto",
+      "note": "batch7 density"
+    },
+    {
+      "from": "openwrt",
+      "type": "alternative_to",
+      "to": "tasmota",
+      "note": "batch7 density"
+    },
+    {
+      "from": "homebridge",
+      "type": "alternative_to",
+      "to": "home-assistant",
+      "note": "batch7 density"
+    },
+    {
+      "from": "homebridge",
+      "type": "integrates_with",
+      "to": "home-assistant",
+      "note": "batch7 density"
+    },
+    {
+      "from": "tinygo",
+      "type": "alternative_to",
+      "to": "micropython",
+      "note": "batch7 density"
+    },
+    {
+      "from": "tinygo",
+      "type": "integrates_with",
+      "to": "zephyr",
+      "note": "batch7 density"
+    },
+    {
+      "from": "peertube",
+      "type": "alternative_to",
+      "to": "jellyfin",
+      "note": "batch7 density"
+    },
+    {
+      "from": "peertube",
+      "type": "integrates_with",
+      "to": "ffmpeg",
+      "note": "batch7 density"
+    },
+    {
+      "from": "kodi",
+      "type": "alternative_to",
+      "to": "jellyfin",
+      "note": "batch7 density"
+    },
+    {
+      "from": "kodi",
+      "type": "alternative_to",
+      "to": "mpv",
+      "note": "batch7 density"
+    },
+    {
+      "from": "kodi",
+      "type": "alternative_to",
+      "to": "vlc",
+      "note": "batch7 density"
+    },
+    {
+      "from": "natron",
+      "type": "alternative_to",
+      "to": "kdenlive",
+      "note": "batch7 density"
+    },
+    {
+      "from": "natron",
+      "type": "alternative_to",
+      "to": "blender",
+      "note": "batch7 density"
+    },
+    {
+      "from": "natron",
+      "type": "integrates_with",
+      "to": "ffmpeg",
+      "note": "batch7 density"
+    },
+    {
+      "from": "libgdx",
+      "type": "alternative_to",
+      "to": "godot",
+      "note": "batch7 density"
+    },
+    {
+      "from": "libgdx",
+      "type": "alternative_to",
+      "to": "monogame",
+      "note": "batch7 density"
+    },
+    {
+      "from": "libgdx",
+      "type": "alternative_to",
+      "to": "phaser",
+      "note": "batch7 density"
+    },
+    {
+      "from": "love2d",
+      "type": "alternative_to",
+      "to": "godot",
+      "note": "batch7 density"
+    },
+    {
+      "from": "love2d",
+      "type": "alternative_to",
+      "to": "phaser",
+      "note": "batch7 density"
+    },
+    {
+      "from": "love2d",
+      "type": "integrates_with",
+      "to": "sdl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "ogre",
+      "type": "alternative_to",
+      "to": "godot",
+      "note": "batch7 density"
+    },
+    {
+      "from": "ogre",
+      "type": "alternative_to",
+      "to": "threejs",
+      "note": "batch7 density"
+    },
+    {
+      "from": "ogre",
+      "type": "integrates_with",
+      "to": "sdl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "maplibre-gl",
+      "type": "integrates_with",
+      "to": "postgis",
+      "note": "batch7 density"
+    },
+    {
+      "from": "qgis",
+      "type": "depends_on",
+      "to": "gdal",
+      "note": "batch7 density"
+    },
+    {
+      "from": "godot",
+      "type": "integrates_with",
+      "to": "sdl",
+      "note": "batch7 density"
+    },
+    {
+      "from": "threejs",
+      "type": "alternative_to",
+      "to": "babylonjs",
+      "note": "batch7 density"
+    },
+    {
+      "from": "phaser",
+      "type": "integrates_with",
+      "to": "threejs",
+      "note": "batch7 density"
+    },
+    {
+      "from": "fyne",
+      "type": "alternative_to",
+      "to": "gtk",
+      "note": "batch8 density"
+    },
+    {
+      "from": "fyne",
+      "type": "alternative_to",
+      "to": "qt",
+      "note": "batch8 density"
+    },
+    {
+      "from": "nwjs",
+      "type": "alternative_to",
+      "to": "electron",
+      "note": "batch8 density"
+    },
+    {
+      "from": "nwjs",
+      "type": "alternative_to",
+      "to": "tauri",
+      "note": "batch8 density"
+    },
+    {
+      "from": "dioxus",
+      "type": "alternative_to",
+      "to": "egui",
+      "note": "batch8 density"
+    },
+    {
+      "from": "dioxus",
+      "type": "alternative_to",
+      "to": "iced",
+      "note": "batch8 density"
+    },
+    {
+      "from": "dioxus",
+      "type": "alternative_to",
+      "to": "tauri",
+      "note": "batch8 density"
+    },
+    {
+      "from": "slint",
+      "type": "alternative_to",
+      "to": "dioxus",
+      "note": "batch8 density"
+    },
+    {
+      "from": "wails",
+      "type": "alternative_to",
+      "to": "fyne",
+      "note": "batch8 density"
+    },
+    {
+      "from": "ghostfolio",
+      "type": "alternative_to",
+      "to": "firefly-iii",
+      "note": "batch8 density"
+    },
+    {
+      "from": "ghostfolio",
+      "type": "alternative_to",
+      "to": "actual-budget",
+      "note": "batch8 density"
+    },
+    {
+      "from": "hummingbot",
+      "type": "alternative_to",
+      "to": "freqtrade",
+      "note": "batch8 density"
+    },
+    {
+      "from": "hummingbot",
+      "type": "depends_on",
+      "to": "ccxt",
+      "note": "batch8 density"
+    },
+    {
+      "from": "akaunting",
+      "type": "alternative_to",
+      "to": "firefly-iii",
+      "note": "batch8 density"
+    },
+    {
+      "from": "akaunting",
+      "type": "alternative_to",
+      "to": "gnucash",
+      "note": "batch8 density"
+    },
+    {
+      "from": "killbill",
+      "type": "alternative_to",
+      "to": "akaunting",
+      "note": "batch8 density"
+    },
+    {
+      "from": "openbb",
+      "type": "integrates_with",
+      "to": "ccxt",
+      "note": "batch8 density"
+    },
+    {
+      "from": "reth",
+      "type": "alternative_to",
+      "to": "go-ethereum",
+      "note": "batch8 density"
+    },
+    {
+      "from": "reth",
+      "type": "integrates_with",
+      "to": "prysm",
+      "note": "batch8 density"
+    },
+    {
+      "from": "bitcoinjs-lib",
+      "type": "integrates_with",
+      "to": "bitcoin-core",
+      "note": "batch8 density"
+    },
+    {
+      "from": "cometbft",
+      "type": "integrates_with",
+      "to": "cosmos-sdk",
+      "note": "batch8 density"
+    },
+    {
+      "from": "cometbft",
+      "type": "alternative_to",
+      "to": "substrate",
+      "note": "batch8 density"
+    },
+    {
+      "from": "foundry",
+      "type": "integrates_with",
+      "to": "reth",
+      "note": "batch8 density"
+    },
+    {
+      "from": "thegraph",
+      "type": "integrates_with",
+      "to": "reth",
+      "note": "batch8 density"
+    },
+    {
+      "from": "mdbook",
+      "type": "alternative_to",
+      "to": "gitbook-oss",
+      "note": "batch8 density"
+    },
+    {
+      "from": "mdbook",
+      "type": "alternative_to",
+      "to": "mkdocs",
+      "note": "batch8 density"
+    },
+    {
+      "from": "bookstack",
+      "type": "alternative_to",
+      "to": "wikijs",
+      "note": "batch8 density"
+    },
+    {
+      "from": "bookstack",
+      "type": "alternative_to",
+      "to": "ghost",
+      "note": "batch8 density"
+    },
+    {
+      "from": "wikijs",
+      "type": "alternative_to",
+      "to": "bookstack",
+      "note": "batch8 density"
+    },
+    {
+      "from": "wikijs",
+      "type": "alternative_to",
+      "to": "docusaurus",
+      "note": "batch8 density"
+    },
+    {
+      "from": "quarto",
+      "type": "alternative_to",
+      "to": "sphinx",
+      "note": "batch8 density"
+    },
+    {
+      "from": "quarto",
+      "type": "alternative_to",
+      "to": "mkdocs",
+      "note": "batch8 density"
+    },
+    {
+      "from": "hugo",
+      "type": "alternative_to",
+      "to": "mdbook",
+      "note": "batch8 density"
+    },
+    {
+      "from": "antora",
+      "type": "alternative_to",
+      "to": "mdbook",
+      "note": "batch8 density"
+    },
+    {
+      "from": "frr",
+      "type": "alternative_to",
+      "to": "bird",
+      "note": "batch9 density"
+    },
+    {
+      "from": "bird",
+      "type": "alternative_to",
+      "to": "frr",
+      "note": "batch9 density"
+    },
+    {
+      "from": "metallb",
+      "type": "integrates_with",
+      "to": "cilium",
+      "note": "batch9 density"
+    },
+    {
+      "from": "metallb",
+      "type": "integrates_with",
+      "to": "envoy",
+      "note": "batch9 density"
+    },
+    {
+      "from": "openvswitch",
+      "type": "integrates_with",
+      "to": "cilium",
+      "note": "batch9 density"
+    },
+    {
+      "from": "strongswan",
+      "type": "alternative_to",
+      "to": "wireguard",
+      "note": "batch9 density"
+    },
+    {
+      "from": "dnsmasq",
+      "type": "alternative_to",
+      "to": "unbound",
+      "note": "batch9 density"
+    },
+    {
+      "from": "dnsmasq",
+      "type": "alternative_to",
+      "to": "coredns",
+      "note": "batch9 density"
+    },
+    {
+      "from": "headscale",
+      "type": "alternative_to",
+      "to": "netbird",
+      "note": "batch9 density"
+    },
+    {
+      "from": "cloudflared",
+      "type": "alternative_to",
+      "to": "frp",
+      "note": "batch9 density"
+    },
+    {
+      "from": "kong",
+      "type": "alternative_to",
+      "to": "apisix",
+      "note": "batch9 density"
+    },
+    {
+      "from": "linkerd2",
+      "type": "alternative_to",
+      "to": "cilium",
+      "note": "batch9 density"
+    },
+    {
+      "from": "victoria-logs",
+      "type": "integrates_with",
+      "to": "victoriametrics",
+      "note": "batch9 density"
+    },
+    {
+      "from": "victoria-logs",
+      "type": "alternative_to",
+      "to": "loki",
+      "note": "batch9 density"
+    },
+    {
+      "from": "librenms",
+      "type": "alternative_to",
+      "to": "zabbix",
+      "note": "batch9 density"
+    },
+    {
+      "from": "librenms",
+      "type": "alternative_to",
+      "to": "netdata",
+      "note": "batch9 density"
+    },
+    {
+      "from": "fluentd",
+      "type": "alternative_to",
+      "to": "fluent-bit",
+      "note": "batch9 density"
+    },
+    {
+      "from": "grafana-alloy",
+      "type": "alternative_to",
+      "to": "vector-dev",
+      "note": "batch9 density"
+    },
+    {
+      "from": "pyroscope",
+      "type": "integrates_with",
+      "to": "grafana-alloy",
+      "note": "batch9 density"
+    },
+    {
+      "from": "zipkin",
+      "type": "alternative_to",
+      "to": "jaeger",
+      "note": "batch9 density"
+    },
+    {
+      "from": "opensearch",
+      "type": "alternative_to",
+      "to": "loki",
+      "note": "batch9 density"
+    },
+    {
+      "from": "vaultwarden",
+      "type": "alternative_to",
+      "to": "keepassxc",
+      "note": "batch9 density"
+    },
+    {
+      "from": "keepassxc",
+      "type": "alternative_to",
+      "to": "vaultwarden",
+      "note": "batch9 density"
+    },
+    {
+      "from": "wazuh",
+      "type": "alternative_to",
+      "to": "falco",
+      "note": "batch9 density"
+    },
+    {
+      "from": "wazuh",
+      "type": "alternative_to",
+      "to": "crowdsec",
+      "note": "batch9 density"
+    },
+    {
+      "from": "checkov",
+      "type": "alternative_to",
+      "to": "trivy",
+      "note": "batch9 density"
+    },
+    {
+      "from": "checkov",
+      "type": "integrates_with",
+      "to": "terraform",
+      "note": "batch9 density"
+    },
+    {
+      "from": "defectdojo",
+      "type": "integrates_with",
+      "to": "trivy",
+      "note": "batch9 density"
+    },
+    {
+      "from": "defectdojo",
+      "type": "integrates_with",
+      "to": "semgrep",
+      "note": "batch9 density"
+    },
+    {
+      "from": "age",
+      "type": "alternative_to",
+      "to": "sops",
+      "note": "batch9 density"
+    },
+    {
+      "from": "osv-scanner",
+      "type": "alternative_to",
+      "to": "grype",
+      "note": "batch9 density"
+    },
+    {
+      "from": "fulcio",
+      "type": "integrates_with",
+      "to": "cosign",
+      "note": "batch9 density"
+    },
+    {
+      "from": "mitmproxy",
+      "type": "integrates_with",
+      "to": "wireshark",
+      "note": "batch9 density"
+    },
+    {
+      "from": "micronaut",
+      "type": "alternative_to",
+      "to": "quarkus",
+      "note": "batch10 density"
+    },
+    {
+      "from": "micronaut",
+      "type": "alternative_to",
+      "to": "spring-boot",
+      "note": "batch10 density"
+    },
+    {
+      "from": "echo",
+      "type": "alternative_to",
+      "to": "gin",
+      "note": "batch10 density"
+    },
+    {
+      "from": "echo",
+      "type": "alternative_to",
+      "to": "fiber",
+      "note": "batch10 density"
+    },
+    {
+      "from": "echo",
+      "type": "alternative_to",
+      "to": "chi",
+      "note": "batch10 density"
+    },
+    {
+      "from": "rocket",
+      "type": "alternative_to",
+      "to": "axum",
+      "note": "batch10 density"
+    },
+    {
+      "from": "rocket",
+      "type": "alternative_to",
+      "to": "actix-web",
+      "note": "batch10 density"
+    },
+    {
+      "from": "vapor",
+      "type": "alternative_to",
+      "to": "nestjs",
+      "note": "batch10 density"
+    },
+    {
+      "from": "vapor",
+      "type": "integrates_with",
+      "to": "swift",
+      "note": "batch10 density"
+    },
+    {
+      "from": "nix",
+      "type": "alternative_to",
+      "to": "mise",
+      "note": "batch10 density"
+    },
+    {
+      "from": "fnm",
+      "type": "alternative_to",
+      "to": "mise",
+      "note": "batch10 density"
+    },
+    {
+      "from": "fnm",
+      "type": "alternative_to",
+      "to": "asdf",
+      "note": "batch10 density"
+    },
+    {
+      "from": "bun",
+      "type": "alternative_to",
+      "to": "deno",
+      "note": "batch10 density"
+    },
+    {
+      "from": "deno",
+      "type": "alternative_to",
+      "to": "bun",
+      "note": "batch10 density"
+    },
+    {
+      "from": "fvm",
+      "type": "integrates_with",
+      "to": "flutter",
+      "note": "batch10 density"
+    },
+    {
+      "from": "fvm",
+      "type": "alternative_to",
+      "to": "mise",
+      "note": "batch10 density"
+    },
+    {
+      "from": "sdwebimage",
+      "type": "alternative_to",
+      "to": "kingfisher",
+      "note": "batch10 density"
+    },
+    {
+      "from": "glide",
+      "type": "alternative_to",
+      "to": "coil",
+      "note": "batch10 density"
+    },
+    {
+      "from": "moya",
+      "type": "depends_on",
+      "to": "alamofire",
+      "note": "batch10 density"
+    },
+    {
+      "from": "moya",
+      "type": "alternative_to",
+      "to": "alamofire",
+      "note": "batch10 density"
+    },
+    {
+      "from": "kingfisher",
+      "type": "alternative_to",
+      "to": "sdwebimage",
+      "note": "batch10 density"
+    },
+    {
+      "from": "coil",
+      "type": "alternative_to",
+      "to": "glide",
+      "note": "batch10 density"
     }
   ]
 }

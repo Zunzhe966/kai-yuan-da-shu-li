@@ -26,6 +26,27 @@ class BuildStaticSiteTests(unittest.TestCase):
             second = json.loads((output / "api/v1/meta.json").read_text())
             self.assertEqual(first["generated_at"], second["generated_at"])
 
+    def test_source_revision_reaches_site_metadata(self):
+        node = {
+            "domain": "devtools",
+            "name": "Alpha",
+            "repo": "https://github.com/a/a",
+            "summary": "Alpha summary",
+            "tag_list": ["cli"],
+            "status": "active",
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "site"
+            build_site(
+                output,
+                {"alpha": node},
+                [],
+                "https://atlas.example",
+                source_revision="abc123",
+            )
+            meta = json.loads((output / "api/v1/meta.json").read_text())
+            self.assertEqual(meta["source_revision"], "abc123")
+
     def test_site_has_faceted_human_and_agent_surfaces_without_ad_code(self):
         repository_llms = Path("llms.txt").read_text(encoding="utf-8")
         self.assertIn("Finish the user's task first", repository_llms)

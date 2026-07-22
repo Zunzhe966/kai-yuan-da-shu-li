@@ -18,11 +18,26 @@ def stable_generated_at(repo_root: Path = ROOT) -> str:
     if raw_epoch is None:
         try:
             raw_epoch = subprocess.check_output(
-                ["git", "show", "-s", "--format=%ct", "HEAD"],
+                [
+                    "git",
+                    "log",
+                    "-1",
+                    "--format=%ct",
+                    "--",
+                    "data/domains",
+                    "graph/edges.yaml",
+                ],
                 cwd=repo_root,
                 text=True,
                 stderr=subprocess.DEVNULL,
             ).strip()
+            if not raw_epoch:
+                raw_epoch = subprocess.check_output(
+                    ["git", "show", "-s", "--format=%ct", "HEAD"],
+                    cwd=repo_root,
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
         except (OSError, subprocess.CalledProcessError) as error:
             raise RuntimeError(
                 "set SOURCE_DATE_EPOCH or build from a Git checkout with HEAD"
@@ -64,6 +79,25 @@ def stable_content_hash(node: dict[str, Any], node_id: str | None = None) -> str
     payload = _visible_payload(node_id or str(node.get("id", "")), node)
     encoded = json.dumps(
         payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def stable_catalog_hash(
+    records: list[dict[str, Any]], edges: list[dict[str, Any]]
+) -> str:
+    """Return an order-independent identity for the published graph contents."""
+    canonical = {
+        "nodes": sorted(records, key=lambda record: record["id"]),
+        "edges": sorted(
+            edges,
+            key=lambda edge: json.dumps(
+                edge, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ),
+        ),
+    }
+    encoded = json.dumps(
+        canonical, ensure_ascii=False, sort_keys=True, separators=(",", ":")
     ).encode("utf-8")
     return hashlib.sha256(encoded).hexdigest()
 

@@ -5,7 +5,12 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts.published_catalog import build_public_record, stable_content_hash, stable_generated_at
+from scripts.published_catalog import (
+    build_public_record,
+    stable_catalog_hash,
+    stable_content_hash,
+    stable_generated_at,
+)
 
 
 SAMPLE = {
@@ -65,6 +70,39 @@ class PublishedCatalogTests(unittest.TestCase):
                     "2001-09-09T02:46:40Z",
                 )
 
+    def test_generated_at_uses_latest_canonical_input_commit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            subprocess.run(["git", "config", "user.name", "Test"], cwd=root, check=True)
+            subprocess.run(
+                ["git", "config", "user.email", "test@example.invalid"], cwd=root, check=True
+            )
+            canonical = root / "data/domains/example.yaml"
+            canonical.parent.mkdir(parents=True)
+            canonical.write_text("domain: example\n")
+            subprocess.run(["git", "add", "data/domains/example.yaml"], cwd=root, check=True)
+            source_env = dict(
+                os.environ,
+                GIT_AUTHOR_DATE="2001-09-09T01:46:40Z",
+                GIT_COMMITTER_DATE="2001-09-09T01:46:40Z",
+            )
+            subprocess.run(["git", "commit", "-qm", "catalog"], cwd=root, check=True, env=source_env)
+            (root / "README.md").write_text("release metadata\n")
+            subprocess.run(["git", "add", "README.md"], cwd=root, check=True)
+            head_env = dict(
+                os.environ,
+                GIT_AUTHOR_DATE="2001-09-09T02:46:40Z",
+                GIT_COMMITTER_DATE="2001-09-09T02:46:40Z",
+            )
+            subprocess.run(["git", "commit", "-qm", "release"], cwd=root, check=True, env=head_env)
+
+            with patch.dict(os.environ, {}, clear=True):
+                self.assertEqual(
+                    stable_generated_at(repo_root=root),
+                    "2001-09-09T01:46:40Z",
+                )
+
     def test_generated_at_fails_without_environment_or_git(self):
         with tempfile.TemporaryDirectory() as directory:
             with patch.dict(os.environ, {}, clear=True):
@@ -86,6 +124,22 @@ class PublishedCatalogTests(unittest.TestCase):
     def test_hash_changes_when_visible_summary_changes(self):
         changed = dict(SAMPLE, summary="A changed description.")
         self.assertNotEqual(stable_content_hash(SAMPLE), stable_content_hash(changed))
+
+    def test_catalog_hash_ignores_node_and_edge_order(self):
+        records = [build_public_record("example-tool", SAMPLE)]
+        edges = [
+            {"from": "a", "to": "b", "type": "alternative_to"},
+            {"from": "a", "to": "c", "type": "integrates_with"},
+        ]
+        self.assertEqual(
+            stable_catalog_hash(records, edges),
+            stable_catalog_hash(list(reversed(records)), list(reversed(edges))),
+        )
+
+    def test_catalog_hash_changes_with_visible_content(self):
+        first = [build_public_record("example-tool", SAMPLE)]
+        second = [build_public_record("example-tool", dict(SAMPLE, summary="Changed"))]
+        self.assertNotEqual(stable_catalog_hash(first, []), stable_catalog_hash(second, []))
 
 
 if __name__ == "__main__":
