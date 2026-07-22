@@ -292,6 +292,7 @@ def build_site(
     nodes: dict[str, dict[str, Any]],
     edges: list[dict[str, str]],
     base_url: str,
+    source_revision: str | None = None,
 ) -> None:
     generated_at = stable_generated_at()
     records = [build_public_record(node_id, nodes[node_id]) for node_id in sorted(nodes)]
@@ -301,7 +302,13 @@ def build_site(
             raise ValueError(f"site output must be a directory: {output}")
         shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True)
-    export_catalog(output / "api/v1", nodes, edges, generated_at)
+    export_catalog(
+        output / "api/v1",
+        nodes,
+        edges,
+        generated_at,
+        source_revision=source_revision,
+    )
     assets = output / "assets"
     assets.mkdir(parents=True, exist_ok=True)
     shutil.copy2(ROOT / "site_src/assets/site.css", assets / "site.css")
@@ -331,8 +338,15 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, default=ROOT / "build/site")
     parser.add_argument("--base-url", default="https://example.invalid")
+    parser.add_argument("--source-revision")
     args = parser.parse_args()
-    build_site(args.output, load_nodes(None), load_edges(), args.base_url)
+    build_site(
+        args.output,
+        load_nodes(None),
+        load_edges(),
+        args.base_url,
+        source_revision=args.source_revision,
+    )
     files = [path for path in args.output.rglob("*") if path.is_file()]
     print(f"built {len(files)} files ({sum(path.stat().st_size for path in files)} bytes)")
     return 0

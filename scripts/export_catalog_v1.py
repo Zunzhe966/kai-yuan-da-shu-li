@@ -11,7 +11,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from atlas_lib import load_edges, load_nodes  # noqa: E402
-from published_catalog import build_public_record, stable_generated_at  # noqa: E402
+from published_catalog import (  # noqa: E402
+    build_public_record,
+    stable_catalog_hash,
+    stable_generated_at,
+)
 
 
 def _write_json(path: Path, payload: Any) -> None:
@@ -32,6 +36,7 @@ def export_catalog(
     nodes: dict[str, dict[str, Any]],
     edges: list[dict[str, str]],
     generated_at: str,
+    source_revision: str | None = None,
 ) -> None:
     records = [build_public_record(node_id, nodes[node_id]) for node_id in sorted(nodes)]
     domains = _facet_values(records, "domain")
@@ -41,29 +46,30 @@ def export_catalog(
             raise ValueError(f"catalog output must be a directory: {output}")
         shutil.rmtree(output)
     output.mkdir(parents=True, exist_ok=True)
-    _write_json(
-        output / "meta.json",
-        {
-            "schema_version": "1.0.0",
-            "generated_at": generated_at,
-            "node_count": len(records),
-            "edge_count": len(edges),
-            "domains": domains,
-            "facets": {
-                "languages": _facet_values(records, "language"),
-                "licenses": _facet_values(records, "license"),
-                "statuses": _facet_values(records, "status"),
-                "tags": tags,
-            },
-            "surfaces": {
-                "catalog_jsonl": "catalog.jsonl",
-                "search_index": "search-index.json",
-                "domain_template": "domains/{domain}.json",
-                "node_template": "nodes/{id}.json",
-            },
-            "feedback_policy": "report-only-material-mismatches",
+    metadata = {
+        "schema_version": "1.0.0",
+        "generated_at": generated_at,
+        "catalog_hash": stable_catalog_hash(records, edges),
+        "node_count": len(records),
+        "edge_count": len(edges),
+        "domains": domains,
+        "facets": {
+            "languages": _facet_values(records, "language"),
+            "licenses": _facet_values(records, "license"),
+            "statuses": _facet_values(records, "status"),
+            "tags": tags,
         },
-    )
+        "surfaces": {
+            "catalog_jsonl": "catalog.jsonl",
+            "search_index": "search-index.json",
+            "domain_template": "domains/{domain}.json",
+            "node_template": "nodes/{id}.json",
+        },
+        "feedback_policy": "report-only-material-mismatches",
+    }
+    if source_revision:
+        metadata["source_revision"] = source_revision
+    _write_json(output / "meta.json", metadata)
     _write_json(output / "catalog.json", {"nodes": records, "edges": edges})
     (output / "catalog.jsonl").write_text(
         "".join(

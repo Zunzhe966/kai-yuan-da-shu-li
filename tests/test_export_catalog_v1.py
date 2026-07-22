@@ -3,10 +3,17 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from scripts.atlas_lib import load_edges, load_nodes
 from scripts.export_catalog_v1 import export_catalog
 
 
 class ExportCatalogV1Tests(unittest.TestCase):
+    @staticmethod
+    def _snapshot_content(path: Path):
+        if path.suffix != ".json":
+            return path.read_bytes()
+        return json.loads(path.read_text(encoding="utf-8"))
+
     def test_export_writes_versioned_machine_and_category_surfaces(self):
         nodes = {
             "alpha": {
@@ -35,6 +42,7 @@ class ExportCatalogV1Tests(unittest.TestCase):
             meta = json.loads((root / "meta.json").read_text())
             self.assertEqual(meta["node_count"], 2)
             self.assertEqual(meta["edge_count"], 1)
+            self.assertRegex(meta["catalog_hash"], r"^[0-9a-f]{64}$")
             self.assertEqual(meta["facets"]["languages"], ["Go", "Python"])
             self.assertTrue((root / "catalog.jsonl").exists())
             self.assertTrue((root / "domains/devtools.json").exists())
@@ -71,6 +79,31 @@ class ExportCatalogV1Tests(unittest.TestCase):
             self.assertFalse((output / "nodes/alpha.json").exists())
             self.assertFalse((output / "domains/devtools.json").exists())
             self.assertTrue((output / "nodes/beta.json").exists())
+
+    def test_tracked_catalog_snapshot_matches_current_graph(self):
+        tracked = Path("dist/v1")
+        tracked_meta = json.loads((tracked / "meta.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as directory:
+            rebuilt = Path(directory) / "v1"
+            export_catalog(
+                rebuilt,
+                load_nodes(None),
+                load_edges(),
+                generated_at=tracked_meta["generated_at"],
+            )
+            tracked_files = sorted(
+                path.relative_to(tracked) for path in tracked.rglob("*") if path.is_file()
+            )
+            rebuilt_files = sorted(
+                path.relative_to(rebuilt) for path in rebuilt.rglob("*") if path.is_file()
+            )
+            self.assertEqual(tracked_files, rebuilt_files)
+            for relative in tracked_files:
+                self.assertEqual(
+                    self._snapshot_content(tracked / relative),
+                    self._snapshot_content(rebuilt / relative),
+                    relative.as_posix(),
+                )
 
 
 if __name__ == "__main__":

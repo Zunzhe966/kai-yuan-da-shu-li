@@ -27,7 +27,12 @@ jobs:
       - run: .venv/bin/python -m unittest discover -s tests -v
       - run: .venv/bin/python scripts/run_retrieval_eval.py
       - run: .venv/bin/python scripts/export_catalog_v1.py --output build/catalog-v1
-      - run: .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
+      - run: |
+          SOURCE_REVISION="$(git rev-parse HEAD)"
+          .venv/bin/python scripts/build_static_site.py \
+            --output build/site \
+            --base-url https://kai-yuan-da-shu-li.pages.dev \
+            --source-revision "$SOURCE_REVISION"
       - run: |
           .venv/bin/python - <<'PY'
           import json

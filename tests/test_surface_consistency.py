@@ -159,6 +159,7 @@ class SurfaceConsistencyTests(unittest.TestCase):
             self.assertNotIn("$CF_PAGES_URL", text)
 
     def test_pages_deploy_waits_for_verified_main_and_uses_a_supported_probe_identity(self):
+        verify = Path(".github/workflows/verify.yml").read_text(encoding="utf-8")
         workflow = Path(".github/workflows/pages-deploy.yml").read_text(encoding="utf-8")
         self.assertIn("workflow_run:", workflow)
         self.assertIn('workflows: ["verify"]', workflow)
@@ -169,6 +170,10 @@ class SurfaceConsistencyTests(unittest.TestCase):
         self.assertIn("id: commit", workflow)
         self.assertIn("deploy_current=true", workflow)
         self.assertIn("steps.commit.outputs.deploy_current == 'true'", workflow)
+        self.assertIn("--source-revision", verify)
+        self.assertIn("--source-revision", workflow)
+        self.assertIn('"catalog_hash"', workflow)
+        self.assertIn('"source_revision"', workflow)
 
     def test_phase_one_documents_ad_surfaces_without_enabling_them(self):
         advertising_path = Path("docs/advertising.md")

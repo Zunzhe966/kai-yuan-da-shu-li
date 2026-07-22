@@ -68,6 +68,25 @@ def stable_content_hash(node: dict[str, Any], node_id: str | None = None) -> str
     return hashlib.sha256(encoded).hexdigest()
 
 
+def stable_catalog_hash(
+    records: list[dict[str, Any]], edges: list[dict[str, Any]]
+) -> str:
+    """Return an order-independent identity for the published graph contents."""
+    canonical = {
+        "nodes": sorted(records, key=lambda record: record["id"]),
+        "edges": sorted(
+            edges,
+            key=lambda edge: json.dumps(
+                edge, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+            ),
+        ),
+    }
+    encoded = json.dumps(
+        canonical, ensure_ascii=False, sort_keys=True, separators=(",", ":")
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
 def build_public_record(node_id: str, node: dict[str, Any]) -> dict[str, Any]:
     record = _visible_payload(node_id, node)
     evidence = node.get("evidence_urls") or ([record["repo"]] if record["repo"] else [])
