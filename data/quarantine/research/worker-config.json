@@ -5,6 +5,7 @@
   "dossier_schema_version": "research-dossier-v1",
   "manifest_schema_version": "research-batch-manifest-v1",
   "taxonomy_version": "research-taxonomy-v1",
+
   "batch": {
     "initial_repositories": 20,
     "current_repositories": 20,
