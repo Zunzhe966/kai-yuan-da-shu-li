@@ -18,11 +18,26 @@ def stable_generated_at(repo_root: Path = ROOT) -> str:
     if raw_epoch is None:
         try:
             raw_epoch = subprocess.check_output(
-                ["git", "show", "-s", "--format=%ct", "HEAD"],
+                [
+                    "git",
+                    "log",
+                    "-1",
+                    "--format=%ct",
+                    "--",
+                    "data/domains",
+                    "graph/edges.yaml",
+                ],
                 cwd=repo_root,
                 text=True,
                 stderr=subprocess.DEVNULL,
             ).strip()
+            if not raw_epoch:
+                raw_epoch = subprocess.check_output(
+                    ["git", "show", "-s", "--format=%ct", "HEAD"],
+                    cwd=repo_root,
+                    text=True,
+                    stderr=subprocess.DEVNULL,
+                ).strip()
         except (OSError, subprocess.CalledProcessError) as error:
             raise RuntimeError(
                 "set SOURCE_DATE_EPOCH or build from a Git checkout with HEAD"

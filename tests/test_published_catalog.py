@@ -70,6 +70,39 @@ class PublishedCatalogTests(unittest.TestCase):
                     "2001-09-09T02:46:40Z",
                 )
 
+    def test_generated_at_uses_latest_canonical_input_commit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            subprocess.run(["git", "config", "user.name", "Test"], cwd=root, check=True)
+            subprocess.run(
+                ["git", "config", "user.email", "test@example.invalid"], cwd=root, check=True
+            )
+            canonical = root / "data/domains/example.yaml"
+            canonical.parent.mkdir(parents=True)
+            canonical.write_text("domain: example\n")
+            subprocess.run(["git", "add", "data/domains/example.yaml"], cwd=root, check=True)
+            source_env = dict(
+                os.environ,
+                GIT_AUTHOR_DATE="2001-09-09T01:46:40Z",
+                GIT_COMMITTER_DATE="2001-09-09T01:46:40Z",
+            )
+            subprocess.run(["git", "commit", "-qm", "catalog"], cwd=root, check=True, env=source_env)
+            (root / "README.md").write_text("release metadata\n")
+            subprocess.run(["git", "add", "README.md"], cwd=root, check=True)
+            head_env = dict(
+                os.environ,
+                GIT_AUTHOR_DATE="2001-09-09T02:46:40Z",
+                GIT_COMMITTER_DATE="2001-09-09T02:46:40Z",
+            )
+            subprocess.run(["git", "commit", "-qm", "release"], cwd=root, check=True, env=head_env)
+
+            with patch.dict(os.environ, {}, clear=True):
+                self.assertEqual(
+                    stable_generated_at(repo_root=root),
+                    "2001-09-09T01:46:40Z",
+                )
+
     def test_generated_at_fails_without_environment_or_git(self):
         with tempfile.TemporaryDirectory() as directory:
             with patch.dict(os.environ, {}, clear=True):
