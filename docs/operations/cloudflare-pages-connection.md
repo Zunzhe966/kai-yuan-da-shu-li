@@ -11,11 +11,13 @@
 
 该路径不依赖每次浏览器登录；授权以 Token 生命周期为准，可在 CI 长期复用。若 secrets 缺失，workflow 会直接失败并提示补齐项。
 
-## 2026-07-22 当前故障事实
+## 2026-07-23 当前故障事实
 
-- GitHub `main` 的 `verify` 已成功，`pages-deploy` 也被自动触发，说明固定触发线路存在。
+- GitHub `main` 提交 `0d5b749` 的 [`verify` 运行 29961438123](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29961438123) 已成功。
+- 同一提交自动触发了 [`pages-deploy` 运行 29961471327](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29961471327)，检出、当前 `main` 校验、Secret 名称检查和 2089 文件站点构建均成功，说明固定触发线路存在。
 - `pages-deploy` 在 Wrangler 查询 Pages 项目时收到 Cloudflare `Authentication error [code: 10000]`，不是构建失败或 GitHub 未同步。
-- GitHub 仓库仍有 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 两个 Secret 名称，但 Cloudflare 控制台当前显示没有可用的 User API Token。因此旧 Secret 对应的 Token 已失效、被撤销或不再属于当前账户。
+- GitHub 仓库仍有 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 两个 Secret 名称，但 Cloudflare 控制台当前显示 Account API Token 与 User API Token 都为空。因此旧 Secret 对应的 Token 已失效、被撤销或不再属于当前账户。
+- 当前构建已在元数据中写入 `source_revision` 与 `catalog_hash`；Token 修复后，线上探针会同时比较提交、目录哈希、节点数和边数，不再只按数量判断发布成功。
 - 修复动作：在当前 Cloudflare 账户创建仅具备 Pages 部署所需权限的新 Token，替换 GitHub `CLOUDFLARE_API_TOKEN`，重新运行 `pages-deploy` 并以线上 meta 与当前构建一致作为完成证据。
 - Token 值、账户 ID 和任何恢复信息不得写进仓库、日志或公开台账。修复后仍使用 GitHub Actions 固定线路，不恢复每次浏览器手动上传。
 

@@ -1,6 +1,6 @@
 # 运营状态与决策台账
 
-更新时间：2026-07-21
+更新时间：2026-07-23
 
 ## 已冻结决策
 
@@ -27,5 +27,6 @@
 
 ## Cloudflare 自动化状态
 
-- 本仓已有 `wrangler` 本地账号缓存与 Pages 项目标识（见 `.wrangler/cache/`）。
-- 默认推进路径：API Token + `wrangler pages deploy`，减少浏览器登录依赖。
+- GitHub `main` 提交 `0d5b749` 已通过云端 `verify`，并自动触发 `pages-deploy`；GitHub 到部署工作流的固定线路有效。
+- Pages 项目存在，但 Cloudflare 当前没有可用的 Account API Token 或 User API Token；Wrangler 因此返回认证错误 `10000`。
+- 默认推进路径仍是最小权限 API Token + `wrangler pages deploy`。下一次账户变更只创建 Pages 部署所需 Token、替换 GitHub Secret，并以 `source_revision`、`catalog_hash`、节点数和边数一致完成验收。
