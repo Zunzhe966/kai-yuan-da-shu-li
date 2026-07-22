@@ -1,7 +1,9 @@
 name: pages-deploy
 
 on:
-  push:
+  workflow_run:
+    workflows: ["verify"]
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -9,17 +11,35 @@ permissions:
   contents: read
 
 concurrency:
-  group: pages-deploy-${{ github.ref }}
-  # Do not cancel in-flight deploys: rapid main merges were racing CDN probes and emailing failures.
-  cancel-in-progress: false
+  group: pages-deploy-main
+  cancel-in-progress: true
 
 jobs:
   deploy:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+          fetch-depth: 0
+
+      - name: Check whether verified commit is current main
+        id: commit
+        run: |
+          git fetch origin main
+          if [[ "$(git rev-parse HEAD)" == "$(git rev-parse origin/main)" ]]; then
+            echo "deploy_current=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy_current=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping superseded verified commit $(git rev-parse --short HEAD)."
+          fi
 
       - name: Validate required secrets
+        if: steps.commit.outputs.deploy_current == 'true'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -33,10 +53,12 @@ jobs:
           fi
 
       - uses: actions/setup-python@v5
+        if: steps.commit.outputs.deploy_current == 'true'
         with:
           python-version: "3.12"
 
       - name: Build static site
+        if: steps.commit.outputs.deploy_current == 'true'
         run: |
           python -m venv .venv
           .venv/bin/pip install -r requirements.txt
@@ -44,6 +66,7 @@ jobs:
           .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
 
       - name: Deploy to Cloudflare Pages
+        if: steps.commit.outputs.deploy_current == 'true'
         id: deploy
         uses: cloudflare/wrangler-action@v3
         with:
@@ -52,17 +75,18 @@ jobs:
           command: pages deploy build/site --project-name kai-yuan-da-shu-li
 
       - name: Probe live meta after deploy
+        if: steps.commit.outputs.deploy_current == 'true'
         env:
           META_URL: https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json
         run: |
           set -euo pipefail
-          # Cloudflare Pages edge can lag behind upload; wait until live scale matches this build
-          # (not merely HTTP 200 with stale CDN cache — that was spamming failure emails).
+          # Cloudflare Pages edge can lag behind upload. The default Python urllib identity is
+          # challenged by Cloudflare, so use the GitHub Actions identity confirmed for this host.
           .venv/bin/python - <<'PY'
           import json
           import os
           import time
-          import urllib.request
+          import subprocess
           from pathlib import Path
 
           meta_url = os.environ["META_URL"]
@@ -73,10 +97,19 @@ jobs:
           # ~3 minutes: 24 * 8s
           for attempt in range(1, 25):
               try:
-                  req = urllib.request.Request(meta_url, headers={"Cache-Control": "no-cache", "Pragma": "no-cache"})
-                  with urllib.request.urlopen(req, timeout=30) as resp:
-                      code = str(resp.status)
-                      live = json.loads(resp.read().decode("utf-8"))
+                  response = subprocess.run(
+                      [
+                          "curl", "--fail-with-body", "--silent", "--show-error",
+                          "--max-time", "30", "--header", "Cache-Control: no-cache",
+                          "--header", "Pragma: no-cache", "--user-agent",
+                          "GitHub-Actions/1.0 (+https://github.com/actions)", meta_url,
+                      ],
+                      check=True,
+                      capture_output=True,
+                      text=True,
+                  )
+                  code = "200"
+                  live = json.loads(response.stdout)
               except Exception as exc:
                   code = f"err:{exc}"
                   live = None

@@ -5,7 +5,7 @@
 ## 自动化优先路径（推荐默认）
 
 1. 在 GitHub 仓库设置一次性配置 secrets：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`。
-2. `main` 分支 push（或手动触发 `pages-deploy`）后，GitHub Actions 自动构建 `build/site` 并执行：`wrangler pages deploy build/site --project-name kai-yuan-da-shu-li`。
+2. `main` 的 `verify` 成功完成后（或受控手动触发 `pages-deploy`），GitHub Actions 自动构建 `build/site` 并执行：`wrangler pages deploy build/site --project-name kai-yuan-da-shu-li`。
 3. 通过 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 返回 200 作为部署事实证据。
 4. 把 workflow 运行链接、部署 URL、提交 SHA 写入发布记录。
 

@@ -16,6 +16,18 @@ class SurfaceConsistencyTests(unittest.TestCase):
             self.assertIn("https://kai-yuan-da-shu-li.pages.dev", text)
             self.assertNotIn("$CF_PAGES_URL", text)
 
+    def test_pages_deploy_waits_for_verified_main_and_uses_a_supported_probe_identity(self):
+        workflow = Path(".github/workflows/pages-deploy.yml").read_text(encoding="utf-8")
+        self.assertIn("workflow_run:", workflow)
+        self.assertIn('workflows: ["verify"]', workflow)
+        self.assertIn("github.event.workflow_run.conclusion == 'success'", workflow)
+        self.assertIn("github.event.workflow_run.head_sha", workflow)
+        self.assertIn("GitHub-Actions/1.0 (+https://github.com/actions)", workflow)
+        self.assertNotIn("urllib.request", workflow)
+        self.assertIn("id: commit", workflow)
+        self.assertIn("deploy_current=true", workflow)
+        self.assertIn("steps.commit.outputs.deploy_current == 'true'", workflow)
+
     def test_phase_one_documents_ad_surfaces_without_enabling_them(self):
         advertising_path = Path("docs/advertising.md")
         self.assertTrue(advertising_path.exists())

@@ -29,13 +29,13 @@ shasum -a 256 build/releases/*.tar.gz
 Pull request
 → GitHub Actions 云端验证（verify）
 → 验证通过后合并到受保护的 main
-→ GitHub Actions 自动触发 pages-deploy（main push / workflow_dispatch）
+→ verify 在 main 成功完成后自动触发 pages-deploy（或受控 workflow_dispatch）
 → pages-deploy 构建 build/site 并执行 wrangler pages deploy
 → 自动发布到 https://kai-yuan-da-shu-li.pages.dev
 → 线上 api/v1/meta.json 作为发布后事实核验
 ```
 
-该路径不依赖 Cloudflare 控制台每次人工点选发布，不复用本地目录，发布证据在 GitHub Actions 运行记录中可追溯。
+该路径不依赖 Cloudflare 控制台每次人工点选发布，不复用本地目录，发布证据在 GitHub Actions 运行记录中可追溯。`pages-deploy` 只接受 `main` 上成功完成的 `verify`；开始部署前还会确认该提交仍是当前 `main`，避免旧验证任务发布过时版本。
 
 ## Cloudflare Pages 发布
 
