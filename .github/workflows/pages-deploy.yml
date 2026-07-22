@@ -76,7 +76,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy build/site --project-name kai-yuan-da-shu-li
+          command: pages deploy build/site --project-name kai-yuan-da-shu-li --branch main
 
       - name: Probe live meta after deploy
         if: steps.commit.outputs.deploy_current == 'true'

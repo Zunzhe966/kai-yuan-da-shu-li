@@ -170,6 +170,7 @@ class SurfaceConsistencyTests(unittest.TestCase):
         self.assertIn("id: commit", workflow)
         self.assertIn("deploy_current=true", workflow)
         self.assertIn("steps.commit.outputs.deploy_current == 'true'", workflow)
+        self.assertIn("--branch main", workflow)
         self.assertIn("--source-revision", verify)
         self.assertIn("--source-revision", workflow)
         self.assertIn('"catalog_hash"', workflow)
