@@ -1,7 +1,6 @@
 {
   "schema_version": "research-worker-config-v1",
-  "status": "blocked",
-  "blocked_reason": "Trusted research workflow has not been merged, required, and remotely verified.",
+  "status": "ready",
   "dossier_schema_version": "research-dossier-v1",
   "manifest_schema_version": "research-batch-manifest-v1",
   "taxonomy_version": "research-taxonomy-v1",
