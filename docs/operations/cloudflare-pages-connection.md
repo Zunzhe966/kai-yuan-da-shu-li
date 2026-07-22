@@ -18,7 +18,8 @@
 - 该预览部署的 `source_revision=71e0ba8dd9a4b13dd234a658368cf1c2b33c1436`、`catalog_hash=0ce65b272d8bf3e0290a279cc956ca9fd9506750034b009c1d40bc3c112034a7`、`node_count=495`、`edge_count=660`，证明构建内容正确，问题只在部署环境归类。
 - [PR #27](https://github.com/Zunzhe966/kai-yuan-da-shu-li/pull/27) 在 Wrangler 命令中显式加入 `--branch main`，同时保留精确 SHA 检出、当前 `main` 校验和线上元数据探针。
 - PR 合并为 `main` 提交 `049316f62a171028aeaa35a55bcf3db82ecc7f69` 后，[`verify` 运行 29964294481](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964294481) 成功，并通过 `workflow_run` 自动触发 [`pages-deploy` 运行 29964318056](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964318056)；该部署、生产探针均成功。
-- 生产 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 最终返回 `source_revision=049316f62a171028aeaa35a55bcf3db82ecc7f69`、相同目录哈希、495 个节点和 660 条关系，固定自动上线线路已恢复。
+- 恢复验收时，生产 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 返回 `source_revision=049316f62a171028aeaa35a55bcf3db82ecc7f69`、相同目录哈希、495 个节点和 660 条关系，固定自动上线线路已恢复。
+- 随后台账 [PR #28](https://github.com/Zunzhe966/kai-yuan-da-shu-li/pull/28) 合并为 `b77fd3fdbe4a41092af869fca31ce55e0e6c4a48`，[`verify` 运行 29964617632](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964617632) 与自动 [`pages-deploy` 运行 29964641257](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964641257) 再次成功，证明后续 `main` 变更也沿固定线路发布。当前线上 SHA 不在版本化文档中写死，以实时 meta 与当前 `main` 一致为准。
 - Token 值和任何恢复信息不得写进仓库、日志或公开台账。日常发布不需要浏览器登录或手动上传；仅在 Token 失效或被撤销时轮换凭据。
 
 ## 控制台 Connect to Git（可选）
