@@ -5,21 +5,21 @@
 ## 自动化优先路径（推荐默认）
 
 1. 在 GitHub 仓库设置一次性配置 secrets：`CLOUDFLARE_API_TOKEN`、`CLOUDFLARE_ACCOUNT_ID`。
-2. `main` 的 `verify` 成功完成后（或受控手动触发 `pages-deploy`），GitHub Actions 自动构建 `build/site` 并执行：`wrangler pages deploy build/site --project-name kai-yuan-da-shu-li`。
+2. `main` 的 `verify` 成功完成后（或受控手动触发 `pages-deploy`），GitHub Actions 自动构建 `build/site` 并执行：`wrangler pages deploy build/site --project-name kai-yuan-da-shu-li --branch main`。显式分支参数是生产发布不变式，不得依赖 detached HEAD 的自动推断。
 3. 通过 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 返回 200 作为部署事实证据。
 4. 把 workflow 运行链接、部署 URL、提交 SHA 写入发布记录。
 
 该路径不依赖每次浏览器登录；授权以 Token 生命周期为准，可在 CI 长期复用。若 secrets 缺失，workflow 会直接失败并提示补齐项。
 
-## 2026-07-23 当前故障事实
+## 2026-07-23 恢复完成证据
 
-- GitHub `main` 提交 `0d5b749` 的 [`verify` 运行 29961438123](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29961438123) 已成功。
-- 同一提交自动触发了 [`pages-deploy` 运行 29961471327](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29961471327)，检出、当前 `main` 校验、Secret 名称检查和 2089 文件站点构建均成功，说明固定触发线路存在。
-- `pages-deploy` 在 Wrangler 查询 Pages 项目时收到 Cloudflare `Authentication error [code: 10000]`，不是构建失败或 GitHub 未同步。
-- GitHub 仓库仍有 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID` 两个 Secret 名称，但 Cloudflare 控制台当前显示 Account API Token 与 User API Token 都为空。因此旧 Secret 对应的 Token 已失效、被撤销或不再属于当前账户。
-- 当前构建已在元数据中写入 `source_revision` 与 `catalog_hash`；Token 修复后，线上探针会同时比较提交、目录哈希、节点数和边数，不再只按数量判断发布成功。
-- 修复动作：在当前 Cloudflare 账户创建仅具备 Pages 部署所需权限的新 Token，替换 GitHub `CLOUDFLARE_API_TOKEN`，重新运行 `pages-deploy` 并以线上 meta 与当前构建一致作为完成证据。
-- Token 值、账户 ID 和任何恢复信息不得写进仓库、日志或公开台账。修复后仍使用 GitHub Actions 固定线路，不恢复每次浏览器手动上传。
+- 旧 `CLOUDFLARE_API_TOKEN` 已失效，历史运行 `29961471327` 在 Wrangler 查询 Pages 项目时返回 `Authentication error [code: 10000]`。当前 Cloudflare 账户已创建只包含 `Cloudflare Pages: Edit` 的最小权限 Token，并替换 GitHub Secret `CLOUDFLARE_API_TOKEN`；未修改域名、DNS、支付、账户成员或其他权限。
+- 凭据替换后，受控手动运行 [`29963596909`](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29963596909) 已完成认证和上传，证明 Token 有效。但 Actions 按精确 SHA 检出时处于 detached HEAD，Wrangler 将分支误判为 `HEAD`，只生成 `head.kai-yuan-da-shu-li.pages.dev` 预览别名，生产地址未更新。
+- 该预览部署的 `source_revision=71e0ba8dd9a4b13dd234a658368cf1c2b33c1436`、`catalog_hash=0ce65b272d8bf3e0290a279cc956ca9fd9506750034b009c1d40bc3c112034a7`、`node_count=495`、`edge_count=660`，证明构建内容正确，问题只在部署环境归类。
+- [PR #27](https://github.com/Zunzhe966/kai-yuan-da-shu-li/pull/27) 在 Wrangler 命令中显式加入 `--branch main`，同时保留精确 SHA 检出、当前 `main` 校验和线上元数据探针。
+- PR 合并为 `main` 提交 `049316f62a171028aeaa35a55bcf3db82ecc7f69` 后，[`verify` 运行 29964294481](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964294481) 成功，并通过 `workflow_run` 自动触发 [`pages-deploy` 运行 29964318056](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964318056)；该部署、生产探针均成功。
+- 生产 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 最终返回 `source_revision=049316f62a171028aeaa35a55bcf3db82ecc7f69`、相同目录哈希、495 个节点和 660 条关系，固定自动上线线路已恢复。
+- Token 值和任何恢复信息不得写进仓库、日志或公开台账。日常发布不需要浏览器登录或手动上传；仅在 Token 失效或被撤销时轮换凭据。
 
 ## 控制台 Connect to Git（可选）
 
