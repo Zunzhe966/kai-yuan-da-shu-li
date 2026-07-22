@@ -1,0 +1,149 @@
+name: pr-gate
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  test-and-build:
+    name: test-and-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out exact candidate head without credentials
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          path: candidate
+          persist-credentials: false
+
+      - name: Detect research batch changes
+        id: research
+        env:
+          BASE_REPO: ${{ github.repository }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          CANDIDATE: ${{ github.workspace }}/candidate
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$(git -C "$CANDIDATE" rev-parse HEAD)" == "$HEAD_SHA" ]] || {
+            echo "ERROR: candidate checkout does not match event head SHA" >&2
+            exit 1
+          }
+          git -C "$CANDIDATE" fetch --no-tags \
+            "https://github.com/${BASE_REPO}.git" "$BASE_SHA"
+          git -C "$CANDIDATE" cat-file -e "$BASE_SHA^{commit}"
+          git -C "$CANDIDATE" merge-base "$BASE_SHA" "$HEAD_SHA" >/dev/null
+
+          DIFF_LIST="$RUNNER_TEMP/pr-changed-files.zlist"
+          if ! git -C "$CANDIDATE" diff --name-only -z --no-renames \
+            "$BASE_SHA...$HEAD_SHA" > "$DIFF_LIST"; then
+            echo "ERROR: unable to classify the exact pull request snapshot" >&2
+            exit 1
+          fi
+          changed=false
+          if [[ "$HEAD_REF" == data/research-* ]]; then
+            changed=true
+          fi
+          while IFS= read -r -d '' path; do
+            if [[ "$path" == data/quarantine/research/* ]]; then
+              changed=true
+              break
+            fi
+          done < "$DIFF_LIST"
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+          echo "research_changed=$changed"
+
+      - name: Delegate research validation
+        if: steps.research.outputs.changed == 'true'
+        run: echo "research PR content is validated only by the trusted research-boundary workflow"
+
+      - uses: actions/setup-python@v5
+        if: steps.research.outputs.changed != 'true'
+        with:
+          python-version: "3.12"
+
+      - name: Create candidate virtual environment
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: python -m venv .venv
+
+      - name: Install candidate dependencies
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/pip install -r requirements.txt
+
+      - name: Validate graph
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python scripts/validate_graph.py
+
+      - name: Run unit tests
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python -m unittest discover -s tests -v
+
+      - name: Run retrieval evaluation
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python scripts/run_retrieval_eval.py
+
+      - name: Export catalog
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python scripts/export_catalog_v1.py --output build/catalog-v1
+
+      - name: Build static site
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python scripts/build_static_site.py --output build/site --base-url https://kai-yuan-da-shu-li.pages.dev
+
+      - name: Verify static site contract
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: |
+          .venv/bin/python - <<'PY'
+          import json
+          from pathlib import Path
+
+          site = Path("build/site")
+          meta = json.loads((site / "api/v1/meta.json").read_text(encoding="utf-8"))
+          assert meta["node_count"] > 0
+          assert meta["edge_count"] > 0
+          assert not "adsbygoogle" in "".join(
+              path.read_text(encoding="utf-8") for path in site.rglob("*.html")
+          )
+          for route in ("about", "contact", "privacy", "cookies", "advertising", "methodology"):
+              assert (site / route / "index.html").is_file(), route
+          print("static_site_contract=OK")
+          PY
+
+      - name: Build release
+        if: steps.research.outputs.changed != 'true'
+        working-directory: candidate
+        run: .venv/bin/python scripts/build_release.py --site build/site --output build/releases --release-name ci
+
+      - name: Upload verified static release
+        if: steps.research.outputs.changed != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-static-release
+          path: candidate/build/releases/
+          retention-days: 7
+
+      - name: Upload verified static site
+        if: steps.research.outputs.changed != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: verified-static-site
+          path: candidate/build/site/
+          retention-days: 7
