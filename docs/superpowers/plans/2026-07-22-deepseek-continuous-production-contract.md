@@ -66,6 +66,12 @@
 - [x] Run `.venv/bin/python scripts/run_retrieval_eval.py` and require `67/67`.
 - [x] Run the site/release build commands used by `verify.yml`, JSON/YAML parsing, Python compilation, and `git diff --check`.
 - [x] Merge the trusted PR gate bootstrap as PR #19 while keeping `worker-config.status=blocked`.
-- [ ] Commit and push the contract with `worker-config.status=blocked`, open a PR, and verify the trusted remote workflow against a harmless fixture PR.
-- [ ] Add `research-boundary` to protected-main required checks.
-- [ ] In a separate PR, switch `worker-config.status` to `ready`; only then hand the final bootstrap text to DeepSeek for its first 20-repository accumulation run.
+- [x] Merge contract PR #21 with `worker-config.status=blocked`; main verify passed at `d21b523`.
+- [x] Run harmless config-only fixture PR #22; `pr-gate / test-and-build` and `research-boundary / research-boundary` both passed, then close it without merge.
+- [x] Add both `test-and-build` and `research-boundary` to protected-main required checks with strict updates enabled.
+- [x] Merge separate activation PR #23, switch `worker-config.status` to `ready`, and verify main at `53bd564`.
+- [x] Final DeepSeek bootstrap text is live in `docs/operations/goal-mode-bootstrap.md`; the first accumulation run starts with 20 repositories from `since=0`.
+
+### Current independent blocker
+
+The research worker contract is active. Website publication is a separate line: `pages-deploy` for main `53bd564` still fails in Cloudflare Wrangler with `Authentication error [code: 10000]`. Creating or rotating the Cloudflare Pages API token and replacing the GitHub Secret requires explicit account authorization and is not a DeepSeek data-worker task.
