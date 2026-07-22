@@ -6,7 +6,6 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
 
 concurrency:
   group: pr-gate-${{ github.event.pull_request.number }}
@@ -17,61 +16,7 @@ jobs:
     name: test-and-build
     runs-on: ubuntu-latest
     steps:
-      - name: Detect research batch changes
-        id: research
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-          HEAD_REF: ${{ github.event.pull_request.head.ref }}
-          PR_API_URL: ${{ github.event.pull_request.url }}
-          PR_CHANGED_FILES: ${{ github.event.pull_request.changed_files }}
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import json
-          import os
-          from urllib.parse import urlencode
-          from urllib.request import Request, urlopen
-
-          changed = os.environ["HEAD_REF"].startswith("data/research-")
-          changed_files = int(os.environ["PR_CHANGED_FILES"])
-          if changed_files > 3000:
-              raise SystemExit("pull request exceeds GitHub's auditable 3000-file limit")
-          headers = {
-              "Accept": "application/vnd.github+json",
-              "Authorization": f"Bearer {os.environ['GITHUB_TOKEN']}",
-              "User-Agent": "kai-yuan-da-shu-li-pr-gate/1.0",
-              "X-GitHub-Api-Version": "2022-11-28",
-          }
-          seen_files = 0
-          if not changed:
-              for page in range(1, (changed_files + 99) // 100 + 1):
-                  query = urlencode({"per_page": 100, "page": page})
-                  request = Request(
-                      f"{os.environ['PR_API_URL']}/files?{query}", headers=headers
-                  )
-                  with urlopen(request, timeout=30) as response:
-                      files = json.load(response)
-                  seen_files += len(files)
-                  if any(
-                      item.get(key, "").startswith("data/quarantine/research/")
-                      for item in files
-                      for key in ("filename", "previous_filename")
-                  ):
-                      changed = True
-                      break
-              if not changed and seen_files != changed_files:
-                  raise SystemExit("Pull Files API did not return the complete changed-file set")
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
-              output.write(f"changed={'true' if changed else 'false'}\n")
-          print(f"research_changed={'true' if changed else 'false'}")
-          PY
-
-      - name: Delegate research validation
-        if: steps.research.outputs.changed == 'true'
-        run: echo "research PR content is validated only by the trusted research-boundary workflow"
-
       - name: Check out exact candidate head without credentials
-        if: steps.research.outputs.changed != 'true'
         uses: actions/checkout@v4
         with:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
@@ -79,6 +24,48 @@ jobs:
           fetch-depth: 0
           path: candidate
           persist-credentials: false
+
+      - name: Detect research batch changes
+        id: research
+        env:
+          BASE_REPO: ${{ github.repository }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          CANDIDATE: ${{ github.workspace }}/candidate
+          HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          [[ "$(git -C "$CANDIDATE" rev-parse HEAD)" == "$HEAD_SHA" ]] || {
+            echo "ERROR: candidate checkout does not match event head SHA" >&2
+            exit 1
+          }
+          git -C "$CANDIDATE" fetch --no-tags \
+            "https://github.com/${BASE_REPO}.git" "$BASE_SHA"
+          git -C "$CANDIDATE" cat-file -e "$BASE_SHA^{commit}"
+          git -C "$CANDIDATE" merge-base "$BASE_SHA" "$HEAD_SHA" >/dev/null
+
+          DIFF_LIST="$RUNNER_TEMP/pr-changed-files.zlist"
+          if ! git -C "$CANDIDATE" diff --name-only -z --no-renames \
+            "$BASE_SHA...$HEAD_SHA" > "$DIFF_LIST"; then
+            echo "ERROR: unable to classify the exact pull request snapshot" >&2
+            exit 1
+          fi
+          changed=false
+          if [[ "$HEAD_REF" == data/research-* ]]; then
+            changed=true
+          fi
+          while IFS= read -r -d '' path; do
+            if [[ "$path" == data/quarantine/research/* ]]; then
+              changed=true
+              break
+            fi
+          done < "$DIFF_LIST"
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+          echo "research_changed=$changed"
+
+      - name: Delegate research validation
+        if: steps.research.outputs.changed == 'true'
+        run: echo "research PR content is validated only by the trusted research-boundary workflow"
 
       - uses: actions/setup-python@v5
         if: steps.research.outputs.changed != 'true'
