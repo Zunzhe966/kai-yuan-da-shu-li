@@ -280,7 +280,7 @@ Manifest 固定结构：
 }
 ```
 
-`worker.program_version` 记录实际生产程序版本；`counts.skipped` 当前固定为 `0`，不得用跳过掩盖未处理 ID；`rate_limit` 保存本批最后一次 GitHub `core` 配额快照。`artifact.path/bytes/sha256` 就是本批输出清单与校验和，不再重复增加另一套清单字段。一个仓库即使大量 unknown，只要身份和证据边界诚实，也应保留 dossier 并计入 `unknown`。完全无法取得身份或公开元数据时计入 `failed`，并记录 `failures.attempts` 的实际有界尝试次数，不得伪造空记录。失败项留在已接受 manifest 中成为可见缺口；当前顺序扫描继续前进，不把旧 ID 偷塞进下一页。重试由 GPT-5.6 后续发布独立失败重试协议后再启用。
+`worker.program_version` 记录实际生产程序版本；`counts.skipped` 当前固定为 `0`，不得用跳过掩盖未处理 ID；`rate_limit` 保存本批最后一次 GitHub `core` 配额快照。`artifact.path/bytes/sha256` 就是本批输出清单与校验和，不再重复增加另一套清单字段。一个仓库即使大量 unknown，只要身份和证据边界诚实，也应保留 dossier 并计入 `unknown`。完全无法取得身份或公开元数据时计入 `failed`，并记录 `failures.attempts` 的实际有界尝试次数，不得伪造空记录。失败项留在已接受 manifest 中成为可见缺口；当前顺序扫描继续前进，不把旧 ID 偷塞进下一页。当前批次在 manifest 封存前按本节执行有界重试；已经封存的失败项不在本轮静默重开，后续重试须等待 GPT-5.6 发布独立失败重试协议。
 
 ## 6. 校验、分支和 PR
 
@@ -296,12 +296,44 @@ PR:     data: research accumulation
 
 分支必须从当时最新 `origin/main` 创建，长期只维护一个开放的持续积累 PR。首次 PR恰好只有一个批次提交，以后每次 push 恰好增加一个直接后继批次；已推送提交和批次不可修改、重写、变基或强推。每批通过本地校验后提交并推送，必须等待该 exact head 的 `research-boundary` 成功后才开始推送下一批；不得把多个尚未通过的提交排队。受信任 CI自动离线验证该分支相对 `main` 的全部新增批次，并在线复核本次新批次；通过后直接继续下一批，不等待 GPT-5.6。用户要求接手审核时，DeepSeek停止继续推送并记录冻结提交 SHA；GPT-5.6集中审核整个冻结范围。审核通过则合并并关闭本轮 PR，审核退回则关闭或按审核结论重建；关闭后的研究 PR不得 reopen，再次启动 DeepSeek时必须从新的 `origin/main`创建下一轮持续积累分支。未审核数据不得进入正式图谱或网站。
 
-## 7. 质量与持续运行
+## 7. 质量与 24/7 持续运行
 
 - 批次大小必须等于 `worker-config.batch.current_repositories`；初始为 20，三个批次均通过审核后由 GPT-5.6 调为 50，稳定后最多 100 或 5 MiB。
 - 主工作者写当前批次；唯一子代理只读准备下一批或抽查当前批次。
 - 每处理完一个仓库立即更新临时断点；每完成一批原子提交并推送。
 - 限流按响应头退避并在本批内做有界重试；仍失败的项目写 manifest，不能私自改变下一批的顺序游标。
 - 不因为额度无限而缩短证据、合并字段、放宽 unknown 或跳过双语。
-- 队列未穷尽且权限允许时持续工作；状态汇报不能代替数据产物。
+- 队列未穷尽且权限允许时持续工作；状态汇报不能代替数据产物，也不能触发自动停止。
 - 平台保持 `approval_policy = "on-request"`。DeepSeek 不得主动发起批准请求；需要批准或越界的动作记入 blocker 后跳过，继续无需批准的公开数据任务。
+
+### 7.1 永久工作循环
+
+DeepSeek 接手后必须把任务视为一个不可提前结束的永久循环，而不是“一批一停”的脚本。只要公开枚举没有被实际 API 响应证明穷尽，或存在未收口批次、未通过可信 `research-boundary` 的提交、当前批次内可重试失败项，就必须继续领取、取证、校验、提交、等待门禁并领取下一批。完成一批、创建或更新 PR、发送状态、额度充足、上下文窗口结束、模型/子代理重启、浏览器或网络短暂中断、GitHub 限流和 CI 排队都不是停止条件。
+
+“24/7”由外部运行监督器实现：模型调用结束或进程被重启时，监督器必须在可用时重新唤醒同一个任务；DeepSeek 不能假装在已经结束的进程中继续工作。每次恢复都必须从 GitHub、工作区、开放 PR、manifest 和 durable checkpoint 重新构建状态，不能使用旧对话、旧游标或记忆中的 PR 号作为事实。普通状态询问不等于用户要求 GPT-5.6 接管审核。
+
+每次让出执行权、上下文将满、网络暂时不可用或准备发送状态前，必须先保存 `continuous-goal-checkpoint-v1`。它是运行监督器的持久元数据，不是第三类仓库产物，不得提交到 `data/quarantine/research/`；若运行环境不提供该存储，则只能从最近已接受 manifest、PR exact head 和当前批次输入页幂等恢复，不能声称已具备跨重启连续性。至少保存以下字段：
+
+```text
+branch
+batch_id
+current_repository_id       # 无进行中仓库时为 null
+next_since                  # 最近已接受 manifest 的游标，不能是猜测值
+last_committed_sha
+last_research_boundary      # head_sha, run_id, conclusion, completed_at
+failures                    # 每项含 repository_id, reason, retry_after, attempts
+pr_number
+pr_head_sha
+phase                       # enumerating | researching | validating | awaiting-boundary | blocked | frozen
+updated_at
+```
+
+在批次尚未提交时，只能把最近已接受 manifest 的游标写入 `next_since`；当前仓库和临时批次位置另由 `current_repository_id` 与 `batch_id` 表示。恢复后先验证 PR head 和门禁结论，再继续同一批，禁止跳过 ID、推进未验证游标、重写已推送提交或静默清空 failures。失败项必须保留真实 `reason`、有界 `attempts` 和 `retry_after`；在当前规则允许重试时重试，无法自动解决时进入可见最终失败队列。
+
+只有以下情况允许暂停循环，并且暂停前必须收口 checkpoint：
+
+1. 公开枚举 API 的实际响应证明没有下一页，所有已返回 ID 都已有 dossier 或有证据的最终失败记录，且没有可重试失败、未收口批次或未验证提交。
+2. 用户明确要求 GPT-5.6 接手集中审核；DeepSeek 必须停止继续推送并冻结、报告 exact PR head SHA。用户仅询问进度、要求汇报或说“继续”都不构成接管。
+3. 无法由公开读取、有限重试或当前权限自动解决的外部 blocker，且已记录 `worker-blocker`、证据、尝试次数、恢复条件和下一动作；只要仍有不依赖它的安全工作，就不得暂停。
+
+不得把“一亿”或“一亿多”写成静态完成数。正确的完成定义是队列穷尽加上每个已领取 ID 的可追溯结果；最终失败是公开可见的缺口，不得伪装成已研究成功。暂停条件解除、重试时间到达或新上下文可用后，监督器必须从 checkpoint 自动恢复，不需要用户重新批准。
