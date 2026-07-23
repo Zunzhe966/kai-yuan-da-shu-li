@@ -33,3 +33,12 @@
 - 台账 PR 合并后的后续提交 `b77fd3fdbe4a41092af869fca31ce55e0e6c4a48` 也已通过 [`verify` 运行 29964617632](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964617632) 和自动 [`pages-deploy` 运行 29964641257](https://github.com/Zunzhe966/kai-yuan-da-shu-li/actions/runs/29964641257)，证明连续发布有效。
 - 当前线上提交不在版本化台账中写死；以 `https://kai-yuan-da-shu-li.pages.dev/api/v1/meta.json` 的实时 `source_revision` 、`catalog_hash`、`node_count`、`edge_count` 与当前 `main` 一致为发布完成标准。
 - 默认发布路径为 `main → verify → pages-deploy → 生产探针`，日常不需要浏览器登录或手动上传。Token 失效或撤销时，仍只允许轮换 Pages 部署所需的最小权限凭据。
+
+## DeepSeek 数据工交接基线
+
+- `data/quarantine/research/worker-config.json` 已为 `status=ready`，契约版本为 `research-dossier-v1` / `research-batch-manifest-v1` / `research-taxonomy-v1`。
+- 交接时尚无已接受 research manifest、无 `data/research-*` 远程分支、无开放的研究 PR；首轮必须在启动时重新 `git fetch origin main`，从当时最新 `origin/main` 创建分支，不把文档中的历史 SHA 当作启动点。
+- 首批从 GitHub 公开仓库枚举游标 `since=0` 开始，批量固定为 20；只能使用 API 实际返回的稀疏数字仓库 ID，不得将整数区间当作队列。
+- 启动文本以 `docs/operations/goal-mode-bootstrap.md` 为唯一直接交付模板；完整字段、证据、分支、校验和断点规则以 `docs/operations/deepseek-data-worker.md` 为准。
+- DeepSeek 只能写入每批一组 `.jsonl` 与 `.manifest.json`，一批一提交，等该 exact head 的 `research-boundary` 成功后再继续。它不得修改 Schema、程序、测试、文档、网站、Actions、Cloudflare、Secrets 或 `main`，也不得合并自己的 PR。
+- 平台保持 `approval_policy=on-request` 与 `sandbox_mode=workspace-write`；DeepSeek 不主动发起批准请求，任何触发批准或越界的动作都写入 `worker-blocker` 后跳过，继续其他公开数据工作。

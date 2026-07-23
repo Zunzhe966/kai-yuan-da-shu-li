@@ -72,6 +72,6 @@
 - [x] Merge separate activation PR #23, switch `worker-config.status` to `ready`, and verify main at `53bd564`.
 - [x] Final DeepSeek bootstrap text is live in `docs/operations/goal-mode-bootstrap.md`; the first accumulation run starts with 20 repositories from `since=0`.
 
-### Current independent blocker
+### Independent publication line resolved
 
-The research worker contract is active. Website publication is a separate line: `pages-deploy` for main `53bd564` still fails in Cloudflare Wrangler with `Authentication error [code: 10000]`. Creating or rotating the Cloudflare Pages API token and replacing the GitHub Secret requires explicit account authorization and is not a DeepSeek data-worker task.
+The research worker contract remains active and independent from website publication. The obsolete Cloudflare authentication blocker was resolved with a least-privilege Pages token, and PR #27 made direct uploads target `--branch main` instead of the detached-HEAD preview environment. Main verification now triggers a successful production `pages-deploy` and live metadata probe. Token rotation, deployment maintenance, merging, and production verification remain GPT-5.6 reviewer/publisher responsibilities and are never DeepSeek data-worker tasks.
