@@ -25,6 +25,7 @@ GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体
 6. `dist/v1/nodes/<id>.json` — 稳定项目基线与 `content_hash`
 7. 本地兼容能力：`mcp/server.py` 与 [`docs/remote-api.md`](./docs/remote-api.md)
 8. 公开网站：https://kai-yuan-da-shu-li.pages.dev/ （Cloudflare Pages 静态发布）
+9. 研究 worker 连接与续跑边界：[`docs/operations/research-worker-connection.md`](./docs/operations/research-worker-connection.md)
 
 默认发布通道为 GitHub Actions 自动部署（`pages-deploy` 工作流，使用 `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` secrets 执行 `wrangler pages deploy`）；详见 [`docs/operations/static-release.md`](./docs/operations/static-release.md) 与 [`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md)。
 
