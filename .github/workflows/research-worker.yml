@@ -1,0 +1,79 @@
+name: research-worker
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Worker mode"
+        required: true
+        type: choice
+        default: full-batch
+        options:
+          - full-batch
+          - enumerate-only
+      batch_size:
+        description: "Optional batch size override"
+        required: false
+        type: string
+  schedule:
+    - cron: "*/15 * * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: research-worker
+  cancel-in-progress: false
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - name: Check out production base
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install worker dependencies
+        run: |
+          python -m venv .venv
+          .venv/bin/pip install -r requirements.txt
+
+      - name: Require DeepSeek credentials without exposing them
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+        run: |
+          test -n "$DEEPSEEK_API_KEY" || {
+            echo "DEEPSEEK_API_KEY is not configured; refusing to run evidence-only mode" >&2
+            exit 1
+          }
+
+      - name: Run one resumable cloud batch
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_BASE_URL: https://api.8j.ink/v1
+          DEEPSEEK_MODEL: deepseek-v4-pro
+          WORKER_MODE: ${{ inputs.mode || 'full-batch' }}
+          WORKER_BATCH_SIZE: ${{ inputs.batch_size || '' }}
+        run: |
+          set -euo pipefail
+          args=(--mode "$WORKER_MODE")
+          if [[ -n "$WORKER_BATCH_SIZE" ]]; then
+            args+=(--batch-size "$WORKER_BATCH_SIZE")
+          fi
+          .venv/bin/python scripts/research_worker.py "${args[@]}"
+
+      - name: Report durable cursor location
+        if: always()
+        run: |
+          echo "worker completed; the next_since cursor is stored in the data PR manifest"
