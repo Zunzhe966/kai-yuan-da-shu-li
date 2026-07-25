@@ -139,8 +139,14 @@ def _update_rate_limit(headers: Any) -> None:
 
 
 def _fetch_json(url: str, timeout: int = 30) -> Any:
-    req = Request(url, headers=_gh_headers())
+    return _fetch_json_core(url, timeout, _gh_headers())
+
+
+def _fetch_json_core(url: str, timeout: int, headers: dict[str, str]) -> Any:
     for attempt in range(1, MAX_RETRIES + 1):
+        # Rate-limit pre-check: wait if quota is exhausted
+        _wait_rate_limit()
+        req = Request(url, headers=headers)
         try:
             with urlopen(req, timeout=timeout) as resp:
                 _update_rate_limit(resp.headers)
@@ -161,6 +167,32 @@ def _fetch_json(url: str, timeout: int = 30) -> Any:
                 continue
             raise
     raise RuntimeError(f"max retries exceeded for {url}")
+
+
+def _wait_rate_limit() -> None:
+    remaining = RATE_LIMIT_SNAPSHOT.get("remaining", 0)
+    if not isinstance(remaining, int):
+        remaining = 0
+    if remaining > 5:
+        return
+    reset_str = RATE_LIMIT_SNAPSHOT.get("reset_at")
+    if not reset_str:
+        time.sleep(60)
+        return
+    try:
+        reset_dt = datetime.fromisoformat(reset_str)
+    except (ValueError, TypeError):
+        time.sleep(60)
+        return
+    wait_sec = max(0, (reset_dt - datetime.now(timezone.utc)).total_seconds() + 2)
+    if wait_sec > 3600:
+        wait_sec = 3600
+    if wait_sec > 0:
+        print(f"  rate-limit exhausted, waiting {int(wait_sec)}s until {reset_str}")
+        while wait_sec > 0:
+            chunk = min(wait_sec, 60)
+            time.sleep(chunk)
+            wait_sec -= chunk
 
 
 def _gh_get(path: str) -> Any:
@@ -479,9 +511,14 @@ def _collect_evidence(repo: dict[str, Any]) -> dict[str, Any]:
 
 
 def _collect_evidence_v2(repo: dict[str, Any]) -> dict[str, Any]:
-    """Collect bounded public evidence with validator-compatible paths."""
+    """Collect bounded public evidence with validator-compatible paths.
+
+    Uses enumeration data directly to avoid a redundant API call against
+    the per-hour GITHUB_TOKEN quota.
+    """
     repo_id = str(repo["id"])
-    detail = _gh_get(f"/repositories/{repo_id}")
+    # Use enumeration payload directly — skip the extra GET /repositories/{repo_id}
+    detail = repo
     full_name = detail["full_name"]
     default_branch = detail.get("default_branch") or "main"
     observed_at = _now_iso()
