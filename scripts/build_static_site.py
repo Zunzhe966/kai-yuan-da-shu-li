@@ -131,44 +131,30 @@ def _project_row(record: dict[str, Any]) -> str:
 
 
 def render_home(records: list[dict[str, Any]], domains: list[str]) -> str:
-    counts = {domain: sum(record["domain"] == domain for record in records) for domain in domains}
-    domain_links = "".join(
-        f'<a class="domain-item" href="/domains/{_e(domain)}/"><span>{_e(_label(domain))}</span><b>{counts[domain]}</b></a>'
-        for domain in domains
-    )
-    options = "".join(f'<option value="{_e(domain)}">{_e(_label(domain))}</option>' for domain in domains)
-    languages = sorted({record["language"] for record in records if record.get("language")})
-    statuses = sorted({record["status"] for record in records if record.get("status")})
-    tags = sorted({tag for record in records for tag in record.get("tags", [])})
-    language_options = "".join(f'<option value="{_e(value)}">{_e(value)}</option>' for value in languages)
-    status_options = "".join(f'<option value="{_e(value)}">{_e(value)}</option>' for value in statuses)
-    tag_options = "".join(f'<option value="{_e(value)}">{_e(value)}</option>' for value in tags)
     page_size = 20
     initial = "".join(_project_row(record) for record in records[:page_size])
     body = f"""<main>
-  <section class="intro">
-    <div><p class="eyebrow">OPEN SOURCE DIRECTORY</p><h1>从分类进入，找到真正适合的开源项目</h1><p>把 GitHub 项目整理成可筛选、可比较、可由智能体直接读取的目录。本站不镜像代码，最终仍回到项目原始仓库。</p></div>
-    <dl class="stats"><div><dt>项目</dt><dd>{len(records)}</dd></div><div><dt>领域</dt><dd>{len(domains)}</dd></div><div><dt>机器入口</dt><dd>JSONL</dd></div></dl>
-  </section>
-  <section class="domain-band" aria-labelledby="domain-title"><div class="section-head"><div><p class="eyebrow">分类地图</p><h2 id="domain-title">先选择领域</h2></div><p>分类是主干，项目关系用于推荐替代和配套。</p></div><div class="domain-grid">{domain_links}</div></section>
-  <section class="catalog" id="catalog" aria-labelledby="catalog-title">
-    <div class="section-head"><div><p class="eyebrow">条件目录</p><h2 id="catalog-title">精确筛选</h2></div><p id="result-count" aria-live="polite">显示前 {min(page_size, len(records))} 个，共 {len(records)} 个</p></div>
-    <form class="filters" id="filters">
-      <label class="search-field"><span>关键词</span><input id="query-filter" type="search" placeholder="项目名、用途、技术" autocomplete="off"></label>
-      <label><span>领域</span><select id="domain-filter"><option value="">全部领域</option>{options}</select></label>
-      <label><span>语言</span><select id="language-filter"><option value="">全部语言</option>{language_options}</select></label>
-      <label><span>状态</span><select id="status-filter"><option value="">全部状态</option>{status_options}</select></label>
-      <label><span>细分类</span><select id="tag-filter"><option value="">全部分类</option>{tag_options}</select></label>
-      <label><span>排序</span><select id="sort-filter"><option value="name">名称</option><option value="domain">领域</option></select></label>
-      <button type="reset">清除条件</button>
-    </form>
-    <div class="project-list" id="project-results">{initial}</div>
-    <div class="more-row"><button id="load-more" type="button" data-page-size="{page_size}">显示更多</button></div>
-    <noscript><p class="notice">启用 JavaScript 后可组合多个条件筛选；也可以从上方领域目录逐层浏览。</p></noscript>
-  </section>
+  <div class="layout">
+    <aside class="filter-panel" id="filter-panel">
+      <p class="notice">加载筛选条件中...</p>
+    </aside>
+    <div class="content">
+      <div class="toolbar">
+        <input type="search" id="keyword-filter" placeholder="搜索项目名、用途、技术关键字..." autocomplete="off">
+        <select id="sort-filter">
+          <option value="domain">领域排序</option>
+          <option value="name">名称 A-Z</option>
+        </select>
+        <span id="result-count" aria-live="polite">加载中...</span>
+      </div>
+      <div class="results" id="project-results">
+        {initial}
+      </div>
+      <div class="more"><button id="load-more" type="button" data-page-size="{page_size}">显示更多</button></div>
+    </div>
+  </div>
 </main>"""
-    return _layout("项目目录", body, "按领域、语言、状态和细分类查找开源项目")
-
+    return _layout("项目目录", body, "按领域、语言、许可证、状态精确筛选开源项目 · repo-scout")
 
 def render_domain(domain: str, records: list[dict[str, Any]]) -> str:
     top_tags: dict[str, int] = {}
