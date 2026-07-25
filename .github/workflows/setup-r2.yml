@@ -1,0 +1,64 @@
+name: setup-r2
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create R2 bucket
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ACCOUNT_ID="$CLOUDFLARE_ACCOUNT_ID"
+          BUCKET="kai-yuan-da-shu-li"
+          
+          # Create bucket (idempotent)
+          RESP=$(curl -sS -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/r2/buckets" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"name\": \"$BUCKET\", \"locationHint\": \"apac\"}")
+          echo "bucket: $RESP" | head -5
+          
+          # Create R2 API token with object read/write
+          TOKEN_RESP=$(curl -sS -X POST "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/r2/api_tokens" \
+            -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"name\": \"vps-worker-token\", \"permissions\": [\"object_read\", \"object_write\"]}")
+          echo "token response received"
+          
+          # Extract credentials
+          ACCESS_KEY=$(echo "$TOKEN_RESP" | jq -r '.result.access_key_id')
+          SECRET_KEY=$(echo "$TOKEN_RESP" | jq -r '.result.secret_access_key')
+          
+          if [ -z "$ACCESS_KEY" ] || [ "$ACCESS_KEY" = "null" ]; then
+            echo "Token creation may have failed or token already exists"
+            echo "Full response:"
+            echo "$TOKEN_RESP" | jq .
+            # List existing tokens
+            LIST=$(curl -sS "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/r2/api_tokens" \
+              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN")
+            echo "Existing tokens:"
+            echo "$LIST" | jq -r '.result[] | "  \(.name)  id=\(.id)"'
+          else
+            echo "=================================="
+            echo "R2 credentials created successfully"
+            echo "=================================="
+            echo ""
+            echo "Add these to your VPS environment:"
+            echo ""
+            echo "R2_ENDPOINT=https://${ACCOUNT_ID}.r2.cloudflarestorage.com"
+            echo "R2_BUCKET=kai-yuan-da-shu-li"
+            echo "R2_ACCESS_KEY=${ACCESS_KEY}"
+            echo "R2_SECRET_KEY=${SECRET_KEY}"
+            echo ""
+            echo "=================================="
+            
+            # Also set as GitHub secrets for VPS
+            echo "::add-mask::${SECRET_KEY}"
+          fi
