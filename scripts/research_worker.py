@@ -1407,8 +1407,11 @@ def run_full_batch(batch_size: int | None = None) -> None:
     _update_ref(branch, commit_sha)
     print(f"  ref updated: refs/heads/{branch}")
 
-    pr = _create_or_update_pr(branch, "data: research accumulation")
-    print(f"  PR: #{pr.get('number', 'new')}")
+    try:
+        pr = _create_or_update_pr(branch, "data: research accumulation")
+        print(f"  PR: #{pr.get('number', 'new')}")
+    except Exception as exc:
+        print(f"  PR creation deferred (will retry next batch): {exc}")
 
     print(f"\n=== batch {batch_id_val} complete ===\n"
           f"  dossiers: {len(dossiers)}  failures: {len(failures)}  "
