@@ -1379,10 +1379,14 @@ def run_full_batch(batch_size: int | None = None) -> None:
     # ── Git Database API: commit and push ──
     print(f"\n=== committing via Git Database API ===")
 
+    # Determine commit parent: existing branch or main
     if pr:
         base_sha = _get_branch_sha(branch) or main_sha
     else:
-        base_sha = main_sha
+        # Branch may exist from a previous run where PR creation failed.
+        # Continue from its head to avoid a non-fast-forward ref error.
+        existing = _get_branch_sha(branch)
+        base_sha = existing or main_sha
 
     jsonl_blob = _create_blob(jsonl_content)
     manifest_blob = _create_blob(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
