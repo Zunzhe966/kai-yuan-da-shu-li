@@ -1,4 +1,6 @@
 mcp>=1.0.0
 PyYAML>=6.0
-jsonschema>=4.23
-license-expression>=30.4.4
+
+# research-worker dependencies
+jsonschema>=4.0
+license-expression>=30.0
