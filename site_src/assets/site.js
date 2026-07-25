@@ -8,7 +8,7 @@ let currentFilters = {};
 
 // ---- 加载数据 ----
 async function loadData() {
-  const resp = await fetch('/api/v1/catalog.jsonl', {cache: 'no-cache'});
+  const resp = await fetch('/api/v1/catalog.jsonl', {cache: "no-cache"});
   if (!resp.ok) throw new Error(`catalog ${resp.status}`);
   const text = await resp.text();
   return text.trim().split('\n').map(line => JSON.parse(line));
