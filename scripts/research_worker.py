@@ -200,22 +200,28 @@ def _gh_get(path: str) -> Any:
 
 
 def _gh_post(path: str, body: dict[str, Any]) -> dict[str, Any]:
+    return _gh_post_core(path, body, _gh_headers())
+
+
+def _gh_post_core(path: str, body: dict[str, Any], headers: dict[str, str]) -> dict[str, Any]:
     data = json.dumps(body).encode("utf-8")
-    req = Request(
-        f"{GITHUB_API}{path}",
-        data=data,
-        headers={**_gh_headers(), "Content-Type": "application/json"},
-        method="POST",
-    )
     for attempt in range(1, MAX_RETRIES + 1):
+        _wait_rate_limit()
+        req = Request(
+            f"{GITHUB_API}{path}",
+            data=data,
+            headers={**headers, "Content-Type": "application/json"},
+            method="POST",
+        )
         try:
             with urlopen(req, timeout=30) as resp:
                 _update_rate_limit(resp.headers)
                 return json.load(resp)
         except HTTPError as exc:
-            if exc.code in (403, 429) and attempt < MAX_RETRIES:
+            _update_rate_limit(exc.headers)
+            if exc.code == 429 and attempt < MAX_RETRIES:
                 delay = RETRY_BASE_DELAY * (2 ** (attempt - 1))
-                print(f"  rate-limited ({exc.code}), waiting {delay}s")
+                print(f"  rate-limited (429), waiting {delay}s (attempt {attempt}/{MAX_RETRIES})")
                 time.sleep(delay)
                 continue
             raise
@@ -223,6 +229,7 @@ def _gh_post(path: str, body: dict[str, Any]) -> dict[str, Any]:
 
 def _gh_patch(path: str, body: dict[str, Any]) -> dict[str, Any]:
     data = json.dumps(body).encode("utf-8")
+    _wait_rate_limit()
     req = Request(
         f"{GITHUB_API}{path}",
         data=data,
