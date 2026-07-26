@@ -1,0 +1,60 @@
+{
+  "schema_version": "research-batch-manifest-v1",
+  "batch_id": "github-enumeration-0024",
+  "created_at": "2026-07-26T03:14:58Z",
+  "input": {
+    "source": "github-public-repositories",
+    "since": "627745217",
+    "repository_ids": [
+      "627745218",
+      "627745223",
+      "627745230",
+      "627745232",
+      "627745234",
+      "627745244",
+      "627745246",
+      "627745249",
+      "627745250",
+      "627745254",
+      "627745261",
+      "627745262",
+      "627745263",
+      "627745265",
+      "627745268",
+      "627745270",
+      "627745274",
+      "627745280",
+      "627745284",
+      "627745291"
+    ],
+    "first_repository_id": "627745218",
+    "last_repository_id": "627745291"
+  },
+  "counts": {
+    "total": 20,
+    "complete": 0,
+    "unknown": 20,
+    "conflicting": 0,
+    "failed": 0,
+    "skipped": 0
+  },
+  "artifact": {
+    "path": "data/quarantine/research/github-enumeration-0024.jsonl",
+    "bytes": 181878,
+    "sha256": "3fbb24aa5a70701dbdc82b4484875f16262609fe3a9c9e9ca2003442f99e1d8a"
+  },
+  "rate_limit": {
+    "resource": "core",
+    "limit": 5000,
+    "remaining": 4980,
+    "reset_at": "2026-07-26T03:14:58Z",
+    "observed_at": "2026-07-26T03:14:58Z"
+  },
+  "next_since": "627745291",
+  "failures": [],
+  "worker": {
+    "model_role": "deepseek-data-worker",
+    "program_version": "deepseek-v8",
+    "run_id": "deepseek-20260726T031458"
+  }
+}
