@@ -6,6 +6,8 @@ import { join } from "node:path";
 
 interface Manifest {
   schema_version: string;
+  revision_watermark: string;
+  counts: Record<string, number>;
   files: Array<{ name: string; count: number; sha256: string }>;
 }
 
@@ -96,6 +98,9 @@ if (manifest.schema_version !== "kaiyuan-backup-v1") {
 }
 const expectedFiles = new Set(SPECS.map((spec) => spec.file));
 const manifestFiles = new Set(manifest.files.map((file) => file.name));
+const manifestFilesByName = new Map(
+  manifest.files.map((file) => [file.name, file]),
+);
 if (manifestFiles.size !== manifest.files.length) {
   throw new Error("backup manifest contains duplicate file entries");
 }
@@ -109,11 +114,33 @@ for (const name of manifestFiles) {
     throw new Error(`unexpected backup manifest entry: ${name}`);
   }
 }
+const expectedCountNames = new Set(SPECS.map((spec) => spec.table));
+for (const spec of SPECS) {
+  if (!(spec.table in manifest.counts)) {
+    throw new Error(`backup manifest count missing: ${spec.table}`);
+  }
+  if (manifest.counts[spec.table] !== manifestFilesByName.get(spec.file)!.count) {
+    throw new Error(`backup manifest count mismatch: ${spec.table}`);
+  }
+}
+for (const name of Object.keys(manifest.counts)) {
+  if (!expectedCountNames.has(name)) {
+    throw new Error(`unexpected backup manifest count: ${name}`);
+  }
+}
 for (const file of manifest.files) {
   const path = join(snapshotDirectory, file.name);
   if (hash(path) !== file.sha256) throw new Error(`hash mismatch: ${file.name}`);
   const lineCount = readFileSync(path, "utf8").split("\n").filter(Boolean).length;
   if (lineCount !== file.count) throw new Error(`row count mismatch: ${file.name}`);
+}
+const calculatedWatermark = createHash("sha256")
+  .update(
+    `${SPECS.map((spec) => `${spec.file}:${manifestFilesByName.get(spec.file)!.sha256}`).join("\n")}\n`,
+  )
+  .digest("hex");
+if (calculatedWatermark !== manifest.revision_watermark) {
+  throw new Error("backup revision watermark mismatch");
 }
 
 runWrangler(["d1", "migrations", "apply", database, ...storageArgs]);

@@ -268,24 +268,30 @@ async function sha256(value: string): Promise<string> {
   ).join("");
 }
 
+async function calculateRevisionWatermark(
+  files: Record<string, BackupFile>,
+): Promise<string> {
+  return sha256(
+    `${TABLE_SPECS.map((spec) => `${spec.file}:${files[spec.file]!.sha256}`).join("\n")}\n`,
+  );
+}
+
 function jsonLine(row: Record<string, unknown>, columns: readonly string[]): string {
   return JSON.stringify(
     Object.fromEntries(columns.map((column) => [column, row[column] ?? null])),
   );
 }
 
-async function exportTable(db: D1Database, spec: TableSpec): Promise<BackupFile> {
-  const rows = await db
-    .prepare(
-      `SELECT ${spec.columns.join(", ")} FROM ${spec.table} ORDER BY ${spec.orderBy}`,
-    )
-    .all<Record<string, unknown>>();
-  const content = rows.results.length
-    ? `${rows.results.map((row) => jsonLine(row, spec.columns)).join("\n")}\n`
+async function exportRows(
+  rows: Array<Record<string, unknown>>,
+  spec: TableSpec,
+): Promise<BackupFile> {
+  const content = rows.length
+    ? `${rows.map((row) => jsonLine(row, spec.columns)).join("\n")}\n`
     : "";
   return {
     content,
-    count: rows.results.length,
+    count: rows.length,
     sha256: await sha256(content),
   };
 }
@@ -294,13 +300,22 @@ export async function createBackupSnapshot(
   db: D1Database,
   exportedAt = new Date().toISOString(),
 ): Promise<BackupSnapshot> {
+  const tableResults = await db.batch<Record<string, unknown>>(
+    TABLE_SPECS.map((spec) =>
+      db.prepare(
+        `SELECT ${spec.columns.join(", ")} FROM ${spec.table} ORDER BY ${spec.orderBy}`,
+      ),
+    ),
+  );
   const entries = await Promise.all(
-    TABLE_SPECS.map(async (spec) => [spec.file, await exportTable(db, spec)] as const),
+    TABLE_SPECS.map(async (spec, index) => {
+      const result = tableResults[index];
+      if (!result) throw new Error(`backup query result missing: ${spec.table}`);
+      return [spec.file, await exportRows(result.results, spec)] as const;
+    }),
   );
   const files = Object.fromEntries(entries);
-  const revisionWatermark = await sha256(
-    `${files["project-revisions.jsonl"]!.sha256}\n${files["creator-revisions.jsonl"]!.sha256}\n`,
-  );
+  const revisionWatermark = await calculateRevisionWatermark(files);
   const manifest: BackupManifest = {
     schema_version: BACKUP_SCHEMA_VERSION,
     exported_at: exportedAt,
@@ -366,6 +381,21 @@ export async function executeBackup(
     const prefix = await writeBackupToR2(bucket, snapshot);
     const manifestKey = `${prefix}/manifest.json`;
     const manifestHash = await sha256(`${JSON.stringify(snapshot.manifest, null, 2)}\n`);
+    await bucket.put(
+      "backups/latest.json",
+      `${JSON.stringify(
+        {
+          schema_version: "kaiyuan-backup-pointer-v1",
+          exported_at: now,
+          revision_watermark: snapshot.manifest.revision_watermark,
+          manifest_key: manifestKey,
+          manifest_sha256: manifestHash,
+        },
+        null,
+        2,
+      )}\n`,
+      { httpMetadata: { contentType: "application/json; charset=utf-8" } },
+    );
     await db
       .prepare(
         `UPDATE backup_runs SET status = 'completed', revision_watermark = ?,
@@ -436,6 +466,23 @@ async function verifySnapshot(snapshot: BackupSnapshot): Promise<void> {
       throw new Error(`unexpected backup manifest entry: ${name}`);
     }
   }
+  const manifestFiles = new Map(
+    snapshot.manifest.files.map((manifestFile) => [manifestFile.name, manifestFile]),
+  );
+  const expectedCountNames = new Set(TABLE_SPECS.map((spec) => spec.table));
+  for (const spec of TABLE_SPECS) {
+    if (!(spec.table in snapshot.manifest.counts)) {
+      throw new Error(`backup manifest count missing: ${spec.table}`);
+    }
+    if (snapshot.manifest.counts[spec.table] !== manifestFiles.get(spec.file)!.count) {
+      throw new Error(`backup manifest count mismatch: ${spec.table}`);
+    }
+  }
+  for (const name of Object.keys(snapshot.manifest.counts)) {
+    if (!expectedCountNames.has(name)) {
+      throw new Error(`unexpected backup manifest count: ${name}`);
+    }
+  }
   for (const manifestFile of snapshot.manifest.files) {
     const file = snapshot.files[manifestFile.name];
     if (!file) throw new Error(`backup file missing: ${manifestFile.name}`);
@@ -448,24 +495,25 @@ async function verifySnapshot(snapshot: BackupSnapshot): Promise<void> {
       throw new Error(`backup row count mismatch: ${manifestFile.name}`);
     }
   }
+  if (
+    (await calculateRevisionWatermark(snapshot.files)) !==
+    snapshot.manifest.revision_watermark
+  ) {
+    throw new Error("backup revision watermark mismatch");
+  }
 }
 
-async function insertRows(
+function prepareInsertRows(
   db: D1Database,
   spec: TableSpec,
   rows: Array<Record<string, unknown>>,
-): Promise<void> {
+): D1PreparedStatement[] {
   const sql = `INSERT INTO ${spec.table} (${spec.columns.join(", ")}) VALUES (${spec.columns.map(() => "?").join(", ")})`;
-  for (let offset = 0; offset < rows.length; offset += 100) {
-    const chunk = rows.slice(offset, offset + 100);
-    await db.batch(
-      chunk.map((row) =>
-        db
-          .prepare(sql)
-          .bind(...spec.columns.map((column) => row[column])),
-      ),
-    );
-  }
+  return rows.map((row) =>
+    db
+      .prepare(sql)
+      .bind(...spec.columns.map((column) => row[column])),
+  );
 }
 
 export async function restoreBackup(
@@ -481,7 +529,14 @@ export async function restoreBackup(
   if ((existing?.count ?? 0) !== 0) {
     throw new Error("restore target database is not empty");
   }
-  for (const spec of TABLE_SPECS) {
-    await insertRows(db, spec, parseJsonl(snapshot.files[spec.file]!.content));
+  const statements = TABLE_SPECS.flatMap((spec) =>
+    prepareInsertRows(
+      db,
+      spec,
+      parseJsonl(snapshot.files[spec.file]!.content),
+    ),
+  );
+  if (statements.length > 0) {
+    await db.batch(statements);
   }
 }

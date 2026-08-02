@@ -10,6 +10,7 @@ import {
   restoreBackup,
   writeBackupToR2,
 } from "../src/services/backup";
+import { runScheduledTasks } from "../src/scheduled";
 import * as creators from "../src/storage/creators";
 import * as projects from "../src/storage/projects";
 import { projectFixture, TEST_NOW } from "./factories";
@@ -18,16 +19,28 @@ interface TestEnv {
   DB: D1Database;
   RESTORE_DB: D1Database;
   NONEMPTY_RESTORE_DB: D1Database;
+  FAILED_RESTORE_DB: D1Database;
   BACKUPS: R2Bucket;
   TEST_MIGRATIONS: D1Migration[];
 }
 
 const testEnv = env as unknown as TestEnv;
 
+async function testSha256(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(value),
+  );
+  return Array.from(new Uint8Array(digest), (byte) =>
+    byte.toString(16).padStart(2, "0"),
+  ).join("");
+}
+
 beforeAll(async () => {
   await applyD1Migrations(testEnv.DB, testEnv.TEST_MIGRATIONS);
   await applyD1Migrations(testEnv.RESTORE_DB, testEnv.TEST_MIGRATIONS);
   await applyD1Migrations(testEnv.NONEMPTY_RESTORE_DB, testEnv.TEST_MIGRATIONS);
+  await applyD1Migrations(testEnv.FAILED_RESTORE_DB, testEnv.TEST_MIGRATIONS);
   await creators.upsertCreator(testEnv.DB, {
     creatorId: "creator-backup",
     type: "organization",
@@ -93,6 +106,48 @@ beforeAll(async () => {
 });
 
 describe("deterministic backup and restore", () => {
+  it("attempts backup and report tasks even when either one fails", async () => {
+    const attempted: string[] = [];
+
+    await expect(
+      runScheduledTasks(
+        async () => {
+          attempted.push("backup");
+          throw new Error("backup failed");
+        },
+        async () => {
+          attempted.push("reports");
+        },
+      ),
+    ).rejects.toThrow("backup failed");
+    expect(attempted).toEqual(["backup", "reports"]);
+  });
+
+  it("reads every table through one D1 batch snapshot", async () => {
+    let individualReads = 0;
+    let batchReads = 0;
+    const snapshotDb = {
+      prepare(sql: string) {
+        return {
+          sql,
+          async all() {
+            individualReads += 1;
+            return { results: [] };
+          },
+        };
+      },
+      async batch(statements: unknown[]) {
+        batchReads += 1;
+        return statements.map(() => ({ results: [] }));
+      },
+    } as unknown as D1Database;
+
+    await createBackupSnapshot(snapshotDb, TEST_NOW);
+
+    expect(batchReads).toBe(1);
+    expect(individualReads).toBe(0);
+  });
+
   it("records a completed R2 backup run with its manifest hash", async () => {
     const completed = await executeBackup(
       testEnv.DB,
@@ -116,6 +171,14 @@ describe("deterministic backup and restore", () => {
       manifest_hash: completed.manifestHash,
     });
     expect(await testEnv.BACKUPS.head(completed.manifestKey)).not.toBeNull();
+    const latest = await testEnv.BACKUPS.get("backups/latest.json");
+    expect(JSON.parse((await latest?.text()) ?? "{}")).toEqual({
+      schema_version: "kaiyuan-backup-pointer-v1",
+      exported_at: TEST_NOW,
+      revision_watermark: completed.revisionWatermark,
+      manifest_key: completed.manifestKey,
+      manifest_sha256: completed.manifestHash,
+    });
   });
 
   it("publishes the manifest only after every JSONL object succeeds", async () => {
@@ -132,6 +195,22 @@ describe("deterministic backup and restore", () => {
       "R2 write failed",
     );
     expect(writtenKeys.some((key) => key.endsWith("/manifest.json"))).toBe(false);
+  });
+
+  it("changes the watermark when any exported table changes", async () => {
+    const before = await createBackupSnapshot(testEnv.DB, TEST_NOW);
+    await testEnv.DB.prepare(
+      `INSERT INTO audit_events (
+        audit_event_id, action, target_type, target_id, reason, created_at
+      ) VALUES (?, ?, ?, ?, ?, ?)`,
+    )
+      .bind("backup-audit-change", "backup.test", "backup", "snapshot", "", TEST_NOW)
+      .run();
+    const after = await createBackupSnapshot(testEnv.DB, TEST_NOW);
+
+    expect(after.manifest.revision_watermark).not.toBe(
+      before.manifest.revision_watermark,
+    );
   });
 
   it("restores content, revision identities and every exported hash", async () => {
@@ -236,6 +315,24 @@ describe("deterministic backup and restore", () => {
     );
   });
 
+  it("rejects manifest counts that disagree with JSONL files", async () => {
+    const snapshot = await createBackupSnapshot(testEnv.DB, TEST_NOW);
+    snapshot.manifest.counts.projects = 999;
+
+    await expect(restoreBackup(testEnv.RESTORE_DB, snapshot)).rejects.toThrow(
+      "backup manifest count mismatch: projects",
+    );
+  });
+
+  it("rejects a manifest with the wrong revision watermark", async () => {
+    const snapshot = await createBackupSnapshot(testEnv.DB, TEST_NOW);
+    snapshot.manifest.revision_watermark = "0".repeat(64);
+
+    await expect(restoreBackup(testEnv.RESTORE_DB, snapshot)).rejects.toThrow(
+      "backup revision watermark mismatch",
+    );
+  });
+
   it("rejects a target containing non-project backup data before inserting", async () => {
     await creators.upsertCreator(testEnv.NONEMPTY_RESTORE_DB, {
       creatorId: "existing-creator",
@@ -248,6 +345,31 @@ describe("deterministic backup and restore", () => {
       restoreBackup(testEnv.NONEMPTY_RESTORE_DB, snapshot),
     ).rejects.toThrow("restore target database is not empty");
     const projectsAfterFailure = await testEnv.NONEMPTY_RESTORE_DB.prepare(
+      "SELECT COUNT(*) AS count FROM projects",
+    ).first<{ count: number }>();
+    expect(projectsAfterFailure?.count).toBe(0);
+  });
+
+  it("rolls back every table when a restore insert fails", async () => {
+    const snapshot = await createBackupSnapshot(testEnv.DB, TEST_NOW);
+    const creatorsFile = snapshot.files["creators.jsonl"]!;
+    creatorsFile.content = `${creatorsFile.content}${creatorsFile.content}`;
+    creatorsFile.count = 2;
+    creatorsFile.sha256 = await testSha256(creatorsFile.content);
+    const creatorsManifest = snapshot.manifest.files.find(
+      (file) => file.name === "creators.jsonl",
+    )!;
+    creatorsManifest.count = creatorsFile.count;
+    creatorsManifest.sha256 = creatorsFile.sha256;
+    snapshot.manifest.counts.creators = creatorsFile.count;
+    snapshot.manifest.revision_watermark = await testSha256(
+      `${snapshot.manifest.files.map((file) => `${file.name}:${file.sha256}`).join("\n")}\n`,
+    );
+
+    await expect(
+      restoreBackup(testEnv.FAILED_RESTORE_DB, snapshot),
+    ).rejects.toThrow();
+    const projectsAfterFailure = await testEnv.FAILED_RESTORE_DB.prepare(
       "SELECT COUNT(*) AS count FROM projects",
     ).first<{ count: number }>();
     expect(projectsAfterFailure?.count).toBe(0);
