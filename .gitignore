@@ -6,6 +6,7 @@ __pycache__/
 .venv/
 .cursor/
 .wrangler/
+node_modules/
 build/
 var/feedback/
 .playwright-cli/
