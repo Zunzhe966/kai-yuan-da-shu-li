@@ -1,4 +1,8 @@
-import type { ProjectPublication } from "../domain/project";
+import type {
+  ProjectPublication,
+  PublicationSection,
+  SectionKey,
+} from "../domain/project";
 import type { ActorContext, Scope } from "../domain/scopes";
 import { validateProject } from "../domain/validate";
 import * as projects from "../storage/projects";
@@ -161,6 +165,116 @@ export async function submitProjectDraft(
       )
       .bind(actor.actorId, input.now, draftId),
   ]);
+}
+
+export async function updateProjectSection(
+  db: D1Database,
+  actor: ActorContext | null,
+  draftId: string,
+  baseRevision: number,
+  sectionKey: SectionKey,
+  section: PublicationSection,
+  now: string,
+): Promise<void> {
+  requireScope(actor, "draft:update");
+  const draft = await workflow.getDraft(db, draftId);
+  if (!draft) {
+    throw new WorkflowError("draft not found", 404);
+  }
+  if (draft.baseRevision !== baseRevision) {
+    throw new WorkflowError("draft base revision is stale", 409);
+  }
+  if (draft.status !== "draft" && draft.status !== "changes_requested") {
+    throw new WorkflowError("draft cannot be edited from its current state", 409);
+  }
+
+  const document = structuredClone(draft.document);
+  document.sections[sectionKey] = section;
+  const validation = validateProject(document);
+  if (!validation.ok) {
+    throw new WorkflowError(validation.errors.join("; "), 422);
+  }
+  const updated = await workflow.updateDraftDocument(
+    db,
+    draftId,
+    baseRevision,
+    document,
+    actor.actorId,
+    now,
+  );
+  if (!updated) {
+    throw new WorkflowError("draft changed before it could be saved", 409);
+  }
+}
+
+export const EDITABLE_PROJECT_GROUPS = [
+  "repository_sources",
+  "identity",
+  "attribution",
+  "discovery",
+  "card",
+  "evidence",
+] as const;
+
+export type EditableProjectGroup = (typeof EDITABLE_PROJECT_GROUPS)[number];
+
+export async function updateProjectGroup(
+  db: D1Database,
+  actor: ActorContext | null,
+  draftId: string,
+  baseRevision: number,
+  group: EditableProjectGroup,
+  value: unknown,
+  now: string,
+): Promise<void> {
+  requireScope(actor, "draft:update");
+  const draft = await workflow.getDraft(db, draftId);
+  if (!draft) {
+    throw new WorkflowError("draft not found", 404);
+  }
+  if (draft.baseRevision !== baseRevision) {
+    throw new WorkflowError("draft base revision is stale", 409);
+  }
+  if (draft.status !== "draft" && draft.status !== "changes_requested") {
+    throw new WorkflowError("draft cannot be edited from its current state", 409);
+  }
+
+  const document = structuredClone(draft.document);
+  switch (group) {
+    case "repository_sources":
+      document.repository_sources = value as ProjectPublication["repository_sources"];
+      break;
+    case "identity":
+      document.identity = value as ProjectPublication["identity"];
+      break;
+    case "attribution":
+      document.attribution = value as ProjectPublication["attribution"];
+      break;
+    case "discovery":
+      document.discovery = value as ProjectPublication["discovery"];
+      break;
+    case "card":
+      document.card = value as ProjectPublication["card"];
+      break;
+    case "evidence":
+      document.evidence = value as ProjectPublication["evidence"];
+      break;
+  }
+  const validation = validateProject(document);
+  if (!validation.ok) {
+    throw new WorkflowError(validation.errors.join("; "), 422);
+  }
+  const updated = await workflow.updateDraftDocument(
+    db,
+    draftId,
+    baseRevision,
+    document,
+    actor.actorId,
+    now,
+  );
+  if (!updated) {
+    throw new WorkflowError("draft changed before it could be saved", 409);
+  }
 }
 
 export interface ApproveSubmissionInput {
