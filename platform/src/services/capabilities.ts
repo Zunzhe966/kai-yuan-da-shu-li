@@ -9,6 +9,8 @@ export const PUBLIC_MCP_TOOLS = [
   "get_creator",
   "find_similar_projects",
   "check_repository",
+  "report_project_change",
+  "get_public_report_status",
 ] as const;
 
 export const EDITOR_MCP_TOOLS = [

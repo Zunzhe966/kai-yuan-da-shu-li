@@ -3,6 +3,9 @@
   "name": "kaiyuan-dashuli-platform",
   "main": "src/index.ts",
   "compatibility_date": "2026-08-01",
+  "triggers": {
+    "crons": ["0 2 * * *"]
+  },
   "assets": {
     "binding": "ASSETS",
     "directory": "./public"

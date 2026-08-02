@@ -84,6 +84,8 @@ describe("remote MCP capabilities", () => {
         "get_creator",
         "find_similar_projects",
         "check_repository",
+        "report_project_change",
+        "get_public_report_status",
       ]),
     );
     expect(tools.tools.map((tool) => tool.name)).not.toContain(
@@ -131,6 +133,37 @@ describe("remote MCP capabilities", () => {
     });
     expect(denied).toMatchObject({ isError: true });
     expect(JSON.stringify(denied)).toContain("Tool create_project_draft not found");
+    await client.close();
+  });
+
+  it("submits and reads an isolated change report as a public session", async () => {
+    const client = await connectClient();
+    const submitted = structured<{ report_id: string; status: string }>(
+      await client.callTool({
+        name: "report_project_change",
+        arguments: {
+          project_id: "project-mcp-published",
+          baseline_revision: 1,
+          report_type: "repository_redirected",
+          upstream_fingerprint: "redirect:new-owner",
+          evidence_url: "https://github.com/new-owner/project",
+          observed_value: { canonical_url: "https://github.com/new-owner/project" },
+          observed_at: TEST_NOW,
+        },
+      }),
+    );
+    const status = structured<{ report_id: string; status: string }>(
+      await client.callTool({
+        name: "get_public_report_status",
+        arguments: { report_id: submitted.report_id },
+      }),
+    );
+
+    expect(submitted.status).toBe("received");
+    expect(status).toMatchObject({
+      report_id: submitted.report_id,
+      status: "received",
+    });
     await client.close();
   });
 

@@ -11,6 +11,11 @@ import type { ActorContext } from "../domain/scopes";
 import type { Bindings } from "../env";
 import { getCapabilities } from "../services/capabilities";
 import {
+  CHANGE_REPORT_TYPES,
+  getChangeReport,
+  intakeChangeReport,
+} from "../services/change-reports";
+import {
   EDITABLE_PROJECT_GROUPS,
   createProjectDraft,
   submitProjectDraft,
@@ -175,6 +180,56 @@ function createMcpServer(db: D1Database, actor: ActorContext | null): McpServer 
           }),
         ),
       ),
+  );
+  server.registerTool(
+    "report_project_change",
+    {
+      description: "提交隔离的上游重大变化报告，不直接修改正式记录。",
+      inputSchema: {
+        project_id: z.string().min(1),
+        baseline_revision: z.number().int().min(0),
+        report_type: z.enum(CHANGE_REPORT_TYPES),
+        upstream_fingerprint: z.string().min(1).max(500),
+        evidence_url: z.url(),
+        observed_value: z.unknown(),
+        observed_at: z.string().min(1),
+      },
+    },
+    async (input) => {
+      const report = await intakeChangeReport(db, {
+        projectId: input.project_id,
+        baselineRevision: input.baseline_revision,
+        reportType: input.report_type,
+        upstreamFingerprint: input.upstream_fingerprint,
+        evidenceUrl: input.evidence_url,
+        observedValue: input.observed_value,
+        observedAt: input.observed_at,
+      });
+      return result({
+        report_id: report.reportId,
+        status: report.status,
+        duplicate: report.duplicate,
+      });
+    },
+  );
+  server.registerTool(
+    "get_public_report_status",
+    {
+      description: "读取一个公开变化报告的处理状态。",
+      inputSchema: { report_id: z.string().min(1) },
+    },
+    async ({ report_id }) => {
+      const report = await getChangeReport(db, report_id);
+      if (!report) throw new Error("change report not found");
+      return result({
+        report_id: report.reportId,
+        project_id: report.projectId,
+        report_type: report.reportType,
+        status: report.status,
+        next_attempt_at: report.nextAttemptAt,
+        updated_at: report.updatedAt,
+      });
+    },
   );
 
   if (actor?.scopes.has("draft:create")) {
