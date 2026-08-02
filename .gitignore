@@ -10,3 +10,4 @@ build/
 var/feedback/
 .playwright-cli/
 output/
+.worktrees/
