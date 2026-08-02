@@ -9,6 +9,8 @@
     "test": "vitest run",
     "dev": "wrangler dev",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "backup:export": "tsx scripts/export-backup.ts",
+    "backup:restore": "tsx scripts/restore-backup.ts",
     "deploy": "wrangler deploy"
   },
   "engines": {

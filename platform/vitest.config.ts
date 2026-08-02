@@ -12,6 +12,7 @@ export default defineConfig(async () => ({
         bindings: {
           TEST_MIGRATIONS: await readD1Migrations("./migrations"),
         },
+        d1Databases: ["RESTORE_DB", "NONEMPTY_RESTORE_DB"],
       },
     }),
   ],
