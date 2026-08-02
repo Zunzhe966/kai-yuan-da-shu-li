@@ -4,7 +4,7 @@ import {
   SELF,
   type D1Migration,
 } from "cloudflare:test";
-import { beforeAll, describe, expect, it } from "vitest";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { hashBearerToken } from "../src/http/auth";
 import * as projects from "../src/storage/projects";
 import * as workflow from "../src/storage/workflow";
@@ -16,6 +16,10 @@ interface TestEnv {
 }
 
 const testEnv = env as unknown as TestEnv;
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 async function seedCredential(
   actorId: string,
@@ -63,6 +67,23 @@ beforeAll(async () => {
     status: "published",
   });
   await projects.insertRevision(testEnv.DB, published);
+  await testEnv.DB.prepare(
+    `INSERT INTO change_reports (
+      report_id, project_id, report_type, upstream_fingerprint, status,
+      evidence_url, payload_json, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, 'needs_review', ?, ?, ?, ?)`,
+  )
+    .bind(
+      "report-studio-review",
+      "project-studio",
+      "license_changed",
+      "license:changed",
+      "https://github.com/Aider-AI/aider",
+      JSON.stringify({ observed_value: "GPL-3.0", attempts: 1 }),
+      TEST_NOW,
+      TEST_NOW,
+    )
+    .run();
   const draft = projectFixture({
     projectId: "project-studio",
     repositoryId: "repository-studio",
@@ -107,6 +128,114 @@ describe("internal agent editorial studio", () => {
     expect(html).toContain("智能体编辑台");
     expect(html).toContain("draft-studio");
     expect(html).toContain("draft");
+  });
+
+  it("shows the real change-report review queue", async () => {
+    const response = await SELF.fetch("https://example.test/studio/reports", {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("report-studio-review");
+    expect(html).toContain("license_changed");
+    expect(html).toContain("needs_review");
+    expect(html).not.toContain("将在核验服务中接入");
+  });
+
+  it("shows reports for the project inside its workspace", async () => {
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio/tabs/reports",
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("report-studio-review");
+    expect(html).toContain("license_changed");
+    expect(html).not.toContain("当前项目没有待处理变化报告");
+  });
+
+  it("lists agent identities and scopes without exposing credentials", async () => {
+    const response = await SELF.fetch("https://example.test/studio/actors", {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("actor-studio-editor");
+    expect(html).toContain("actor-studio-publisher");
+    expect(html).toContain("draft:create");
+    expect(html).toContain("review:approve");
+    expect(html).not.toContain(await hashBearerToken("studio-editor"));
+    expect(html).not.toContain(await hashBearerToken("studio-publisher"));
+    expect(html).not.toContain("token_hash");
+  });
+
+  it("creates a native project draft from an active fixed-template form", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementationOnce(async () =>
+      Response.json({
+        id: 987654321,
+        full_name: "example/native-studio-project",
+        html_url: "https://github.com/example/native-studio-project",
+        default_branch: "main",
+        created_at: "2024-01-01T00:00:00Z",
+        updated_at: "2026-08-01T00:00:00Z",
+        pushed_at: "2026-08-01T00:00:00Z",
+        fork: false,
+        mirror_url: null,
+        archived: false,
+        disabled: false,
+        language: "TypeScript",
+        license: { spdx_id: "MIT" },
+      }),
+    );
+
+    const form = await SELF.fetch("https://example.test/studio/projects/new", {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+    const formHtml = await form.text();
+    expect(form.status).toBe(200);
+    expect(formHtml).toContain('method="post"');
+    expect(formHtml).toContain('name="project_id"');
+    expect(formHtml).not.toContain("disabled>检查仓库");
+
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/new",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          repository_url: "https://github.com/example/native-studio-project",
+          project_id: "native-studio-project",
+          name: "Native Studio Project",
+          chinese_name: "原生编辑台项目",
+          summary: "由固定表单创建的原生项目草稿。",
+          use_when: "需要验证 Studio 新建项目流程",
+          avoid_when: "只需要读取已经发布的项目",
+          primary_category: "editorial platform",
+          domain: "devtools",
+        }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    const location = response.headers.get("Location") ?? "";
+    expect(location).toMatch(/^\/studio\/projects\/draft-/);
+    const created = (await workflow.listDrafts(testEnv.DB)).find(
+      (draft) => draft.document.project_id === "native-studio-project",
+    );
+    expect(created).toMatchObject({ status: "draft", baseRevision: 0 });
+    expect(created?.document.repository_sources[0]).toMatchObject({
+      platform: "github",
+      platform_repository_id: "987654321",
+      canonical_url: "https://github.com/example/native-studio-project",
+    });
+    expect(Object.keys(created?.document.sections ?? {})).toHaveLength(14);
   });
 
   it("renders every fixed project workspace tab", async () => {
@@ -167,11 +296,14 @@ describe("internal agent editorial studio", () => {
       "https://example.test/projects/project-studio",
     );
 
-    expect(await preview.text()).toContain("只存在于控制台草稿的摘要");
+    const previewHtml = await preview.text();
+    expect(previewHtml).toContain("只存在于控制台草稿的摘要");
+    expect(previewHtml).toContain('/studio/projects/draft-studio');
+    expect(previewHtml).toContain("返回编辑工作区");
     expect(await publicPage.text()).not.toContain("只存在于控制台草稿的摘要");
   });
 
-  it("shows publishing controls only to a publishing identity", async () => {
+  it("does not show publishing controls before a draft is approved", async () => {
     const editorResponse = await SELF.fetch(
       "https://example.test/studio/projects/draft-studio",
       { headers: { Authorization: "Bearer studio-editor" } },
@@ -182,7 +314,7 @@ describe("internal agent editorial studio", () => {
     );
 
     expect(await editorResponse.text()).not.toContain('data-action="publish"');
-    expect(await publisherResponse.text()).toContain('data-action="publish"');
+    expect(await publisherResponse.text()).not.toContain('data-action="publish"');
   });
 
   it("saves one fixed section through the scoped workflow service", async () => {
@@ -263,6 +395,11 @@ describe("internal agent editorial studio", () => {
     expect((await workflow.getDraft(testEnv.DB, "draft-studio-action"))?.status).toBe(
       "approved",
     );
+    const approvedWorkspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/tabs/review",
+      { headers: publisherHeaders },
+    );
+    expect(await approvedWorkspace.text()).toContain('data-action="publish"');
 
     const publish = await SELF.fetch(
       "https://example.test/studio/projects/draft-studio-action/actions/publish",
@@ -279,5 +416,12 @@ describe("internal agent editorial studio", () => {
         )
       ).status,
     ).toBe(200);
+    const publishedWorkspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/tabs/review",
+      { headers: publisherHeaders },
+    );
+    expect(await publishedWorkspace.text()).not.toContain(
+      'data-action="publish"',
+    );
   });
 });

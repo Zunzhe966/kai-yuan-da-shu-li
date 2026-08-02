@@ -202,11 +202,14 @@ function renderSection(key: SectionKey, section: PublicationSection): string {
   </section>`;
 }
 
-export function renderProjectPage(project: ProjectPublication): string {
+export function renderProjectPage(
+  project: ProjectPublication,
+  options: { studioBackUrl?: string } = {},
+): string {
   const card = project.card;
   const primary = project.repository_sources.find((item) => item.role === "primary");
   const content = `<main class="project-page" id="main-content">
-    <nav class="breadcrumbs" aria-label="面包屑"><a href="/">项目目录</a><span>/</span><span>${escapeHtml(card.name)}</span></nav>
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="${options.studioBackUrl ? escapeHtml(options.studioBackUrl) : "/"}">${options.studioBackUrl ? "返回编辑工作区" : "项目目录"}</a><span>/</span><span>${escapeHtml(card.name)}</span></nav>
     <header class="project-hero">
       <div>
         <p class="section-kicker">${escapeHtml(card.primary_category)}</p>

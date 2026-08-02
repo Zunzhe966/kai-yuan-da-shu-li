@@ -4,6 +4,7 @@ import type { ActorContext } from "../domain/scopes";
 import type { Bindings } from "../env";
 import {
   approveSubmission,
+  createProjectDraft,
   EDITABLE_PROJECT_GROUPS,
   publishApprovedDraft,
   submitProjectDraft,
@@ -12,12 +13,24 @@ import {
   WorkflowError,
   type EditableProjectGroup,
 } from "../services/publish";
+import { buildNativeProjectDraft } from "../services/native-project";
+import {
+  listChangeReports,
+  listProjectChangeReports,
+} from "../services/change-reports";
+import { listStudioActors } from "../services/actors";
+import {
+  checkRepository,
+  resolveGithubRepository,
+} from "../services/repositories";
 import { authenticateApiKey } from "./auth";
 import * as workflow from "../storage/workflow";
 import { renderProjectPage } from "../ui/public-pages";
 import {
   renderStudioNewProject,
   renderStudioQueue,
+  renderStudioReports,
+  renderStudioActors,
   renderStudioWorkspace,
   type WorkspaceTab,
 } from "../ui/studio-pages";
@@ -117,10 +130,66 @@ export function createStudioRouter() {
       : context.text("Missing scope: draft:create", 403),
   );
 
+  router.post("/projects/new", async (context) => {
+    const actor = context.get("actor");
+    if (!actor.scopes.has("draft:create")) {
+      return context.text("Missing scope: draft:create", 403);
+    }
+    const body = await context.req.parseBody();
+    const projectId = String(body.project_id ?? "").trim();
+    if (!/^[a-z0-9][a-z0-9-]{1,79}$/.test(projectId)) {
+      throw new WorkflowError("project ID must be a lowercase slug", 422);
+    }
+    const now = new Date().toISOString();
+    const repository = await resolveGithubRepository(
+      String(body.repository_url ?? ""),
+      context.env.GITHUB_API_TOKEN,
+    );
+    const checked = await checkRepository(context.env.DB, actor, {
+      repositoryUrl: repository.canonicalUrl,
+      platformRepositoryId: repository.platformRepositoryId,
+      now,
+    });
+    if (checked.status !== "new_repository" || !checked.creation_ticket) {
+      throw new WorkflowError(
+        checked.existing_project_id
+          ? `repository already belongs to project ${checked.existing_project_id}`
+          : "repository cannot be created because it may be a duplicate",
+        409,
+      );
+    }
+    const text = (name: string): string => String(body[name] ?? "").trim();
+    const document = buildNativeProjectDraft({
+      projectId,
+      name: text("name"),
+      chineseName: text("chinese_name") || null,
+      summary: text("summary"),
+      useWhen: text("use_when"),
+      avoidWhen: text("avoid_when"),
+      primaryCategory: text("primary_category"),
+      domain: text("domain") || null,
+      actorId: actor.actorId,
+      repository,
+      now,
+    });
+    const draftId = `draft-${crypto.randomUUID()}`;
+    await createProjectDraft(context.env.DB, actor, {
+      draftId,
+      creationTicket: checked.creation_ticket,
+      document,
+      now,
+    });
+    return context.redirect(`/studio/projects/${encodeURIComponent(draftId)}`, 303);
+  });
+
   router.get("/projects/:id/preview", async (context) => {
     const draft = await workflow.getDraft(context.env.DB, context.req.param("id"));
     return draft
-      ? context.html(renderProjectPage(draft.document))
+      ? context.html(
+          renderProjectPage(draft.document, {
+            studioBackUrl: `/studio/projects/${encodeURIComponent(draft.draftId)}`,
+          }),
+        )
       : context.text("Draft not found", 404);
   });
 
@@ -130,11 +199,16 @@ export function createStudioRouter() {
       return context.text("Unknown workspace tab", 404);
     }
     const draft = await workflow.getDraft(context.env.DB, context.req.param("id"));
-    return draft
-      ? context.html(
-          renderStudioWorkspace(draft, context.get("actor"), "overview", tab),
+    if (!draft) return context.text("Draft not found", 404);
+    const reports = tab === "reports"
+      ? await listProjectChangeReports(
+          context.env.DB,
+          draft.projectId ?? draft.document.project_id,
         )
-      : context.text("Draft not found", 404);
+      : [];
+    return context.html(
+      renderStudioWorkspace(draft, context.get("actor"), "overview", tab, reports),
+    );
   });
 
   router.post("/projects/:id/tabs/:tab", async (context) => {
@@ -284,16 +358,12 @@ export function createStudioRouter() {
       : context.text("Draft not found", 404);
   });
 
-  router.get("/reports", (context) =>
-    context.html(renderLayoutPlaceholder("变化报告", "变化报告队列将在核验服务中接入。")),
+  router.get("/reports", async (context) =>
+    context.html(renderStudioReports(await listChangeReports(context.env.DB))),
   );
-  router.get("/actors", (context) =>
-    context.html(renderLayoutPlaceholder("智能体身份", "身份凭证只显示元数据，不显示密钥。")),
+  router.get("/actors", async (context) =>
+    context.html(renderStudioActors(await listStudioActors(context.env.DB))),
   );
 
   return router;
-}
-
-function renderLayoutPlaceholder(title: string, message: string): string {
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="/assets/app.css"></head><body class="studio-body"><main class="studio-page"><a href="/studio">返回编辑任务</a><h1>${title}</h1><p>${message}</p></main></body></html>`;
 }

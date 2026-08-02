@@ -1,6 +1,8 @@
 import { SECTION_KEYS, type SectionKey } from "../domain/project";
 import type { ActorContext } from "../domain/scopes";
 import type { EditableProjectGroup } from "../services/publish";
+import type { StoredChangeReport } from "../services/change-reports";
+import type { StudioActor } from "../services/actors";
 import type { StoredDraft } from "../storage/workflow";
 import { escapeHtml, renderLayout } from "./layout";
 
@@ -130,6 +132,7 @@ function renderWorkspacePanel(
   actor: ActorContext,
   tab: WorkspaceTab,
   sectionKey: SectionKey,
+  reports: StoredChangeReport[],
 ): string {
   const editable =
     (draft.status === "draft" || draft.status === "changes_requested") &&
@@ -145,7 +148,7 @@ function renderWorkspacePanel(
     return `<div class="workspace-single">${groupEditor}</div>`;
   }
   if (tab === "reports") {
-    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">隔离队列</p><h2>变化报告</h2></div></div><div class="empty-state"><p>当前项目没有待处理变化报告。</p></div></section></div>`;
+    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">隔离队列</p><h2>变化报告</h2></div><span>${reports.length} 项</span></div>${reports.length ? renderReportTable(reports) : `<div class="empty-state"><p>当前项目没有待处理变化报告。</p></div>`}</section></div>`;
   }
   if (tab === "diff") {
     return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">不可变修订</p><h2>版本差异</h2></div><span>base v${draft.baseRevision}</span></div><dl class="diff-summary"><div><dt>正式基线</dt><dd>v${draft.baseRevision}</dd></div><div><dt>草稿修订</dt><dd>v${draft.document.publication.revision}</dd></div><div><dt>最后编辑</dt><dd>${escapeHtml(draft.updatedByActorId)}</dd></div></dl></section></div>`;
@@ -162,7 +165,7 @@ function renderWorkspacePanel(
       draft.status === "approved" && actor.scopes.has("publish")
         ? `<form method="post" action="/studio/projects/${encodeURIComponent(draft.draftId)}/actions/publish"><button class="primary-button" type="submit" data-action="publish">发布正式修订</button></form>`
         : "";
-    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">${statusLabel(draft.status)}</p><h2>审核与发布</h2></div><span>${escapeHtml(draft.status)}</span></div><dl class="diff-summary"><div><dt>基础修订</dt><dd>v${draft.baseRevision}</dd></div><div><dt>创建身份</dt><dd>${escapeHtml(draft.createdByActorId)}</dd></div><div><dt>最后编辑</dt><dd>${escapeHtml(draft.updatedByActorId)}</dd></div></dl><div class="review-actions">${submit}${approve}${publish || (actor.scopes.has("publish") ? `<button class="primary-button" type="button" data-action="publish" disabled>发布正式修订</button>` : "")}</div></section></div>`;
+    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">${statusLabel(draft.status)}</p><h2>审核与发布</h2></div><span>${escapeHtml(draft.status)}</span></div><dl class="diff-summary"><div><dt>基础修订</dt><dd>v${draft.baseRevision}</dd></div><div><dt>创建身份</dt><dd>${escapeHtml(draft.createdByActorId)}</dd></div><div><dt>最后编辑</dt><dd>${escapeHtml(draft.updatedByActorId)}</dd></div></dl><div class="review-actions">${submit}${approve}${publish}</div></section></div>`;
   }
   return "";
 }
@@ -172,12 +175,13 @@ export function renderStudioWorkspace(
   actor: ActorContext,
   sectionKey: SectionKey = "overview",
   activeTab: WorkspaceTab = "sections",
+  reports: StoredChangeReport[] = [],
 ): string {
   const content = `<main class="studio-page studio-workspace" id="main-content">
     <nav class="breadcrumbs" aria-label="面包屑"><a href="/studio">编辑任务</a><span>/</span><span>${escapeHtml(draft.draftId)}</span></nav>
     <header class="workspace-heading">
       <div><p class="section-kicker">${escapeHtml(draft.status)}</p><h1>${escapeHtml(draft.document.card.chinese_name || draft.document.card.name)}</h1><p><code>${escapeHtml(draft.draftId)}</code> · base revision ${draft.baseRevision} · ${escapeHtml(draft.updatedByActorId)}</p></div>
-      <div class="project-actions"><a class="secondary-button" href="/studio/projects/${encodeURIComponent(draft.draftId)}/preview">预览草稿</a>${actor.scopes.has("publish") ? `<a class="primary-button${draft.status !== "approved" ? " is-disabled" : ""}" href="/studio/projects/${encodeURIComponent(draft.draftId)}/tabs/review" data-action="publish"${draft.status !== "approved" ? ` aria-disabled="true"` : ""}>发布批准稿</a>` : ""}</div>
+      <div class="project-actions"><a class="secondary-button" href="/studio/projects/${encodeURIComponent(draft.draftId)}/preview">预览草稿</a>${actor.scopes.has("publish") && draft.status === "approved" ? `<a class="primary-button" href="/studio/projects/${encodeURIComponent(draft.draftId)}/tabs/review" data-action="publish">发布批准稿</a>` : ""}</div>
     </header>
     <nav class="workspace-tabs" aria-label="项目工作区">${WORKSPACE_TABS.map(([label, key]) => {
       const href = key === "sections"
@@ -187,7 +191,7 @@ export function renderStudioWorkspace(
           : `/studio/projects/${encodeURIComponent(draft.draftId)}/tabs/${key}`;
       return `<a href="${href}"${key === activeTab ? ` aria-current="page"` : ""}>${label}</a>`;
     }).join("")}</nav>
-    ${renderWorkspacePanel(draft, actor, activeTab, sectionKey)}
+    ${renderWorkspacePanel(draft, actor, activeTab, sectionKey, reports)}
   </main>`;
   return renderLayout({
     title: `${draft.document.card.name} 编辑工作区`,
@@ -202,7 +206,31 @@ export function renderStudioNewProject(): string {
   return renderLayout({
     title: "新建项目草稿",
     description: "先查重并取得创建票据，再建立完整项目草稿。",
-    content: `<main class="studio-page" id="main-content"><nav class="breadcrumbs"><a href="/studio">编辑任务</a><span>/</span><span>新建项目</span></nav><header class="studio-heading"><div><p class="section-kicker">强制查重</p><h1>新建项目草稿</h1><p>输入规范仓库地址，系统确认稳定仓库身份后签发创建票据。</p></div></header><section class="studio-editor"><form><label>仓库地址<input type="url" name="repository_url" required placeholder="https://github.com/owner/repository"></label><button class="primary-button" type="submit" disabled>检查仓库</button></form><p class="form-note">远程仓库核验将在 MCP/API 能力接入后启用。</p></section></main>`,
+    content: `<main class="studio-page" id="main-content"><nav class="breadcrumbs"><a href="/studio">编辑任务</a><span>/</span><span>新建项目</span></nav><header class="studio-heading"><div><p class="section-kicker">强制查重</p><h1>新建项目草稿</h1></div></header><section class="studio-editor"><form method="post" action="/studio/projects/new" data-studio-form><div class="studio-form-grid"><label>仓库地址<input type="url" name="repository_url" required placeholder="https://github.com/owner/repository"></label><label>项目 ID<input name="project_id" required minlength="2" maxlength="80" pattern="[a-z0-9][a-z0-9-]+"></label><label>项目名称<input name="name" required maxlength="200"></label><label>中文名称<input name="chinese_name" maxlength="200"></label><label>主分类<input name="primary_category" required maxlength="200"></label><label>领域<input name="domain" maxlength="100"></label></div><label>卡片摘要<textarea name="summary" required maxlength="80" rows="3"></textarea></label><label>适合场景<textarea name="use_when" required maxlength="500" rows="3"></textarea></label><label>不适合场景<textarea name="avoid_when" required maxlength="500" rows="3"></textarea></label><div class="studio-savebar"><span data-save-state>未提交</span><button class="primary-button" type="submit">查重并创建草稿</button></div></form></section></main>`,
+    bodyClass: "studio-body",
+  });
+}
+
+export function renderStudioReports(reports: StoredChangeReport[]): string {
+  const content = `<main class="studio-page" id="main-content"><nav class="breadcrumbs"><a href="/studio">编辑任务</a><span>/</span><span>变化报告</span></nav><header class="studio-heading"><div><p class="section-kicker">核验队列</p><h1>变化报告</h1></div><span>${reports.length} 项</span></header><section class="studio-queue" aria-label="变化报告队列">${renderReportTable(reports)}</section></main>`;
+  return renderLayout({
+    title: "变化报告",
+    description: "上游变化核验与人工审核队列。",
+    content,
+    bodyClass: "studio-body",
+  });
+}
+
+function renderReportTable(reports: StoredChangeReport[]): string {
+  return `<div class="studio-table" role="table" aria-label="变化报告"><div class="studio-table-row studio-table-header" role="row"><span>项目</span><span>报告</span><span>类型</span><span>状态</span></div>${reports.map((report) => `<a class="studio-table-row" role="row" href="${escapeHtml(report.evidenceUrl)}" target="_blank" rel="noopener noreferrer"><strong>${escapeHtml(report.projectId)}</strong><code>${escapeHtml(report.reportId)}</code><span>${escapeHtml(report.reportType)}</span><span class="status-chip">${escapeHtml(report.status)}</span></a>`).join("")}</div>`;
+}
+
+export function renderStudioActors(actors: StudioActor[]): string {
+  const content = `<main class="studio-page" id="main-content"><nav class="breadcrumbs"><a href="/studio">编辑任务</a><span>/</span><span>智能体身份</span></nav><header class="studio-heading"><div><p class="section-kicker">最小权限</p><h1>智能体身份</h1></div><span>${actors.length} 项</span></header><section class="studio-queue" aria-label="智能体身份"><div class="studio-table actor-table" role="table" aria-label="智能体身份"><div class="studio-table-row studio-table-header" role="row"><span>身份</span><span>类型</span><span>状态</span><span>权限</span></div>${actors.map((actor) => `<div class="studio-table-row" role="row"><strong>${escapeHtml(actor.displayName)}</strong><code>${escapeHtml(actor.actorType)}</code><span class="status-chip">${escapeHtml(actor.status)} · ${actor.activeCredentialCount} 凭证</span><span>${actor.scopes.length ? actor.scopes.map((scope) => `<code>${escapeHtml(scope)}</code>`).join(" ") : "无有效权限"}</span></div>`).join("")}</div></section></main>`;
+  return renderLayout({
+    title: "智能体身份",
+    description: "内部编辑身份状态与最小权限元数据。",
+    content,
     bodyClass: "studio-body",
   });
 }

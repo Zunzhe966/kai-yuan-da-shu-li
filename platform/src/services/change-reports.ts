@@ -251,6 +251,54 @@ export async function getChangeReport(
   return row ? toStoredReport(row) : null;
 }
 
+export async function listChangeReports(
+  db: D1Database,
+  limit = 100,
+): Promise<StoredChangeReport[]> {
+  const result = await db
+    .prepare(
+      `SELECT report_id, project_id, report_type, upstream_fingerprint, status,
+              evidence_url, payload_json, next_attempt_at, created_at, updated_at
+       FROM change_reports
+       ORDER BY CASE status
+         WHEN 'needs_review' THEN 0
+         WHEN 'retry' THEN 1
+         WHEN 'received' THEN 2
+         WHEN 'verifying' THEN 3
+         ELSE 4
+       END, updated_at DESC, report_id
+       LIMIT ?`,
+    )
+    .bind(Math.min(Math.max(limit, 1), 200))
+    .all<ChangeReportRow>();
+  return result.results.map(toStoredReport);
+}
+
+export async function listProjectChangeReports(
+  db: D1Database,
+  projectId: string,
+  limit = 100,
+): Promise<StoredChangeReport[]> {
+  const result = await db
+    .prepare(
+      `SELECT report_id, project_id, report_type, upstream_fingerprint, status,
+              evidence_url, payload_json, next_attempt_at, created_at, updated_at
+       FROM change_reports
+       WHERE project_id = ?
+       ORDER BY CASE status
+         WHEN 'needs_review' THEN 0
+         WHEN 'retry' THEN 1
+         WHEN 'received' THEN 2
+         WHEN 'verifying' THEN 3
+         ELSE 4
+       END, updated_at DESC, report_id
+       LIMIT ?`,
+    )
+    .bind(projectId, Math.min(Math.max(limit, 1), 200))
+    .all<ChangeReportRow>();
+  return result.results.map(toStoredReport);
+}
+
 async function verifyRemoteEvidence(
   report: StoredChangeReport,
 ): Promise<VerificationResult> {

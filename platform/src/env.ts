@@ -4,4 +4,5 @@ export interface Bindings {
   ASSETS: Fetcher;
   ACCESS_TEAM_DOMAIN: string;
   ACCESS_AUD: string;
+  GITHUB_API_TOKEN?: string;
 }

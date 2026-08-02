@@ -22,7 +22,23 @@ export interface RepositoryCheckResult {
   ticket_expires_at: string | null;
 }
 
-function normalizeGithubRepository(repositoryUrl: string): {
+export interface GithubRepositoryMetadata {
+  platformRepositoryId: string;
+  canonicalUrl: string;
+  fullName: string;
+  defaultBranch: string | null;
+  createdAt: string | null;
+  updatedAt: string | null;
+  pushedAt: string | null;
+  isFork: boolean;
+  mirrorUrl: string | null;
+  archived: boolean;
+  disabled: boolean;
+  primaryLanguage: string | null;
+  license: string | null;
+}
+
+export function normalizeGithubRepository(repositoryUrl: string): {
   canonicalUrl: string;
   fullName: string;
 } {
@@ -42,14 +58,68 @@ function normalizeGithubRepository(repositoryUrl: string): {
   if (parts.length !== 2) {
     throw new WorkflowError("repository URL must identify owner and repository", 422);
   }
-  const owner = parts[0]!;
-  const repository = parts[1]!.replace(/\.git$/i, "");
+  const owner = parts[0]!.toLowerCase();
+  const repository = parts[1]!.replace(/\.git$/i, "").toLowerCase();
   if (!owner || !repository) {
     throw new WorkflowError("repository URL must identify owner and repository", 422);
   }
   return {
     canonicalUrl: `https://github.com/${owner}/${repository}`,
     fullName: `${owner}/${repository}`,
+  };
+}
+
+export async function resolveGithubRepository(
+  repositoryUrl: string,
+  token?: string,
+  fetcher: typeof fetch = fetch,
+): Promise<GithubRepositoryMetadata> {
+  const normalized = normalizeGithubRepository(repositoryUrl);
+  const headers = new Headers({
+    Accept: "application/vnd.github+json",
+    "User-Agent": "kaiyuan-dashuli-platform",
+    "X-GitHub-Api-Version": "2022-11-28",
+  });
+  if (token?.trim()) headers.set("Authorization", `Bearer ${token.trim()}`);
+  const response = await fetcher(
+    `https://api.github.com/repos/${normalized.fullName}`,
+    { headers },
+  );
+  if (!response.ok) {
+    throw new WorkflowError(
+      response.status === 404
+        ? "GitHub repository was not found or is not public"
+        : `GitHub repository lookup failed (${response.status})`,
+      response.status === 404 ? 422 : 502,
+    );
+  }
+  const value = (await response.json()) as Record<string, unknown>;
+  const id = value.id;
+  const fullName = typeof value.full_name === "string" ? value.full_name : "";
+  const canonicalUrl = typeof value.html_url === "string" ? value.html_url : "";
+  if ((typeof id !== "number" && typeof id !== "string") || !fullName || !canonicalUrl) {
+    throw new WorkflowError("GitHub repository response is incomplete", 502);
+  }
+  const textOrNull = (input: unknown): string | null =>
+    typeof input === "string" && input.trim() ? input : null;
+  const license =
+    value.license && typeof value.license === "object"
+      ? textOrNull((value.license as Record<string, unknown>).spdx_id)
+      : null;
+  return {
+    platformRepositoryId: String(id),
+    canonicalUrl,
+    fullName,
+    defaultBranch: textOrNull(value.default_branch),
+    createdAt: textOrNull(value.created_at),
+    updatedAt: textOrNull(value.updated_at),
+    pushedAt: textOrNull(value.pushed_at),
+    isFork: value.fork === true,
+    mirrorUrl: textOrNull(value.mirror_url),
+    archived: value.archived === true,
+    disabled: value.disabled === true,
+    primaryLanguage: textOrNull(value.language),
+    license: license === "NOASSERTION" ? null : license,
   };
 }
 
