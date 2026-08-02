@@ -257,3 +257,23 @@ export async function getPublished(
     .first<RevisionRow>();
   return row ? toStoredRevision(row) : null;
 }
+
+export async function getPublishedDocument(
+  db: D1Database,
+  projectId: string,
+): Promise<ProjectPublication | null> {
+  const revision = await getPublished(db, projectId);
+  return revision
+    ? (JSON.parse(revision.documentJson) as ProjectPublication)
+    : null;
+}
+
+export async function listPublishedProjectIds(db: D1Database): Promise<string[]> {
+  const result = await db
+    .prepare(
+      `SELECT project_id FROM projects
+       WHERE current_revision_id IS NOT NULL ORDER BY project_id`,
+    )
+    .all<{ project_id: string }>();
+  return result.results.map((row) => row.project_id);
+}
