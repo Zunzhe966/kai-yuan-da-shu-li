@@ -7,4 +7,14 @@ export default defineConfig({
       wrangler: { configPath: "./wrangler.jsonc" },
     }),
   ],
+  test: {
+    deps: {
+      optimizer: {
+        ssr: {
+          enabled: true,
+          include: ["ajv", "ajv/dist/2020", "ajv-formats"],
+        },
+      },
+    },
+  },
 });

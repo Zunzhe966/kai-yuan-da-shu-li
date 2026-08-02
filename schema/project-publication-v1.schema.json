@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kai-yuan-da-shu-li.example/schema/project-publication-v1.schema.json",
+  "title": "Open Source Project Publication V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "project_id", "record_state", "repository_sources", "identity", "attribution", "discovery", "card", "sections", "evidence", "field_states", "editorial", "publication"],
+  "properties": {
+    "schema_version": { "const": "project-publication-v1" },
+    "project_id": { "$ref": "#/$defs/id" },
+    "record_state": { "$ref": "#/$defs/workflowStatus" },
+    "repository_sources": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/repositorySource" } },
+    "identity": { "$ref": "#/$defs/identity" },
+    "attribution": { "type": "array", "items": { "$ref": "#/$defs/attribution" } },
+    "discovery": { "$ref": "#/$defs/discovery" },
+    "card": { "$ref": "#/$defs/card" },
+    "sections": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["overview", "problem_and_positioning", "background_and_history", "creators_and_organization", "design_philosophy", "architecture_and_technology", "core_capabilities", "installation_and_usage", "limitations_and_risks", "maintenance_and_releases", "ecosystem_and_interoperability", "alternatives_and_selection", "community_and_channels", "editorial_assessment"],
+      "properties": {
+        "overview": { "$ref": "#/$defs/section" },
+        "problem_and_positioning": { "$ref": "#/$defs/section" },
+        "background_and_history": { "$ref": "#/$defs/section" },
+        "creators_and_organization": { "$ref": "#/$defs/section" },
+        "design_philosophy": { "$ref": "#/$defs/section" },
+        "architecture_and_technology": { "$ref": "#/$defs/section" },
+        "core_capabilities": { "$ref": "#/$defs/section" },
+        "installation_and_usage": { "$ref": "#/$defs/section" },
+        "limitations_and_risks": { "$ref": "#/$defs/section" },
+        "maintenance_and_releases": { "$ref": "#/$defs/section" },
+        "ecosystem_and_interoperability": { "$ref": "#/$defs/section" },
+        "alternatives_and_selection": { "$ref": "#/$defs/section" },
+        "community_and_channels": { "$ref": "#/$defs/section" },
+        "editorial_assessment": { "$ref": "#/$defs/section" }
+      }
+    },
+    "evidence": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/evidence" } },
+    "field_states": { "type": "object", "propertyNames": { "minLength": 1 }, "additionalProperties": { "$ref": "#/$defs/fieldState" } },
+    "editorial": { "$ref": "#/$defs/editorial" },
+    "publication": { "$ref": "#/$defs/publication" }
+  },
+  "$defs": {
+    "id": { "type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$" },
+    "nonBlank": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "nullableString": { "type": ["string", "null"] },
+    "nullableUri": { "anyOf": [{ "type": "string", "format": "uri", "pattern": "^https://" }, { "type": "null" }] },
+    "nullableDateTime": { "anyOf": [{ "type": "string", "format": "date-time" }, { "type": "null" }] },
+    "stringList": { "type": "array", "items": { "type": "string", "minLength": 1, "maxLength": 200 }, "uniqueItems": true, "maxItems": 100 },
+    "fieldState": { "enum": ["verified", "inferred", "unknown", "conflicting", "stale", "not_applicable"] },
+    "confidence": { "enum": ["high", "medium", "low"] },
+    "workflowStatus": { "enum": ["draft", "in_review", "changes_requested", "approved", "published", "stale", "archived"] },
+    "repositorySource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "platform_repository_id", "canonical_url", "full_name", "role", "visibility", "default_branch", "observed_oid", "created_at", "updated_at", "pushed_at", "observed_at", "is_fork", "mirror_url", "archived", "disabled", "evidence_ids"],
+      "properties": {
+        "platform": { "enum": ["github", "gitlab", "gitee", "codeberg"] },
+        "platform_repository_id": { "$ref": "#/$defs/nonBlank" },
+        "canonical_url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "full_name": { "$ref": "#/$defs/nonBlank" },
+        "role": { "enum": ["primary", "component", "mirror", "archive"] },
+        "visibility": { "enum": ["public", "private", "unknown"] },
+        "default_branch": { "$ref": "#/$defs/nullableString" },
+        "observed_oid": { "$ref": "#/$defs/nullableString" },
+        "created_at": { "$ref": "#/$defs/nullableDateTime" },
+        "updated_at": { "$ref": "#/$defs/nullableDateTime" },
+        "pushed_at": { "$ref": "#/$defs/nullableDateTime" },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "is_fork": { "type": "boolean" },
+        "mirror_url": { "$ref": "#/$defs/nullableUri" },
+        "archived": { "type": "boolean" },
+        "disabled": { "type": "boolean" },
+        "evidence_ids": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "chinese_name", "aliases", "former_names", "objective_definition", "website_url", "documentation_url", "demo_url", "download_url", "first_published_at", "lifecycle", "visual"],
+      "properties": {
+        "name": { "$ref": "#/$defs/nonBlank" },
+        "chinese_name": { "$ref": "#/$defs/nullableString" },
+        "aliases": { "$ref": "#/$defs/stringList" },
+        "former_names": { "$ref": "#/$defs/stringList" },
+        "objective_definition": { "$ref": "#/$defs/nonBlank" },
+        "website_url": { "$ref": "#/$defs/nullableUri" },
+        "documentation_url": { "$ref": "#/$defs/nullableUri" },
+        "demo_url": { "$ref": "#/$defs/nullableUri" },
+        "download_url": { "$ref": "#/$defs/nullableUri" },
+        "first_published_at": { "$ref": "#/$defs/nullableDateTime" },
+        "lifecycle": { "$ref": "#/$defs/nonBlank" },
+        "visual": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["url", "kind", "source_url", "usage_basis"],
+          "properties": {
+            "url": { "$ref": "#/$defs/nullableUri" },
+            "kind": { "enum": ["logo", "screenshot", "cover", "none"] },
+            "source_url": { "$ref": "#/$defs/nullableUri" },
+            "usage_basis": { "$ref": "#/$defs/nonBlank" }
+          }
+        }
+      }
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["creator_id", "role", "evidence_ids"],
+      "properties": {
+        "creator_id": { "$ref": "#/$defs/id" },
+        "role": { "enum": ["creator", "current_owner", "maintainer", "organization", "foundation", "sponsor_of_upstream"] },
+        "evidence_ids": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "discovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domains", "subcategories", "tasks", "capabilities", "project_types", "languages", "frameworks", "runtimes", "protocols", "delivery_methods", "package_formats", "operating_systems", "runtime_targets", "hardware_requirements", "natural_languages", "open_source_nature", "licenses", "maturity", "maintenance_status", "latest_activity_at", "search_aliases", "canonical_keywords"],
+      "properties": {
+        "domains": { "$ref": "#/$defs/stringList" },
+        "subcategories": { "$ref": "#/$defs/stringList" },
+        "tasks": { "$ref": "#/$defs/stringList" },
+        "capabilities": { "$ref": "#/$defs/stringList" },
+        "project_types": { "$ref": "#/$defs/stringList" },
+        "languages": { "$ref": "#/$defs/stringList" },
+        "frameworks": { "$ref": "#/$defs/stringList" },
+        "runtimes": { "$ref": "#/$defs/stringList" },
+        "protocols": { "$ref": "#/$defs/stringList" },
+        "delivery_methods": { "$ref": "#/$defs/stringList" },
+        "package_formats": { "$ref": "#/$defs/stringList" },
+        "operating_systems": { "$ref": "#/$defs/stringList" },
+        "runtime_targets": { "$ref": "#/$defs/stringList" },
+        "hardware_requirements": { "$ref": "#/$defs/stringList" },
+        "natural_languages": { "$ref": "#/$defs/stringList" },
+        "open_source_nature": { "$ref": "#/$defs/nonBlank" },
+        "licenses": { "$ref": "#/$defs/stringList" },
+        "maturity": { "$ref": "#/$defs/nonBlank" },
+        "maintenance_status": { "$ref": "#/$defs/nonBlank" },
+        "latest_activity_at": { "$ref": "#/$defs/nullableDateTime" },
+        "search_aliases": { "$ref": "#/$defs/stringList" },
+        "canonical_keywords": { "$ref": "#/$defs/stringList" }
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "chinese_name", "summary", "use_when", "avoid_when", "primary_category", "primary_language", "license", "maintenance_status", "primary_creator", "verification_status", "verified_at"],
+      "properties": {
+        "name": { "$ref": "#/$defs/nonBlank" },
+        "chinese_name": { "$ref": "#/$defs/nullableString" },
+        "summary": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "\\S" },
+        "use_when": { "$ref": "#/$defs/nonBlank" },
+        "avoid_when": { "$ref": "#/$defs/nonBlank" },
+        "primary_category": { "$ref": "#/$defs/nonBlank" },
+        "primary_language": { "$ref": "#/$defs/nullableString" },
+        "license": { "$ref": "#/$defs/nullableString" },
+        "maintenance_status": { "$ref": "#/$defs/nonBlank" },
+        "primary_creator": { "$ref": "#/$defs/nullableString" },
+        "verification_status": { "$ref": "#/$defs/fieldState" },
+        "verified_at": { "$ref": "#/$defs/nullableDateTime" }
+      }
+    },
+    "section": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state", "summary", "body", "key_points", "evidence_ids", "confidence", "updated_at"],
+      "properties": {
+        "state": { "$ref": "#/$defs/fieldState" },
+        "summary": { "type": "string", "maxLength": 600 },
+        "body": { "type": "string", "maxLength": 30000 },
+        "key_points": { "type": "array", "items": { "type": "string", "maxLength": 500 }, "maxItems": 30 },
+        "evidence_ids": { "type": "array", "items": { "$ref": "#/$defs/id" }, "uniqueItems": true },
+        "confidence": { "$ref": "#/$defs/confidence" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "url", "source_type", "retrieved_at", "supports", "fact_summary", "applicable_version", "content_hash"],
+      "properties": {
+        "evidence_id": { "$ref": "#/$defs/id" },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "source_type": { "$ref": "#/$defs/nonBlank" },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "supports": { "$ref": "#/$defs/stringList" },
+        "fact_summary": { "$ref": "#/$defs/nonBlank" },
+        "applicable_version": { "$ref": "#/$defs/nullableString" },
+        "content_hash": { "$ref": "#/$defs/nullableString" }
+      }
+    },
+    "editorial": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["researcher_actor_ids", "editor_actor_ids", "reviewer_actor_ids", "work_notes", "internal_notes"],
+      "properties": {
+        "researcher_actor_ids": { "$ref": "#/$defs/stringList" },
+        "editor_actor_ids": { "$ref": "#/$defs/stringList" },
+        "reviewer_actor_ids": { "$ref": "#/$defs/stringList" },
+        "work_notes": { "type": "string", "maxLength": 10000 },
+        "internal_notes": { "type": "string", "maxLength": 10000 }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base_revision", "revision", "status", "review_decision", "published_at", "withdrawn_reason", "superseded_by_revision", "migration_status"],
+      "properties": {
+        "base_revision": { "type": "integer", "minimum": 0 },
+        "revision": { "type": "integer", "minimum": 1 },
+        "status": { "$ref": "#/$defs/workflowStatus" },
+        "review_decision": { "$ref": "#/$defs/nullableString" },
+        "published_at": { "$ref": "#/$defs/nullableDateTime" },
+        "withdrawn_reason": { "$ref": "#/$defs/nullableString" },
+        "superseded_by_revision": { "anyOf": [{ "type": "integer", "minimum": 1 }, { "type": "null" }] },
+        "migration_status": { "enum": ["native", "legacy_imported"] }
+      }
+    }
+  }
+}
