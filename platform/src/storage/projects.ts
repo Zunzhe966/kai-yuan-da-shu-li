@@ -60,6 +60,7 @@ export async function insertRevision(
   db: D1Database,
   document: ProjectPublication,
   publishedByActorId: string | null = null,
+  additionalStatements: D1PreparedStatement[] = [],
 ): Promise<InsertRevisionResult> {
   const primary =
     document.repository_sources.find((source) => source.role === "primary") ??
@@ -220,6 +221,8 @@ export async function insertRevision(
         ),
     );
   }
+
+  statements.push(...additionalStatements);
 
   await db.batch(statements);
   return { projectId: document.project_id, revisionId, revision };
