@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { ProjectPublication } from "../src/domain/project";
 import {
+  buildWranglerTargetArgs,
   chunkRecords,
   parseAndValidateJsonl,
   selectUniqueRepositories,
@@ -16,6 +17,18 @@ function record(projectId: string, repositoryId: string): ProjectPublication {
 }
 
 describe("JSONL import preparation", () => {
+  it("targets an explicit Wrangler environment for remote preview imports", () => {
+    expect(buildWranglerTargetArgs("remote", "preview")).toEqual([
+      "--remote",
+      "--env",
+      "preview",
+    ]);
+    expect(buildWranglerTargetArgs("local", null)).toEqual(["--local"]);
+    expect(() => buildWranglerTargetArgs("remote", "")).toThrow(
+      "Wrangler environment",
+    );
+  });
+
   it("rejects an invalid record before database writes", () => {
     expect(() =>
       parseAndValidateJsonl('{"schema_version":"wrong"}\n'),

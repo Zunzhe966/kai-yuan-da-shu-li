@@ -5,6 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { SECTION_KEYS, type ProjectPublication } from "../src/domain/project";
 import {
+  buildWranglerTargetArgs,
   chunkRecords,
   parseAndValidateJsonl,
   selectUniqueRepositories,
@@ -15,6 +16,7 @@ interface CliOptions {
   mode: "local" | "remote";
   reportPath: string;
   dryRun: boolean;
+  environment: string | null;
 }
 
 function sqlLiteral(value: unknown): string {
@@ -108,9 +110,16 @@ export function createBatchSql(records: ProjectPublication[]): string {
 }
 
 function parseCli(argv: string[]): CliOptions {
-  const inputPath = argv.find((value) => !value.startsWith("--"));
+  const inputPath = argv.find(
+    (value, index) =>
+      !value.startsWith("--") &&
+      argv[index - 1] !== "--report" &&
+      argv[index - 1] !== "--env",
+  );
   if (!inputPath) {
-    throw new Error("usage: import-jsonl.ts <file> (--local|--remote) [--report file]");
+    throw new Error(
+      "usage: import-jsonl.ts <file> (--local|--remote) [--env name] [--report file]",
+    );
   }
   const local = argv.includes("--local");
   const remote = argv.includes("--remote");
@@ -120,12 +129,17 @@ function parseCli(argv: string[]): CliOptions {
   const reportIndex = argv.indexOf("--report");
   const requestedReportPath =
     reportIndex >= 0 ? argv[reportIndex + 1] : undefined;
+  const environmentIndex = argv.indexOf("--env");
+  const environment =
+    environmentIndex >= 0 ? (argv[environmentIndex + 1] ?? "") : null;
+  buildWranglerTargetArgs(local ? "local" : "remote", environment);
   const reportPath = requestedReportPath ?? `${inputPath}.import-report.json`;
   return {
     inputPath,
     mode: local ? "local" : "remote",
     reportPath,
     dryRun: argv.includes("--dry-run"),
+    environment,
   };
 }
 
@@ -145,6 +159,10 @@ async function main(): Promise<void> {
         const sqlPath = path.join(temporaryDirectory, `batch-${index + 1}.sql`);
         await writeFile(sqlPath, createBatchSql(batch), "utf8");
         const command = process.platform === "win32" ? "npx.cmd" : "npx";
+        const targetArgs = buildWranglerTargetArgs(
+          options.mode,
+          options.environment,
+        );
         const result = spawnSync(
           command,
           [
@@ -152,7 +170,7 @@ async function main(): Promise<void> {
             "d1",
             "execute",
             "DB",
-            `--${options.mode}`,
+            ...targetArgs,
             "--yes",
             "--file",
             sqlPath,

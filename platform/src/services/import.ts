@@ -13,6 +13,22 @@ export interface UniqueRepositorySelection {
   duplicates: DuplicateRepository[];
 }
 
+export function buildWranglerTargetArgs(
+  mode: "local" | "remote",
+  environment: string | null,
+): string[] {
+  if (
+    environment !== null &&
+    !/^[a-z0-9][a-z0-9-]{0,62}$/.test(environment)
+  ) {
+    throw new Error("Wrangler environment must be a lowercase name");
+  }
+  return [
+    `--${mode}`,
+    ...(environment ? ["--env", environment] : []),
+  ];
+}
+
 export function parseAndValidateJsonl(input: string): ProjectPublication[] {
   const records: ProjectPublication[] = [];
   for (const [index, rawLine] of input.split("\n").entries()) {

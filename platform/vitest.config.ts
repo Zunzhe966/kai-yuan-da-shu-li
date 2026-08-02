@@ -2,7 +2,7 @@ import {
   cloudflareTest,
   readD1Migrations,
 } from "@cloudflare/vitest-pool-workers";
-import { defineConfig } from "vitest/config";
+import { configDefaults, defineConfig } from "vitest/config";
 
 export default defineConfig(async () => ({
   plugins: [
@@ -21,6 +21,7 @@ export default defineConfig(async () => ({
     }),
   ],
   test: {
+    exclude: [...configDefaults.exclude, "test/e2e/**"],
     deps: {
       optimizer: {
         ssr: {
