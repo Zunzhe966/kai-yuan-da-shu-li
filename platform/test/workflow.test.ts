@@ -87,6 +87,55 @@ describe("scoped editorial workflow", () => {
     );
   });
 
+  it("enforces one active draft claim even when repository checks race", async () => {
+    await seedActor("actor-claim-one");
+    await seedActor("actor-claim-two");
+    const document = projectFixture({
+      projectId: "project-claim-one",
+      repositoryId: "repository-claim-race",
+    });
+    await testEnv.DB.batch([
+      testEnv.DB.prepare(
+        `INSERT INTO creation_tickets (
+          ticket_id, platform, platform_repository_id, issued_to_actor_id, expires_at
+        ) VALUES ('ticket-claim-one', 'github', 'repository-claim-race',
+                  'actor-claim-one', '2026-08-03T00:00:00Z')`,
+      ),
+      testEnv.DB.prepare(
+        `INSERT INTO creation_tickets (
+          ticket_id, platform, platform_repository_id, issued_to_actor_id, expires_at
+        ) VALUES ('ticket-claim-two', 'github', 'repository-claim-race',
+                  'actor-claim-two', '2026-08-03T00:00:01Z')`,
+      ),
+    ]);
+    await createProjectDraft(
+      testEnv.DB,
+      actor("actor-claim-one", new Set(["draft:create"])),
+      {
+        draftId: "draft-claim-one",
+        creationTicket: "ticket-claim-one",
+        document,
+        now: TEST_NOW,
+      },
+    );
+
+    await expect(
+      createProjectDraft(
+        testEnv.DB,
+        actor("actor-claim-two", new Set(["draft:create"])),
+        {
+          draftId: "draft-claim-two",
+          creationTicket: "ticket-claim-two",
+          document: {
+            ...document,
+            project_id: "project-claim-two",
+          },
+          now: TEST_NOW,
+        },
+      ),
+    ).rejects.toMatchObject({ status: 409 });
+  });
+
   it("does not let draft:update approve a submission", async () => {
     await seedActor("actor-editor");
     await seedActor("actor-reviewer");
@@ -188,6 +237,15 @@ describe("scoped editorial workflow", () => {
       actorId: "actor-publish-editor",
       createdAt: TEST_NOW,
     });
+    await testEnv.DB.prepare(
+      `INSERT INTO pending_repository_claims (
+        claim_id, platform, platform_repository_id, canonical_url,
+        draft_id, created_at
+      ) VALUES ('claim-publish', 'github', 'repository-publish',
+                'https://github.com/example/project', 'draft-publish', ?)`,
+    )
+      .bind(TEST_NOW)
+      .run();
     await submitProjectDraft(
       testEnv.DB,
       actor("actor-publish-editor", new Set(["draft:update"])),
@@ -215,6 +273,12 @@ describe("scoped editorial workflow", () => {
     expect((await workflow.getDraft(testEnv.DB, "draft-publish"))?.status).toBe(
       "published",
     );
+    expect(
+      await testEnv.DB.prepare(
+        `SELECT released_at FROM pending_repository_claims
+         WHERE claim_id = 'claim-publish'`,
+      ).first<{ released_at: string | null }>(),
+    ).toEqual({ released_at: TEST_NOW });
     expect(
       await testEnv.DB.prepare(
         "SELECT action FROM audit_events WHERE audit_event_id = 'audit-publish'",

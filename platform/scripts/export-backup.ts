@@ -33,6 +33,10 @@ const BACKUP_FILES = [
   { name: "creator-project-roles.jsonl", table: "creator_project_roles" },
   { name: "evidence.jsonl", table: "evidence" },
   { name: "drafts.jsonl", table: "drafts" },
+  {
+    name: "pending-repository-claims.jsonl",
+    table: "pending_repository_claims",
+  },
   { name: "submissions.jsonl", table: "submissions" },
   { name: "reviews.jsonl", table: "reviews" },
   { name: "change-reports.jsonl", table: "change_reports" },

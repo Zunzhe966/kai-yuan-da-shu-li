@@ -31,6 +31,7 @@ const SPECS: RestoreSpec[] = [
   { file: "creator-project-roles.jsonl", table: "creator_project_roles", columns: ["creator_id", "project_id", "role", "evidence_ids_json"] },
   { file: "evidence.jsonl", table: "evidence", columns: ["evidence_id", "project_id", "revision_id", "url", "source_type", "document_json", "retrieved_at"] },
   { file: "drafts.jsonl", table: "drafts", columns: ["draft_id", "project_id", "status", "base_revision", "document_json", "created_by_actor_id", "updated_by_actor_id", "created_at", "updated_at"] },
+  { file: "pending-repository-claims.jsonl", table: "pending_repository_claims", columns: ["claim_id", "platform", "platform_repository_id", "canonical_url", "draft_id", "created_at", "released_at"] },
   { file: "submissions.jsonl", table: "submissions", columns: ["submission_id", "draft_id", "submitted_by_actor_id", "risk_level", "submitted_at"] },
   { file: "reviews.jsonl", table: "reviews", columns: ["review_id", "submission_id", "reviewer_actor_id", "decision", "notes", "created_at"] },
   { file: "change-reports.jsonl", table: "change_reports", columns: ["report_id", "project_id", "report_type", "upstream_fingerprint", "status", "evidence_url", "payload_json", "next_attempt_at", "created_at", "updated_at"] },

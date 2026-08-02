@@ -85,26 +85,52 @@ export async function createProjectDraft(
     throw new WorkflowError("valid creation ticket required", 403);
   }
 
-  await db.batch([
-    db
-      .prepare(
-        `INSERT INTO drafts (
-          draft_id, project_id, status, base_revision, document_json,
-          created_by_actor_id, updated_by_actor_id, created_at, updated_at
-        ) VALUES (?, NULL, 'draft', 0, ?, ?, ?, ?, ?)`,
-      )
-      .bind(
-        input.draftId,
-        JSON.stringify(input.document),
-        actor.actorId,
-        actor.actorId,
-        input.now,
-        input.now,
-      ),
-    db
-      .prepare("UPDATE creation_tickets SET consumed_at = ? WHERE ticket_id = ?")
-      .bind(input.now, input.creationTicket),
-  ]);
+  try {
+    await db.batch([
+      db
+        .prepare(
+          `INSERT INTO drafts (
+            draft_id, project_id, status, base_revision, document_json,
+            created_by_actor_id, updated_by_actor_id, created_at, updated_at
+          ) VALUES (?, NULL, 'draft', 0, ?, ?, ?, ?, ?)`,
+        )
+        .bind(
+          input.draftId,
+          JSON.stringify(input.document),
+          actor.actorId,
+          actor.actorId,
+          input.now,
+          input.now,
+        ),
+      db
+        .prepare(
+          `INSERT INTO pending_repository_claims (
+            claim_id, platform, platform_repository_id, canonical_url,
+            draft_id, created_at
+          ) VALUES (?, ?, ?, ?, ?, ?)`,
+        )
+        .bind(
+          crypto.randomUUID(),
+          primary.platform,
+          primary.platform_repository_id,
+          primary.canonical_url,
+          input.draftId,
+          input.now,
+        ),
+      db
+        .prepare("UPDATE creation_tickets SET consumed_at = ? WHERE ticket_id = ?")
+        .bind(input.now, input.creationTicket),
+    ]);
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      error.message.includes("pending_repository_claims") &&
+      error.message.includes("UNIQUE")
+    ) {
+      throw new WorkflowError("repository already has pending draft", 409);
+    }
+    throw error;
+  }
 }
 
 export interface SubmitDraftInput {
@@ -392,6 +418,12 @@ export async function publishApprovedDraft(
          WHERE draft_id = ?`,
       )
       .bind(document.project_id, actor.actorId, input.now, draftId),
+    db
+      .prepare(
+        `UPDATE pending_repository_claims SET released_at = ?
+         WHERE draft_id = ? AND released_at IS NULL`,
+      )
+      .bind(input.now, draftId),
     db
       .prepare(
         `INSERT INTO audit_events (

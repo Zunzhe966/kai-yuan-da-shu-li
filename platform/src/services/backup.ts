@@ -192,6 +192,20 @@ const TABLE_SPECS: readonly TableSpec[] = [
     orderBy: "draft_id",
   },
   {
+    table: "pending_repository_claims",
+    file: "pending-repository-claims.jsonl",
+    columns: [
+      "claim_id",
+      "platform",
+      "platform_repository_id",
+      "canonical_url",
+      "draft_id",
+      "created_at",
+      "released_at",
+    ],
+    orderBy: "claim_id",
+  },
+  {
     table: "submissions",
     file: "submissions.jsonl",
     columns: [

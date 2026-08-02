@@ -154,6 +154,8 @@ export function createStudioRouter() {
       throw new WorkflowError(
         checked.existing_project_id
           ? `repository already belongs to project ${checked.existing_project_id}`
+          : checked.existing_draft_id
+            ? `repository already has pending draft ${checked.existing_draft_id}`
           : "repository cannot be created because it may be a duplicate",
         409,
       );
@@ -358,12 +360,18 @@ export function createStudioRouter() {
       : context.text("Draft not found", 404);
   });
 
-  router.get("/reports", async (context) =>
-    context.html(renderStudioReports(await listChangeReports(context.env.DB))),
-  );
-  router.get("/actors", async (context) =>
-    context.html(renderStudioActors(await listStudioActors(context.env.DB))),
-  );
+  router.get("/reports", async (context) => {
+    if (!context.get("actor").scopes.has("report:verify")) {
+      return context.text("Missing scope: report:verify", 403);
+    }
+    return context.html(renderStudioReports(await listChangeReports(context.env.DB)));
+  });
+  router.get("/actors", async (context) => {
+    if (!context.get("actor").scopes.has("actors:read")) {
+      return context.text("Missing scope: actors:read", 403);
+    }
+    return context.html(renderStudioActors(await listStudioActors(context.env.DB)));
+  });
 
   return router;
 }

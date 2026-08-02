@@ -12,12 +12,14 @@ export interface RepositoryCheckResult {
     | "existing_project"
     | "renamed_or_transferred"
     | "possible_duplicate"
+    | "existing_draft"
     | "new_repository";
   platform: "github";
   platform_repository_id: string;
   canonical_url: string;
   full_name: string;
   existing_project_id: string | null;
+  existing_draft_id: string | null;
   creation_ticket: string | null;
   ticket_expires_at: string | null;
 }
@@ -151,6 +153,7 @@ export async function checkRepository(
       canonical_url: normalized.canonicalUrl,
       full_name: normalized.fullName,
       existing_project_id: byIdentity.project_id,
+      existing_draft_id: null,
       creation_ticket: null,
       ticket_expires_at: null,
     };
@@ -170,6 +173,30 @@ export async function checkRepository(
       canonical_url: normalized.canonicalUrl,
       full_name: normalized.fullName,
       existing_project_id: byUrl.project_id,
+      existing_draft_id: null,
+      creation_ticket: null,
+      ticket_expires_at: null,
+    };
+  }
+
+  const pending = await db
+    .prepare(
+      `SELECT draft_id FROM pending_repository_claims
+       WHERE platform = 'github'
+         AND platform_repository_id = ?
+         AND released_at IS NULL`,
+    )
+    .bind(repositoryId)
+    .first<{ draft_id: string }>();
+  if (pending) {
+    return {
+      status: "existing_draft",
+      platform: "github",
+      platform_repository_id: repositoryId,
+      canonical_url: normalized.canonicalUrl,
+      full_name: normalized.fullName,
+      existing_project_id: null,
+      existing_draft_id: pending.draft_id,
       creation_ticket: null,
       ticket_expires_at: null,
     };
@@ -215,6 +242,7 @@ export async function checkRepository(
     canonical_url: normalized.canonicalUrl,
     full_name: normalized.fullName,
     existing_project_id: null,
+    existing_draft_id: null,
     creation_ticket: creationTicket,
     ticket_expires_at: expiresAt,
   };

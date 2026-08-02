@@ -5,6 +5,7 @@ export const SCOPES = [
   "publish",
   "evidence:add",
   "report:verify",
+  "actors:read",
   "backup:read",
 ] as const;
 

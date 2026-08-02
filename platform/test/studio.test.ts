@@ -59,6 +59,8 @@ beforeAll(async () => {
     "draft:update",
     "review:approve",
     "publish",
+    "report:verify",
+    "actors:read",
   ]);
 
   const published = projectFixture({
@@ -132,7 +134,7 @@ describe("internal agent editorial studio", () => {
 
   it("shows the real change-report review queue", async () => {
     const response = await SELF.fetch("https://example.test/studio/reports", {
-      headers: { Authorization: "Bearer studio-editor" },
+      headers: { Authorization: "Bearer studio-publisher" },
     });
     const html = await response.text();
 
@@ -158,7 +160,7 @@ describe("internal agent editorial studio", () => {
 
   it("lists agent identities and scopes without exposing credentials", async () => {
     const response = await SELF.fetch("https://example.test/studio/actors", {
-      headers: { Authorization: "Bearer studio-editor" },
+      headers: { Authorization: "Bearer studio-publisher" },
     });
     const html = await response.text();
 
@@ -170,6 +172,18 @@ describe("internal agent editorial studio", () => {
     expect(html).not.toContain(await hashBearerToken("studio-editor"));
     expect(html).not.toContain(await hashBearerToken("studio-publisher"));
     expect(html).not.toContain("token_hash");
+  });
+
+  it.each([
+    ["/studio/reports", "report:verify"],
+    ["/studio/actors", "actors:read"],
+  ])("requires a dedicated scope for %s", async (path, scope) => {
+    const response = await SELF.fetch(`https://example.test${path}`, {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+
+    expect(response.status).toBe(403);
+    expect(await response.text()).toContain(scope);
   });
 
   it("creates a native project draft from an active fixed-template form", async () => {
@@ -236,6 +250,52 @@ describe("internal agent editorial studio", () => {
       canonical_url: "https://github.com/example/native-studio-project",
     });
     expect(Object.keys(created?.document.sections ?? {})).toHaveLength(14);
+  });
+
+  it("rejects a second draft for a repository already claimed by a pending draft", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      Response.json({
+        id: 987654322,
+        full_name: "example/pending-studio-project",
+        html_url: "https://github.com/example/pending-studio-project",
+        default_branch: "main",
+        created_at: "2024-01-01T00:00:00Z",
+        updated_at: "2026-08-01T00:00:00Z",
+        pushed_at: "2026-08-01T00:00:00Z",
+        fork: false,
+        mirror_url: null,
+        archived: false,
+        disabled: false,
+        language: "TypeScript",
+        license: { spdx_id: "MIT" },
+      }),
+    );
+    const post = (projectId: string) =>
+      SELF.fetch("https://example.test/studio/projects/new", {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          repository_url: "https://github.com/example/pending-studio-project",
+          project_id: projectId,
+          name: "Pending Studio Project",
+          summary: "用于验证待发布仓库占用。",
+          use_when: "验证 Studio 草稿查重",
+          avoid_when: "不需要编辑流程",
+          primary_category: "editorial platform",
+          domain: "devtools",
+        }),
+      });
+
+    const first = await post("pending-studio-project");
+    const second = await post("pending-studio-project-duplicate");
+
+    expect(first.status).toBe(303);
+    expect(second.status).toBe(409);
+    expect(await second.text()).toContain("already has pending draft");
   });
 
   it("renders every fixed project workspace tab", async () => {

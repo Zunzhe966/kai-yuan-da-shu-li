@@ -13,6 +13,7 @@ import {
 import { runScheduledTasks } from "../src/scheduled";
 import * as creators from "../src/storage/creators";
 import * as projects from "../src/storage/projects";
+import * as workflow from "../src/storage/workflow";
 import { projectFixture, TEST_NOW } from "./factories";
 
 interface TestEnv {
@@ -103,6 +104,30 @@ beforeAll(async () => {
     await projects.insertRevision(testEnv.DB, document);
     await creators.replaceProjectRoles(testEnv.DB, projectId, document.attribution);
   }
+  await testEnv.DB.prepare(
+    `INSERT INTO actors (actor_id, actor_type, display_name)
+     VALUES ('actor-backup-editor', 'agent', 'Backup Editor')`,
+  ).run();
+  await workflow.createDraft(testEnv.DB, {
+    draftId: "draft-backup-pending",
+    projectId: null,
+    baseRevision: 0,
+    document: projectFixture({
+      projectId: "project-backup-pending",
+      repositoryId: "repository-backup-pending",
+    }),
+    actorId: "actor-backup-editor",
+    createdAt: TEST_NOW,
+  });
+  await testEnv.DB.prepare(
+    `INSERT INTO pending_repository_claims (
+      claim_id, platform, platform_repository_id, canonical_url,
+      draft_id, created_at
+    ) VALUES ('claim-backup-pending', 'github', 'repository-backup-pending',
+              'https://github.com/example/project', 'draft-backup-pending', ?)`,
+  )
+    .bind(TEST_NOW)
+    .run();
 });
 
 describe("deterministic backup and restore", () => {
@@ -224,6 +249,7 @@ describe("deterministic backup and restore", () => {
       creator_revisions: 1,
       creator_external_repositories: 1,
       creator_project_roles: 2,
+      pending_repository_claims: 1,
     });
     expect(snapshot.files["projects.jsonl"]?.content).toContain(
       "project-backup-one",
