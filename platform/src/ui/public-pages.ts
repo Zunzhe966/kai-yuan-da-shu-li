@@ -5,6 +5,11 @@ import {
   type SectionKey,
 } from "../domain/project";
 import type { ProjectSearchResult, SearchInput } from "../services/search";
+import type {
+  CreatorDetail,
+  CreatorProfile,
+  ProjectRole,
+} from "../storage/creators";
 import { escapeHtml, renderLayout } from "./layout";
 
 const SECTION_LABELS: Record<SectionKey, string> = {
@@ -53,9 +58,31 @@ function renderProjectCard(project: ProjectPublication): string {
   </article>`;
 }
 
+const ROLE_LABELS: Record<ProjectRole["role"], string> = {
+  creator: "创建者",
+  current_owner: "当前所有者",
+  maintainer: "维护者",
+  organization: "所属组织",
+  foundation: "基金会",
+  sponsor_of_upstream: "上游赞助方",
+};
+
+function renderCreatorCard(creator: CreatorProfile): string {
+  return `<article class="creator-card">
+    <div>
+      <p class="section-kicker">${creator.type === "person" ? "人物" : "组织"}</p>
+      <h2><a href="/creators/${encodeURIComponent(creator.creatorId)}">${escapeHtml(creator.displayName)}</a></h2>
+      ${creator.displayName !== creator.name ? `<p class="creator-original">${escapeHtml(creator.name)}</p>` : ""}
+      <p>${escapeHtml(creator.biography || "资料仍在核验中。")}</p>
+    </div>
+    <span class="creator-type">${creator.type === "person" ? "人物" : "组织"}</span>
+  </article>`;
+}
+
 export function renderCatalogPage(
   result: ProjectSearchResult,
   input: SearchInput,
+  creatorResults: CreatorProfile[] = [],
 ): string {
   const query = input.query ?? "";
   const content = `<main class="catalog-page" id="main-content">
@@ -70,6 +97,11 @@ export function renderCatalogPage(
           <button type="submit" class="primary-button">搜索</button>
           <button type="button" class="filter-toggle" data-filter-toggle aria-expanded="false" aria-controls="catalog-filters">筛选</button>
         </div>
+        <div class="entity-tabs" aria-label="搜索类型">
+          <label><input type="radio" name="entity" value="all"${input.entityType === "all" ? " checked" : ""}> 全部</label>
+          <label><input type="radio" name="entity" value="project"${input.entityType === "project" ? " checked" : ""}> 项目</label>
+          <label><input type="radio" name="entity" value="creator"${input.entityType === "creator" ? " checked" : ""}> 作者与组织</label>
+        </div>
         <div class="catalog-shell">
           <aside class="filters" id="catalog-filters" aria-label="项目筛选">
             <div class="filter-heading"><h2>缩小范围</h2><a href="/">清空</a></div>
@@ -83,6 +115,8 @@ export function renderCatalogPage(
             <button class="secondary-button" type="submit">应用条件</button>
           </aside>
           <section class="results" aria-labelledby="result-heading">
+            ${input.entityType !== "project" && creatorResults.length ? `<section class="creator-results" aria-labelledby="creator-result-heading"><div class="results-heading"><h2 id="creator-result-heading">找到 ${creatorResults.length} 位作者与组织</h2></div><div class="creator-list">${creatorResults.map(renderCreatorCard).join("")}</div></section>` : ""}
+            ${input.entityType === "creator" ? "" : `
             <div class="results-heading">
               <h2 id="result-heading">找到 ${result.total} 个项目</h2>
               ${query ? `<span>关键词：${escapeHtml(query)}</span>` : ""}
@@ -91,6 +125,7 @@ export function renderCatalogPage(
               ${result.items.length ? result.items.map(renderProjectCard).join("") : `<div class="empty-state"><h3>没有匹配项目</h3><p>放宽一个筛选条件后再试。</p></div>`}
             </div>
             ${result.nextCursor ? `<a class="load-more" href="/?${new URLSearchParams({ ...(query ? { q: query } : {}), cursor: result.nextCursor }).toString()}">下一页</a>` : ""}
+            `}
           </section>
         </div>
       </form>
@@ -102,6 +137,44 @@ export function renderCatalogPage(
     content,
     scripts: ["/assets/catalog.js"],
     bodyClass: "catalog-body",
+  });
+}
+
+export function renderCreatorPage(creator: CreatorDetail): string {
+  const officialLinks = [
+    ...creator.officialSites.map((url) => ({ label: "官方网站", url })),
+    ...creator.socialProfiles.map((profile) => ({
+      label: profile.handle || profile.platform,
+      url: profile.url,
+    })),
+  ];
+  const content = `<main class="creator-page" id="main-content">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/?entity=creator">作者与组织</a><span>/</span><span>${escapeHtml(creator.displayName)}</span></nav>
+    <header class="creator-hero">
+      <div>
+        <p class="section-kicker">${creator.type === "person" ? "人物" : "组织"}</p>
+        <h1>${escapeHtml(creator.displayName)}</h1>
+        ${creator.displayName !== creator.name ? `<p class="project-original">${escapeHtml(creator.name)}</p>` : ""}
+        <p class="project-deck">${escapeHtml(creator.biography || "本站正在核验该作者或组织的公开资料。")}</p>
+      </div>
+      ${officialLinks.length ? `<div class="project-actions">${officialLinks.map((link) => `<a class="secondary-button" href="${escapeHtml(link.url)}" rel="noopener noreferrer">${escapeHtml(link.label)}</a>`).join("")}</div>` : ""}
+    </header>
+    ${creator.codeHostIdentities.length ? `<section class="creator-identities" aria-labelledby="identity-heading"><h2 id="identity-heading">已核验代码托管身份</h2><ul>${creator.codeHostIdentities.map((identity) => `<li>${escapeHtml(identity)}</li>`).join("")}</ul></section>` : ""}
+    <section class="creator-projects" aria-labelledby="curated-heading">
+      <div class="section-heading"><h2 id="curated-heading">本站精选项目</h2><span>${creator.projects.length} 个</span></div>
+      <div class="creator-project-list">${creator.projects.length ? creator.projects.map((item) => `<article class="creator-project-item"><span class="role-label">${ROLE_LABELS[item.role]}</span>${renderProjectCard(item.project)}</article>`).join("") : `<div class="empty-state"><p>暂无已完成深度整理的项目。</p></div>`}</div>
+    </section>
+    <section class="creator-repositories" aria-labelledby="unreviewed-heading">
+      <div class="section-heading"><h2 id="unreviewed-heading">其他公开仓库，尚未深度整理</h2><span>${creator.unreviewedRepositories.length} 个</span></div>
+      ${creator.unreviewedRepositories.length ? `<ul>${creator.unreviewedRepositories.map((repository) => `<li><a href="${escapeHtml(repository.canonicalUrl)}" rel="noopener noreferrer">${escapeHtml(repository.fullName)}</a>${repository.summary ? `<p>${escapeHtml(repository.summary)}</p>` : ""}<small>${escapeHtml(repository.platform)} · 观察于 ${escapeHtml(repository.observedAt)}</small></li>`).join("")}</ul>` : `<div class="empty-state"><p>暂未发现可核验的其他公开仓库。</p></div>`}
+    </section>
+  </main>`;
+  return renderLayout({
+    title: creator.displayName,
+    description: creator.biography || `${creator.displayName} 的项目与公开身份资料。`,
+    content,
+    canonicalPath: `/creators/${encodeURIComponent(creator.creatorId)}`,
+    bodyClass: "creator-body",
   });
 }
 

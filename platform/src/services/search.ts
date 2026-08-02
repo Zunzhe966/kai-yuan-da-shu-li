@@ -25,6 +25,8 @@ export interface ProjectSearchResult {
   nextCursor: string | null;
 }
 
+export type { CreatorProfile } from "../storage/creators";
+
 interface DocumentRow {
   project_id: string;
   document_json: string;
@@ -151,8 +153,11 @@ export function searchInputFromUrl(url: URL): SearchInput {
   };
   const sort = url.searchParams.get("sort");
   const unknownPolicy = url.searchParams.get("unknown");
+  const entityType = url.searchParams.get("entity");
   return {
     query: url.searchParams.get("q") ?? undefined,
+    entityType:
+      entityType === "project" || entityType === "creator" ? entityType : "all",
     domain: split("domain"),
     capability: split("capability"),
     language: split("language"),
