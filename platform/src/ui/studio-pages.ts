@@ -157,6 +157,9 @@ function renderWorkspacePanel(
     const submit = editable
       ? `<form method="post" action="/studio/projects/${encodeURIComponent(draft.draftId)}/actions/submit"><button class="primary-button" type="submit">提交独立审核</button></form>`
       : "";
+    const abandon = editable
+      ? `<form method="post" action="/studio/projects/${encodeURIComponent(draft.draftId)}/actions/abandon"><label>放弃原因<input name="reason" maxlength="500" required></label><button class="secondary-button" type="submit">放弃草稿并释放仓库</button></form>`
+      : "";
     const approve =
       draft.status === "in_review" && actor.scopes.has("review:approve")
         ? `<form method="post" action="/studio/projects/${encodeURIComponent(draft.draftId)}/actions/approve"><button class="primary-button" type="submit">批准草稿</button></form>`
@@ -165,7 +168,7 @@ function renderWorkspacePanel(
       draft.status === "approved" && actor.scopes.has("publish")
         ? `<form method="post" action="/studio/projects/${encodeURIComponent(draft.draftId)}/actions/publish"><button class="primary-button" type="submit" data-action="publish">发布正式修订</button></form>`
         : "";
-    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">${statusLabel(draft.status)}</p><h2>审核与发布</h2></div><span>${escapeHtml(draft.status)}</span></div><dl class="diff-summary"><div><dt>基础修订</dt><dd>v${draft.baseRevision}</dd></div><div><dt>创建身份</dt><dd>${escapeHtml(draft.createdByActorId)}</dd></div><div><dt>最后编辑</dt><dd>${escapeHtml(draft.updatedByActorId)}</dd></div></dl><div class="review-actions">${submit}${approve}${publish}</div></section></div>`;
+    return `<div class="workspace-single"><section class="studio-editor"><div class="studio-panel-heading"><div><p class="section-kicker">${statusLabel(draft.status)}</p><h2>审核与发布</h2></div><span>${escapeHtml(draft.status)}</span></div><dl class="diff-summary"><div><dt>基础修订</dt><dd>v${draft.baseRevision}</dd></div><div><dt>创建身份</dt><dd>${escapeHtml(draft.createdByActorId)}</dd></div><div><dt>最后编辑</dt><dd>${escapeHtml(draft.updatedByActorId)}</dd></div></dl><div class="review-actions">${submit}${abandon}${approve}${publish}</div></section></div>`;
   }
   return "";
 }

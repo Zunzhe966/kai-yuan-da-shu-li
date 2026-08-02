@@ -99,12 +99,16 @@ npx tsx scripts/import-jsonl.ts \
 
 ```bash
 PLAYWRIGHT_BASE_URL=https://<preview-worker> \
+E2E_EXPECTED_PROJECT_COUNT=<audited-project-count> \
 E2E_EDITOR_TOKEN=<one-time-editor-token> \
 E2E_REVIEWER_TOKEN=<one-time-reviewer-token> \
 E2E_REPOSITORY_URL=https://github.com/<owner>/<unused-public-repo> \
 E2E_PROJECT_ID=e2e-<unique-id> \
+E2E_ALLOW_PREVIEW_WRITES=yes \
 npm run test:e2e
 ```
+
+Playwright 不自动启动或复用本地 `8788` 服务，必须显式提供目标 URL。公共流程要求精确的审计项目数；写入流程还会读取 `/health`，只有服务端返回 `deployment_environment=preview` 且显式设置 `E2E_ALLOW_PREVIEW_WRITES=yes` 才会执行发布。
 
 验收内容：搜索与组合筛选、项目正文 14 栏、作者页、草稿新建与查重、栏目编辑、预览、独立审核、发布、MCP 工具发现和 0 控制台错误。
 
@@ -114,6 +118,8 @@ npm run test:e2e
 2. 创建第二个空 D1，应用全部迁移。
 3. 用 `backup:restore` 恢复，比较文件集、count、SHA-256、revision watermark、抽样搜索和 HTML。
 4. 恢复失败必须保持目标库原子不变；非空目标库默认拒绝恢复。
+
+账号首次启用 R2 时，Cloudflare 会要求确认免费额度之外的按量计费订阅。该费用确认必须由账号持有人明确授权；未确认前，预览 Worker 可以完成只读与 Studio 门禁，但 R2 备份恢复门禁不得标记通过，也不得切换生产入口。
 
 恢复演练未通过时不允许切换。
 

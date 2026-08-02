@@ -269,6 +269,30 @@ export async function updateProjectGroup(
   switch (group) {
     case "repository_sources":
       document.repository_sources = value as ProjectPublication["repository_sources"];
+      if (!draft.projectId) {
+        const claim = await db
+          .prepare(
+            `SELECT platform, platform_repository_id
+             FROM pending_repository_claims
+             WHERE draft_id = ? AND released_at IS NULL`,
+          )
+          .bind(draftId)
+          .first<{ platform: string; platform_repository_id: string }>();
+        const primary =
+          document.repository_sources.find((source) => source.role === "primary") ??
+          document.repository_sources[0];
+        if (
+          claim &&
+          (!primary ||
+            primary.platform !== claim.platform ||
+            primary.platform_repository_id !== claim.platform_repository_id)
+        ) {
+          throw new WorkflowError(
+            "an unpublished draft cannot replace its claimed primary repository",
+            409,
+          );
+        }
+      }
       break;
     case "identity":
       document.identity = value as ProjectPublication["identity"];
@@ -300,6 +324,79 @@ export async function updateProjectGroup(
   );
   if (!updated) {
     throw new WorkflowError("draft changed before it could be saved", 409);
+  }
+}
+
+export interface AbandonDraftInput {
+  auditEventId: string;
+  now: string;
+  reason: string;
+}
+
+export async function abandonProjectDraft(
+  db: D1Database,
+  actor: ActorContext | null,
+  draftId: string,
+  input: AbandonDraftInput,
+): Promise<void> {
+  requireScope(actor, "draft:update");
+  const draft = await workflow.getDraft(db, draftId);
+  if (!draft) {
+    throw new WorkflowError("draft not found", 404);
+  }
+  if (draft.status !== "draft" && draft.status !== "changes_requested") {
+    throw new WorkflowError("draft cannot be abandoned from its current state", 409);
+  }
+  const reason = input.reason.trim();
+  if (!reason) {
+    throw new WorkflowError("abandon reason is required", 422);
+  }
+
+  const [updated] = await db.batch([
+    db
+      .prepare(
+        `UPDATE drafts SET status = 'archived', updated_by_actor_id = ?, updated_at = ?
+         WHERE draft_id = ? AND status IN ('draft', 'changes_requested')`,
+      )
+      .bind(actor.actorId, input.now, draftId),
+    db
+      .prepare(
+        `UPDATE pending_repository_claims SET released_at = ?
+         WHERE draft_id = ? AND released_at IS NULL
+           AND EXISTS (
+             SELECT 1 FROM drafts
+             WHERE draft_id = ? AND status = 'archived'
+               AND updated_by_actor_id = ? AND updated_at = ?
+           )`,
+      )
+      .bind(input.now, draftId, draftId, actor.actorId, input.now),
+    db
+      .prepare(
+        `INSERT INTO audit_events (
+          audit_event_id, actor_id, action, target_type, target_id,
+          reason, diff_json, evidence_ids_json, created_at
+        )
+        SELECT ?, ?, 'draft.abandon', 'draft', ?, ?, ?, '[]', ?
+        WHERE EXISTS (
+          SELECT 1 FROM drafts
+          WHERE draft_id = ? AND status = 'archived'
+            AND updated_by_actor_id = ? AND updated_at = ?
+        )`,
+      )
+      .bind(
+        input.auditEventId,
+        actor.actorId,
+        draftId,
+        reason,
+        JSON.stringify({ previous_status: draft.status, status: "archived" }),
+        input.now,
+        draftId,
+        actor.actorId,
+        input.now,
+      ),
+  ]);
+  if (!updated || (updated.meta.changes ?? 0) !== 1) {
+    throw new WorkflowError("draft changed before it could be abandoned", 409);
   }
 }
 

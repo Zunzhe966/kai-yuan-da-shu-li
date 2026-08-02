@@ -3,6 +3,7 @@ import { SECTION_KEYS, type FieldState, type SectionKey } from "../domain/projec
 import type { ActorContext } from "../domain/scopes";
 import type { Bindings } from "../env";
 import {
+  abandonProjectDraft,
   approveSubmission,
   createProjectDraft,
   EDITABLE_PROJECT_GROUPS,
@@ -315,6 +316,17 @@ export function createStudioRouter() {
       `/studio/projects/${encodeURIComponent(draftId)}/tabs/review`,
       303,
     );
+  });
+
+  router.post("/projects/:id/actions/abandon", async (context) => {
+    const draftId = context.req.param("id");
+    const body = await context.req.parseBody();
+    await abandonProjectDraft(context.env.DB, context.get("actor"), draftId, {
+      auditEventId: crypto.randomUUID(),
+      now: new Date().toISOString(),
+      reason: String(body.reason ?? ""),
+    });
+    return context.redirect("/studio", 303);
   });
 
   router.post("/projects/:id/actions/approve", async (context) => {

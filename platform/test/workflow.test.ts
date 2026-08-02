@@ -6,8 +6,10 @@ import {
   createProjectDraft,
   publishApprovedDraft,
   submitProjectDraft,
+  updateProjectGroup,
   WorkflowError,
 } from "../src/services/publish";
+import * as publishService from "../src/services/publish";
 import { authenticateApiKey, hashBearerToken } from "../src/http/auth";
 import * as projects from "../src/storage/projects";
 import * as workflow from "../src/storage/workflow";
@@ -134,6 +136,106 @@ describe("scoped editorial workflow", () => {
         },
       ),
     ).rejects.toMatchObject({ status: 409 });
+  });
+
+  it("does not let an unpublished draft replace its claimed primary repository", async () => {
+    await seedActor("actor-claim-editor");
+    const editor = actor(
+      "actor-claim-editor",
+      new Set(["draft:create", "draft:update"]),
+    );
+    const document = projectFixture({
+      projectId: "project-claim-immutable",
+      repositoryId: "repository-claim-immutable",
+    });
+    await testEnv.DB.prepare(
+      `INSERT INTO creation_tickets (
+        ticket_id, platform, platform_repository_id, issued_to_actor_id, expires_at
+      ) VALUES ('ticket-claim-immutable', 'github', 'repository-claim-immutable',
+                'actor-claim-editor', '2026-08-03T00:00:00Z')`,
+    ).run();
+    await createProjectDraft(testEnv.DB, editor, {
+      draftId: "draft-claim-immutable",
+      creationTicket: "ticket-claim-immutable",
+      document,
+      now: TEST_NOW,
+    });
+
+    const replacement = structuredClone(document.repository_sources);
+    replacement[0] = {
+      ...replacement[0]!,
+      platform_repository_id: "repository-claim-replacement",
+      canonical_url: "https://github.com/example/replacement",
+      full_name: "example/replacement",
+    };
+
+    await expect(
+      updateProjectGroup(
+        testEnv.DB,
+        editor,
+        "draft-claim-immutable",
+        0,
+        "repository_sources",
+        replacement,
+        TEST_NOW,
+      ),
+    ).rejects.toMatchObject({ status: 409 });
+  });
+
+  it("archives an abandoned draft and releases its repository claim", async () => {
+    await seedActor("actor-abandon-editor");
+    const editor = actor(
+      "actor-abandon-editor",
+      new Set(["draft:create", "draft:update"]),
+    );
+    const document = projectFixture({
+      projectId: "project-abandoned",
+      repositoryId: "repository-abandoned",
+    });
+    await testEnv.DB.prepare(
+      `INSERT INTO creation_tickets (
+        ticket_id, platform, platform_repository_id, issued_to_actor_id, expires_at
+      ) VALUES ('ticket-abandoned', 'github', 'repository-abandoned',
+                'actor-abandon-editor', '2026-08-03T00:00:00Z')`,
+    ).run();
+    await createProjectDraft(testEnv.DB, editor, {
+      draftId: "draft-abandoned",
+      creationTicket: "ticket-abandoned",
+      document,
+      now: TEST_NOW,
+    });
+    const abandonProjectDraft = (
+      publishService as typeof publishService & {
+        abandonProjectDraft?: (
+          db: D1Database,
+          actor: ActorContext | null,
+          draftId: string,
+          input: { auditEventId: string; now: string; reason: string },
+        ) => Promise<void>;
+      }
+    ).abandonProjectDraft;
+    expect(abandonProjectDraft).toBeTypeOf("function");
+
+    await abandonProjectDraft!(testEnv.DB, editor, "draft-abandoned", {
+      auditEventId: "audit-abandoned",
+      now: TEST_NOW,
+      reason: "duplicate intake",
+    });
+
+    expect((await workflow.getDraft(testEnv.DB, "draft-abandoned"))?.status).toBe(
+      "archived",
+    );
+    expect(
+      await testEnv.DB.prepare(
+        `SELECT released_at FROM pending_repository_claims
+         WHERE draft_id = 'draft-abandoned'`,
+      ).first<{ released_at: string | null }>(),
+    ).toEqual({ released_at: TEST_NOW });
+    expect(
+      await testEnv.DB.prepare(
+        "SELECT action FROM audit_events WHERE audit_event_id = 'audit-abandoned'",
+      ).first<{ action: string }>(),
+    ).toEqual({ action: "draft.abandon" });
   });
 
   it("does not let draft:update approve a submission", async () => {

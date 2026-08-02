@@ -1,5 +1,14 @@
 import { expect, test } from "@playwright/test";
 
+const expectedProjectCount = Number(process.env.E2E_EXPECTED_PROJECT_COUNT);
+
+test.beforeAll(() => {
+  expect(
+    Number.isSafeInteger(expectedProjectCount) && expectedProjectCount > 0,
+    "Set E2E_EXPECTED_PROJECT_COUNT to the audited preview import count.",
+  ).toBeTruthy();
+});
+
 test("searches the catalog and opens a complete project publication", async ({
   page,
   request,
@@ -11,7 +20,7 @@ test("searches the catalog and opens a complete project publication", async ({
     project_count: number;
   };
   expect(meta.schema_version).toBe("project-publication-v1");
-  expect(meta.project_count).toBeGreaterThan(0);
+  expect(meta.project_count).toBe(expectedProjectCount);
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");

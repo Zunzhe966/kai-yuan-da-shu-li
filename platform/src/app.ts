@@ -13,6 +13,7 @@ export function createApp() {
       ok: true,
       service: "kaiyuan-dashuli",
       schema_version: "project-publication-v1",
+      deployment_environment: context.env.DEPLOYMENT_ENV?.trim() || "unknown",
     }),
   );
   app.get("/openapi.json", (context) => context.json(OPENAPI_DOCUMENT));

@@ -4,15 +4,29 @@ const editorToken = process.env.E2E_EDITOR_TOKEN?.trim();
 const reviewerToken = process.env.E2E_REVIEWER_TOKEN?.trim();
 const repositoryUrl = process.env.E2E_REPOSITORY_URL?.trim();
 const projectId = process.env.E2E_PROJECT_ID?.trim();
-const ready = Boolean(editorToken && reviewerToken && repositoryUrl && projectId);
+const writesExplicitlyAllowed = process.env.E2E_ALLOW_PREVIEW_WRITES === "yes";
+const ready = Boolean(
+  editorToken &&
+    reviewerToken &&
+    repositoryUrl &&
+    projectId &&
+    writesExplicitlyAllowed,
+);
 
 test("creates, edits, independently reviews and publishes a project", async ({
   page,
+  request,
 }) => {
   test.skip(
     !ready,
-    "Set E2E_EDITOR_TOKEN, E2E_REVIEWER_TOKEN, E2E_REPOSITORY_URL and E2E_PROJECT_ID for a disposable preview D1.",
+    "Set the disposable preview credentials plus E2E_ALLOW_PREVIEW_WRITES=yes.",
   );
+  const health = await request.get("/health");
+  expect(health.ok()).toBeTruthy();
+  expect(
+    (await health.json() as { deployment_environment?: string })
+      .deployment_environment,
+  ).toBe("preview");
   await page.setExtraHTTPHeaders({ Authorization: `Bearer ${editorToken}` });
   await page.goto("/studio/projects/new");
   await page.getByLabel("仓库地址").fill(repositoryUrl!);
@@ -36,13 +50,13 @@ test("creates, edits, independently reviews and publishes a project", async ({
   await page.getByRole("link", { name: "返回编辑工作区" }).click();
   await page.getByRole("link", { name: "审核与发布" }).click();
   await page.getByRole("button", { name: "提交独立审核" }).click();
-  await expect(page.getByText("in_review", { exact: true })).toBeVisible();
+  await expect(page.locator(".studio-panel-heading > span")).toHaveText("in_review");
 
   await page.setExtraHTTPHeaders({ Authorization: `Bearer ${reviewerToken}` });
   await page.reload();
   await page.getByRole("button", { name: "批准草稿" }).click();
   await page.getByRole("button", { name: "发布正式修订" }).click();
-  await expect(page.getByText("published", { exact: true })).toBeVisible();
+  await expect(page.locator(".studio-panel-heading > span")).toHaveText("published");
 
   await page.setExtraHTTPHeaders({});
   await page.goto(`/projects/${encodeURIComponent(projectId!)}`);

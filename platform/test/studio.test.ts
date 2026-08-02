@@ -377,6 +377,59 @@ describe("internal agent editorial studio", () => {
     expect(await publisherResponse.text()).not.toContain('data-action="publish"');
   });
 
+  it("abandons an editable draft and releases its repository from Studio", async () => {
+    await workflow.createDraft(testEnv.DB, {
+      draftId: "draft-studio-abandon",
+      projectId: null,
+      baseRevision: 0,
+      document: projectFixture({
+        projectId: "project-studio-abandon",
+        repositoryId: "repository-studio-abandon",
+      }),
+      actorId: "actor-studio-editor",
+      createdAt: TEST_NOW,
+    });
+    await testEnv.DB.prepare(
+      `INSERT INTO pending_repository_claims (
+        claim_id, platform, platform_repository_id, canonical_url,
+        draft_id, created_at
+      ) VALUES ('claim-studio-abandon', 'github', 'repository-studio-abandon',
+                'https://github.com/example/project', 'draft-studio-abandon', ?)`,
+    )
+      .bind(TEST_NOW)
+      .run();
+    const headers = { Authorization: "Bearer studio-editor" };
+    const workspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-abandon/tabs/review",
+      { headers },
+    );
+    expect(await workspace.text()).toContain("放弃草稿并释放仓库");
+
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-abandon/actions/abandon",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          ...headers,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({ reason: "重复收录" }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    expect((await workflow.getDraft(testEnv.DB, "draft-studio-abandon"))?.status).toBe(
+      "archived",
+    );
+    expect(
+      await testEnv.DB.prepare(
+        `SELECT released_at FROM pending_repository_claims
+         WHERE claim_id = 'claim-studio-abandon'`,
+      ).first<{ released_at: string | null }>(),
+    ).toMatchObject({ released_at: expect.any(String) });
+  });
+
   it("saves one fixed section through the scoped workflow service", async () => {
     const response = await SELF.fetch(
       "https://example.test/studio/projects/draft-studio/sections/overview",

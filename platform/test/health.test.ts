@@ -10,6 +10,7 @@ describe("health", () => {
       ok: true,
       service: "kaiyuan-dashuli",
       schema_version: "project-publication-v1",
+      deployment_environment: "unknown",
     });
   });
 });
