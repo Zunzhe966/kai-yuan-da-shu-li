@@ -8,7 +8,7 @@
 - D1：正式事实源，保存项目、作者、不可变修订、草稿、审核、变化报告和审计事件。
 - R2：保存可校验的确定性备份；私有 GitHub 仓库可作为二次备份，不是生产数据库。
 - `schema/project-publication-v1.schema.json`：正式项目合同，包含固定 14 个正文栏目。
-- `data/`、`graph/`、`dist/v1/`：旧静态目录与迁移输入。新站搜索和排序不依赖旧图谱。
+- 需求定稿：`docs/REQUIREMENTS.md`，是唯一权威需求，不再保留旧图谱目录。
 
 ## 产品入口
 
@@ -39,7 +39,6 @@ npm run dev -- --port 8788
 访问 `http://127.0.0.1:8788`。验证命令：
 
 ```bash
-.venv/bin/python -m pytest tests/test_migrate_legacy_publications.py -q
 cd platform
 npm run check
 npm test
@@ -49,8 +48,6 @@ npm run test:e2e -- public-flow.spec.ts
 需要写入的编辑 E2E 只能对一次性预览 D1 运行，参见 [`docs/operations/platform-cutover.md`](./docs/operations/platform-cutover.md)。
 
 ## 迁移与上线
-
-旧 YAML 通过 `scripts/migrate_legacy_publications.py` 转换为严格 publication JSONL，经校验后导入 D1。旧 `pages.dev` 站在 Worker 预览、迁移核账、备份恢复和浏览器门禁全部通过前保持不动。
 
 完整切换与回滚流程见 [`docs/operations/platform-cutover.md`](./docs/operations/platform-cutover.md)。
 
