@@ -1,0 +1,16 @@
+id: aider
+type: project
+name: Aider
+repo: https://github.com/Aider-AI/aider.git/
+summary: 在终端中协助修改代码的开源 AI 编程工具。
+tags: [agent, coding, cli]
+language: Python
+status: active
+use_when: 需要在现有 Git 仓库中由 AI 协助编辑代码
+avoid_when: 不能向模型提供代码或只需要图形界面
+niche: AI coding assistant
+related_ecosystem: devtools
+license: Apache-2.0
+source_updated_at: 2026-07-21T13:01:23Z
+verified_at: 2026-07-21T13:52:28Z
+verification_status: verified

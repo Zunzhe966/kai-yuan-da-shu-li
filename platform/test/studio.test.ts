@@ -1,0 +1,540 @@
+import {
+  applyD1Migrations,
+  env,
+  SELF,
+  type D1Migration,
+} from "cloudflare:test";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
+import { hashBearerToken } from "../src/http/auth";
+import * as projects from "../src/storage/projects";
+import * as workflow from "../src/storage/workflow";
+import { projectFixture, TEST_NOW } from "./factories";
+
+interface TestEnv {
+  DB: D1Database;
+  TEST_MIGRATIONS: D1Migration[];
+}
+
+const testEnv = env as unknown as TestEnv;
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
+
+async function seedCredential(
+  actorId: string,
+  token: string,
+  scopes: string[],
+): Promise<void> {
+  await testEnv.DB.prepare(
+    `INSERT INTO actors (actor_id, actor_type, display_name)
+     VALUES (?, 'agent', ?)
+     ON CONFLICT(actor_id) DO NOTHING`,
+  )
+    .bind(actorId, actorId)
+    .run();
+  await testEnv.DB.prepare(
+    `INSERT INTO api_credentials (
+      credential_id, actor_id, token_hash, scopes_json, created_at
+    ) VALUES (?, ?, ?, ?, ?)`,
+  )
+    .bind(
+      `credential-${actorId}`,
+      actorId,
+      await hashBearerToken(token),
+      JSON.stringify(scopes),
+      TEST_NOW,
+    )
+    .run();
+}
+
+beforeAll(async () => {
+  await applyD1Migrations(testEnv.DB, testEnv.TEST_MIGRATIONS);
+  await seedCredential("actor-studio-editor", "studio-editor", [
+    "draft:create",
+    "draft:update",
+    "evidence:add",
+  ]);
+  await seedCredential("actor-studio-publisher", "studio-publisher", [
+    "draft:update",
+    "review:approve",
+    "publish",
+    "report:verify",
+    "actors:read",
+  ]);
+
+  const published = projectFixture({
+    projectId: "project-studio",
+    repositoryId: "repository-studio",
+    status: "published",
+  });
+  await projects.insertRevision(testEnv.DB, published);
+  await testEnv.DB.prepare(
+    `INSERT INTO change_reports (
+      report_id, project_id, report_type, upstream_fingerprint, status,
+      evidence_url, payload_json, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, 'needs_review', ?, ?, ?, ?)`,
+  )
+    .bind(
+      "report-studio-review",
+      "project-studio",
+      "license_changed",
+      "license:changed",
+      "https://github.com/Aider-AI/aider",
+      JSON.stringify({ observed_value: "GPL-3.0", attempts: 1 }),
+      TEST_NOW,
+      TEST_NOW,
+    )
+    .run();
+  const draft = projectFixture({
+    projectId: "project-studio",
+    repositoryId: "repository-studio",
+    revision: 2,
+  });
+  draft.card.summary = "只存在于控制台草稿的摘要";
+  draft.sections.overview.summary = "草稿预览专用概览";
+  await workflow.createDraft(testEnv.DB, {
+    draftId: "draft-studio",
+    projectId: "project-studio",
+    baseRevision: 1,
+    document: draft,
+    actorId: "actor-studio-editor",
+    createdAt: TEST_NOW,
+  });
+  await workflow.createDraft(testEnv.DB, {
+    draftId: "draft-studio-action",
+    projectId: null,
+    baseRevision: 0,
+    document: projectFixture({
+      projectId: "project-studio-action",
+      repositoryId: "repository-studio-action",
+    }),
+    actorId: "actor-studio-editor",
+    createdAt: TEST_NOW,
+  });
+});
+
+describe("internal agent editorial studio", () => {
+  it("rejects unauthenticated callers", async () => {
+    const response = await SELF.fetch("https://example.test/studio");
+    expect(response.status).toBe(401);
+  });
+
+  it("shows authorized actors the editorial queue", async () => {
+    const response = await SELF.fetch("https://example.test/studio", {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("智能体编辑台");
+    expect(html).toContain("draft-studio");
+    expect(html).toContain("draft");
+  });
+
+  it("shows the real change-report review queue", async () => {
+    const response = await SELF.fetch("https://example.test/studio/reports", {
+      headers: { Authorization: "Bearer studio-publisher" },
+    });
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("report-studio-review");
+    expect(html).toContain("license_changed");
+    expect(html).toContain("needs_review");
+    expect(html).not.toContain("将在核验服务中接入");
+  });
+
+  it("shows reports for the project inside its workspace", async () => {
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio/tabs/reports",
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("report-studio-review");
+    expect(html).toContain("license_changed");
+    expect(html).not.toContain("当前项目没有待处理变化报告");
+  });
+
+  it("lists agent identities and scopes without exposing credentials", async () => {
+    const response = await SELF.fetch("https://example.test/studio/actors", {
+      headers: { Authorization: "Bearer studio-publisher" },
+    });
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    expect(html).toContain("actor-studio-editor");
+    expect(html).toContain("actor-studio-publisher");
+    expect(html).toContain("draft:create");
+    expect(html).toContain("review:approve");
+    expect(html).not.toContain(await hashBearerToken("studio-editor"));
+    expect(html).not.toContain(await hashBearerToken("studio-publisher"));
+    expect(html).not.toContain("token_hash");
+  });
+
+  it.each([
+    ["/studio/reports", "report:verify"],
+    ["/studio/actors", "actors:read"],
+  ])("requires a dedicated scope for %s", async (path, scope) => {
+    const response = await SELF.fetch(`https://example.test${path}`, {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+
+    expect(response.status).toBe(403);
+    expect(await response.text()).toContain(scope);
+  });
+
+  it("creates a native project draft from an active fixed-template form", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementationOnce(async () =>
+      Response.json({
+        id: 987654321,
+        full_name: "example/native-studio-project",
+        html_url: "https://github.com/example/native-studio-project",
+        default_branch: "main",
+        created_at: "2024-01-01T00:00:00Z",
+        updated_at: "2026-08-01T00:00:00Z",
+        pushed_at: "2026-08-01T00:00:00Z",
+        fork: false,
+        mirror_url: null,
+        archived: false,
+        disabled: false,
+        language: "TypeScript",
+        license: { spdx_id: "MIT" },
+      }),
+    );
+
+    const form = await SELF.fetch("https://example.test/studio/projects/new", {
+      headers: { Authorization: "Bearer studio-editor" },
+    });
+    const formHtml = await form.text();
+    expect(form.status).toBe(200);
+    expect(formHtml).toContain('method="post"');
+    expect(formHtml).toContain('name="project_id"');
+    expect(formHtml).not.toContain("disabled>检查仓库");
+
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/new",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          repository_url: "https://github.com/example/native-studio-project",
+          project_id: "native-studio-project",
+          name: "Native Studio Project",
+          chinese_name: "原生编辑台项目",
+          summary: "由固定表单创建的原生项目草稿。",
+          use_when: "需要验证 Studio 新建项目流程",
+          avoid_when: "只需要读取已经发布的项目",
+          primary_category: "editorial platform",
+          domain: "devtools",
+        }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    const location = response.headers.get("Location") ?? "";
+    expect(location).toMatch(/^\/studio\/projects\/draft-/);
+    const created = (await workflow.listDrafts(testEnv.DB)).find(
+      (draft) => draft.document.project_id === "native-studio-project",
+    );
+    expect(created).toMatchObject({ status: "draft", baseRevision: 0 });
+    expect(created?.document.repository_sources[0]).toMatchObject({
+      platform: "github",
+      platform_repository_id: "987654321",
+      canonical_url: "https://github.com/example/native-studio-project",
+    });
+    expect(Object.keys(created?.document.sections ?? {})).toHaveLength(14);
+  });
+
+  it("rejects a second draft for a repository already claimed by a pending draft", async () => {
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      Response.json({
+        id: 987654322,
+        full_name: "example/pending-studio-project",
+        html_url: "https://github.com/example/pending-studio-project",
+        default_branch: "main",
+        created_at: "2024-01-01T00:00:00Z",
+        updated_at: "2026-08-01T00:00:00Z",
+        pushed_at: "2026-08-01T00:00:00Z",
+        fork: false,
+        mirror_url: null,
+        archived: false,
+        disabled: false,
+        language: "TypeScript",
+        license: { spdx_id: "MIT" },
+      }),
+    );
+    const post = (projectId: string) =>
+      SELF.fetch("https://example.test/studio/projects/new", {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          repository_url: "https://github.com/example/pending-studio-project",
+          project_id: projectId,
+          name: "Pending Studio Project",
+          summary: "用于验证待发布仓库占用。",
+          use_when: "验证 Studio 草稿查重",
+          avoid_when: "不需要编辑流程",
+          primary_category: "editorial platform",
+          domain: "devtools",
+        }),
+      });
+
+    const first = await post("pending-studio-project");
+    const second = await post("pending-studio-project-duplicate");
+
+    expect(first.status).toBe(303);
+    expect(second.status).toBe(409);
+    expect(await second.text()).toContain("already has pending draft");
+  });
+
+  it("renders every fixed project workspace tab", async () => {
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio",
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+    const html = await response.text();
+
+    expect(response.status).toBe(200);
+    for (const label of [
+      "基本资料",
+      "仓库来源",
+      "作者与组织",
+      "搜索与筛选",
+      "卡片",
+      "固定正文栏目",
+      "证据",
+      "变化报告",
+      "版本差异",
+      "公开预览",
+      "审核与发布",
+    ]) {
+      expect(html).toContain(label);
+    }
+    expect(html).toContain("base revision 1");
+    expect(html).toContain(
+      '/studio/projects/draft-studio/tabs/identity',
+    );
+  });
+
+  it.each([
+    ["identity", "基本资料"],
+    ["repositories", "仓库来源"],
+    ["creators", "作者与组织"],
+    ["discovery", "搜索与筛选"],
+    ["card", "卡片"],
+    ["evidence", "证据"],
+    ["reports", "变化报告"],
+    ["diff", "版本差异"],
+    ["review", "审核与发布"],
+  ])("opens the %s workspace tab", async (tab, label) => {
+    const response = await SELF.fetch(
+      `https://example.test/studio/projects/draft-studio/tabs/${tab}`,
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+
+    expect(response.status).toBe(200);
+    expect(await response.text()).toContain(label);
+  });
+
+  it("previews the draft without changing the public revision", async () => {
+    const preview = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio/preview",
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+    const publicPage = await SELF.fetch(
+      "https://example.test/projects/project-studio",
+    );
+
+    const previewHtml = await preview.text();
+    expect(previewHtml).toContain("只存在于控制台草稿的摘要");
+    expect(previewHtml).toContain('/studio/projects/draft-studio');
+    expect(previewHtml).toContain("返回编辑工作区");
+    expect(await publicPage.text()).not.toContain("只存在于控制台草稿的摘要");
+  });
+
+  it("does not show publishing controls before a draft is approved", async () => {
+    const editorResponse = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio",
+      { headers: { Authorization: "Bearer studio-editor" } },
+    );
+    const publisherResponse = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio",
+      { headers: { Authorization: "Bearer studio-publisher" } },
+    );
+
+    expect(await editorResponse.text()).not.toContain('data-action="publish"');
+    expect(await publisherResponse.text()).not.toContain('data-action="publish"');
+  });
+
+  it("abandons an editable draft and releases its repository from Studio", async () => {
+    await workflow.createDraft(testEnv.DB, {
+      draftId: "draft-studio-abandon",
+      projectId: null,
+      baseRevision: 0,
+      document: projectFixture({
+        projectId: "project-studio-abandon",
+        repositoryId: "repository-studio-abandon",
+      }),
+      actorId: "actor-studio-editor",
+      createdAt: TEST_NOW,
+    });
+    await testEnv.DB.prepare(
+      `INSERT INTO pending_repository_claims (
+        claim_id, platform, platform_repository_id, canonical_url,
+        draft_id, created_at
+      ) VALUES ('claim-studio-abandon', 'github', 'repository-studio-abandon',
+                'https://github.com/example/project', 'draft-studio-abandon', ?)`,
+    )
+      .bind(TEST_NOW)
+      .run();
+    const headers = { Authorization: "Bearer studio-editor" };
+    const workspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-abandon/tabs/review",
+      { headers },
+    );
+    expect(await workspace.text()).toContain("放弃草稿并释放仓库");
+
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-abandon/actions/abandon",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          ...headers,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({ reason: "重复收录" }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    expect((await workflow.getDraft(testEnv.DB, "draft-studio-abandon"))?.status).toBe(
+      "archived",
+    );
+    expect(
+      await testEnv.DB.prepare(
+        `SELECT released_at FROM pending_repository_claims
+         WHERE claim_id = 'claim-studio-abandon'`,
+      ).first<{ released_at: string | null }>(),
+    ).toMatchObject({ released_at: expect.any(String) });
+  });
+
+  it("saves one fixed section through the scoped workflow service", async () => {
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio/sections/overview",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          base_revision: "1",
+          state: "inferred",
+          summary: "通过编辑台保存的新概览",
+          body: "这是固定栏目正文。",
+          confidence: "medium",
+        }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    expect(response.headers.get("Location")).toBe(
+      "/studio/projects/draft-studio/sections/overview",
+    );
+    const stored = await workflow.getDraft(testEnv.DB, "draft-studio");
+    expect(stored?.document.sections.overview).toMatchObject({
+      state: "inferred",
+      summary: "通过编辑台保存的新概览",
+      body: "这是固定栏目正文。",
+      confidence: "medium",
+    });
+  });
+
+  it("saves an allowed structured project group", async () => {
+    const stored = await workflow.getDraft(testEnv.DB, "draft-studio");
+    const card = { ...stored!.document.card, summary: "通过卡片标签保存的摘要" };
+    const response = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio/tabs/card",
+      {
+        method: "POST",
+        redirect: "manual",
+        headers: {
+          Authorization: "Bearer studio-editor",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          base_revision: "1",
+          value_json: JSON.stringify(card),
+        }),
+      },
+    );
+
+    expect(response.status).toBe(303);
+    expect(
+      (await workflow.getDraft(testEnv.DB, "draft-studio"))?.document.card.summary,
+    ).toBe("通过卡片标签保存的摘要");
+  });
+
+  it("submits, independently approves and publishes through Studio actions", async () => {
+    const editorHeaders = { Authorization: "Bearer studio-editor" };
+    const publisherHeaders = { Authorization: "Bearer studio-publisher" };
+    const submit = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/actions/submit",
+      { method: "POST", redirect: "manual", headers: editorHeaders },
+    );
+    expect(submit.status).toBe(303);
+    expect((await workflow.getDraft(testEnv.DB, "draft-studio-action"))?.status).toBe(
+      "in_review",
+    );
+
+    const approve = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/actions/approve",
+      { method: "POST", redirect: "manual", headers: publisherHeaders },
+    );
+    expect(approve.status).toBe(303);
+    expect((await workflow.getDraft(testEnv.DB, "draft-studio-action"))?.status).toBe(
+      "approved",
+    );
+    const approvedWorkspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/tabs/review",
+      { headers: publisherHeaders },
+    );
+    expect(await approvedWorkspace.text()).toContain('data-action="publish"');
+
+    const publish = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/actions/publish",
+      { method: "POST", redirect: "manual", headers: publisherHeaders },
+    );
+    expect(publish.status).toBe(303);
+    expect(
+      (await workflow.getDraft(testEnv.DB, "draft-studio-action"))?.status,
+    ).toBe("published");
+    expect(
+      (
+        await SELF.fetch(
+          "https://example.test/projects/project-studio-action",
+        )
+      ).status,
+    ).toBe(200);
+    const publishedWorkspace = await SELF.fetch(
+      "https://example.test/studio/projects/draft-studio-action/tabs/review",
+      { headers: publisherHeaders },
+    );
+    expect(await publishedWorkspace.text()).not.toContain(
+      'data-action="publish"',
+    );
+  });
+});

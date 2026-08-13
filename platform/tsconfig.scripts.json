@@ -1,0 +1,14 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    "types": ["node", "@cloudflare/workers-types"],
+    "noEmit": true
+  },
+  "include": [
+    "scripts/**/*.ts",
+    "src/domain/project.ts",
+    "src/domain/validate.ts",
+    "src/services/import.ts"
+  ]
+}

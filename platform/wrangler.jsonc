@@ -1,0 +1,73 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kaiyuan-dashuli-platform",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-01",
+  "triggers": {
+    "crons": ["0 2 * * *"]
+  },
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./public"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kaiyuan-dashuli-local",
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BACKUPS",
+      "bucket_name": "kaiyuan-dashuli-backups-local"
+    }
+  ],
+  "vars": {
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": ""
+  },
+  "env": {
+    "preview": {
+      "name": "kaiyuan-dashuli-platform-preview",
+      "triggers": {
+        "crons": []
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "kaiyuan-dashuli-preview",
+          "database_id": "c8c08b64-60e1-48e3-9d00-42be07786803",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [],
+      "vars": {
+        "ACCESS_TEAM_DOMAIN": "",
+        "ACCESS_AUD": "",
+        "DEPLOYMENT_ENV": "preview"
+      }
+    },
+    "e2e": {
+      "name": "kaiyuan-dashuli-platform-e2e",
+      "triggers": {
+        "crons": []
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "kaiyuan-dashuli-e2e-preview",
+          "database_id": "8586f2ca-e01b-45df-a836-5c9e7e7a4e3e",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [],
+      "vars": {
+        "ACCESS_TEAM_DOMAIN": "",
+        "ACCESS_AUD": "",
+        "DEPLOYMENT_ENV": "preview"
+      }
+    }
+  }
+}

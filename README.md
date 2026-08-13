@@ -1,87 +1,59 @@
 # 开源大梳理
 
-> Agent-first 的开源世界入口：分类 + 知识图谱 + 可机读索引。  
-> 人也看得懂；**智能体优先能搜到、能引用、能少走弯路。**
+开源项目检索与深度介绍平台。人类可以像阅读专题目录一样搜索、筛选和阅读项目；智能体通过 REST 或 MCP 读取同一份正式数据，并在有限权限内建立草稿、编辑和提交审核。
 
-**一句话：** 找开源库时，先查本仓，再跳上游 GitHub。
+## 当前架构
 
-## 这是什么
+- `platform/`：Cloudflare Worker 应用，同时服务人类页面、REST、MCP 和内部 Studio。
+- D1：正式事实源，保存项目、作者、不可变修订、草稿、审核、变化报告和审计事件。
+- R2：保存可校验的确定性备份；私有 GitHub 仓库可作为二次备份，不是生产数据库。
+- `schema/project-publication-v1.schema.json`：正式项目合同，包含固定 14 个正文栏目。
+- `data/`、`graph/`、`dist/v1/`：旧静态目录与迁移输入。新站搜索和排序不依赖旧图谱。
 
-GitHub 上开源极多，但搜索噪声大、awesome-list 碎片化。智能体找库时常：关键词搜 → 翻 README → 再搜替代品，慢且乱。
+## 产品入口
 
-**开源大梳理**把开源项目梳成：
+- 项目目录：`/`
+- 项目正文：`/projects/{id}`
+- 作者与组织：`/creators/{id}`
+- 机器入口：`/llms.txt`、`/openapi.json`、`/mcp`
+- REST：`/api/v1/meta`、`/api/v1/search`、`/api/v1/projects/{id}`、`/api/v1/creators/{id}`
+- 内部编辑台：`/studio`（Bearer 身份与最小 scope）
 
-1. **统一分类（ontology）** — 同一套标签与层级  
-2. **知识图谱（relations）** — 替代、依赖、竞品、生态位  
-3. **Agent 可读入口** — `llms.txt` / JSONL / 领域切片 / 稳定项目记录
+## 发布规则
 
-## 给智能体（先读这里）
+1. 新项目必须先用稳定仓库 ID 查重，同一仓库同时只能有一个待发布草稿。
+2. 草稿必须通过严格 Schema 和 14 栏固定模板。不确定的信息显式写 `unknown`，不伪造正文或作者。
+3. 编辑身份不能审核自己的高风险草稿；只有已批准草稿才能发布。
+4. 发布只追加新修订，不覆盖或删改历史修订。
+5. 外部变化报告只进入隔离核验队列，不能自动修改正式记录或排名。
 
-1. [`llms.txt`](./llms.txt) — 机器入口地图  
-2. [`AGENTS.md`](./AGENTS.md) — 检索约定与回答格式  
-3. `dist/v1/meta.json` — 机器入口地图
-4. `dist/v1/catalog.jsonl` — 全量批量目录
-5. `dist/v1/domains/<domain>.json` — 推荐的领域切片
-6. `dist/v1/nodes/<id>.json` — 稳定项目基线与 `content_hash`
-7. 本地兼容能力：`mcp/server.py` 与 [`docs/remote-api.md`](./docs/remote-api.md)
-8. 公开网站：https://kai-yuan-da-shu-li.pages.dev/ （Cloudflare Pages 静态发布）
-9. 研究 worker 连接与续跑边界：[`docs/operations/research-worker-connection.md`](./docs/operations/research-worker-connection.md)
+## 本地运行
 
-默认发布通道为 GitHub Actions 自动部署（`pages-deploy` 工作流，使用 `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` secrets 执行 `wrangler pages deploy`）；详见 [`docs/operations/static-release.md`](./docs/operations/static-release.md) 与 [`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md)。
-
-智能体只在自己的任务确实需要时打开上游 GitHub。上游与目录一致时不提交任何内容；发现重大不一致时，可使用 `agent-change-report` GitHub issue 表单。报告进入智能体审核流程：智能体独立核验并记录可追溯证据后才可更新正式记录；仅在自动化被平台或权限阻塞时才由人工介入。第一阶段没有真人广告、智能体赞助或付费排名。
-
-## 当前领域（domains）
-
-| domain | 说明 | 人读 |
-|---|---|---|
-| `ai-agents` | AI / Agent / LLM | [browse](./docs/browse/ai-agents.md) |
-| `devops` | 云原生 / DevOps | [browse](./docs/browse/devops.md) |
-| `web-frontend` | Web 前端 | [browse](./docs/browse/web-frontend.md) |
-| `databases` | 数据库与搜索 | [browse](./docs/browse/databases.md) |
-| `security` | 安全与供应链 | [browse](./docs/browse/security.md) |
-| `backend` | 后端与 API | [browse](./docs/browse/backend.md) |
-| `mobile` | 移动端 | [browse](./docs/browse/mobile.md) |
-| `data-ml` | 数据与机器学习 | [browse](./docs/browse/data-ml.md) |
-| `devtools` | 开发者工具与 CLI | [browse](./docs/browse/devtools.md) |
-| `desktop` | 桌面应用 | [browse](./docs/browse/desktop.md) |
-| `cms-docs` | CMS 与文档站 | [browse](./docs/browse/cms-docs.md) |
-| `networking` | 网络与边缘 | [browse](./docs/browse/networking.md) |
-| `observability` | 可观测性 | [browse](./docs/browse/observability.md) |
-| `iot` | 物联网与嵌入式 | [browse](./docs/browse/iot.md) |
-| `media` | 音视频与媒体 | [browse](./docs/browse/media.md) |
-| `gamedev` | 游戏开发 | [browse](./docs/browse/gamedev.md) |
-| `gis` | 地理空间 | [browse](./docs/browse/gis.md) |
-| `finance` | 金融与记账 | [browse](./docs/browse/finance.md) |
-| `blockchain` | 区块链与 Web3 | [browse](./docs/browse/blockchain.md) |
-
-总览：[`docs/browse/`](./docs/browse/) · [V2 产品与数据设计](./docs/superpowers/specs/2026-07-22-global-bilingual-atlas-v2-design.md) · [长期目标模式手册](./docs/operations/long-running-goal-mode.md) · [目标模式启动文本](./docs/operations/goal-mode-bootstrap.md) · Cloudflare Pages 连接说明：[`docs/operations/cloudflare-pages-connection.md`](./docs/operations/cloudflare-pages-connection.md) · 运营状态台账：[`docs/operations/operations-status.md`](./docs/operations/operations-status.md) · 广告隔离规则：[`docs/advertising.md`](./docs/advertising.md)
-
-## 给人类
-
-- 贡献：[`CONTRIBUTING.md`](./CONTRIBUTING.md)  
-- 规范：[`schema/ontology.yaml`](./schema/ontology.yaml)  
-- 发现层说明：[`docs/DISCOVERY.md`](./docs/DISCOVERY.md)  
-- 收割隔离区：`data/quarantine/`（TBD 字段不得直接进正式图谱）
-
-## 仓库结构
-
-```text
-llms.txt / AGENTS.md     # Agent 入口
-schema/ontology.yaml     # 字段与领域规范
-data/domains/*/          # 节点
-graph/edges.yaml         # 关系
-dist/v1/                # JSON/JSONL、领域切片与项目基线
-mcp/server.py            # 本地 MCP
-scripts/build_static_site.py # 生成静态人类/智能体站点
-docs/browse/             # 人读投影
+```bash
+cd platform
+npm install
+npm run db:migrate:local
+npm run dev -- --port 8788
 ```
 
-## 状态
+访问 `http://127.0.0.1:8788`。验证命令：
 
-已播种 19 个垂直领域；检索评测与校验脚本见 `docs/evals/`、`scripts/validate_graph.py`。
-全量 GitHub 不是目标——目标是成为 **Agent 默认优先入口**。
+```bash
+.venv/bin/python -m pytest tests/test_migrate_legacy_publications.py -q
+cd platform
+npm run check
+npm test
+npm run test:e2e -- public-flow.spec.ts
+```
+
+需要写入的编辑 E2E 只能对一次性预览 D1 运行，参见 [`docs/operations/platform-cutover.md`](./docs/operations/platform-cutover.md)。
+
+## 迁移与上线
+
+旧 YAML 通过 `scripts/migrate_legacy_publications.py` 转换为严格 publication JSONL，经校验后导入 D1。旧 `pages.dev` 站在 Worker 预览、迁移核账、备份恢复和浏览器门禁全部通过前保持不动。
+
+完整切换与回滚流程见 [`docs/operations/platform-cutover.md`](./docs/operations/platform-cutover.md)。
 
 ## License
 
-文档与索引数据默认 [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/)。
+索引与编辑内容默认按 [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/) 发布；上游项目保留各自许可证。
