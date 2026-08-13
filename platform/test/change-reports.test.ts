@@ -4,12 +4,13 @@ import {
   SELF,
   type D1Migration,
 } from "cloudflare:test";
-import { beforeAll, describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import {
   classifyReportRisk,
   getChangeReport,
   intakeChangeReport,
   processPendingChangeReports,
+  isPublicEvidenceHostname,
 } from "../src/services/change-reports";
 import * as projects from "../src/storage/projects";
 import { projectFixture, TEST_NOW } from "./factories";
@@ -97,6 +98,10 @@ describe("public change report intake", () => {
     "https://localhost/report",
     "https://127.0.0.1/report",
     "https://192.168.1.2/report",
+    "https://[fd00::1]/report",
+    "https://[::ffff:127.0.0.1]/report",
+    "https://2130706433/report",
+    "https://example.com/report",
   ])("rejects unsafe evidence URL %s", async (evidenceUrl) => {
     await expect(
       intakeChangeReport(
@@ -108,6 +113,43 @@ describe("public change report intake", () => {
         TEST_NOW,
       ),
     ).rejects.toMatchObject({ status: 422 });
+  });
+
+  it("classifies private and public hostnames", () => {
+    expect(isPublicEvidenceHostname("127.0.0.1")).toBe(false);
+    expect(isPublicEvidenceHostname("192.168.1.2")).toBe(false);
+    expect(isPublicEvidenceHostname("fd00::1")).toBe(false);
+    expect(isPublicEvidenceHostname("::ffff:127.0.0.1")).toBe(false);
+    expect(isPublicEvidenceHostname("github.com")).toBe(true);
+  });
+
+  it("rejects evidence hostnames that resolve to private addresses", async () => {
+    const created = await intakeChangeReport(
+      testEnv.DB,
+      reportInput({
+        upstreamFingerprint: "dns:private",
+        evidenceUrl: "https://github.com/example/project",
+      }),
+      TEST_NOW,
+    );
+    const fetchMock = vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("type=AAAA")) {
+        return new Response(JSON.stringify({ Answer: [{ type: 28, data: "fd00::1" }] }));
+      }
+      return new Response(JSON.stringify({ Answer: [{ type: 1, data: "140.82.112.4" }] }));
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    try {
+      await processPendingChangeReports(testEnv.DB, {
+        now: TEST_NOW,
+      });
+    } finally {
+      vi.unstubAllGlobals();
+    }
+    const stored = await getChangeReport(testEnv.DB, created.reportId);
+    expect(stored?.status).toBe("retry");
+    expect(stored?.nextAttemptAt).not.toBeNull();
   });
 });
 

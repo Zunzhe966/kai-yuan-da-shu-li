@@ -5,6 +5,7 @@
 __pycache__/
 .venv/
 .cursor/
+.claude/
 .wrangler/
 node_modules/
 build/
@@ -12,3 +13,4 @@ var/feedback/
 .playwright-cli/
 output/
 .worktrees/
+graphify-out/

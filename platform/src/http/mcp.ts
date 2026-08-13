@@ -24,6 +24,17 @@ import {
 } from "../services/publish";
 import { checkRepository } from "../services/repositories";
 import { searchProjects } from "../services/search";
+import {
+  AD_SLOTS,
+  approveAd,
+  createAd,
+  listAds,
+  listPublishedAds,
+  publishAd,
+  submitAdForReview,
+  updateAd,
+  type AdSlotKey,
+} from "../services/ads";
 import * as creators from "../storage/creators";
 import * as projects from "../storage/projects";
 import * as workflow from "../storage/workflow";
@@ -231,6 +242,22 @@ function createMcpServer(db: D1Database, actor: ActorContext | null): McpServer 
       });
     },
   );
+  server.registerTool(
+    "get_ad_slots",
+    {
+      description: "返回固定广告坑位清单（位置和数量永不随广告内容变化）。",
+      inputSchema: {},
+    },
+    async () => result({ slots: AD_SLOTS }),
+  );
+  server.registerTool(
+    "list_published_ads",
+    {
+      description: "读取当前公开的已发布广告（sponsored_results，不影响自然结果）。",
+      inputSchema: {},
+    },
+    async () => result({ sponsored_results: await listPublishedAds(db) }),
+  );
 
   if (actor?.scopes.has("draft:create")) {
     server.registerTool(
@@ -435,6 +462,119 @@ function createMcpServer(db: D1Database, actor: ActorContext | null): McpServer 
         result({ revisions: await projects.listRevisions(db, project_id) }),
     );
   }
+
+  if (actor?.scopes.has("ad:create")) {
+    server.registerTool(
+      "create_ad",
+      {
+        description: "创建一条广告草稿（固定坑位，内容走审核，不直接公开）。",
+        inputSchema: {
+          slot_key: z.enum(AD_SLOTS),
+          title: z.string().min(1).max(200),
+          landing_url: z.url(),
+          image_url: z.url().optional(),
+          script_html: z.string().max(20_000).optional(),
+          body: z.string().max(2000).optional(),
+          starts_at: z.string().optional(),
+          ends_at: z.string().optional(),
+        },
+      },
+      async (input) => {
+        await createAd(db, actor, {
+          adId: crypto.randomUUID(),
+          slotKey: input.slot_key as AdSlotKey,
+          title: input.title,
+          landingUrl: input.landing_url,
+          imageUrl: input.image_url ?? null,
+          scriptHtml: input.script_html ?? null,
+          body: input.body ?? "",
+          startsAt: input.starts_at ?? null,
+          endsAt: input.ends_at ?? null,
+          now: new Date().toISOString(),
+        });
+        return result({ status: "draft" });
+      },
+    );
+    server.registerTool(
+      "list_ads",
+      {
+        description: "列出所有广告（含草稿/审核/已发布），仅限有 ad:create 的身份。",
+        inputSchema: {},
+      },
+      async () => result({ ads: await listAds(db) }),
+    );
+  }
+
+  if (actor?.scopes.has("ad:update")) {
+    server.registerTool(
+      "update_ad",
+      {
+        description: "更新广告草稿内容（固定坑位不可改；已审核/已发布须先走变更流程）。",
+        inputSchema: {
+          ad_id: z.string().min(1),
+          title: z.string().min(1).max(200).optional(),
+          landing_url: z.url().optional(),
+          image_url: z.url().optional().nullable(),
+          script_html: z.string().max(20_000).optional().nullable(),
+          body: z.string().max(2000).optional(),
+          starts_at: z.string().optional().nullable(),
+          ends_at: z.string().optional().nullable(),
+        },
+      },
+      async (input) => {
+        await updateAd(db, actor, input.ad_id, {
+          title: input.title,
+          landingUrl: input.landing_url,
+          imageUrl: input.image_url ?? undefined,
+          scriptHtml: input.script_html ?? undefined,
+          body: input.body,
+          startsAt: input.starts_at ?? undefined,
+          endsAt: input.ends_at ?? undefined,
+        }, new Date().toISOString());
+        return result({ ad_id: input.ad_id, updated: true });
+      },
+    );
+    server.registerTool(
+      "submit_ad_for_review",
+      {
+        description: "把广告草稿提交独立审核。",
+        inputSchema: { ad_id: z.string().min(1) },
+      },
+      async ({ ad_id }) => {
+        await submitAdForReview(db, actor, ad_id);
+        return result({ ad_id, status: "in_review" });
+      },
+    );
+  }
+
+  if (actor?.scopes.has("ad:review")) {
+    server.registerTool(
+      "approve_ad",
+      {
+        description: "批准一条 in_review 广告。",
+        inputSchema: { ad_id: z.string().min(1) },
+      },
+      async ({ ad_id }) => {
+        await approveAd(db, actor, ad_id);
+        return result({ ad_id, status: "approved" });
+      },
+    );
+  }
+
+  if (actor?.scopes.has("ad:publish")) {
+    server.registerTool(
+      "publish_ad",
+      {
+        description: "发布已批准广告，生成不可变修订并进入公开坑位。",
+        inputSchema: { ad_id: z.string().min(1) },
+      },
+      async ({ ad_id }) => {
+        await publishAd(db, actor, ad_id);
+        return result({ ad_id, status: "published" });
+      },
+    );
+  }
+
   return server;
 }
 

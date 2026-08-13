@@ -23,7 +23,19 @@ export interface ProjectSearchResult {
   total: number;
   items: ProjectPublication[];
   nextCursor: string | null;
+  /** 每个筛选维度各值的计数（基于当前已选的其他条件），用于 facet 实时更新 */
+  facets?: Record<string, Record<string, number>>;
 }
+
+export const FACET_TYPES = [
+  "domain",
+  "capability",
+  "language",
+  "license",
+  "project_type",
+  "delivery_method",
+] as const;
+export type FacetType = (typeof FACET_TYPES)[number];
 
 export type { CreatorProfile } from "../storage/creators";
 
@@ -61,7 +73,10 @@ function addFacet(
   values.push(facetType, ...selected);
 }
 
-function buildWhere(input: SearchInput): { sql: string; values: unknown[] } {
+function buildWhere(
+  input: SearchInput,
+  excludeFacet?: string,
+): { sql: string; values: unknown[] } {
   const clauses = ["p.current_revision_id IS NOT NULL"];
   const values: unknown[] = [];
   const query = input.query?.trim();
@@ -71,12 +86,17 @@ function buildWhere(input: SearchInput): { sql: string; values: unknown[] } {
     );
     values.push(ftsQuery(query));
   }
-  addFacet(clauses, values, "domain", input.domain);
-  addFacet(clauses, values, "capability", input.capability);
-  addFacet(clauses, values, "language", input.language);
-  addFacet(clauses, values, "license", input.license);
-  addFacet(clauses, values, "project_type", input.projectType);
-  addFacet(clauses, values, "delivery_method", input.delivery);
+  if (excludeFacet !== "domain") addFacet(clauses, values, "domain", input.domain);
+  if (excludeFacet !== "capability")
+    addFacet(clauses, values, "capability", input.capability);
+  if (excludeFacet !== "language")
+    addFacet(clauses, values, "language", input.language);
+  if (excludeFacet !== "license")
+    addFacet(clauses, values, "license", input.license);
+  if (excludeFacet !== "project_type")
+    addFacet(clauses, values, "project_type", input.projectType);
+  if (excludeFacet !== "delivery_method")
+    addFacet(clauses, values, "delivery_method", input.delivery);
   if (input.status?.length) {
     clauses.push(`p.status IN (${input.status.map(() => "?").join(", ")})`);
     values.push(...input.status);
@@ -133,20 +153,54 @@ export async function searchProjects(
     .all<DocumentRow>();
   const hasMore = result.results.length > limit;
   const visible = result.results.slice(0, limit);
+  const facets = await countFacets(db, input);
   return {
     total: count?.total ?? 0,
     items: visible.map(
       (row) => JSON.parse(row.document_json) as ProjectPublication,
     ),
     nextCursor: hasMore ? (visible.at(-1)?.project_id ?? null) : null,
+    facets,
   };
+}
+
+/**
+ * 计算每个筛选维度各值的项目计数。对每个维度，使用"排除该维度自身"的条件
+ * （即该维度的计数反映当前已选其他维度组合下的分布），供 facet 实时更新。
+ */
+export async function countFacets(
+  db: D1Database,
+  input: SearchInput,
+): Promise<Record<string, Record<string, number>>> {
+  const facets: Record<string, Record<string, number>> = {};
+  await Promise.all(
+    FACET_TYPES.map(async (facetType) => {
+      const where = buildWhere(input, facetType);
+      const rows = await db
+        .prepare(
+          `SELECT f.facet_value AS value, COUNT(*) AS count
+           FROM projects p
+           JOIN project_search_facets f ON f.project_id = p.project_id
+           WHERE ${where.sql}
+             AND f.facet_type = ?
+           GROUP BY f.facet_value
+           ORDER BY count DESC
+           LIMIT 60`,
+        )
+        .bind(...where.values, facetType)
+        .all<{ value: string; count: number }>();
+      facets[facetType] = Object.fromEntries(
+        rows.results.map((row) => [row.value, row.count]),
+      );
+    }),
+  );
+  return facets;
 }
 
 export function searchInputFromUrl(url: URL): SearchInput {
   const split = (name: string): string[] | undefined => {
     const values = url.searchParams
       .getAll(name)
-      .flatMap((value) => value.split(","))
       .map((value) => value.trim())
       .filter(Boolean);
     return values.length ? values : undefined;

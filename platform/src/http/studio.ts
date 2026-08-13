@@ -21,12 +21,24 @@ import {
 } from "../services/change-reports";
 import { listStudioActors } from "../services/actors";
 import {
+  AdError,
+  approveAd,
+  createAd,
+  listAds,
+  publishAd,
+  submitAdForReview,
+  updateAd,
+  type AdSlotKey,
+} from "../services/ads";
+import { listCreatorIds } from "../storage/creators";
+import {
   checkRepository,
   resolveGithubRepository,
 } from "../services/repositories";
 import { authenticateApiKey } from "./auth";
 import * as workflow from "../storage/workflow";
 import { renderProjectPage } from "../ui/public-pages";
+import { escapeHtml } from "../ui/layout";
 import {
   renderStudioNewProject,
   renderStudioQueue,
@@ -96,6 +108,9 @@ export function createStudioRouter() {
         error.message,
         error.status as 401 | 403 | 404 | 409 | 422,
       );
+    }
+    if (error instanceof AdError) {
+      return context.text(error.message, error.status as 401 | 403 | 422);
     }
     throw error;
   });
@@ -187,13 +202,16 @@ export function createStudioRouter() {
 
   router.get("/projects/:id/preview", async (context) => {
     const draft = await workflow.getDraft(context.env.DB, context.req.param("id"));
-    return draft
-      ? context.html(
-          renderProjectPage(draft.document, {
-            studioBackUrl: `/studio/projects/${encodeURIComponent(draft.draftId)}`,
-          }),
-        )
-      : context.text("Draft not found", 404);
+    if (!draft) {
+      return context.text("Draft not found", 404);
+    }
+    const knownCreatorIds = new Set(await listCreatorIds(context.env.DB));
+    return context.html(
+      renderProjectPage(draft.document, {
+        studioBackUrl: `/studio/projects/${encodeURIComponent(draft.draftId)}`,
+        knownCreatorIds,
+      }),
+    );
   });
 
   router.get("/projects/:id/tabs/:tab", async (context) => {
@@ -378,11 +396,72 @@ export function createStudioRouter() {
     }
     return context.html(renderStudioReports(await listChangeReports(context.env.DB)));
   });
+
   router.get("/actors", async (context) => {
     if (!context.get("actor").scopes.has("actors:read")) {
       return context.text("Missing scope: actors:read", 403);
     }
     return context.html(renderStudioActors(await listStudioActors(context.env.DB)));
+  });
+
+  // ===== 广告管理（智能体可上传/修改广告内容，位置固定，内容走审核） =====
+  router.get("/ads", async (context) => {
+    if (!context.get("actor").scopes.has("ad:create")) {
+      return context.text("Missing scope: ad:create", 403);
+    }
+    const ads = await listAds(context.env.DB);
+    const rows = ads
+      .map(
+        (ad) => `<li>${escapeHtml(ad.slot_key)} — ${escapeHtml(ad.title)} [${escapeHtml(ad.status)}]</li>`,
+      )
+      .join("") || "<li>暂无广告</li>";
+    return context.html(`<html><body><h1>广告管理（固定坑位）</h1><ul>${rows}</ul></body></html>`);
+  });
+
+  router.post("/ads", async (context) => {
+    const body = await context.req.parseBody();
+    await createAd(context.env.DB, context.get("actor"), {
+      adId: crypto.randomUUID(),
+      slotKey: String(body.slot_key ?? "") as AdSlotKey,
+      title: String(body.title ?? ""),
+      landingUrl: String(body.landing_url ?? ""),
+      imageUrl: String(body.image_url ?? "") || null,
+      scriptHtml: String(body.script_html ?? "") || null,
+      body: String(body.body ?? ""),
+      startsAt: String(body.starts_at ?? "") || null,
+      endsAt: String(body.ends_at ?? "") || null,
+      now: new Date().toISOString(),
+    });
+    return context.text("ad created", 201);
+  });
+
+  router.post("/ads/:id", async (context) => {
+    const body = await context.req.parseBody();
+    await updateAd(context.env.DB, context.get("actor"), context.req.param("id"), {
+      title: String(body.title ?? "") || undefined,
+      landingUrl: String(body.landing_url ?? "") || undefined,
+      imageUrl: String(body.image_url ?? "") || undefined,
+      scriptHtml: String(body.script_html ?? "") || undefined,
+      body: String(body.body ?? "") || undefined,
+      startsAt: String(body.starts_at ?? "") || undefined,
+      endsAt: String(body.ends_at ?? "") || undefined,
+    }, new Date().toISOString());
+    return context.text("ad updated", 200);
+  });
+
+  router.post("/ads/:id/actions/submit", async (context) => {
+    await submitAdForReview(context.env.DB, context.get("actor"), context.req.param("id"));
+    return context.text("ad submitted for review", 200);
+  });
+
+  router.post("/ads/:id/actions/approve", async (context) => {
+    await approveAd(context.env.DB, context.get("actor"), context.req.param("id"));
+    return context.text("ad approved", 200);
+  });
+
+  router.post("/ads/:id/actions/publish", async (context) => {
+    await publishAd(context.env.DB, context.get("actor"), context.req.param("id"));
+    return context.text("ad published", 200);
   });
 
   return router;

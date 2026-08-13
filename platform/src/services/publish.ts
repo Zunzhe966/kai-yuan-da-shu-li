@@ -4,7 +4,7 @@ import type {
   SectionKey,
 } from "../domain/project";
 import type { ActorContext, Scope } from "../domain/scopes";
-import { validateProject } from "../domain/validate";
+import { validateChinesePublication, validateProject } from "../domain/validate";
 import * as projects from "../storage/projects";
 import * as workflow from "../storage/workflow";
 
@@ -169,6 +169,10 @@ export async function submitProjectDraft(
   const validation = validateProject(draft.document);
   if (!validation.ok) {
     throw new WorkflowError(validation.errors.join("; "), 422);
+  }
+  const chineseValidation = validateChinesePublication(draft.document);
+  if (!chineseValidation.ok) {
+    throw new WorkflowError(chineseValidation.errors.join("; "), 422);
   }
   await db.batch([
     db
@@ -505,6 +509,10 @@ export async function publishApprovedDraft(
   const validation = validateProject(document);
   if (!validation.ok) {
     throw new WorkflowError(validation.errors.join("; "), 422);
+  }
+  const chineseValidation = validateChinesePublication(document);
+  if (!chineseValidation.ok) {
+    throw new WorkflowError(chineseValidation.errors.join("; "), 422);
   }
 
   return projects.insertRevision(db, document, actor.actorId, [

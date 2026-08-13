@@ -11,6 +11,8 @@ export const PUBLIC_MCP_TOOLS = [
   "check_repository",
   "report_project_change",
   "get_public_report_status",
+  "get_ad_slots",
+  "list_published_ads",
 ] as const;
 
 export const EDITOR_MCP_TOOLS = [
@@ -26,6 +28,15 @@ export const EDITOR_MCP_TOOLS = [
   "get_project_history",
 ] as const;
 
+export const AD_MCP_TOOLS = [
+  "create_ad",
+  "update_ad",
+  "submit_ad_for_review",
+  "approve_ad",
+  "publish_ad",
+  "list_ads",
+] as const;
+
 export function getCapabilities(actor: ActorContext | null) {
   const allowedActions: string[] = [...PUBLIC_MCP_TOOLS];
   if (actor?.scopes.has("draft:create")) {
@@ -35,6 +46,18 @@ export function getCapabilities(actor: ActorContext | null) {
     allowedActions.push(
       ...EDITOR_MCP_TOOLS.filter((tool) => tool !== "create_project_draft"),
     );
+  }
+  if (actor?.scopes.has("ad:create")) {
+    allowedActions.push("create_ad", "list_ads");
+  }
+  if (actor?.scopes.has("ad:update")) {
+    allowedActions.push("update_ad", "submit_ad_for_review");
+  }
+  if (actor?.scopes.has("ad:review")) {
+    allowedActions.push("approve_ad");
+  }
+  if (actor?.scopes.has("ad:publish")) {
+    allowedActions.push("publish_ad");
   }
   return {
     actor_id: actor?.actorId ?? "public",

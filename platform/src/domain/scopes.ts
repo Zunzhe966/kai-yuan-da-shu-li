@@ -7,6 +7,10 @@ export const SCOPES = [
   "report:verify",
   "actors:read",
   "backup:read",
+  "ad:create",
+  "ad:update",
+  "ad:review",
+  "ad:publish",
 ] as const;
 
 export type Scope = (typeof SCOPES)[number];

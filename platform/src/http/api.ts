@@ -3,6 +3,7 @@ import type { Bindings } from "../env";
 import { searchInputFromUrl, searchProjects } from "../services/search";
 import { getCreatorDetail, searchCreators } from "../storage/creators";
 import { getPublishedDocument } from "../storage/projects";
+import { listPublishedAds } from "../services/ads";
 import {
   getChangeReport,
   intakeChangeReport,
@@ -44,18 +45,20 @@ export function createApiRouter() {
 
   router.get("/search", async (context) => {
     const input = searchInputFromUrl(new URL(context.req.url));
-    const [result, creators] = await Promise.all([
+    const [result, creators, ads] = await Promise.all([
       input.entityType === "creator"
         ? Promise.resolve({ total: 0, items: [], nextCursor: null })
         : searchProjects(context.env.DB, input),
       input.entityType === "project"
         ? Promise.resolve([])
         : searchCreators(context.env.DB, input.query),
+      listPublishedAds(context.env.DB),
     ]);
     return context.json({
       total: result.total,
       items: result.items,
       next_cursor: result.nextCursor,
+      facets: "facets" in result ? (result.facets ?? {}) : {},
       creators: creators.map((creator) => ({
         creator_id: creator.creatorId,
         type: creator.type,
@@ -66,6 +69,14 @@ export function createApiRouter() {
         official_sites: creator.officialSites,
         social_profiles: creator.socialProfiles,
         code_host_identities: creator.codeHostIdentities,
+      })),
+      sponsored_results: ads.map((ad) => ({
+        ad_id: ad.ad_id,
+        slot_key: ad.slot_key,
+        title: ad.title,
+        landing_url: ad.landing_url,
+        image_url: ad.image_url,
+        body: ad.body,
       })),
     });
   });

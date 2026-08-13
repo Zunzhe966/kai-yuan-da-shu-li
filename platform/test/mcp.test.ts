@@ -237,4 +237,118 @@ describe("remote MCP capabilities", () => {
     ).toBe("由远程 MCP 更新的项目概览");
     await client.close();
   });
+
+  it("runs the full check→create→section→creator→evidence→submit pipeline", async () => {
+    const client = await connectClient("mcp-editor-token");
+
+    // 1. 查重 → 拿到创建票据
+    const checked = structured<{ status: string; creation_ticket: string }>(
+      await client.callTool({
+        name: "check_repository",
+        arguments: {
+          repository_url: "https://github.com/example/mcp-pipeline",
+          platform_repository_id: "repository-mcp-pipeline",
+        },
+      }),
+    );
+    expect(checked.status).toBe("new_repository");
+    expect(checked.creation_ticket).toBeTruthy();
+
+    // 2. 建草稿
+    const document = projectFixture({
+      projectId: "project-mcp-pipeline",
+      repositoryId: "repository-mcp-pipeline",
+    });
+    document.repository_sources[0]!.canonical_url =
+      "https://github.com/example/mcp-pipeline";
+    document.repository_sources[0]!.full_name = "example/mcp-pipeline";
+    await client.callTool({
+      name: "create_project_draft",
+      arguments: {
+        draft_id: "draft-mcp-pipeline",
+        creation_ticket: checked.creation_ticket,
+        document,
+      },
+    });
+
+    const currentRev = async () =>
+      (await workflow.getDraft(testEnv.DB, "draft-mcp-pipeline"))?.baseRevision ??
+      0;
+
+    // 3. 填栏目正文
+    await client.callTool({
+      name: "upsert_project_section",
+      arguments: {
+        draft_id: "draft-mcp-pipeline",
+        base_revision: await currentRev(),
+        section_key: "overview",
+        section: {
+          ...document.sections.overview,
+          state: "inferred",
+          summary: "一条龙项目概览",
+          evidence_ids: ["repo-readme"],
+          confidence: "medium",
+        },
+      },
+    });
+
+    // 4. 关联作者
+    await client.callTool({
+      name: "link_creator",
+      arguments: {
+        draft_id: "draft-mcp-pipeline",
+        base_revision: await currentRev(),
+        creator_id: "creator-pipeline",
+        role: "maintainer",
+        evidence_ids: ["repo-readme"],
+      },
+    });
+
+    // 5. 加证据
+    await client.callTool({
+      name: "add_evidence",
+      arguments: {
+        draft_id: "draft-mcp-pipeline",
+        base_revision: await currentRev(),
+        evidence: {
+          evidence_id: "release-notes",
+          url: "https://github.com/example/mcp-pipeline/releases",
+          source_type: "release_notes",
+          retrieved_at: TEST_NOW,
+          supports: ["card.summary"],
+          fact_summary: "发布说明",
+          applicable_version: null,
+          content_hash: null,
+        },
+      },
+    });
+
+    // 6. 提交审核
+    const submitted = structured<{ draft_id: string; status: string }>(
+      await client.callTool({
+        name: "submit_project_for_review",
+        arguments: {
+          draft_id: "draft-mcp-pipeline",
+          base_revision: await currentRev(),
+          risk_level: "low",
+        },
+      }),
+    );
+    expect(submitted).toMatchObject({
+      draft_id: "draft-mcp-pipeline",
+      status: "in_review",
+    });
+
+    const draft = await workflow.getDraft(testEnv.DB, "draft-mcp-pipeline");
+    expect(draft?.status).toBe("in_review");
+    expect(draft?.document.attribution).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ creator_id: "creator-pipeline", role: "maintainer" }),
+      ]),
+    );
+    expect(draft?.document.evidence.map((e) => e.evidence_id)).toContain(
+      "release-notes",
+    );
+    await client.close();
+  });
 });

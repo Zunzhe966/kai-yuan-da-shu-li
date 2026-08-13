@@ -35,6 +35,7 @@
 
 - API 凭证只保存 SHA-256 哈希，明文令牌不写入仓库、日志或页面。
 - `draft:create`、`draft:update`、`review:approve`、`publish`、`report:verify`、`actors:read`、`backup:read` 各自独立。
+- 广告权限独立为 `ad:create`、`ad:update`、`ad:review`、`ad:publish`，走草稿→审核→发布；广告永远进入固定坑位和 `sponsored_results`，不改自然排序、不混入项目结果。
 - 变化报告队列需要 `report:verify`；身份与权限拓扑需要 `actors:read`。
 - 备份令牌只读 R2，不同时获得 D1 写入或部署权限。
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SECTION_KEYS, type ProjectPublication } from "../src/domain/project";
-import { validateProject } from "../src/domain/validate";
+import { validateChinesePublication, validateProject } from "../src/domain/validate";
 
 const observedAt = "2026-08-02T00:00:00Z";
 
@@ -179,5 +179,13 @@ describe("project-publication-v1", () => {
     expect(result.errors).toContain(
       "sections.overview: verified content requires evidence",
     );
+  });
+
+  it("allows drafts without a Chinese name but blocks Chinese-site publication", () => {
+    const project = completeProject();
+    project.identity.chinese_name = null;
+    project.card.chinese_name = null;
+    expect(validateProject(project).ok).toBe(true);
+    expect(validateChinesePublication(project).ok).toBe(false);
   });
 });

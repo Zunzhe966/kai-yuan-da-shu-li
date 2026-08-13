@@ -134,6 +134,69 @@ function isPrivateIpv4(hostname: string): boolean {
   );
 }
 
+function isPrivateIpv6(hostname: string): boolean {
+  const normalized = hostname.startsWith("[") && hostname.endsWith("]")
+    ? hostname.slice(1, -1)
+    : hostname;
+  const lower = normalized.toLowerCase();
+  if (!lower.includes(":")) {
+    return false;
+  }
+  if (lower === "::" || lower === "::1") {
+    return true;
+  }
+  if (lower.startsWith("fe80:") || lower.startsWith("fc") || lower.startsWith("fd")) {
+    return true;
+  }
+  if (lower.startsWith("2001:db8:")) {
+    return true;
+  }
+  if (lower.startsWith("::ffff:")) {
+    return true;
+  }
+  if (lower.startsWith("::") && lower.includes(".")) {
+    return true;
+  }
+  if (lower.includes("::ffff:")) {
+    const ipv4Part = lower.split("::ffff:")[1] ?? "";
+    return isPrivateIpv4(ipv4Part);
+  }
+  return false;
+}
+
+const EVIDENCE_HOST_ALLOWLIST = new Set([
+  "github.com",
+  "www.github.com",
+  "raw.githubusercontent.com",
+  "gist.github.com",
+  "api.github.com",
+  "user-images.githubusercontent.com",
+  "avatars.githubusercontent.com",
+  "gitlab.com",
+  "www.gitlab.com",
+  "gitee.com",
+  "www.gitee.com",
+  "codeberg.org",
+  "bitbucket.org",
+  "arxiv.org",
+  "doi.org",
+]);
+
+export function isPublicEvidenceHostname(hostname: string): boolean {
+  const lower = hostname.toLowerCase().replace(/^\[|\]$/g, "");
+  if (
+    lower === "localhost" ||
+    lower.endsWith(".localhost") ||
+    lower.endsWith(".local") ||
+    lower === "::1" ||
+    isPrivateIpv4(lower) ||
+    isPrivateIpv6(lower)
+  ) {
+    return false;
+  }
+  return true;
+}
+
 export function validateEvidenceUrl(value: string): URL {
   let url: URL;
   try {
@@ -141,22 +204,59 @@ export function validateEvidenceUrl(value: string): URL {
   } catch {
     throw new WorkflowError("evidence URL is invalid", 422);
   }
-  const hostname = url.hostname.toLowerCase();
+  const hostname = url.hostname.toLowerCase().replace(/^\[|\]$/g, "");
   if (
     url.protocol !== "https:" ||
     url.username ||
     url.password ||
     (url.port && url.port !== "443") ||
-    hostname === "localhost" ||
-    hostname.endsWith(".localhost") ||
-    hostname.endsWith(".local") ||
-    hostname === "::1" ||
-    hostname === "[::1]" ||
-    isPrivateIpv4(hostname)
+    !EVIDENCE_HOST_ALLOWLIST.has(hostname) ||
+    !isPublicEvidenceHostname(hostname)
   ) {
-    throw new WorkflowError("evidence URL must be a public HTTPS address", 422);
+    throw new WorkflowError("evidence URL must be a public HTTPS address on an approved host", 422);
   }
   return url;
+}
+
+interface DnsAnswer {
+  type?: number;
+  data?: string;
+}
+
+interface DnsResponse {
+  Answer?: DnsAnswer[];
+}
+
+async function resolvePublicAddresses(hostname: string): Promise<string[]> {
+  const responses = await Promise.all([
+    fetch(`https://dns.google/resolve?name=${encodeURIComponent(hostname)}&type=A`).then((response) =>
+      response.ok ? response.json() as Promise<DnsResponse> : null,
+    ).catch(() => null),
+    fetch(`https://dns.google/resolve?name=${encodeURIComponent(hostname)}&type=AAAA`).then((response) =>
+      response.ok ? response.json() as Promise<DnsResponse> : null,
+    ).catch(() => null),
+  ]);
+  return responses.flatMap((resolved) =>
+    Array.isArray(resolved?.Answer)
+      ? resolved.Answer
+          .filter((entry) => entry.type === 1 || entry.type === 28)
+          .map((entry) => entry.data ?? "")
+          .filter(Boolean)
+      : [],
+  );
+}
+
+async function assertPublicHostname(hostname: string): Promise<void> {
+  if (!EVIDENCE_HOST_ALLOWLIST.has(hostname.toLowerCase())) {
+    throw new WorkflowError("evidence URL must use an approved host", 422);
+  }
+  const addresses = await resolvePublicAddresses(hostname);
+  if (!addresses.length) {
+    throw new WorkflowError("evidence URL could not be resolved", 422);
+  }
+  if (addresses.some((address) => !isPublicEvidenceHostname(address))) {
+    throw new WorkflowError("evidence URL must resolve to a public address", 422);
+  }
 }
 
 function validateInput(input: ChangeReportInput): void {
@@ -303,6 +403,7 @@ async function verifyRemoteEvidence(
   report: StoredChangeReport,
 ): Promise<VerificationResult> {
   let url = validateEvidenceUrl(report.evidenceUrl);
+  await assertPublicHostname(url.hostname);
   for (let redirects = 0; redirects <= 3; redirects += 1) {
     const response = await fetch(url, {
       method: "GET",
@@ -322,6 +423,7 @@ async function verifyRemoteEvidence(
       await response.body?.cancel();
       if (!location) return { verified: false, note: "redirect without location" };
       url = validateEvidenceUrl(new URL(location, url).toString());
+      await assertPublicHostname(url.hostname);
       continue;
     }
     await response.body?.cancel();

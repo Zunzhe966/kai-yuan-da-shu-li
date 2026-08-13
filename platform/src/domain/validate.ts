@@ -28,8 +28,8 @@ function formatSchemaError(error: ErrorObject): string {
   return `${path}: ${error.message ?? "is invalid"}`;
 }
 
-function isNonBlank(value: string): boolean {
-  return value.trim().length > 0;
+function isNonBlank(value: string | null | undefined): boolean {
+  return typeof value === "string" && value.trim().length > 0;
 }
 
 export function validateProject(value: unknown): ValidationResult {
@@ -68,5 +68,17 @@ export function validateProject(value: unknown): ValidationResult {
     }
   }
 
+  return { ok: errors.length === 0, errors };
+}
+
+export function validateChinesePublication(value: unknown): ValidationResult {
+  const project = value as ProjectPublication;
+  const errors: string[] = [];
+  if (!isNonBlank(project.card.chinese_name)) {
+    errors.push("card.chinese_name: Chinese site publication requires a Chinese name");
+  }
+  if (!isNonBlank(project.identity.chinese_name)) {
+    errors.push("identity.chinese_name: Chinese site publication requires a Chinese name");
+  }
   return { ok: errors.length === 0, errors };
 }

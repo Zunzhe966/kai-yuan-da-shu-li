@@ -10,40 +10,58 @@ import {
   getPublishedDocument,
   listPublishedProjectIds,
 } from "../storage/projects";
+import { listPublishedAds } from "../services/ads";
 import {
   renderCatalogPage,
   renderCreatorPage,
   renderProjectPage,
 } from "../ui/public-pages";
 
+function adsToMap(ads: { slot_key: string; title: string; landing_url: string; image_url: string | null; script_html: string; body: string }[]): Record<string, { title: string; landingUrl: string; imageUrl: string | null; scriptHtml: string; body: string }> {
+  const map: Record<string, { title: string; landingUrl: string; imageUrl: string | null; scriptHtml: string; body: string }> = {};
+  for (const ad of ads) {
+    map[ad.slot_key] = { title: ad.title, landingUrl: ad.landing_url, imageUrl: ad.image_url, scriptHtml: ad.script_html, body: ad.body };
+  }
+  return map;
+}
+
 export function createPublicRouter() {
   const router = new Hono<{ Bindings: Bindings }>();
 
   router.get("/", async (context) => {
     const input = searchInputFromUrl(new URL(context.req.url));
-    const [result, creatorResults] = await Promise.all([
+    const [result, creatorResults, ads] = await Promise.all([
       input.entityType === "creator"
         ? Promise.resolve({ total: 0, items: [], nextCursor: null })
         : searchProjects(context.env.DB, input),
       input.entityType === "project"
         ? Promise.resolve([])
         : searchCreators(context.env.DB, input.query),
+      listPublishedAds(context.env.DB),
     ]);
-    return context.html(renderCatalogPage(result, input, creatorResults));
+    return context.html(renderCatalogPage(result, input, creatorResults, adsToMap(ads)));
   });
 
   router.get("/creators/:id", async (context) => {
-    const creator = await getCreatorDetail(context.env.DB, context.req.param("id"));
+    const [creator, ads] = await Promise.all([
+      getCreatorDetail(context.env.DB, context.req.param("id")),
+      listPublishedAds(context.env.DB),
+    ]);
     return creator
-      ? context.html(renderCreatorPage(creator))
+      ? context.html(renderCreatorPage(creator, adsToMap(ads)))
       : context.text("Creator not found", 404);
   });
 
   router.get("/projects/:id", async (context) => {
-    const project = await getPublishedDocument(context.env.DB, context.req.param("id"));
-    return project
-      ? context.html(renderProjectPage(project))
-      : context.text("Project not found", 404);
+    const [project, knownCreatorIds, ads] = await Promise.all([
+      getPublishedDocument(context.env.DB, context.req.param("id")),
+      listCreatorIds(context.env.DB).then((ids) => new Set(ids)),
+      listPublishedAds(context.env.DB),
+    ]);
+    if (!project) {
+      return context.text("Project not found", 404);
+    }
+    return context.html(renderProjectPage(project, { knownCreatorIds, ads: adsToMap(ads) }));
   });
 
   router.get("/robots.txt", (context) => {
