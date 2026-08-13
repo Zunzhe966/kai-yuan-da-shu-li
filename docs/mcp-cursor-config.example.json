@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "kaiyuan-dashuli": {
-      "command": "/Users/zhangxuetao/Documents/Code/zunzhe-dev/开源大梳理/.venv/bin/python",
-      "args": ["/Users/zhangxuetao/Documents/Code/zunzhe-dev/开源大梳理/mcp/server.py"]
-    }
-  }
-}

@@ -17,7 +17,6 @@
 在仓库根目录执行：
 
 ```bash
-.venv/bin/python -m pytest tests/test_migrate_legacy_publications.py -q
 cd platform
 npm run check
 npm test
@@ -27,7 +26,7 @@ cd ..
 git diff --check
 ```
 
-迁移核账必须同时记录：旧源数、无效数、重复仓库组、独立项目数、D1 项目数、D1 修订数和重复键数。任何静默丢失都阻止上线。
+如使用历史迁移数据，核账必须记录：旧源数、无效数、重复仓库组、独立项目数、D1 项目数、D1 修订数和重复键数。任何静默丢失都阻止上线。
 
 ## 3. 一次性 Cloudflare 预览资源
 
@@ -52,9 +51,7 @@ npx wrangler deploy --env preview
 
 ```bash
 cd ..
-.venv/bin/python scripts/migrate_legacy_publications.py \
-  --output build/project-publication-v1.jsonl \
-  --report build/migration-report.json
+[如使用旧数据迁移：.venv/bin/python scripts/migrate_legacy_publications.py ...]
 cd platform
 npx tsx scripts/import-jsonl.ts \
   ../build/project-publication-v1.jsonl \
@@ -62,7 +59,7 @@ npx tsx scripts/import-jsonl.ts \
   --report ../build/preview-import-report.json
 ```
 
-导入后用 D1 SQL 核对 `projects`、`project_revisions`、重复仓库键和当前修订。不得用 Studio 手工重建迁移数据。
+导入后用 D1 SQL 核对 `projects`、`project_revisions`、重复仓库键和当前修订。历史迁移工具已归档，新内容一律通过 Studio/MCP 上传。
 
 ## 5. 身份和最小权限
 
