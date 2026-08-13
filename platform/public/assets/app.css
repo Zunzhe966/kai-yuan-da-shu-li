@@ -113,6 +113,7 @@ button, select { cursor: pointer; }
 .ad-banner-end p { margin: 0; font-size: 11px; }
 .ad-banner-top { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border: 1px dashed #cfb9a6; border-radius: 6px; background: #fdfaf6; color: var(--muted); margin-bottom: 24px; }
 .ad-banner-top p { margin: 0; font-size: 11px; }
+.ad-banner-top-full { width: 100%; margin: 0; border-radius: 0; border-left: 0; border-right: 0; border-top: 0; min-height: 64px; }
 .ad-slot-script, .ad-banner-top-filled[data-slot-script], .ad-banner-end-filled[data-slot-script] { padding: 0; border: 0; background: transparent; min-height: 0; display: block; }
 .ad-slot-script ins, .ad-banner-top-filled[data-slot-script] ins, .ad-banner-end-filled[data-slot-script] ins { display: block; margin: 0 auto; }
 @media (max-width: 1200px) { .page-grid-ads { grid-template-columns: 1fr; } .ad-rail { display: none; } }
