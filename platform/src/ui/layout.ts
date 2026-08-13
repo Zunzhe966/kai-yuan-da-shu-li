@@ -29,7 +29,7 @@ export interface LayoutOptions {
   bodyClass?: string;
   /** 是否包含广告 rail（桌面宽屏左右两列） */
   humanAdSlots?: boolean;
-  /** 顶部横幅广告位（分类条下方、内容上方） */
+  /** 顶部全宽横幅广告位（页面最顶上、头部与分类条上方） */
   adTop?: boolean;
   /** 手机底部广告位（保留兼容，目前隐藏） */
   adMobile?: boolean;
@@ -98,15 +98,15 @@ function renderBannerEnd(ads: Record<string, AdDisplay> | undefined): string {
 function renderBannerTop(ads: Record<string, AdDisplay> | undefined): string {
   const ad = ads?.["banner-top"];
   if (!ad) {
-    return `<div class="ad-banner-top"><span class="ad-label">广告</span><p>广告位 · 暂未启用</p></div>`;
+    return `<div class="ad-banner-top ad-banner-top-full"><span class="ad-label">广告</span><p>广告位 · 暂未启用</p></div>`;
   }
   if (ad.scriptHtml.trim()) {
-    return `<div class="ad-banner-top ad-banner-top-filled" data-slot-script>${ad.scriptHtml}</div>`;
+    return `<div class="ad-banner-top ad-banner-top-full ad-banner-top-filled" data-slot-script>${ad.scriptHtml}</div>`;
   }
   const image = ad.imageUrl
     ? `<img class="ad-slot-img" src="${escapeHtml(ad.imageUrl)}" alt="" loading="lazy">`
     : "";
-  return `<a class="ad-banner-top ad-banner-top-filled" href="${escapeHtml(ad.landingUrl)}" rel="noopener noreferrer sponsored">
+  return `<a class="ad-banner-top ad-banner-top-full ad-banner-top-filled" href="${escapeHtml(ad.landingUrl)}" rel="noopener noreferrer sponsored">
     <span class="ad-label">广告</span>
     ${image}
     <span class="ad-slot-title">${escapeHtml(ad.title)}</span>
@@ -143,6 +143,7 @@ export function renderLayout(options: LayoutOptions): string {
   ${options.canonicalPath ? `<link rel="canonical" href="${escapeHtml(options.canonicalPath)}">` : ""}
 </head>
 <body class="${escapeHtml(options.bodyClass ?? "")}">
+  ${options.adTop ? renderBannerTop(options.ads) : ""}
   <header class="site-header">
     <a class="brand" href="/" aria-label="开源大梳理首页">
       <span class="brand-mark" aria-hidden="true">开</span>
@@ -161,7 +162,6 @@ export function renderLayout(options: LayoutOptions): string {
   <div class="page-grid${options.humanAdSlots ? " page-grid-ads" : ""}">
     ${options.humanAdSlots ? adRail("left", options.ads) : ""}
     <div class="page-content">
-      ${options.adTop ? renderBannerTop(options.ads) : ""}
       ${options.content}
       ${options.adTop ? renderBannerEnd(options.ads) : ""}
     </div>
