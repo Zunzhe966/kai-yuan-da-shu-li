@@ -77,27 +77,45 @@ describe("public project experience", () => {
     expect(html.toLowerCase()).not.toContain("sponsored");
   });
 
-  it("renders all fixed sections in template order", async () => {
+  it("renders a chapter directory with fixed sections in template order", async () => {
     const response = await SELF.fetch(
       "https://example.test/projects/project-aider",
     );
     const html = await response.text();
 
     expect(response.status).toBe(200);
+    expect(html).toContain("全部章节");
     let previousIndex = -1;
     for (const key of SECTION_KEYS) {
-      const index = html.indexOf(`data-section="${key}"`);
+      const index = html.indexOf(`/projects/project-aider/sections/${key}`);
       expect(index).toBeGreaterThan(previousIndex);
       previousIndex = index;
     }
-    expect(html).toContain("待深度核验");
-    expect(html).toContain("证据与来源");
+    expect(html).toContain("/projects/project-aider/sections/evidence");
     expect(html).toContain("作者与组织");
     expect(html).toContain("标签");
     // 广告坑位固定：左右广告轨 + 多个固定槽（位置与数量固定，不挡内容）
     expect(html).toContain("ad-rail-left");
     expect(html).toContain("ad-rail-right");
     expect(html).toContain("data-ad-slot");
+  });
+
+  it("serves every fixed section as its own page", async () => {
+    for (const key of SECTION_KEYS) {
+      const response = await SELF.fetch(
+        `https://example.test/projects/project-aider/sections/${key}`,
+      );
+      const html = await response.text();
+      expect(response.status).toBe(200);
+      expect(html).toContain(`data-section="${key}"`);
+      expect(html).toContain("上一章");
+      expect(html).toContain("下一章");
+    }
+    const evidence = await SELF.fetch(
+      "https://example.test/projects/project-aider/sections/evidence",
+    );
+    expect(evidence.status).toBe(200);
+    expect(await evidence.text()).toContain("证据与来源");
   });
 
   it("does not render unsafe external URLs", async () => {

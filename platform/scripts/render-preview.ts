@@ -5,9 +5,11 @@ import type { ProjectPublication } from "../src/domain/project";
 import {
   renderCatalogPage,
   renderProjectPage,
+  renderProjectSectionPage,
 } from "../src/ui/public-pages";
 import { renderLayout } from "../src/ui/layout";
 import type { SearchInput } from "../src/services/search";
+import { SECTION_KEYS } from "../src/domain/project";
 
 const ROOT = join(import.meta.dirname, "..");
 const OUT = join(ROOT, "build", "preview");
@@ -232,13 +234,28 @@ writeFileSync(join(OUT, "index.html"), catalogHtml, "utf-8");
 for (const project of projects) {
   const dir = join(OUT, "projects", project.project_id);
   mkdirSync(dir, { recursive: true });
+  const knownCreatorIds = new Set(
+    projects.map((item) => item.attribution[0]?.creator_id).filter((id): id is string => Boolean(id)),
+  );
   writeFileSync(
     join(dir, "index.html"),
     renderProjectPage(project, {
-      knownCreatorIds: new Set(
-        projects.map((item) => item.attribution[0]?.creator_id).filter((id): id is string => Boolean(id)),
-      ),
+      knownCreatorIds,
     }),
+    "utf-8",
+  );
+  const sectionsDir = join(dir, "sections");
+  mkdirSync(sectionsDir, { recursive: true });
+  for (const key of SECTION_KEYS) {
+    writeFileSync(
+      join(sectionsDir, `${key}.html`),
+      renderProjectSectionPage(project, key, { knownCreatorIds }),
+      "utf-8",
+    );
+  }
+  writeFileSync(
+    join(sectionsDir, "evidence.html"),
+    renderProjectSectionPage(project, "evidence", { knownCreatorIds }),
     "utf-8",
   );
 }

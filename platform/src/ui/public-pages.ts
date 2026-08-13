@@ -358,35 +358,31 @@ function renderSection(key: SectionKey, section: PublicationSection): string {
   </section>`;
 }
 
-export function renderProjectPage(
+function renderChapterNav(
   project: ProjectPublication,
-  options: { studioBackUrl?: string; knownCreatorIds?: ReadonlySet<string>; ads?: Record<string, AdDisplay> } = {},
+  activeKey: SectionKey | "evidence" | null,
+): string {
+  const tabs = [
+    ...SECTION_KEYS.map((key) => ({ id: key, label: SECTION_LABELS[key] })),
+    { id: "evidence" as const, label: "证据来源" },
+  ];
+  return `<nav class="section-tabs chapter-tabs" aria-label="章节导航">
+    ${tabs.map((tab) => {
+      const href = tab.id === "evidence"
+        ? `/projects/${encodeURIComponent(project.project_id)}/sections/evidence`
+        : `/projects/${encodeURIComponent(project.project_id)}/sections/${tab.id}`;
+      return `<a class="section-tab${activeKey === tab.id ? " active" : ""}" href="${href}">${escapeHtml(tab.label)}</a>`;
+    }).join("")}
+  </nav>`;
+}
+
+function renderProjectHero(
+  project: ProjectPublication,
+  options: { studioBackUrl?: string },
 ): string {
   const card = project.card;
   const primary = project.repository_sources.find((item) => item.role === "primary");
-  const tags = [
-    ...project.discovery.domains.map((tag) => ({ label: tag, facet: "domain" })),
-    ...project.discovery.capabilities.map((tag) => ({ label: tag, facet: "capability" })),
-    ...project.discovery.project_types.map((tag) => ({ label: tag, facet: "project_type" })),
-    ...project.discovery.languages.map((tag) => ({ label: tag, facet: "language" })),
-    ...project.discovery.licenses.map((tag) => ({ label: tag, facet: "license" })),
-  ].filter((tag, index, all) => all.findIndex((item) => item.label === tag.label) === index);
-  const attribution = project.attribution
-    .filter((item) => !options.knownCreatorIds || options.knownCreatorIds.has(item.creator_id))
-    .map((item) => ({ roleLabel: ROLE_LABELS[item.role], creatorId: item.creator_id }));
-
-  // Top tab bar: 14 sections + evidence
-  const allTabs = [
-    ...SECTION_KEYS.map((key) => ({ id: key, label: SECTION_LABELS[key] })),
-    { id: "evidence", label: "证据来源" },
-  ];
-  const tabBar = `<nav class="section-tabs" aria-label="章节导航" id="section-tabs">
-    ${allTabs.map((tab) => `<a class="section-tab" href="#${tab.id}" data-tab="${tab.id}">${escapeHtml(tab.label)}</a>`).join("")}
-  </nav>`;
-
-  const content = `<main class="project-page" id="main-content">
-    <nav class="breadcrumbs" aria-label="面包屑"><a href="${options.studioBackUrl ? escapeHtml(options.studioBackUrl) : "/"}">${options.studioBackUrl ? "返回编辑工作区" : "项目目录"}</a><span>/</span><span>${escapeHtml(card.name)}</span></nav>
-    <header class="project-hero">
+  return `<header class="project-hero">
       <div>
         <p class="section-kicker">${escapeHtml(card.primary_category)}</p>
         <h1>${escapeHtml(card.chinese_name || card.name)}</h1>
@@ -405,23 +401,126 @@ export function renderProjectPage(
       <div><dt>语言</dt><dd>${escapeHtml(card.primary_language || "未知")}</dd></div>
       <div><dt>许可证</dt><dd>${escapeHtml(card.license || "待核验")}</dd></div>
       <div><dt>维护状态</dt><dd>${escapeHtml(card.maintenance_status)}</dd></div>
-    </dl>
-    ${attribution.length ? `<section class="project-attribution" aria-labelledby="attribution-heading"><h2 id="attribution-heading">作者与组织</h2><ul class="tag-list attribution-list">${attribution.map((item) => `<li><span class="role-label">${escapeHtml(item.roleLabel)}</span><a href="/creators/${encodeURIComponent(item.creatorId)}">${escapeHtml(item.creatorId)}</a></li>`).join("")}</ul></section>` : ""}
-    ${tags.length ? `<section class="project-tags" aria-labelledby="tags-heading"><h2 id="tags-heading">标签</h2><ul class="tag-list">${tags.slice(0, 18).map((tag) => `<li><a href="${tagHref(tag.facet, tag.label)}" rel="nofollow">${escapeHtml(tag.label)}</a></li>`).join("")}</ul></section>` : ""}
-    ${tabBar}
-    <article class="project-article">
-      ${SECTION_KEYS.map((key) => renderSection(key, project.sections[key])).join("")}
-      <section class="evidence-section" id="evidence" data-section="evidence">
-        <div class="section-heading"><h2>证据与来源</h2><span>${project.evidence.length} 条</span></div>
-        <ol>${project.evidence.map((item) => `<li><a href="${safeExternalUrl(item.url) ?? "#"}" rel="noopener noreferrer">${escapeHtml(item.fact_summary)}</a><small>${escapeHtml(item.source_type)} · ${escapeHtml(item.retrieved_at)}</small></li>`).join("")}</ol>
-      </section>
-    </article>
+    </dl>`;
+}
+
+function renderProjectAttribution(
+  project: ProjectPublication,
+  knownCreatorIds: ReadonlySet<string> | undefined,
+): string {
+  const attribution = project.attribution
+    .filter((item) => !knownCreatorIds || knownCreatorIds.has(item.creator_id))
+    .map((item) => ({ roleLabel: ROLE_LABELS[item.role], creatorId: item.creator_id }));
+  if (!attribution.length) return "";
+  return `<section class="project-attribution" aria-labelledby="attribution-heading"><h2 id="attribution-heading">作者与组织</h2><ul class="tag-list attribution-list">${attribution.map((item) => `<li><span class="role-label">${escapeHtml(item.roleLabel)}</span><a href="/creators/${encodeURIComponent(item.creatorId)}">${escapeHtml(item.creatorId)}</a></li>`).join("")}</ul></section>`;
+}
+
+function renderProjectTags(project: ProjectPublication): string {
+  const tags = [
+    ...project.discovery.domains.map((tag) => ({ label: tag, facet: "domain" })),
+    ...project.discovery.capabilities.map((tag) => ({ label: tag, facet: "capability" })),
+    ...project.discovery.project_types.map((tag) => ({ label: tag, facet: "project_type" })),
+    ...project.discovery.languages.map((tag) => ({ label: tag, facet: "language" })),
+    ...project.discovery.licenses.map((tag) => ({ label: tag, facet: "license" })),
+  ].filter((tag, index, all) => all.findIndex((item) => item.label === tag.label) === index);
+  if (!tags.length) return "";
+  return `<section class="project-tags" aria-labelledby="tags-heading"><h2 id="tags-heading">标签</h2><ul class="tag-list">${tags.slice(0, 18).map((tag) => `<li><a href="${tagHref(tag.facet, tag.label)}" rel="nofollow">${escapeHtml(tag.label)}</a></li>`).join("")}</ul></section>`;
+}
+
+export function renderProjectPage(
+  project: ProjectPublication,
+  options: { studioBackUrl?: string; knownCreatorIds?: ReadonlySet<string>; ads?: Record<string, AdDisplay> } = {},
+): string {
+  const card = project.card;
+  const primary = project.repository_sources.find((item) => item.role === "primary");
+  const chapterItems = SECTION_KEYS.map((key, index) => {
+    const section = project.sections[key];
+    return `<li class="chapter-item">
+      <a href="/projects/${encodeURIComponent(project.project_id)}/sections/${key}">
+        <span class="chapter-index">${String(index + 1).padStart(2, "0")}</span>
+        <span><strong class="chapter-title">${escapeHtml(SECTION_LABELS[key])}</strong><small class="chapter-summary">${escapeHtml(section.summary)}</small></span>
+        <span class="chapter-state">${stateLabel(section)}</span>
+      </a>
+    </li>`;
+  }).join("");
+  const evidenceItem = `<li class="chapter-item">
+    <a href="/projects/${encodeURIComponent(project.project_id)}/sections/evidence">
+      <span class="chapter-index">15</span>
+      <span><strong class="chapter-title">证据与来源</strong><small class="chapter-summary">${project.evidence.length} 条可核验来源</small></span>
+      <span class="chapter-state">来源</span>
+    </a>
+  </li>`;
+  const content = `<main class="project-page" id="main-content">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="${options.studioBackUrl ? escapeHtml(options.studioBackUrl) : "/"}">${options.studioBackUrl ? "返回编辑工作区" : "项目目录"}</a><span>/</span><span>${escapeHtml(card.name)}</span></nav>
+    ${renderProjectHero(project, options)}
+    ${renderProjectAttribution(project, options.knownCreatorIds)}
+    ${renderProjectTags(project)}
+    <section class="project-chapters" aria-labelledby="chapters-heading">
+      <div class="results-heading"><h2 id="chapters-heading">全部章节</h2><span>14 章 + 证据</span></div>
+      <ol class="chapter-list">${chapterItems}${evidenceItem}</ol>
+    </section>
   </main>`;
   return renderLayout({
     title: card.chinese_name || card.name,
     description: card.summary,
     content,
     canonicalPath: `/projects/${encodeURIComponent(project.project_id)}`,
+    bodyClass: "project-body",
+    scripts: ["/assets/catalog.js"],
+    humanAdSlots: true,
+    adTop: true,
+    categories: DOMAIN_CATEGORIES,
+    activeCategory: project.discovery.domains[0] ?? "",
+    ads: options.ads,
+  });
+}
+
+export function renderProjectSectionPage(
+  project: ProjectPublication,
+  sectionKey: SectionKey | "evidence",
+  options: { studioBackUrl?: string; knownCreatorIds?: ReadonlySet<string>; ads?: Record<string, AdDisplay> } = {},
+): string {
+  const card = project.card;
+  const label = sectionKey === "evidence" ? "证据与来源" : SECTION_LABELS[sectionKey];
+  const prevNext = (() => {
+    if (sectionKey === "evidence") {
+      const prev = SECTION_KEYS.at(-1)!;
+      return { prev: { key: prev, label: SECTION_LABELS[prev] } as const, next: null };
+    }
+    const index = SECTION_KEYS.indexOf(sectionKey);
+    const prev = index > 0 ? SECTION_KEYS[index - 1]! : null;
+    const next = index < SECTION_KEYS.length - 1 ? SECTION_KEYS[index + 1]! : null;
+    return {
+      prev: prev ? { key: prev, label: SECTION_LABELS[prev] } as const : null,
+      next: next ? { key: next, label: SECTION_LABELS[next] } as const : { key: "evidence" as const, label: "证据与来源" },
+    };
+  })();
+  const sectionBody = sectionKey === "evidence"
+    ? `<section class="evidence-section" id="evidence" data-section="evidence">
+        <div class="section-heading"><h2>证据与来源</h2><span>${project.evidence.length} 条</span></div>
+        <ol>${project.evidence.map((item) => `<li><a href="${safeExternalUrl(item.url) ?? "#"}" rel="noopener noreferrer">${escapeHtml(item.fact_summary)}</a><small>${escapeHtml(item.source_type)} · ${escapeHtml(item.retrieved_at)}</small></li>`).join("")}</ol>
+      </section>`
+    : renderSection(sectionKey, project.sections[sectionKey]);
+  const pager = `<nav class="chapter-pager" aria-label="上一章与下一章">
+    ${prevNext.prev ? `<a class="prev" href="/projects/${encodeURIComponent(project.project_id)}/sections/${prevNext.prev.key}"><small>上一章</small><strong>${escapeHtml(prevNext.prev.label)}</strong></a>` : `<span></span>`}
+    ${prevNext.next ? `<a class="next" href="/projects/${encodeURIComponent(project.project_id)}/sections/${prevNext.next.key}"><small>下一章</small><strong>${escapeHtml(prevNext.next.label)}</strong></a>` : ""}
+  </nav>`;
+  const content = `<main class="project-page" id="main-content">
+    <nav class="breadcrumbs" aria-label="面包屑"><a href="/">项目目录</a><span>/</span><a href="/projects/${encodeURIComponent(project.project_id)}">${escapeHtml(card.chinese_name || card.name)}</a><span>/</span><span>${escapeHtml(label)}</span></nav>
+    <header class="chapter-hero">
+      <p class="section-kicker">${escapeHtml(label)}</p>
+      <h1>${escapeHtml(card.chinese_name || card.name)}</h1>
+      <p class="project-deck">${escapeHtml(card.summary)}</p>
+    </header>
+    ${renderChapterNav(project, sectionKey)}
+    <article class="chapter-article">${sectionBody}</article>
+    ${pager}
+  </main>`;
+  return renderLayout({
+    title: `${card.chinese_name || card.name} · ${label}`,
+    description: card.summary,
+    content,
+    canonicalPath: `/projects/${encodeURIComponent(project.project_id)}/sections/${sectionKey}`,
     bodyClass: "project-body",
     scripts: ["/assets/catalog.js"],
     humanAdSlots: true,

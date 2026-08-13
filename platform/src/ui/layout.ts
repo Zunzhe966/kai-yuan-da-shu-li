@@ -64,7 +64,7 @@ function renderAdSlot(ad: AdDisplay | undefined): string {
 function adRail(side: "left" | "right", ads: Record<string, AdDisplay> | undefined): string {
   // 固定坑位：竖向堆叠多个广告槽，位置与数量固定，窄屏自动收起。
   // 坑位数量不随广告内容变化；ads 只填充已发布内容，空槽显示占位。
-  const slots = [1, 2]
+  const slots = [1, 2, 3, 4]
     .map(
       (n) => {
         const slotKey = `${side}-${n}`;

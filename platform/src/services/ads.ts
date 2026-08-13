@@ -5,8 +5,12 @@ import type { ActorContext, Scope } from "../domain/scopes";
 export const AD_SLOTS = [
   "left-1",
   "left-2",
+  "left-3",
+  "left-4",
   "right-1",
   "right-2",
+  "right-3",
+  "right-4",
   "banner-top",
   "banner-end",
 ] as const;
