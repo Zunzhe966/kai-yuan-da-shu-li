@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import type { Bindings } from "../env";
+import { SECTION_KEYS, type SectionKey } from "../domain/project";
 import { searchInputFromUrl, searchProjects } from "../services/search";
 import {
   getCreatorDetail,
@@ -15,6 +16,7 @@ import {
   renderCatalogPage,
   renderCreatorPage,
   renderProjectPage,
+  renderProjectSectionPage,
 } from "../ui/public-pages";
 
 function adsToMap(ads: { slot_key: string; title: string; landing_url: string; image_url: string | null; script_html: string; body: string }[]): Record<string, { title: string; landingUrl: string; imageUrl: string | null; scriptHtml: string; body: string }> {
@@ -62,6 +64,25 @@ export function createPublicRouter() {
       return context.text("Project not found", 404);
     }
     return context.html(renderProjectPage(project, { knownCreatorIds, ads: adsToMap(ads) }));
+  });
+
+  router.get("/projects/:id/sections/:section", async (context) => {
+    const [project, knownCreatorIds, ads] = await Promise.all([
+      getPublishedDocument(context.env.DB, context.req.param("id")),
+      listCreatorIds(context.env.DB).then((ids) => new Set(ids)),
+      listPublishedAds(context.env.DB),
+    ]);
+    if (!project) {
+      return context.text("Project not found", 404);
+    }
+    const section = context.req.param("section");
+    if (section !== "evidence" && !(SECTION_KEYS as readonly string[]).includes(section)) {
+      return context.text("Section not found", 404);
+    }
+    return context.html(renderProjectSectionPage(project, section as SectionKey | "evidence", {
+      knownCreatorIds,
+      ads: adsToMap(ads),
+    }));
   });
 
   router.get("/robots.txt", (context) => {

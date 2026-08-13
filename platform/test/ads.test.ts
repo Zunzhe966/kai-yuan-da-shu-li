@@ -132,8 +132,12 @@ describe("ad entity state machine", () => {
     expect(AD_SLOTS).toEqual([
       "left-1",
       "left-2",
+      "left-3",
+      "left-4",
       "right-1",
       "right-2",
+      "right-3",
+      "right-4",
       "banner-top",
       "banner-end",
     ]);
