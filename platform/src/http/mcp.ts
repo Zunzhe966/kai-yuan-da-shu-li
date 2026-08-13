@@ -17,7 +17,9 @@ import {
 } from "../services/change-reports";
 import {
   EDITABLE_PROJECT_GROUPS,
+  approveSubmission,
   createProjectDraft,
+  publishApprovedDraft,
   submitProjectDraft,
   updateProjectGroup,
   updateProjectSection,
@@ -284,6 +286,32 @@ function createMcpServer(db: D1Database, actor: ActorContext | null): McpServer 
 
   if (actor?.scopes.has("draft:update")) {
     server.registerTool(
+      "list_submissions",
+      {
+        description: "列出所有已提交审核的草稿。",
+        inputSchema: {},
+      },
+      async () => {
+        const rows = await db
+          .prepare(
+            `SELECT s.submission_id, s.draft_id, s.risk_level, s.submitted_at,
+                    d.status, d.created_by_actor_id
+             FROM submissions s
+             JOIN drafts d ON d.draft_id = s.draft_id
+             ORDER BY s.submitted_at DESC`,
+          )
+          .all<{
+            submission_id: string;
+            draft_id: string;
+            risk_level: string;
+            submitted_at: string;
+            status: string;
+            created_by_actor_id: string;
+          }>();
+        return result({ submissions: rows.results });
+      },
+    );
+    server.registerTool(
       "open_project_workspace",
       {
         description: "读取一个内部草稿工作区。",
@@ -460,6 +488,41 @@ function createMcpServer(db: D1Database, actor: ActorContext | null): McpServer 
       },
       async ({ project_id }) =>
         result({ revisions: await projects.listRevisions(db, project_id) }),
+    );
+  }
+
+  if (actor?.scopes.has("review:approve")) {
+    server.registerTool(
+      "approve_submission",
+      {
+        description: "批准一条已提交审核的草稿（高风险内容不能由创建者自审）。",
+        inputSchema: { submission_id: z.string().min(1) },
+      },
+      async ({ submission_id }) => {
+        await approveSubmission(db, actor, submission_id, {
+          reviewId: crypto.randomUUID(),
+          now: new Date().toISOString(),
+        });
+        return result({ submission_id, status: "approved" });
+      },
+    );
+  }
+
+  if (actor?.scopes.has("publish")) {
+    server.registerTool(
+      "publish_approved_draft",
+      {
+        description: "发布已批准草稿，生成不可变正式修订。",
+        inputSchema: { draft_id: z.string().min(1) },
+      },
+      async ({ draft_id }) => {
+        await publishApprovedDraft(db, actor, draft_id, {
+          auditEventId: crypto.randomUUID(),
+          now: new Date().toISOString(),
+          reason: "Published through agent upload client",
+        });
+        return result({ draft_id, status: "published" });
+      },
     );
   }
 
